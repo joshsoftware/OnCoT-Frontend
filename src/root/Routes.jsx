@@ -2,8 +2,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 import HomeComponent from "components/HomeComponent";
 import Layout from "HOC/Layout";
-import ProtectedRoute from "./ProtectedRoute";
-import OverviewContainer from "containers/OverviewContainer";
+import ProtectedRoute from "root/ProtectedRoute";
+import LandingPageContainer from "containers/LandingPageContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
 import IDEContainer from "containers/IDEContainer";
 
@@ -14,7 +14,7 @@ function Routes() {
         <Layout includeHeader={true} WrappedComponent={HomeComponent} />
       </Route>
       <Route exact path="/overview">
-        <Layout includeHeader={false} WrappedComponent={OverviewContainer} />
+        <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
       <ProtectedRoute
         path="/candidate/:id/details"

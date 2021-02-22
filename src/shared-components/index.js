@@ -1,3 +1,3 @@
-import HeaderIDE from "./Header";
+import HeaderIDEContainer from "./Header/index";
 
-export {HeaderIDE};
+export {HeaderIDEContainer};

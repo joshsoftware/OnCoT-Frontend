@@ -11,7 +11,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/">
-        <Layout includeHeader={true} WrappedComponent={HomeComponent} />
+        <Layout includeHeader={false} WrappedComponent={HomeComponent} />
       </Route>
       <Route exact path="/overview">
         <Layout includeHeader={false} WrappedComponent={OverviewContainer} />

@@ -6,7 +6,7 @@ const ProfileComponent = () => {
     return(
         <Container className="no-gutters d-flex my-height" fluid = {true}>
         <Row>
-          <Col xs={6} md={4} >
+          <Col xs={10} md={4} >
               <UserProfileContainer/>
           </Col>
           <Col xs={12} md={8} className = "bg-success">

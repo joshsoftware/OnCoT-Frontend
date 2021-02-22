@@ -1,16 +1,16 @@
 import { Container, Row, Col } from "reactstrap";
-import UserProfileComponent from "components/ProfileComponent/UserProfileComponent"
-import RulesComponent from "components/ProfileComponent/RulesComponent"
+import UserProfileContainer from "containers/UserProfileContainer"
+import RulesContainer from "containers/RulesContainer"
 
 const ProfileComponent = () => {
     return(
         <Container className="no-gutters d-flex my-height" fluid = {true}>
         <Row>
           <Col xs={6} md={4} >
-              <UserProfileComponent/>
+              <UserProfileContainer/>
           </Col>
           <Col xs={12} md={8} className = "bg-success">
-              <RulesComponent/>
+              <RulesContainer/>
           </Col>
         </Row>
         </Container>

@@ -5,8 +5,8 @@ import Layout from "HOC/Layout";
 import ProtectedRoute from "./ProtectedRoute";
 import OverviewContainer from "containers/OverviewContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
-import ProfileContainer from "containers/ProfileContainer";
 import IDEContainer from "containers/IDEContainer";
+import ProfileComponent from "components/ProfileComponent";
 
 function Routes() {
   return (
@@ -19,7 +19,7 @@ function Routes() {
       </Route>
       <ProtectedRoute
         path="/profile/create"
-        component={ProfileContainer}
+        component={ProfileComponent}
         isAuth={true}
         includeHeader={false}
       />

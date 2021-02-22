@@ -1,1 +1,7 @@
 // export const ACTION_CONSTANT = "ACTION_CONSTANTS";
+const RULES_REDUCER = {
+    SET_RULES: 'SET_RULES',
+    RULES_REQUEST: 'RULES_REQUEST'
+}
+export default RULES_REDUCER;
+

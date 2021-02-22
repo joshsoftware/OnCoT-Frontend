@@ -5,6 +5,7 @@ import Layout from "HOC/Layout";
 import ProtectedRoute from "./ProtectedRoute";
 import OverviewContainer from "containers/OverviewContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
+import ProfileContainer from "containers/ProfileContainer";
 import IDEContainer from "containers/IDEContainer";
 
 function Routes() {
@@ -16,6 +17,12 @@ function Routes() {
       <Route exact path="/overview">
         <Layout includeHeader={false} WrappedComponent={OverviewContainer} />
       </Route>
+      <ProtectedRoute
+        path="/profile/create"
+        component={ProfileContainer}
+        isAuth={true}
+        includeHeader={false}
+      />
       <ProtectedRoute
         path="/candidate/:id/details"
         component={CandidateProfileContainer}

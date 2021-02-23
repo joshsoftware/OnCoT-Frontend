@@ -1,7 +1,23 @@
-import { Button } from "core-components";
-import "App.css";
+import moment from "moment";
 
-function LandingPageComponent() {
+import { Button, Alert } from "core-components";
+import Loading from "shared-components/Loading";
+
+function LandingPageComponent(props) {
+  const { startTime, error, errorMessage, loading, handleClick } = props;
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <div className="overview-block text-center text-white">
+        <Alert color="danger">{errorMessage}</Alert>
+      </div>
+    );
+  }
+
   return (
     <div className="overview-block text-center text-white">
       <h3 className="mt-5">Welcome to</h3>
@@ -15,12 +31,15 @@ function LandingPageComponent() {
       >
         OnCot
       </h1>
-      <h4 className="my-5">Your test will start on 11th Feb at 10.00 AM.</h4>
+      <h4 className="my-5">{`Your test will start on ${moment(startTime).format(
+        "LLL"
+      )}`}</h4>
       <div>
         <Button
           className="px-5"
           size="lg"
           style={{ backgroundColor: "#218838" }}
+          onClick={handleClick}
         >
           Continue
         </Button>

@@ -1,0 +1,15 @@
+{
+  "token": {
+    "userDetails": {
+      "id": "123",
+      "email": "vaibhav.chalse99@gmail.com"
+    },
+    "driveDetails": {
+      "id": "456",
+      "name": "KKWIEER drive",
+      "startTime": "2021-02-22T06:40:45Z",
+      "endTime": "2021-02-22T08:40:45Z"
+    },
+    "authToken": "12345678"
+  }
+}

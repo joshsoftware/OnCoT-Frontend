@@ -13,7 +13,7 @@ function Routes() {
       <Route exact path="/">
         <Layout includeHeader={true} WrappedComponent={HomeComponent} />
       </Route>
-      <Route exact path="/overview">
+      <Route exact path="/overview/:id">
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
       <ProtectedRoute

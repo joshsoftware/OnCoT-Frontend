@@ -1,14 +1,18 @@
-import React from 'react';
 import { Col, Navbar, NavbarBrand, Button } from 'reactstrap';
 
 import "./HeaderIDE.css";
 
 const HeaderIDE = (props) => {
-    console.log("Props: ", props);
+    const { organisationName,
+        currentProblem,
+        totalProblems,
+        time
+    } = props;
+
     return (
         <Navbar className="bg-dark justify-content-around" md="auto" xl="auto" lg="auto" p-1>
             <NavbarBrand className="mx-5 text-white font-weight-bold">
-                <h3 className="font-weight-bold">{props.organisationName}</h3>
+                <h3 className="font-weight-bold">{organisationName}</h3>
             </NavbarBrand>
             <Col className="mx-5 d-flex justify-content-end mr-5">
                 <h3 className="text-success align-middle mr-5 font-weight-bold">OnCOT</h3>
@@ -16,10 +20,10 @@ const HeaderIDE = (props) => {
             <Col className="mx-5 justify-content-end d-flex">
                 <div className="mx-5 justify-content-end d-flex">
                     <Button className="p-2 btn-circle">{"<"}</Button>
-                    <h5 className="text-white align-middle mt-2 mx-3">Problem {props.currentProblem}/{props.totalProblems}</h5>
+                    <h5 className="text-white align-middle mt-2 mx-3">Problem {currentProblem}/{totalProblems}</h5>
                     <Button className="p-2 btn-circle">{">"}</Button>
                 </div>
-                <h2 className="text-white align-middle font-weight-bold" id="timeLeft">2:59:59</h2>
+                <h2 className="text-white align-middle font-weight-bold" id="timeLeft">{time}</h2>
             </Col>
         </Navbar>
     );

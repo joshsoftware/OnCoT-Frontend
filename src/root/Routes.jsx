@@ -7,6 +7,8 @@ import OverviewContainer from "containers/OverviewContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
 import IDEContainer from "containers/IDEContainer";
 
+import ProblemsContainer from "containers/ProblemsContainer";
+
 function Routes() {
   return (
     <Switch>
@@ -16,6 +18,15 @@ function Routes() {
       <Route exact path="/overview">
         <Layout includeHeader={false} WrappedComponent={OverviewContainer} />
       </Route>
+      
+      {/* to test problem statement component */}
+      <ProtectedRoute
+        path="/problems/get"
+        component={ProblemsContainer}
+        isAuth={true}
+        includeHeader={false}
+      />
+
       <ProtectedRoute
         path="/candidate/:id/details"
         component={CandidateProfileContainer}

@@ -13,7 +13,7 @@ import {
 function* driveDetails(action) {
   yield put(setDriveLoading(true));
   try {
-    const { data, status } = yield call(driveDetail, action.value.token);
+    const { data, status } = yield call(driveDetail, action.payload.token);
     const { userDetails, driveDetails, authToken } = data;
 
     if (status === 200) {

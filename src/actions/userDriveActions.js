@@ -3,27 +3,27 @@ import { DRIVE } from "constants/actionConstants";
 export const driveDetailRequest = (value) => {
   return {
     type: DRIVE.DRIVE_DETAIL_REQUEST,
-    value: { token: value },
+    payload: { token: value },
   };
 };
 
 export const setUserDriveDetails = (value) => {
   return {
     type: DRIVE.SET_DETAILS,
-    value,
+    payload: value,
   };
 };
 
 export const showErrorMessage = (value) => {
   return {
     type: DRIVE.SET_ERROR_MESSAGE,
-    value: { error: true, errorMessage: value },
+    payload: { error: true, errorMessage: value },
   };
 };
 
 export const setDriveLoading = (value) => {
   return {
     type: DRIVE.SET_LOADING,
-    value: { loading: value },
+    payload: { loading: value },
   };
 };

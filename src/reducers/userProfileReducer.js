@@ -11,7 +11,7 @@ export const initialState = {
 const userProfileReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER.SET_DETAILS:
-      return { ...state, ...action.value };
+      return { ...state, ...action.payload };
     default:
       return state;
   }

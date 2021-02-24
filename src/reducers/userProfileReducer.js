@@ -5,7 +5,7 @@ const initialState = {
   firstname: "",
   lastname: "",
   email: "",
-  authToken: localStorage.getItem("authToken") || "",
+  authToken: "",
 };
 
 const userProfileReducer = (state = initialState, action) => {

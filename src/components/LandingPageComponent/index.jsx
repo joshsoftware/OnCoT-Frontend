@@ -29,7 +29,7 @@ function LandingPageComponent(props) {
           color: "#218838",
         }}
       >
-        OnCot
+        OnCoT
       </h1>
       <h4 className="my-5">{`Your test will start on ${moment(startTime).format(
         "LLL"

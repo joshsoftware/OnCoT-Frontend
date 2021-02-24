@@ -1,6 +1,6 @@
 import { DRIVE } from "constants/actionConstants";
 
-const initialState = {
+export const initialState = {
   id: "",
   name: "",
   startTime: "",
@@ -11,29 +11,15 @@ const initialState = {
 };
 
 const userDriveReducer = (state = initialState, action) => {
-  const { type, value } = action;
-  switch (type) {
+  switch (action.type) {
     case DRIVE.SET_DETAILS:
-      const { id, name, startTime, endTime } = value;
-      return {
-        ...state,
-        id,
-        name,
-        startTime,
-        endTime,
-      };
+      return { ...state, ...action.value };
 
     case DRIVE.SET_ERROR_MESSAGE:
-      return {
-        ...state,
-        ...value,
-      };
+      return { ...state, ...action.value };
 
     case DRIVE.SET_LOADING:
-      return {
-        ...state,
-        loading: value.loading,
-      };
+      return { ...state, ...action.value };
 
     default:
       return state;

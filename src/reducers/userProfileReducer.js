@@ -1,22 +1,17 @@
 import { USER } from "constants/actionConstants";
 
-const initialState = {
+export const initialState = {
   id: "",
   firstname: "",
   lastname: "",
   email: "",
-  authToken: "",
+  authToken: localStorage.getItem("authToken") || "",
 };
 
 const userProfileReducer = (state = initialState, action) => {
-  const { type, value } = action;
-  switch (type) {
+  switch (action.type) {
     case USER.SET_DETAILS:
-      const { authToken, ...userData } = value;
-      return {
-        ...state,
-        ...userData,
-      };
+      return { ...state, ...action.value };
     default:
       return state;
   }

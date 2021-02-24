@@ -7,7 +7,6 @@ import OverviewContainer from "containers/OverviewContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
 import IDEContainer from "containers/IDEContainer";
 import ProfileComponent from "components/ProfileComponent";
-import ProblemsContainer from "containers/ProblemsContainer";
 
 function Routes() {
   return (
@@ -24,14 +23,6 @@ function Routes() {
         isAuth={true}
         includeHeader={false}
       />
-      {/* to test problem statement component */}
-      <ProtectedRoute
-        path="/problems/get"
-        component={ProblemsContainer}
-        isAuth={true}
-        includeHeader={false}
-      />
-
       <ProtectedRoute
         path="/candidate/:id/details"
         component={CandidateProfileContainer}

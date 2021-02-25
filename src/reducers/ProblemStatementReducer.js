@@ -1,7 +1,8 @@
 import { PROBLEM_STATEMENT_REDUCER } from "../constants/actionConstants";
 
 let initialState = {
-    statement : {}
+    statement : {},
+    requestError : ""
 }
 
 const ProblemStatementReducer = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const ProblemStatementReducer = (state = initialState, action) => {
     switch (type) {
         case PROBLEM_STATEMENT_REDUCER.SET_STATEMENT:
             return {...state, statement: payload.statement}
+        case PROBLEM_STATEMENT_REDUCER.STATEMENT_REQUEST_FAILED:
+            return {...state,requestError:payload.requestError}
         default:
             return state;
     }

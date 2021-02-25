@@ -8,6 +8,13 @@ export const statementRequest = () => {
     }
 }
 
+export const statementActionFailed = (data) => {
+    return {
+        type: PROBLEM_STATEMENT_REDUCER.STATEMENT_REQUEST_FAILED, 
+        payload: {requestError: data}
+    }
+}
+
 const statementAction = (data) => {
     return {
         type: PROBLEM_STATEMENT_REDUCER.SET_STATEMENT, 

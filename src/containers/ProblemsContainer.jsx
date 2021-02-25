@@ -1,17 +1,23 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import ProblemsComponent from "components/ProblemsComponent"
 import { statementRequest } from "../actions/problemStatementActions";
-import getStatement from "../apis/problemStatementAPI";
 
 const ProblemsContainer = () => {
     const dispatch = useDispatch();
     const result = useSelector((state) => state);
-    const data = result.statement.str;
-    // console.log(result.statement.str);
+    
+    let data = result.statement.str;
+    let requestError = result.requestError;
+    
+    if(requestError)
+    {
+        data = requestError;
+    }
 
     useEffect(() => {
-        dispatch(statementRequest(getStatement));
+        dispatch(statementRequest());
     },[dispatch]);
     
     return(

@@ -10,18 +10,15 @@ import {
 } from "actions/userDriveActions";
 
 //worker saga
-function* driveDetails(action) {
-  yield put(setDriveLoading(true));
+export function* driveDetails(action) {
   try {
-    const { data, status } = yield call(driveDetail, action.payload.token);
+    yield put(setDriveLoading(true));
+    const { data } = yield call(driveDetail, action.payload.token);
     const { userDetails, driveDetails, authToken } = data;
-
-    if (status === 200) {
-      yield put(setDriveLoading(false));
-      yield put(setUserDriveDetails(driveDetails));
-      yield put(setUserProfileDetails(userDetails));
-      localStorage.setItem("authToken", authToken);
-    }
+    yield put(setDriveLoading(false));
+    yield put(setUserDriveDetails(driveDetails));
+    yield put(setUserProfileDetails(userDetails));
+    localStorage.setItem("authToken", authToken);
   } catch (err) {
     yield put(setDriveLoading(false));
     yield put(showErrorMessage(err.message));

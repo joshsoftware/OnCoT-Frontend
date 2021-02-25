@@ -15,7 +15,7 @@ function LandingPageContainer() {
 
   useEffect(() => {
     dispatch(driveDetailRequest(tokenId));
-  }, [tokenId]);
+  }, [dispatch, tokenId]);
 
   const handleClick = () => {
     history.push("/ide");

@@ -1,20 +1,19 @@
-import { Container, Row, Col } from "reactstrap";
-import UserProfileContainer from "containers/UserProfileContainer"
-import RulesContainer from "containers/RulesContainer"
-import "./index.css";
+import { Container, Row, Col } from "core-components";
+import UserProfileContainer from "containers/UserProfileContainer";
+import RulesContainer from "containers/RulesContainer";
 
 const ProfileComponent = () => {
     return(
-        <Container className="no-gutters d-flex my-height" fluid = {true}>
+      <Container fluid className="px-0 overflow-hidden" >
         <Row>
-          <Col xs={6} md={4} >
+          <Col xs={12} md={4} xl={4}>
               <UserProfileContainer/>
           </Col>
-          <Col xs={12} md={8} className = "green">
+          <Col xs={12} md={8} xl={8}>
               <RulesContainer/>
           </Col>
         </Row>
-        </Container>
+      </Container>
   );
 }
 

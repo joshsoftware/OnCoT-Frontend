@@ -1,23 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import RulesComponent from "components/RulesComponent";
 
+import RulesComponent from "components/RulesComponent";
 import { rulesRequest } from "../actions/loginActions";
-import getRules from "../apis/rulesAPI";
 
 const RulesContainer = () => {
 
     const dispatch = useDispatch();
     const result = useSelector((state) => state);
     
-    const data = result.userlist.str;
-   
+    let data = result.userlist.str;
+    console.log(result);
+    let requestError = result.requestError;
     useEffect(() => {
-        dispatch(rulesRequest(getRules));
+        dispatch(rulesRequest());
     },[dispatch]);
     
+    if(requestError){
+        data = requestError;
+    }
     return (
-        <RulesComponent data = {data}/>
+        <RulesComponent data = {data} />
     );
 }
 export default RulesContainer;

@@ -17,6 +17,7 @@ function Routes() {
       <Route exact path="/overview">
         <Layout includeHeader={false} WrappedComponent={OverviewContainer} />
       </Route>
+      {/* Route to test Profile Component */}
       <ProtectedRoute
         path="/profile/create"
         component={ProfileComponent}

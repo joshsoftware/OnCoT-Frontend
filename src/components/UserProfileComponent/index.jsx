@@ -1,6 +1,10 @@
+import {Container} from 'core-components';
+
 const UserProfileComponent = () => {
     return(
-        <h1>UserProfileComponent</h1>
+       <Container>
+           <h1>User component</h1>
+       </Container>
     )
 }
 

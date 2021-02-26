@@ -1,6 +1,6 @@
 import { PROBLEM_STATEMENT_REDUCER } from "../constants/actionConstants";
 
-let initialState = {
+export const initialState = {
     statement : {},
     requestError : ""
 }

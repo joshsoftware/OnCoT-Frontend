@@ -15,12 +15,10 @@ export function* driveDetails(action) {
     yield put(setDriveLoading(true));
     const { data } = yield call(driveDetail, action.payload.token);
     const { userDetails, driveDetails, authToken } = data;
-    yield put(setDriveLoading(false));
     yield put(setUserDriveDetails(driveDetails));
     yield put(setUserProfileDetails(userDetails));
     localStorage.setItem("authToken", authToken);
   } catch (err) {
-    yield put(setDriveLoading(false));
     yield put(showErrorMessage(err.message));
   }
 }

@@ -5,28 +5,30 @@ import { useParams, useHistory } from "react-router-dom";
 import LandingPageComponent from "components/LandingPageComponent";
 import { driveDetailRequest } from "actions/userDriveActions";
 
+import ROUTES from "constants/routeConstants";
+
 function LandingPageContainer() {
   const { id: tokenId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const userDriveState = useSelector((state) => state.userDriveReducer);
-  const { startTime, error, errorMessage, loading } = userDriveState;
+  const { startTime, isError, errorMessage, isLoading } = userDriveState;
 
   useEffect(() => {
     dispatch(driveDetailRequest(tokenId));
   }, [dispatch, tokenId]);
 
   const handleClick = () => {
-    history.push("/ide");
+    history.push(ROUTES.IDE);
   };
 
   return (
     <LandingPageComponent
       startTime={startTime}
-      error={error}
+      isError={isError}
       errorMessage={errorMessage}
-      loading={loading}
+      isLoading={isLoading}
       handleClick={handleClick}
     />
   );

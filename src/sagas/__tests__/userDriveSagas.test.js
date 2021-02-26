@@ -45,17 +45,10 @@ describe("user drive saga", () => {
     expect(gen.next().value).toEqual(call(driveDetail, action.payload.token));
   });
 
-  it("must stop spineer", () => {
-    gen.next();
-    gen.next();
-    expect(gen.next(response).value).toEqual(put(setDriveLoading(false)));
-  });
-
   it("must set drive details", () => {
     gen.next();
     gen.next();
-    gen.next(response);
-    expect(gen.next().value).toEqual(
+    expect(gen.next(response).value).toEqual(
       put(setUserDriveDetails(response.data.driveDetails))
     );
   });
@@ -64,22 +57,17 @@ describe("user drive saga", () => {
     gen.next();
     gen.next();
     gen.next(response);
-    gen.next();
     expect(gen.next().value).toEqual(
       put(setUserProfileDetails(response.data.userDetails))
     );
     expect(gen.next().done).toEqual(true);
   });
 
-  it("must stop spinner", () => {
-    gen.next();
-    expect(gen.throw(error).value).toEqual(put(setDriveLoading(false)));
-  });
-
   it("must throw error", () => {
     gen.next();
-    gen.throw(error);
-    expect(gen.next().value).toEqual(put(showErrorMessage(error.message)));
+    expect(gen.throw(error).value).toEqual(
+      put(showErrorMessage(error.message))
+    );
     expect(gen.next().done).toEqual(true);
   });
 });

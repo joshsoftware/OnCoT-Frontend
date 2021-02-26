@@ -1,8 +1,6 @@
 import { USER } from "constants/actionConstants";
 
-export const setUserProfileDetails = (value) => {
-  return {
-    type: USER.SET_DETAILS,
-    payload: value,
-  };
-};
+export const setUserProfileDetails = (payload) => ({
+  type: USER.SET_DETAILS,
+  payload,
+});

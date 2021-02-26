@@ -10,3 +10,9 @@
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+#title {
+  font-size: 65px;
+  font-family: "Montserrat";
+  color: #218838;
+}

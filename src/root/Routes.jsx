@@ -7,28 +7,30 @@ import LandingPageContainer from "containers/LandingPageContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
 import IDEContainer from "containers/IDEContainer";
 
+import ROUTES from "constants/routeConstants";
+
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path={ROUTES.HOME}>
         <Layout includeHeader={true} WrappedComponent={HomeComponent} />
       </Route>
-      <Route exact path="/overview/:id">
+      <Route exact path={ROUTES.OVERVIEW}>
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
       <ProtectedRoute
-        path="/candidate/:id/details"
+        path={ROUTES.CANDIDATE_DETAILS}
         component={CandidateProfileContainer}
         isAuth={true}
         includeHeader={false}
       />
       <ProtectedRoute
-        path="/ide"
+        path={ROUTES.IDE}
         component={IDEContainer}
         isAuth={true}
         includeHeader={true}
       />
-      <Redirect to="/" />
+      <Redirect to={ROUTES.HOME} />
     </Switch>
   );
 }

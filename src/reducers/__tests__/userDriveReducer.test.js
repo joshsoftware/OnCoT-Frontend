@@ -19,22 +19,23 @@ describe("user drive reducer", () => {
     };
     expect(
       userDriveReducer(initialState, setUserDriveDetails(userObj))
-    ).toEqual({ ...initialState, ...userObj });
+    ).toEqual({ ...initialState, ...userObj, isLoading: false });
   });
 
   it("set error message", () => {
     const errMsg = "something went wrong";
     expect(userDriveReducer(initialState, showErrorMessage(errMsg))).toEqual({
       ...initialState,
-      error: true,
+      isError: true,
       errorMessage: errMsg,
+      isLoading: false,
     });
   });
 
   it("set drive loading", () => {
     expect(userDriveReducer(initialState, setDriveLoading(true))).toEqual({
       ...initialState,
-      loading: true,
+      isLoading: true,
     });
   });
 });

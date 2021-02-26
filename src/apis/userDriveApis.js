@@ -1,9 +1,5 @@
-import axios from "axios";
+import request from "apis/apiHelper";
 
-import { SERVER_URL } from "constants/appConstants";
-
-const driveDetail = (token) => {
-  return axios.get(`${SERVER_URL}/validate-token/${token}`);
-};
+const driveDetail = (token) => request.get(`/validate-token/${token}`);
 
 export default driveDetail;

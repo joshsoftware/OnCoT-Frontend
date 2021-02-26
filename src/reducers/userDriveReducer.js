@@ -1,3 +1,5 @@
+import produce from "immer";
+
 import { DRIVE } from "constants/actionConstants";
 
 export const initialState = {
@@ -5,25 +7,27 @@ export const initialState = {
   name: "",
   startTime: "",
   endTime: "",
-  error: false,
+  isError: false,
   errorMessage: "",
-  loading: false,
+  isLoading: false,
 };
 
-const userDriveReducer = (state = initialState, action) => {
+const userDriveReducer = produce((state = initialState, action) => {
   switch (action.type) {
     case DRIVE.SET_DETAILS:
-      return { ...state, ...action.payload };
-
+      return { ...state, ...action.payload, isLoading: false };
     case DRIVE.SET_ERROR_MESSAGE:
-      return { ...state, ...action.payload };
-
+      const { isError, errorMessage } = action.payload;
+      state.isError = isError;
+      state.errorMessage = errorMessage;
+      state.isLoading = false;
+      break;
     case DRIVE.SET_LOADING:
-      return { ...state, ...action.payload };
-
+      state.isLoading = action.payload.isLoading;
+      break;
     default:
       return state;
   }
-};
+});
 
 export default userDriveReducer;

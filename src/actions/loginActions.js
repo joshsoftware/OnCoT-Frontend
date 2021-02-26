@@ -1,10 +1,3 @@
-// export const temp = (data) => {
-//   return {
-//     type: ACTION_REDUCER.SOMEACTIONS,
-//     payload: data,
-//   };
-// };
-
 import getRules from "apis/rulesAPI";
 import RULES_REDUCER from "../constants/actionConstants";
 

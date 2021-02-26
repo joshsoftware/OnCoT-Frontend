@@ -1,6 +1,6 @@
 import RULES_REDUCER from "../constants/actionConstants";
 
-let initialState = {
+export const initialState = {
     userlist : {},
     requestError: ""
 }

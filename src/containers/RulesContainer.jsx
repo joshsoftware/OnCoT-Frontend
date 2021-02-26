@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import RulesComponent from "components/RulesComponent";
-import { rulesRequest } from "../actions/loginActions";
+import { rulesRequest } from "../actions/rulesAction";
 
 const RulesContainer = () => {
 

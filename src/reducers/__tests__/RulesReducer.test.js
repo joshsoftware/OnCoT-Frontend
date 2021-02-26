@@ -1,8 +1,8 @@
 import RulesReducer,{ initialState } from "../RulesReducer";
-import rulesAction, { rulesRequestFailed } from "actions/loginActions";
+import rulesAction, { rulesRequestFailed } from "actions/rulesAction";
 
 describe("Rules Reducer", () => {
-    it("Return Default State", () =>{
+    it("Return Default State", () => {
         expect(RulesReducer(initialState,{})).toEqual(initialState)
     })
     it("Set Rules", () => {

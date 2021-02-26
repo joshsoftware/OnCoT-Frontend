@@ -1,7 +1,7 @@
 import getRules from "apis/rulesAPI";
 import RULES_REDUCER from "constants/actionConstants";
 import {call, put, takeLatest } from "redux-saga/effects";
-import rulesAction, { rulesRequestFailed } from "../actions/loginActions";
+import rulesAction, { rulesRequestFailed } from "../actions/rulesAction";
 
 function* rulesSaga(action){
   try{

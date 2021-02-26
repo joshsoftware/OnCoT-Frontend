@@ -1,10 +1,8 @@
-import getRules from "apis/rulesAPI";
 import RULES_REDUCER from "../constants/actionConstants";
 
 export const rulesRequest = () => {
     return {
         type: RULES_REDUCER.RULES_REQUEST,
-        payload: getRules()
     }
 }
 export const rulesRequestFailed = (data) => {

@@ -6,10 +6,10 @@ const ProfileComponent = () => {
     return(
         <Container className="no-gutters d-flex my-height" fluid = {true}>
         <Row>
-          <Col xs={10} md={4} >
+          <Col lg={7} >
               <UserProfileContainer/>
           </Col>
-          <Col xs={12} md={8} className = "bg-success">
+          <Col lg={5} className = "bg-success">
               <RulesContainer/>
           </Col>
         </Row>

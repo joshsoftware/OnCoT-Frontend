@@ -1,12 +1,44 @@
-.popover{
-    background-color: #ededed !important;
-    font-size: 17px !important;
-    font-weight: 500 !important;
-    padding: 0px !important;
-    border: 0px !important;
-    box-shadow: 0 0 1px 1px #fff !important;
+.box {
+    margin-top: 20%;
 }
 
-.arror, .arrow::after{
-    border-left-color: #ededed !important;  
+.box Input {
+    padding: 15px;
+    background-color: whitesmoke;
+    font-size: large;
+    width: 100%;
+}
+
+.box Form {
+    position: relative;
+}
+
+.box Form Label {
+    position: absolute;
+    top: 7px;
+    left: 32px;
+    font-size: large;
+    color: rgb(100, 100, 100);
+    transition: .3s;
+    pointer-events: none;
+}
+
+.box Input:hover {
+    background-color: whitesmoke;
+}
+
+input:not(:placeholder-shown) + Label,
+.box Input:hover + Label {
+    top: -25px;
+    color: whitesmoke;
+    /* text-shadow: 2px 2px whitesmoke; */
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.errorToast{
+    position: absolute;
+    top:30px;
+    left:30px;
 }

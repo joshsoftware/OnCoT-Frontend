@@ -1,67 +1,114 @@
-import { Input, Form, FormFeedback, FormGroup, UncontrolledPopover } from 'reactstrap';
-import { Card, CardBody, Button} from 'reactstrap';
-import { PopoverBody } from 'reactstrap';
+import { 
+    Input, 
+    Form, 
+    FormFeedback, 
+    FormGroup, 
+    Label,
+    Card, 
+    CardBody, 
+    Button,
+    Row, 
+    Col, 
+    Spinner,
+    Toast,
+    ToastHeader
+} from 'reactstrap';
 import "./infoComponent.css"
 
 const UserProfileComponent = (props) => {
+
     return(
-        <div>
-            <Card className="bg-transparent text-center border-0 opacity-5">
+        <div className="box">
+            <Card className="bg-transparent border-0 opacity-5">
                 <CardBody className="text-white">  
                     
-                    <h2 className="pb-3 text-success">OnCot</h2>
-                    <h5 className="pb-3">Please fill below details</h5>
+                    <h2 className="pb-3 text-success text-center font-weight-bolder">OnCot</h2>
+                    <h5 className="pb-3 text-center font-weight-bolder">Please fill below details</h5>
                     
                     <Form>
-                        <FormGroup className="position-relative">
-                            <Input 
-                                className="shadow"
-                                id="popoverforName"
-                                type="text" 
-                                placeholder="Name" 
-                                onFocus={(event) => event.target.placeholder = ""} 
-                                onBlur={(event) => event.target.placeholder = "Name"}
-                                onChange={props.nameChanged} 
-                                invalid={props.nameInvalid.invalid} />
+                        <Row className="py-3">
+                            <Col>
+                                <FormGroup>
+                                    <Input 
+                                        className="shadow"
+                                        onChange={props.fNameChanged} 
+                                        invalid={props.fNameInvalid.invalid} 
+                                        placeholder="" />
 
-                                <UncontrolledPopover placement="left" trigger="focus" target="popoverforName">
-                                    <PopoverBody>Name</PopoverBody>
-                                </UncontrolledPopover>
-                                
-                            <FormFeedback className="text-center">{props.nameInvalid.message}</FormFeedback>
-                        </FormGroup>
+                                    <Label className="text-left">First Name</Label>
+                                    
+                                    <FormFeedback className="text-center">{props.fNameInvalid.message}</FormFeedback>
+                                </FormGroup>
+                            </Col>
 
-                        <FormGroup className="text-left">
-                            <Input 
-                                className="shadow"
-                                id="popoverforMobile"
-                                type="text" 
-                                placeholder="Mobile" 
-                                onFocus={(event) => event.target.placeholder = ""} 
-                                onBlur={(event) => event.target.placeholder = "Mobile"}
-                                onChange={props.mobileChanged}
-                                invalid={props.mobileInvalid.invalid}
-                            />
+                            <Col>
+                                <FormGroup>
+                                    <Input 
+                                        className="shadow"
+                                        onChange={props.lNameChanged} 
+                                        invalid={props.lNameInvalid.invalid} 
+                                        placeholder="" />
 
-                                <UncontrolledPopover placement="left" trigger="focus" target="popoverforMobile">
-                                    <PopoverBody>Mobile</PopoverBody>
-                                </UncontrolledPopover>
+                                    <Label className="text-left">Last Name</Label>
+                                        
+                                    <FormFeedback className="text-center">{props.lNameInvalid.message}</FormFeedback>
+                                </FormGroup>
+                            </Col>
+                        </Row>
 
-                            <FormFeedback className="text-center">{props.mobileInvalid.message}</FormFeedback>
-                        </FormGroup>
+                        <Row>
+                            <Col>
+                                <FormGroup>
+                                    <Input 
+                                        className="shadow"
+                                        onChange={props.mobileChanged}
+                                        invalid={props.mobileInvalid.invalid}
+                                        placeholder=""
+                                    />
 
-                        <FormGroup>
-                            <Button 
-                                className="shadow mt-3" 
-                                color="success" 
-                                type="submit" 
-                                onClick={props.buttonClicked}>
-                                    Continue
-                            </Button>
-                        </FormGroup>
+                                    <Label className="text-left">Mobile</Label>
+
+                                    <FormFeedback className="text-center">{props.mobileInvalid.message}</FormFeedback>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+
+                        <Row className="py-3 text-center">
+                            <Col>
+                                <FormGroup>
+                                    <Button 
+                                        className="shadow mt-2 font-weight-bolder"
+                                        style={{width:"62%"}}
+                                        color="success" 
+                                        type="submit" 
+                                        onClick={props.buttonClicked}>
+                                            
+                                            {props.result.loading ? <Spinner size="sm" color="light"/> : <>Continue</> }
+                                    
+                                    </Button>
+                                </FormGroup>
+                            </Col>
+                        </Row>
                     </Form>
                 </CardBody>
             </Card> 
+
+            {props.show ? 
+
+                <div className="errorToast">
+                    <Toast isOpen={props.show}>
+                        <ToastHeader className="w-100 px-4" icon="danger" toggle={props.toggle}>
+                            The server encountered an error.<br/> 
+                            Please try again later.
+                        </ToastHeader>
+                        {/* <ToastBody tog>
+                            Something went wrong!
+                        </ToastBody> */}
+                    </Toast>
+                </div>
+                :
+                null}
+
         </div>    
     )
 }

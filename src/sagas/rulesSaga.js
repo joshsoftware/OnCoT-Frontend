@@ -1,11 +1,13 @@
-import getRules from "apis/rulesAPI";
-import RULES_REDUCER from "constants/actionConstants";
 import {call, put, takeLatest } from "redux-saga/effects";
-import rulesAction, { rulesRequestFailed } from "../actions/rulesAction";
 
-function* rulesSaga(action){
+import RULES_REDUCER from "constants/actionConstants";
+import rulesAction, { rulesRequestFailed } from "../actions/rulesAction";
+import getRules from "apis/rulesAPI";
+
+//worker saga
+export function* rulesSaga(){
   try{
-    const response = yield call(getRules,action.payload);
+    const response = yield call(getRules);
     yield put(rulesAction(response.data));
   }catch(error){
     yield put(rulesRequestFailed('Something Went Wrong'));

@@ -4,9 +4,9 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import statementAction, { statementActionFailed } from "../actions/problemStatementActions";
 
 //Problem statememt Saga
-function* statementSaga(action){
+export function* statementSaga(){
   try{
-    const response = yield call(getStatement,action.payload);
+    const response = yield call(getStatement);
     yield put(statementAction(response.data));
   }catch(error){
     yield put(statementActionFailed("Something Went Wrong"));

@@ -24,27 +24,22 @@ describe("candidateFormSaga", () => {
     });
 
     it("API call for REQUEST", () => {
-        const value1 = gen.next().value
-        const value2 = call(candidateInfoPostApi, action.payload)
+        const expectedRequest = gen.next().value
+        const recievedRequest = call(candidateInfoPostApi, action.payload)
         
-        expect(JSON.stringify(value1)).toBe(JSON.stringify(value2));
+        expect(JSON.stringify(expectedRequest)).toBe(JSON.stringify(recievedRequest));
     })
 
     it("FAILURE action", () => {
 
-        const value1 = gen.next().value
-        const value2 = call(candidateInfoPostApi, action.payload)
+        const expectedRequest = gen.next().value
+        const recievedRequest = call(candidateInfoPostApi, action.payload)
         
-        expect(JSON.stringify(value1)).toBe(JSON.stringify(value2));
+        expect(JSON.stringify(expectedRequest)).toBe(JSON.stringify(recievedRequest));
 
-        const value3 = gen.next(data).value
-        const value4 = put(candidateFormFailureAction(data));
+        const expectedFailure = gen.next(data).value
+        const recievedFaiure = put(candidateFormFailureAction(data));
 
-        expect(JSON.stringify(value3)).toBe(JSON.stringify(value4));
-
+        expect(JSON.stringify(expectedFailure)).toBe(JSON.stringify(recievedFaiure));
     })
-
-    // it("Must dispatch success action", () => {
-        
-    // })
 })

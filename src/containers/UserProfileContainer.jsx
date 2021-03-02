@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import * as yup from 'yup';
 
 import UserProfileComponent from "components/UserProfileComponent"
-import { candidateFormRequestAction } from "actions/candidateFormActions";
+import { candidateFormRequestAction } from "actions/candidateFormActions"
 
 const schema = yup.object().shape({
     fName: yup.string().required().matches(/^[A-Za-z '.-]*$/, 'fName should be valid'),
@@ -15,13 +15,22 @@ const reducer = (state, action) =>{
 
     switch (action.type) {
         case "fName":
-            return {...state, fName: action.payload.fName}
+            return {...state, fName: action.payload}
         
         case "lName":
-            return {...state, lName: action.payload.lName}
+            return {...state, lName: action.payload}
             
         case "mobile":
-            return {...state, mobile: action.payload.mobile}
+            return {...state, mobile: action.payload}
+
+        case "fNameInvalid":
+            return {...state, fName: action.payload }
+        
+        case "lNameInvalid":
+            return {...state, lName: action.payload}
+            
+        case "mobileInvalid":
+            return {...state, mobile: action.payload}
 
         default: return state;
     }
@@ -34,41 +43,36 @@ const UserProfileContainer = () => {
 
     console.log("globalState: ", globalState);
 
-    const initialInvalidState = {
-        fName: { invalid:false, message:"" },
-        lName: { invalid:false, message:"" }, 
-        mobile: { invalid:false, message:"" }
+    const initialUserState = {
+        fName: { value: "", invalidState: {invalid:false, message:""} },
+        lName: { value: "", invalidState: {invalid:false, message:""} }, 
+        mobile: { value: "", invalidState: {invalid:false, message:""} }
     }
 
-    const [invalid, setInvalid] = useReducer(reducer, initialInvalidState)
-
-    const [fName, setFName] = useState();
-    const [lName, setLName] = useState();
-    const [mobile, setMobile] = useState();
-
-    const [nextPageAllowed, setNextPageAllowed] = useState(false);
-    const [show, setShow] = useState(false);
+    const [userState, setUserState] = useReducer(reducer, initialUserState);
+    const [showToast, setShowToast] = useState(false);
     
     const handleFNameChange = (event) => {
         const fName = event.target.value;
-        setFName(fName)
-        setInvalid({type:"fName", payload:{fName:{invalid:false, message:""}}})
+        setUserState({type:"fName", payload:{value:fName, invalidState:{invalid:false, message:""}}});
     }
 
     const handleLNameChange = (event) => {
         const lName = event.target.value;
-        setLName(lName)
-        setInvalid({type:"lName", payload:{lName:{invalid:false, message:""}}})
+        setUserState({type:"lName", payload:{value:lName, invalidState:{invalid:false, message:""}}});
     }
 
     const handleMobileChange = (event) => {
         const mobile = event.target.value;
-        setMobile(mobile)
-        setInvalid({type:"mobile", payload:{mobile:{invalid:false, message:""}}})
+        setUserState({type:"mobile", payload:{value:mobile, invalidState:{invalid:false, message:""}}});
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        const fName = userState.fName.value;
+        const lName = userState.lName.value;
+        const mobile = userState.mobile.value;
 
         schema.validate({
             fName: fName,
@@ -78,13 +82,9 @@ const UserProfileContainer = () => {
         .then(() => {
 
             const data = {fName, lName, mobile};
+            const error = globalState.error;
 
             dispatch(candidateFormRequestAction(data));
-            
-            const show = globalState.error;
-            setShow(show);
-            
-            setNextPageAllowed(true);
         })
         .catch((error) => {
             const errors = error.errors;
@@ -93,31 +93,22 @@ const UserProfileContainer = () => {
             errors.forEach(error => {
                 hint = error.split(" ")[0]
                 if (hint === "fName"){
-                    const message = error.replace("fName", "First name") 
-                    setInvalid({type:"fName", payload:{fName:{invalid:true, message:message}}})
+                    const message = error.replace("fName", "First name");
+                    setUserState({type:"fNameInvalid", payload:{value: fName, invalidState:{invalid:true, message:message}}});
                 }
                 if (hint === "lName"){
                     const message = error.replace("lName", "Last name")
-                    setInvalid({type:"lName", payload:{lName:{invalid:true, message:message}}})
+                    setUserState({type:"lNameInvalid", payload:{value: lName, invalidState:{invalid:true, message:message}}});
                 }
                 if (hint === "mobile") {
                     const message = error.replace("mobile", "Mobile")
-                    setInvalid({type:"mobile", payload:{mobile:{invalid:true, message:message}}})
+                    setUserState({type:"mobileInvalid", payload:{value: mobile, invalidState:{invalid:true, message:message}}})
                 }
             });
         });
     }
 
-    const toggle = () => setShow(!show)
-
-    if (nextPageAllowed) {
-        // go to next page!!
-        return (
-            <h1 style={{color:"white"}}>
-                Start your test!!
-            </h1>
-        )
-    }
+    const toggle = () => setShowToast(globalState.error)
 
     return(
         <UserProfileComponent 
@@ -127,15 +118,14 @@ const UserProfileContainer = () => {
             mobileChanged={handleMobileChange} 
             buttonClicked={handleSubmit}
 
-            fNameInvalid={invalid.fName}
-            lNameInvalid={invalid.lName}
-            mobileInvalid={invalid.mobile}
+            fNameInvalid={userState.fName.invalidState}
+            lNameInvalid={userState.lName.invalidState}
+            mobileInvalid={userState.mobile.invalidState}
 
             result={globalState}
             toggle={toggle}
-            show={show}
+            showToast={showToast}
         />
     )
 }
-
 export default UserProfileContainer;

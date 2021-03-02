@@ -1,8 +1,8 @@
 import axios from "axios";
+import {CANDIDATE_INFO_API} from "constants/appConstants";
 
 const candidateInfoPostApi = (data) => {
-    const API = "https://api.mocki.io/v1/b6a6f0e3";
-    return axios.post(API, data);
+    return axios.post(CANDIDATE_INFO_API, data);
 }
 
 export default candidateInfoPostApi;

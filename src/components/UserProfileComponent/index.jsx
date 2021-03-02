@@ -77,15 +77,12 @@ const UserProfileComponent = (props) => {
                             <Col>
                                 <FormGroup>
                                     <Button 
-                                        className="shadow mt-2 font-weight-bolder"
-                                        style={{width:"62%"}}
+                                        className="shadow w-75 mt-2 font-weight-bolder"
                                         color="success" 
                                         type="submit" 
                                         onClick={props.buttonClicked}>
-                                            
                                             {props.result.loading ? <Spinner size="sm" color="light"/> : <>Continue</> }
-                                    
-                                    </Button>
+                                    </Button>     
                                 </FormGroup>
                             </Col>
                         </Row>
@@ -93,17 +90,14 @@ const UserProfileComponent = (props) => {
                 </CardBody>
             </Card> 
 
-            {props.show ? 
+            {props.showToast ? 
 
                 <div className="errorToast">
-                    <Toast isOpen={props.show}>
+                    <Toast isOpen={props.showToast}>
                         <ToastHeader className="w-100 px-4" icon="danger" toggle={props.toggle}>
                             The server encountered an error.<br/> 
                             Please try again later.
                         </ToastHeader>
-                        {/* <ToastBody tog>
-                            Something went wrong!
-                        </ToastBody> */}
                     </Toast>
                 </div>
                 :

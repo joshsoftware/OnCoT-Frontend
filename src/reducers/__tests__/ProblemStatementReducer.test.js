@@ -1,5 +1,5 @@
-import statementActions, { statementActionFailed } from "actions/problemStatementActions";
-import ProblemStatementReducer, { initialState } from "../ProblemStatementReducer";
+import { statementAction, statementActionFailed } from "actions/problemStatementActions";
+import ProblemStatementReducer, { initialState } from "reducers/ProblemStatementReducer";
 
 describe("Problem Statement Reducer", () => {
     it("Return Default State", () => {
@@ -7,7 +7,7 @@ describe("Problem Statement Reducer", () => {
     })
     it("Set Problem Statement", () => {
         const statement = { "data" :"Lorem ipsum dolor sit amet"};
-        expect(ProblemStatementReducer(initialState,statementActions(statement))).toEqual({...initialState, statement})
+        expect(ProblemStatementReducer(initialState,statementAction(statement))).toEqual({...initialState, statement})
     })
     it("Request Failed", () => {
         const requestError = "request failed";

@@ -1,7 +1,8 @@
-import getStatement from "apis/problemStatementAPI";
-import { PROBLEM_STATEMENT_REDUCER } from "constants/actionConstants";
 import { call, put, takeLatest } from "redux-saga/effects";
-import statementAction, { statementActionFailed } from "../actions/problemStatementActions";
+
+import { getStatement } from "apis/problemStatementAPI";
+import { PROBLEM_STATEMENT } from "constants/actionConstants";
+import { statementAction, statementActionFailed } from "actions/problemStatementActions";
 
 //Problem statememt Saga
 export function* statementSaga(){
@@ -15,5 +16,5 @@ export function* statementSaga(){
 
 //watcherSaga
 export default function* statementRequestSaga() {
-  yield takeLatest(PROBLEM_STATEMENT_REDUCER.STATEMENT_REQUEST, statementSaga);
+  yield takeLatest(PROBLEM_STATEMENT.DETAILS_REQUEST, statementSaga);
 }

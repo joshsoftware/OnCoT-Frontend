@@ -6,7 +6,7 @@ import { statementRequest } from "../actions/problemStatementActions";
 
 const ProblemsContainer = () => {
     const dispatch = useDispatch();
-    const result = useSelector((state) => state);
+    const result = useSelector((state) => state.ProblemStatementReducer);
     
     let data = result.statement.str;
     let requestError = result.requestError;
@@ -20,9 +20,7 @@ const ProblemsContainer = () => {
         dispatch(statementRequest());
     },[dispatch]);
     
-    return(
-        <ProblemsComponent data = {data}/>
-  );
+    return <ProblemsComponent data = {data}/>;
 }
 
 export default ProblemsContainer;

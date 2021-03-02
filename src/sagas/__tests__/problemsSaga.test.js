@@ -1,14 +1,14 @@
 import { call, put } from "redux-saga/effects";
 
-import { statementSaga } from "../problemsSaga";
-import statementAction, { statementRequest, statementActionFailed } from "actions/problemStatementActions";
-import getStatement from "apis/problemStatementAPI";
+import { statementSaga } from "sagas/problemsSaga";
+import { statementAction, statementRequest, statementActionFailed } from "actions/problemStatementActions";
+import { getStatement } from "apis/problemStatementAPI";
 
 describe ("Rules Saga", () => {
     let gen;
     let response = {
         data: {
-            str : "hsjhjhfhrkhergdhgit"
+            str : "Lorem Ipsum Dolor Sit Amet"
         }
     }
     beforeEach(() => {

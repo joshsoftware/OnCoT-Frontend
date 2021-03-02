@@ -1,8 +1,6 @@
-import SERVER_URL from "constants/appConstants";
-const axios = require('axios').default;
+import axios from "axios";
+import { SERVER_URL } from "constants/appConstants";
 
-const getStatement = () => {
+export const getStatement = () => {
    return axios.get(`${SERVER_URL}/statementsList`);
 }
-
-export default getStatement;

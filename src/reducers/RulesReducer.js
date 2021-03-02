@@ -1,4 +1,4 @@
-import RULES_REDUCER from "../constants/actionConstants";
+import { RULES } from "constants/actionConstants";
 
 export const initialState = {
     userlist : {},
@@ -8,10 +8,9 @@ export const initialState = {
 const RulesReducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
-        case RULES_REDUCER.SET_RULES:
+        case RULES.SET_DETAILS:
             return {...state, userlist: payload.userlist}
-        case RULES_REDUCER.RULES_REQUEST_FAILED:
-            console.log(payload.requestError)
+        case RULES.SET_ERROR_MESSAGE:
             return {...state, requestError: payload.requestError}
         default:
             return state;

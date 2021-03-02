@@ -1,8 +1,6 @@
-import RULES_LIST_URL from "constants/appConstants"
-const axios = require('axios').default;
+import axios from "axios";
+import { RULES_LIST_URL } from "constants/appConstants"
 
-const getRules = () => {
+export const getRules = () => {
    return axios.get(`${RULES_LIST_URL}/rulesList`);
 }
-
-export default getRules;

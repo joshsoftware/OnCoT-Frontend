@@ -5,12 +5,11 @@ import RulesComponent from "components/RulesComponent";
 import { rulesRequest } from "../actions/rulesAction";
 
 const RulesContainer = () => {
-
     const dispatch = useDispatch();
-    const result = useSelector((state) => state);
+    const result = useSelector((state) => state.RulesReducer);
     
     let data = result.userlist.str;
-    console.log(result);
+
     let requestError = result.requestError;
     useEffect(() => {
         dispatch(rulesRequest());
@@ -19,8 +18,8 @@ const RulesContainer = () => {
     if(requestError){
         data = requestError;
     }
-    return (
-        <RulesComponent data = {data} />
-    );
+
+    return <RulesComponent data = {data} />;
 }
+
 export default RulesContainer;

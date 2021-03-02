@@ -1,5 +1,5 @@
 import RulesReducer,{ initialState } from "../RulesReducer";
-import rulesAction, { rulesRequestFailed } from "actions/rulesAction";
+import { rulesAction, rulesRequestFailed } from "actions/rulesAction";
 
 describe("Rules Reducer", () => {
     it("Return Default State", () => {

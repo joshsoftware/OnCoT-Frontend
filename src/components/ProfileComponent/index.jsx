@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "core-components";
-
 import UserProfileContainer from "containers/UserProfileContainer";
 import RulesContainer from "containers/RulesContainer";
 

@@ -1,0 +1,10 @@
+.mainClass{
+    font-family:"monospace";
+    border-radius: 5px;
+}
+
+.inputTextArea{
+    height:100%;
+    color: whitesmoke;
+    resize:"none";
+}

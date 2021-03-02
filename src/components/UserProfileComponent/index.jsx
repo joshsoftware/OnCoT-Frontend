@@ -1,11 +1,9 @@
-import {Container} from 'core-components';
+import { Container } from 'core-components';
 
-const UserProfileComponent = () => {
-    return(
-       <Container>
-           <h1>User component</h1>
-       </Container>
-    )
-}
+const UserProfileComponent = () => (
+  <Container>
+    <h1>User component</h1>
+  </Container>
+);
 
 export default UserProfileComponent;

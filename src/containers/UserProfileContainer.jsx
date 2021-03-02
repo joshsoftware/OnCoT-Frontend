@@ -1,9 +1,7 @@
-import UserProfileComponent from "components/UserProfileComponent"
+import UserProfileComponent from 'components/UserProfileComponent';
 
-const UserProfileContainer = () => {
-    return(
-        <UserProfileComponent/>
-  );
-}
+const UserProfileContainer = () => (
+  <UserProfileComponent />
+);
 
 export default UserProfileContainer;

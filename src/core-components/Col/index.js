@@ -1,3 +1,3 @@
-import { Col } from "reactstrap";
+import { Col } from 'reactstrap';
 
 export default Col;

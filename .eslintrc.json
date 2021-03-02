@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended","plugin:jest/recommended", "airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/jsx-props-no-spreading": "off",
+    "camelcase": "off",
+    "func-names": ["error", "never"],
+    "import/prefer-default-export": "off",
+    "no-unused-vars": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-multi-spaces": "off",
+    "class-methods-use-this": "off",
+    "no-class-assign": "off",
+    "key-spacing": "off",
+    "lines-between-class-members": "off",
+    "no-param-reassign": "off",
+    "consistent-return": "off",
+    "jsx-a11y/href-no-hash": "off",
+    "import/no-unresolved": "off",
+    "no-tabs": 0,
+    "quotes": ["error", "single"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "object-curly-newline": "off"
+  },
+  "plugins": ["react", "react-hooks"]
+}

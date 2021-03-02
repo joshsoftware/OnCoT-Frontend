@@ -1,3 +1,3 @@
-import { Alert } from "reactstrap";
+import { Alert } from 'reactstrap';
 
 export default Alert;

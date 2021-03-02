@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 
-import LandingPageComponent from "components/LandingPageComponent";
-import { driveDetailRequest } from "actions/userDriveActions";
+import LandingPageComponent from 'components/LandingPageComponent';
+import { driveDetailRequest } from 'actions/userDriveActions';
 
-import ROUTES from "constants/routeConstants";
+import ROUTES from 'constants/routeConstants';
 
 function LandingPageContainer() {
   const { id: tokenId } = useParams();

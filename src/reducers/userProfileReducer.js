@@ -1,11 +1,11 @@
-import { USER } from "constants/actionConstants";
+import { USER } from 'constants/actionConstants';
 
 export const initialState = {
-  id: "",
-  firstname: "",
-  lastname: "",
-  email: "",
-  authToken: localStorage.getItem("authToken") || "",
+  id: '',
+  firstname: '',
+  lastname: '',
+  email: '',
+  authToken: localStorage.getItem('authToken') || '',
 };
 
 const userProfileReducer = (state = initialState, action) => {

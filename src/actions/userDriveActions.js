@@ -1,4 +1,4 @@
-import { DRIVE } from "constants/actionConstants";
+import { DRIVE } from 'constants/actionConstants';
 
 export const driveDetailRequest = (token) => ({
   type: DRIVE.DRIVE_DETAIL_REQUEST,

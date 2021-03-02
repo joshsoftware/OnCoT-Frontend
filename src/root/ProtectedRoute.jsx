@@ -1,12 +1,14 @@
-import Layout from "HOC/Layout";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import Layout from 'HOC/Layout';
 
 function ProtectedRoute(props) {
   const { isAuth, component: Component, includeHeader, ...rest } = props;
   return (
     <Route
       {...rest}
-      render={(props) => {
+      render={(prop) => {
         if (isAuth) {
           return (
             <Layout
@@ -14,14 +16,20 @@ function ProtectedRoute(props) {
               WrappedComponent={Component}
             />
           );
-        } else {
-          return (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-          );
         }
+        return (
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        );
       }}
     />
   );
 }
+
+ProtectedRoute.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+  component: PropTypes.string.isRequired,
+  includeHeader: PropTypes.bool.isRequired,
+  location: PropTypes.string.isRequired,
+};
 
 export default ProtectedRoute;

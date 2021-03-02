@@ -1,34 +1,34 @@
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from 'react-router-dom';
 
-import HomeComponent from "components/HomeComponent";
-import Layout from "HOC/Layout";
-import ProtectedRoute from "./ProtectedRoute";
-import OverviewContainer from "containers/OverviewContainer";
-import CandidateProfileContainer from "containers/CandidateProfileContainer";
-import IDEContainer from "containers/IDEContainer";
+import HomeComponent from 'components/HomeComponent';
+import Layout from 'HOC/Layout';
+import OverviewContainer from 'containers/OverviewContainer';
+import CandidateProfileContainer from 'containers/CandidateProfileContainer';
+import IDEContainer from 'containers/IDEContainer';
+import ProtectedRoute from './ProtectedRoute';
 
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
-        <Layout includeHeader={true} WrappedComponent={HomeComponent} />
+      <Route exact path='/'>
+        <Layout includeHeader WrappedComponent={HomeComponent} />
       </Route>
-      <Route exact path="/overview">
+      <Route exact path='/overview'>
         <Layout includeHeader={false} WrappedComponent={OverviewContainer} />
       </Route>
       <ProtectedRoute
-        path="/candidate/:id/details"
+        path='/candidate/:id/details'
         component={CandidateProfileContainer}
-        isAuth={true}
+        isAuth
         includeHeader={false}
       />
       <ProtectedRoute
-        path="/ide"
+        path='/ide'
         component={IDEContainer}
-        isAuth={true}
-        includeHeader={true}
+        isAuth
+        includeHeader
       />
-      <Redirect to="/" />
+      <Redirect to='/' />
     </Switch>
   );
 }

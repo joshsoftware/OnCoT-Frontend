@@ -1,20 +1,20 @@
-import { PROBLEM_STATEMENT } from "../constants/actionConstants";
+import { PROBLEM_STATEMENT } from '../constants/actionConstants';
 
 export const initialState = {
-    statement : {},
-    requestError : ""
-}
+  statement : {},
+  requestError : '',
+};
 
 const ProblemStatementReducer = (state = initialState, action) => {
-    const { type, payload } = action;
-    switch (type) {
-        case PROBLEM_STATEMENT.SET_DETAILS:
-            return {...state, statement: payload.statement}
-        case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
-            return {...state,requestError:payload.requestError}
-        default:
-            return state;
-    }
-}
+  const { type, payload } = action;
+  switch (type) {
+    case PROBLEM_STATEMENT.SET_DETAILS:
+      return { ...state, statement: payload.statement };
+    case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
+      return { ...state, requestError:payload.requestError };
+    default:
+      return state;
+  }
+};
 
 export default ProblemStatementReducer;

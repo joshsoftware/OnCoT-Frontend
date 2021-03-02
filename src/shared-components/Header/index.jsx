@@ -1,35 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import { updateTimer,timerRequest } from 'actions/timerActions';
+import React, { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+
 import HeaderIDE from "shared-components/Header/HeaderIDE";
-import "shared-components/Header/timer";
 
 const HeaderIDEConatiner = () => {
+    
     let totalProblems = 3;
     let currentProblem = 2;
     let organisationName = "Josh Inc.";
 
-    const [timer, setTimer] = useState();
+    const dispatch = useDispatch();
+    
+    const result = useSelector((state) => state.TimerReducer)
+
+    console.log(result.counter)
 
     useEffect(() => {
-        setInterval(() => {
-            setTimer(localStorage.getItem("counter"));
-        }
-        , 1000);
-    },[])
+        dispatch(timerRequest());
+    }, [])
     
-    let hours = Math.floor(timer / (60 * 60)%60).toLocaleString();
-    let minutes = Math.floor(timer / (60)%60).toLocaleString();
-    let seconds = Math.floor(timer%60);
+    useEffect(() => {
+        setTimeout(()=>{result.counter >= 0 && dispatch(updateTimer(result.counter - 1))}, 1000);
+    },[result.counter])
+    
+    let hours = Math.floor(result.counter / (60 * 60)%60).toLocaleString("en-US",{minimumIntegerDigits: 2});
+    let minutes = Math.floor(result.counter / (60)%60).toLocaleString("en-US",{minimumIntegerDigits: 2});
+    let seconds = Math.floor(result.counter % 60).toLocaleString("en-US",{minimumIntegerDigits: 2});
 
-    let time = hours + ":" + minutes + ":" + seconds;
-
+    let time;
+    
+    if (hours <= 0 && minutes <= 0 && seconds <= 0) {
+        time = "Expired";
+    } else {
+        time = hours + ":" + minutes + ":" + seconds;
+    }
+ 
     return (
         <>
-            <HeaderIDE
+            {result.counter>=0 && <HeaderIDE
                 totalProblems={totalProblems}
                 currentProblem={currentProblem}
                 organisationName={organisationName}
                 time={time}
-            />
+            />}
         </>
     );
 }

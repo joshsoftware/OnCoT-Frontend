@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Container, Row, Col } from 'core-components';
 import UserProfileContainer from 'containers/UserProfileContainer';
 import RulesContainer from 'containers/RulesContainer';
@@ -15,4 +17,4 @@ const ProfileComponent = () => (
   </Container>
 );
 
-export default ProfileComponent;
+export default React.memo(ProfileComponent);

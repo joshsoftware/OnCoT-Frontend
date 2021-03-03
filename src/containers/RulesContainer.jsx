@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import RulesComponent from 'components/RulesComponent';
@@ -25,4 +25,4 @@ const RulesContainer = () => {
   );
 };
 
-export default RulesContainer;
+export default React.memo(RulesContainer);

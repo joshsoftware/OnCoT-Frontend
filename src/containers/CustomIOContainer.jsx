@@ -1,10 +1,8 @@
-import React from "react";
-import CustomIOComponent from "components/IDE/CustomIOComponent"
+import React from 'react';
+import CustomIOComponent from 'components/IDE/CustomIOComponent';
 
-const CustomIOContainer = () => {
-  return (
-    <CustomIOComponent/>
-  );
-}
+const CustomIOContainer = () => (
+  <CustomIOComponent />
+);
 
 export default CustomIOContainer;

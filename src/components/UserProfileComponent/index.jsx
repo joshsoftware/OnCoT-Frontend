@@ -1,19 +1,22 @@
+import PropTypes from 'prop-types';
 import {
-  Input,
-  Form,
   FormFeedback,
   FormGroup,
   Label,
-  Card,
   CardBody,
-  Button,
-  Row,
-  Col,
   Spinner,
-  Toast,
   ToastHeader,
 } from 'reactstrap';
-import PropTypes from 'prop-types';
+
+import {
+  Input,
+  Button,
+  Form,
+  Card,
+  Row,
+  Col,
+  Toast,
+} from 'core-components/index';
 
 import './infoComponent.css';
 
@@ -133,11 +136,11 @@ UserProfileComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
 
-  firstNameIsValid: PropTypes.shape.isRequired,
-  lastNameIsValid: PropTypes.shape.isRequired,
-  mobileIsValid: PropTypes.shape.isRequired,
+  firstNameIsValid: PropTypes.objectOf(PropTypes.object).isRequired,
+  lastNameIsValid: PropTypes.objectOf(PropTypes.object).isRequired,
+  mobileIsValid: PropTypes.objectOf(PropTypes.object).isRequired,
 
-  result: PropTypes.shape.isRequired,
+  result: PropTypes.objectOf(PropTypes.object).isRequired,
   showToast: PropTypes.bool.isRequired,
 };
 

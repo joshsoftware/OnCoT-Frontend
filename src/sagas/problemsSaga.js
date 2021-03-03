@@ -7,8 +7,8 @@ import { statementAction, statementActionFailed } from 'actions/problemStatement
 // Problem statememt Saga
 export function* statementSaga() {
   try {
-    const response = yield call(getStatement);
-    yield put(statementAction(response.data));
+    const { data } = yield call(getStatement);
+    yield put(statementAction(data));
   } catch (error) {
     yield put(statementActionFailed('Something Went Wrong'));
   }

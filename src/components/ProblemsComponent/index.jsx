@@ -1,5 +1,6 @@
-import { Container } from 'core-components';
 import PropTypes from 'prop-types';
+
+import { Container } from 'core-components';
 import './problemStyle.css';
 
 const ProblemComponent = (props) => {
@@ -15,6 +16,6 @@ const ProblemComponent = (props) => {
 
 ProblemComponent.propTypes = {
   data: PropTypes.string.isRequired,
-
 };
+
 export default ProblemComponent;

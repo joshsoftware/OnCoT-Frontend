@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ProblemsComponent from 'components/ProblemsComponent';
-import { statementRequest } from '../actions/problemStatementActions';
+import { statementRequest } from 'actions/problemStatementActions';
 
 const ProblemsContainer = () => {
   const dispatch = useDispatch();

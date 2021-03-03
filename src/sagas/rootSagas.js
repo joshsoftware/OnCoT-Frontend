@@ -20,7 +20,7 @@ export function* candidateFormSaga(action) {
 
 // watcher saga
 export function* userSaga() {
-  yield takeLatest(CANDIDATE_FORM_ACTIONS.CANDIDATE_REQUEST, candidateFormSaga);
+  yield takeLatest(CANDIDATE_FORM_ACTIONS.REQUEST_ACTION, candidateFormSaga);
 }
 
 export default function* rootSaga() {

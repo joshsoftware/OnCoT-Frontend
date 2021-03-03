@@ -1,6 +1,7 @@
 import { useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
+import produce from 'immer';
 
 import UserProfileComponent from 'components/UserProfileComponent';
 import { candidateFormRequestAction } from 'actions/candidateFormActions';
@@ -22,22 +23,31 @@ const schema = yup.object().shape({
 const reducer = (state, action) => {
   switch (action.type) {
     case 'fName':
-      return { ...state, fName: action.payload };
+      return produce(state, (draft) => {
+        draft.fName.value = action.payload.value;
+        draft.fName.state = action.payload.state;
+      });
 
     case 'lName':
-      return { ...state, lName: action.payload };
+      return produce(state, (draft) => {
+        draft.lName.value = action.payload.value;
+        draft.lName.state = action.payload.state;
+      });
 
     case 'mobile':
-      return { ...state, mobile: action.payload };
+      return produce(state, (draft) => {
+        draft.mobile.value = action.payload.value;
+        draft.mobile.state = action.payload.state;
+      });
 
     case 'fNameInvalid':
-      return { ...state, fName: action.payload };
+      return produce(state, (draft) => { draft.fName.state = action.payload; });
 
     case 'lNameInvalid':
-      return { ...state, lName: action.payload };
+      return produce(state, (draft) => { draft.lName.state = action.payload; });
 
     case 'mobileInvalid':
-      return { ...state, mobile: action.payload };
+      return produce(state, (draft) => { draft.mobile.state = action.payload; });
 
     default: return state;
   }
@@ -58,17 +68,17 @@ const UserProfileContainer = () => {
 
   const handleFirstNameChange = (event) => {
     const fName = event.target.value;
-    setUserState({ type:'fName', payload:{ value:fName, state:{ valid:true, message:'' } } });
+    setUserState({ type:'fName', payload:{ value: fName, state: { valid:true, message:'' } } });
   };
 
   const handleLastNameChange = (event) => {
     const lName = event.target.value;
-    setUserState({ type:'lName', payload:{ value:lName, state:{ valid:true, message:'' } } });
+    setUserState({ type:'lName', payload:{ value: lName, state: { valid:true, message:'' } } });
   };
 
   const handleMobileChange = (event) => {
     const mobile = event.target.value;
-    setUserState({ type:'mobile', payload:{ value:mobile, state:{ valid:true, message:'' } } });
+    setUserState({ type:'mobile', payload:{ value: mobile, state: { valid:true, message:'' } } });
   };
 
   const handleSubmit = (event) => {
@@ -85,7 +95,6 @@ const UserProfileContainer = () => {
     }, { abortEarly:false })
       .then(() => {
         const data = { fName, lName, mobile };
-        const { error } = globalState;
 
         dispatch(candidateFormRequestAction(data));
       })
@@ -95,19 +104,19 @@ const UserProfileContainer = () => {
             case 'fName':
               setUserState({
                 type:'fNameInvalid',
-                payload:{ value: fName, state:{ valid:false, message:e.message } } });
+                payload:{ valid:false, message:e.message } });
               break;
 
             case 'lName':
               setUserState({
                 type:'lNameInvalid',
-                payload:{ value: lName, state:{ valid:false, message:e.message } } });
+                payload:{ valid:false, message:e.message } });
               break;
 
             case 'mobile':
               setUserState({
                 type:'mobileInvalid',
-                payload:{ value: mobile, state:{ valid:false, message:e.message } } });
+                payload:{ valid:false, message:e.message } });
               break;
 
             default:

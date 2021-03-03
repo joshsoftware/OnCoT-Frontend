@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects';
 
 import { timerSaga } from 'sagas/timerSaga';
 import { timerRequest, timerRequestFailed, timerAction, updateTimer } from 'actions/timerActions';
-import { getTimer } from 'apis/timerAPI';
+import { getTimer } from 'apis/timerApi';
 
 describe('Timer Saga', () => {
     let gen;

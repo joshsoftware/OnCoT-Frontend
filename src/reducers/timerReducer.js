@@ -10,11 +10,11 @@ const TimerReducer = (state = initialState, action) => {
 
   switch (type) {
     case TIMER.SET_TIMER:
-      return { ...state, counter: payload.counter };
+      return { ...state, counter: payload };
     case TIMER.UPDATE_TIMER:
-      return { ...state, counter: payload.counter };
+      return { ...state, counter: payload };
     case TIMER.SET_TIMER_ERROR:
-      return { ...state, requestError: payload.requestError };
+      return { ...state, requestError: payload };
     default:
       return state;
   }

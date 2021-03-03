@@ -1,3 +1,3 @@
-import HeaderIDEContainer from "./Header/index";
+import HeaderIDEContainer from 'shared-components/Header';
 
 export {HeaderIDEContainer};

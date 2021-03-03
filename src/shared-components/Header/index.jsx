@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateTimer, timerRequest } from 'actions/timerActions';
@@ -49,4 +49,4 @@ const HeaderIDEConatiner = () => {
   );
 };
 
-export default HeaderIDEConatiner;
+export default React.memo(HeaderIDEConatiner);

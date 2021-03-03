@@ -1,5 +1,7 @@
-import { Col, Navbar, NavbarBrand, Button } from 'reactstrap';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import { Col, Navbar, NavbarBrand, Button } from 'core-components';
 
 import './HeaderIDE.css';
 
@@ -42,4 +44,5 @@ HeaderIDE.propTypes = {
   totalProblems:PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
 };
-export default HeaderIDE;
+
+export default React.memo(HeaderIDE);

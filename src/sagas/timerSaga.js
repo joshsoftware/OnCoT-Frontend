@@ -1,7 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { TIMER } from 'constants/actionConstants';
-import { getTimer } from 'apis/timerAPI';
+
+import { getTimer } from 'apis/timerApi';
 import { timerAction, timerRequestFailed } from 'actions/timerActions';
+
+import { TIMER } from 'constants/actionConstants';
 
 export function* timerSaga() {
   try {

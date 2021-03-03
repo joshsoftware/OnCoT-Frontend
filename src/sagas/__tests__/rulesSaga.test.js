@@ -2,7 +2,7 @@ import { call, put } from 'redux-saga/effects';
 
 import { rulesSaga } from 'sagas/rulesSaga';
 import { rulesAction, rulesRequest, rulesRequestFailed } from 'actions/rulesAction';
-import { getRules } from 'apis/rulesAPI';
+import { getRules } from 'apis/rulesApi';
 
 describe('Rules Saga', () => {
   let gen;

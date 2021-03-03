@@ -4,7 +4,7 @@ export const rulesRequest = () => ({ type: RULES.DETAIL_REQUEST });
 
 export const rulesRequestFailed = (requestError) => ({
   type: RULES.SET_ERROR_MESSAGE,
-  payload: { requestError },
+  payload: requestError,
 });
 
 export const rulesAction = (userlist) => ({

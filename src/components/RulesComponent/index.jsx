@@ -1,7 +1,8 @@
-import { Container } from 'core-components';
 import PropTypes from 'prop-types';
 
-import './RuleStyle.css';
+import { Container } from 'core-components';
+
+import './ruleStyle.css';
 
 const RulesComponent = (props) => {
   const { data } = props;

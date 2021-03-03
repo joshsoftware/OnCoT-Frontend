@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { RULES } from 'constants/actionConstants';
 import { rulesAction, rulesRequestFailed } from 'actions/rulesAction';
-import { getRules } from 'apis/rulesAPI';
+import { getRules } from 'apis/rulesApi';
+import { RULES } from 'constants/actionConstants';
 
 // worker saga
 export function* rulesSaga() {

@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import TimerReducer from "reducers/TimerReducer";
+import { combineReducers } from 'redux';
+import TimerReducer from 'reducers/timerReducer';
 
-const rootReducer = combineReducers({TimerReducer});
+const rootReducer = combineReducers({ TimerReducer });
 
 export default rootReducer;

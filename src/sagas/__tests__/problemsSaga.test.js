@@ -2,7 +2,7 @@ import { call, put } from "redux-saga/effects";
 
 import { statementSaga } from "sagas/problemsSaga";
 import { statementAction, statementRequest, statementActionFailed } from "actions/problemStatementActions";
-import { getStatement } from "apis/problemStatementAPI";
+import { getStatement } from "apis/problemStatementApi";
 
 describe ("Rules Saga", () => {
     let gen;

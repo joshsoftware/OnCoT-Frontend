@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { getStatement } from 'apis/problemStatementAPI';
-import { PROBLEM_STATEMENT } from 'constants/actionConstants';
+import { getStatement } from 'apis/problemStatementApi';
 import { statementAction, statementActionFailed } from 'actions/problemStatementActions';
+import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 
 // Problem statememt Saga
 export function* statementSaga() {

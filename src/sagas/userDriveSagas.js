@@ -12,7 +12,6 @@ import {
 // worker saga
 export function* driveDetails(action) {
   try {
-    yield put(setDriveLoading(true));
     const { data } = yield call(driveDetail, action.payload.token);
     const { userDetails, driveDetails: userDriveDetails, authToken } = data;
     yield put(setUserDriveDetails(userDriveDetails));

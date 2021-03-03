@@ -2,7 +2,7 @@ import userDriveReducer, { initialState } from 'reducers/userDriveReducer';
 import {
   setUserDriveDetails,
   showErrorMessage,
-  setDriveLoading,
+  driveDetailRequest,
 } from 'actions/userDriveActions';
 
 describe('user drive reducer', () => {
@@ -12,13 +12,15 @@ describe('user drive reducer', () => {
 
   it('set details', () => {
     const userObj = {
-      id: '1',
-      name: 'kkwieer drive',
-      startTime: '2021-02-22T06:40:45Z',
-      endTime: '2021-02-22T08:40:45Z',
+      data: {
+        id: '1',
+        name: 'kkwieer drive',
+        startTime: '2021-02-22T06:40:45Z',
+        endTime: '2021-02-22T08:40:45Z',
+      },
     };
     expect(
-      userDriveReducer(initialState, setUserDriveDetails(userObj)),
+      userDriveReducer(initialState, setUserDriveDetails(userObj.data)),
     ).toEqual({ ...initialState, ...userObj, isLoading: false });
   });
 
@@ -33,7 +35,7 @@ describe('user drive reducer', () => {
   });
 
   it('set drive loading', () => {
-    expect(userDriveReducer(initialState, setDriveLoading(true))).toEqual({
+    expect(userDriveReducer(initialState, driveDetailRequest())).toEqual({
       ...initialState,
       isLoading: true,
     });

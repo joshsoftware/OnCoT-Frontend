@@ -42,17 +42,11 @@ describe('user drive saga', () => {
     gen = driveDetails(action);
   });
 
-  it('must load spinner', () => {
-    expect(gen.next().value).toEqual(put(setDriveLoading(true)));
-  });
-
   it('must call api', () => {
-    gen.next();
     expect(gen.next().value).toEqual(call(driveDetail, action.payload.token));
   });
 
   it('must set drive details', () => {
-    gen.next();
     gen.next();
     expect(gen.next(response).value).toEqual(
       put(setUserDriveDetails(response.data.driveDetails)),
@@ -60,7 +54,6 @@ describe('user drive saga', () => {
   });
 
   it('must set user details', () => {
-    gen.next();
     gen.next();
     gen.next(response);
     expect(gen.next().value).toEqual(

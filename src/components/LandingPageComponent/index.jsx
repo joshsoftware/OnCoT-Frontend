@@ -1,3 +1,4 @@
+import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
@@ -45,4 +46,4 @@ LandingPageComponent.propTypes = {
   handleClick: PropTypes.func.isRequired,
 };
 
-export default LandingPageComponent;
+export default React.memo(LandingPageComponent);

@@ -8,18 +8,23 @@ const ProblemsContainer = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.problemStatementReducer);
 
-  let data = result.statement.str;
-  const { requestError } = result;
-
-  if (requestError) {
-    data = requestError;
-  }
+  // let data = result.statement.str;
+  const { statement: { str: data }, requestError } = result;
+  let flag = false;
 
   useEffect(() => {
     dispatch(statementRequest());
   }, [dispatch]);
 
-  return <ProblemsComponent data={data} />;
+  if (requestError) {
+    flag = true;
+  }
+
+  return (
+    flag
+      ? <ProblemsComponent data={requestError} />
+      : <ProblemsComponent data={data} />
+  );
 };
 
 export default ProblemsContainer;

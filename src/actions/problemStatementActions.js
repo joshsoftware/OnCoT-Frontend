@@ -9,5 +9,5 @@ export const statementAction = (statement) => ({
 
 export const statementActionFailed = (requestError) => ({
   type: PROBLEM_STATEMENT.SET_ERROR_MESSAGE,
-  payload: { requestError },
+  payload: requestError,
 });

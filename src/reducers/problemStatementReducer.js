@@ -11,7 +11,7 @@ const problemStatementReducer = (state = initialState, action) => {
     case PROBLEM_STATEMENT.SET_DETAILS:
       return { ...state, statement: payload.statement };
     case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
-      return { ...state, requestError:payload.requestError };
+      return { ...state, requestError:payload };
     default:
       return state;
   }

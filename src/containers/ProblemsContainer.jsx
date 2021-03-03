@@ -6,7 +6,7 @@ import { statementRequest } from 'actions/problemStatementActions';
 
 const ProblemsContainer = () => {
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.ProblemStatementReducer);
+  const result = useSelector((state) => state.problemStatementReducer);
 
   let data = result.statement.str;
   const { requestError } = result;

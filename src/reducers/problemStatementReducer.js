@@ -1,11 +1,11 @@
-import { PROBLEM_STATEMENT } from '../constants/actionConstants';
+import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 
 export const initialState = {
   statement : {},
   requestError : '',
 };
 
-const ProblemStatementReducer = (state = initialState, action) => {
+const problemStatementReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case PROBLEM_STATEMENT.SET_DETAILS:
@@ -17,4 +17,4 @@ const ProblemStatementReducer = (state = initialState, action) => {
   }
 };
 
-export default ProblemStatementReducer;
+export default problemStatementReducer;

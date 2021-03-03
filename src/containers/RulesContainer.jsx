@@ -1,9 +1,7 @@
-import RulesComponent from "components/RulesComponent"
+import RulesComponent from 'components/RulesComponent';
 
-const RulesContainer = () => {
-    return(
-        <RulesComponent/>
-  );
-}
+const RulesContainer = () => (
+  <RulesComponent />
+);
 
 export default RulesContainer;

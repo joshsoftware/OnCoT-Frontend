@@ -1,25 +1,19 @@
-import { CANDIDATE_FORM_ACTIONS } from "constants/candidateFormConstants";
+import { CANDIDATE_FORM_ACTIONS } from 'constants/candidateFormConstants';
 
-//request
-export const candidateFormRequestAction = (data) => {
-    return {
-      type: CANDIDATE_FORM_ACTIONS.CANDIDATE_REQUEST,
-      payload: data
-    };
-}
+// request
+export const candidateFormRequestAction = (data) => ({
+  type: CANDIDATE_FORM_ACTIONS.REQUEST_ACTION,
+  payload: data,
+});
 
-//success
-export const candidateFormSuccessAction = (data) => {  
-    return {
-        type: CANDIDATE_FORM_ACTIONS.CANDIDATE_DETAILS_SUCCESS,
-        payload: data,
-    };
-};
+// success
+export const candidateFormSuccessAction = (data) => ({
+  type: CANDIDATE_FORM_ACTIONS.SUCCESS_ACTION,
+  payload: data,
+});
 
-//failure
-export const candidateFormFailureAction = (error) => {
-    return {
-      type: CANDIDATE_FORM_ACTIONS.CANDIDATE_DETAILS_FAILURE,
-      payload: error,
-    };
-};
+// failure
+export const candidateFormFailureAction = (error) => ({
+  type: CANDIDATE_FORM_ACTIONS.FAILURE_ACTION,
+  payload: error,
+});

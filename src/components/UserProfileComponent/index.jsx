@@ -1,110 +1,144 @@
-import { 
-    Input, 
-    Form, 
-    FormFeedback, 
-    FormGroup, 
-    Label,
-    Card, 
-    CardBody, 
-    Button,
-    Row, 
-    Col, 
-    Spinner,
-    Toast,
-    ToastHeader
+import {
+  Input,
+  Form,
+  FormFeedback,
+  FormGroup,
+  Label,
+  Card,
+  CardBody,
+  Button,
+  Row,
+  Col,
+  Spinner,
+  Toast,
+  ToastHeader,
 } from 'reactstrap';
-import "./infoComponent.css"
+import PropTypes from 'prop-types';
+
+import './infoComponent.css';
 
 const UserProfileComponent = (props) => {
+  const {
+    handleFirstNameChange,
+    handleLastNameChange,
+    handleMobileChange,
+    handleSubmit,
+    firstNameIsValid,
+    lastNameIsValid,
+    mobileIsValid,
+    result,
+    toggle,
+    showToast,
+  } = props;
 
-    return(
-        <div className="box">
-            <Card className="bg-transparent border-0 opacity-5">
-                <CardBody className="text-white">  
-                    
-                    <h2 className="pb-3 text-success text-center font-weight-bolder">OnCot</h2>
-                    <h5 className="pb-3 text-center font-weight-bolder">Please fill below details</h5>
-                    
-                    <Form>
-                        <Row className="py-3">
-                            <Col>
-                                <FormGroup>
-                                    <Input 
-                                        className="shadow"
-                                        onChange={props.fNameChanged} 
-                                        invalid={props.fNameInvalid.invalid} 
-                                        placeholder="" />
+  return (
+    <div className='box'>
+      <Card className='bg-transparent border-0 opacity-5'>
+        <CardBody className='text-white'>
 
-                                    <Label className="text-left">First Name</Label>
-                                    
-                                    <FormFeedback className="text-center">{props.fNameInvalid.message}</FormFeedback>
-                                </FormGroup>
-                            </Col>
+          <h2 className='pb-3 text-success text-center font-weight-bolder'>OnCot</h2>
+          <h5 className='pb-3 text-center font-weight-bolder'>Please fill below details</h5>
 
-                            <Col>
-                                <FormGroup>
-                                    <Input 
-                                        className="shadow"
-                                        onChange={props.lNameChanged} 
-                                        invalid={props.lNameInvalid.invalid} 
-                                        placeholder="" />
+          <Form>
+            <Row className='py-3'>
+              <Col>
+                <FormGroup>
+                  <Input
+                    className='shadow'
+                    onChange={handleFirstNameChange}
+                    invalid={!firstNameIsValid.valid}
+                    placeholder=''
+                  />
 
-                                    <Label className="text-left">Last Name</Label>
-                                        
-                                    <FormFeedback className="text-center">{props.lNameInvalid.message}</FormFeedback>
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                  <Label className='text-left'>First Name</Label>
 
-                        <Row>
-                            <Col>
-                                <FormGroup>
-                                    <Input 
-                                        className="shadow"
-                                        onChange={props.mobileChanged}
-                                        invalid={props.mobileInvalid.invalid}
-                                        placeholder=""
-                                    />
+                  <FormFeedback className='text-center'>{firstNameIsValid.message}</FormFeedback>
+                </FormGroup>
+              </Col>
 
-                                    <Label className="text-left">Mobile</Label>
+              <Col>
+                <FormGroup>
+                  <Input
+                    className='shadow'
+                    onChange={handleLastNameChange}
+                    invalid={!lastNameIsValid.valid}
+                    placeholder=''
+                  />
 
-                                    <FormFeedback className="text-center">{props.mobileInvalid.message}</FormFeedback>
-                                </FormGroup>
-                            </Col>
-                        </Row>
+                  <Label className='text-left'>Last Name</Label>
 
-                        <Row className="py-3 text-center">
-                            <Col>
-                                <FormGroup>
-                                    <Button 
-                                        className="shadow w-75 mt-2 font-weight-bolder"
-                                        color="success" 
-                                        type="submit" 
-                                        onClick={props.buttonClicked}>
-                                            {props.result.loading ? <Spinner size="sm" color="light"/> : <>Continue</> }
-                                    </Button>     
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                    </Form>
-                </CardBody>
-            </Card> 
+                  <FormFeedback className='text-center'>{lastNameIsValid.message}</FormFeedback>
+                </FormGroup>
+              </Col>
+            </Row>
 
-            {props.showToast ? 
+            <Row>
+              <Col>
+                <FormGroup>
+                  <Input
+                    className='shadow'
+                    onChange={handleMobileChange}
+                    invalid={!mobileIsValid.valid}
+                    placeholder=''
+                  />
 
-                <div className="errorToast">
-                    <Toast isOpen={props.showToast}>
-                        <ToastHeader className="w-100 px-4" icon="danger" toggle={props.toggle}>
-                            The server encountered an error.<br/> 
-                            Please try again later.
-                        </ToastHeader>
-                    </Toast>
-                </div>
-                :
-                null}
+                  <Label className='text-left'>Mobile</Label>
 
-        </div>    
-    )
-}
+                  <FormFeedback className='text-center'>{mobileIsValid.message}</FormFeedback>
+                </FormGroup>
+              </Col>
+            </Row>
+
+            <Row className='py-3 text-center'>
+              <Col>
+                <FormGroup>
+                  <Button
+                    className='shadow w-75 mt-2 font-weight-bolder'
+                    color='success'
+                    type='submit'
+                    onClick={handleSubmit}
+                  >
+                    {result.loading ? <Spinner size='sm' color='light' /> : <>Continue</> }
+                  </Button>
+                </FormGroup>
+              </Col>
+            </Row>
+          </Form>
+        </CardBody>
+      </Card>
+
+      {showToast
+
+        ? (
+          <div className='errorToast'>
+            <Toast isOpen={showToast}>
+              <ToastHeader className='w-100 px-4' icon='danger' toggle={toggle}>
+                The server encountered an error.
+                <br />
+                Please try again later.
+              </ToastHeader>
+            </Toast>
+          </div>
+        )
+        : null}
+
+    </div>
+  );
+};
+
+UserProfileComponent.propTypes = {
+  handleFirstNameChange: PropTypes.func.isRequired,
+  handleLastNameChange: PropTypes.func.isRequired,
+  handleMobileChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
+
+  firstNameIsValid: PropTypes.shape.isRequired,
+  lastNameIsValid: PropTypes.shape.isRequired,
+  mobileIsValid: PropTypes.shape.isRequired,
+
+  result: PropTypes.shape.isRequired,
+  showToast: PropTypes.bool.isRequired,
+};
 
 export default UserProfileComponent;

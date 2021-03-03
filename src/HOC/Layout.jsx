@@ -1,8 +1,9 @@
-import Header from "shared-components/Header";
+import PropTypes from 'prop-types';
+
+import Header from 'shared-components/Header';
 
 function Layout(props) {
   const { WrappedComponent, includeHeader } = props;
-
   return (
     <div>
       {includeHeader && <Header />}
@@ -12,5 +13,10 @@ function Layout(props) {
     </div>
   );
 }
+
+Layout.propTypes = {
+  WrappedComponent: PropTypes.func.isRequired,
+  includeHeader: PropTypes.bool.isRequired,
+};
 
 export default Layout;

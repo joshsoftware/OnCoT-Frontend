@@ -1,131 +1,137 @@
-import { useReducer, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useReducer, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as yup from 'yup';
 
-import UserProfileComponent from "components/UserProfileComponent"
-import { candidateFormRequestAction } from "actions/candidateFormActions"
+import UserProfileComponent from 'components/UserProfileComponent';
+import { candidateFormRequestAction } from 'actions/candidateFormActions';
 
 const schema = yup.object().shape({
-    fName: yup.string().required().matches(/^[A-Za-z '.-]*$/, 'fName should be valid'),
-    lName: yup.string().required().matches(/^[A-Za-z '.-]*$/, 'lName should be valid'),
-    mobile: yup.string().required().matches(/^[0-9]{10}$/, 'mobile should be a 10-digit valid numeric value')
+  fName: yup.string()
+    .required('First name is a required field')
+    .matches(/^[A-Za-z '.-]*$/, 'First name should be valid'),
+
+  lName: yup.string()
+    .required('Last name is a required field')
+    .matches(/^[A-Za-z '.-]*$/, 'Last name should be valid'),
+
+  mobile: yup.string()
+    .max(10, 'Mobile should be a valid 10-digit numeric value')
+    .min(10, 'Mobile should be a valid 10-digit numeric value'),
 });
 
-const reducer = (state, action) =>{
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'fName':
+      return { ...state, fName: action.payload };
 
-    switch (action.type) {
-        case "fName":
-            return {...state, fName: action.payload}
-        
-        case "lName":
-            return {...state, lName: action.payload}
-            
-        case "mobile":
-            return {...state, mobile: action.payload}
+    case 'lName':
+      return { ...state, lName: action.payload };
 
-        case "fNameInvalid":
-            return {...state, fName: action.payload }
-        
-        case "lNameInvalid":
-            return {...state, lName: action.payload}
-            
-        case "mobileInvalid":
-            return {...state, mobile: action.payload}
+    case 'mobile':
+      return { ...state, mobile: action.payload };
 
-        default: return state;
-    }
-}
+    case 'fNameInvalid':
+      return { ...state, fName: action.payload };
+
+    case 'lNameInvalid':
+      return { ...state, lName: action.payload };
+
+    case 'mobileInvalid':
+      return { ...state, mobile: action.payload };
+
+    default: return state;
+  }
+};
 
 const UserProfileContainer = () => {
+  const dispatch = useDispatch();
+  const globalState = useSelector((state) => state);
 
-    const dispatch = useDispatch();
-    const globalState = useSelector(state => state);
+  const initialUserState = {
+    fName: { value: '', state: { valid:true, message:'' } },
+    lName: { value: '', state: { valid:true, message:'' } },
+    mobile: { value: '', state: { valid:true, message:'' } },
+  };
 
-    console.log("globalState: ", globalState);
+  const [userState, setUserState] = useReducer(reducer, initialUserState);
+  const [showToast, setShowToast] = useState(false);
 
-    const initialUserState = {
-        fName: { value: "", invalidState: {invalid:false, message:""} },
-        lName: { value: "", invalidState: {invalid:false, message:""} }, 
-        mobile: { value: "", invalidState: {invalid:false, message:""} }
-    }
+  const handleFirstNameChange = (event) => {
+    const fName = event.target.value;
+    setUserState({ type:'fName', payload:{ value:fName, state:{ valid:true, message:'' } } });
+  };
 
-    const [userState, setUserState] = useReducer(reducer, initialUserState);
-    const [showToast, setShowToast] = useState(false);
-    
-    const handleFNameChange = (event) => {
-        const fName = event.target.value;
-        setUserState({type:"fName", payload:{value:fName, invalidState:{invalid:false, message:""}}});
-    }
+  const handleLastNameChange = (event) => {
+    const lName = event.target.value;
+    setUserState({ type:'lName', payload:{ value:lName, state:{ valid:true, message:'' } } });
+  };
 
-    const handleLNameChange = (event) => {
-        const lName = event.target.value;
-        setUserState({type:"lName", payload:{value:lName, invalidState:{invalid:false, message:""}}});
-    }
+  const handleMobileChange = (event) => {
+    const mobile = event.target.value;
+    setUserState({ type:'mobile', payload:{ value:mobile, state:{ valid:true, message:'' } } });
+  };
 
-    const handleMobileChange = (event) => {
-        const mobile = event.target.value;
-        setUserState({type:"mobile", payload:{value:mobile, invalidState:{invalid:false, message:""}}});
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
+    const fName = userState.fName.value.trim();
+    const lName = userState.lName.value.trim();
+    const mobile = userState.mobile.value.trim();
 
-        const fName = userState.fName.value;
-        const lName = userState.lName.value;
-        const mobile = userState.mobile.value;
+    schema.validate({
+      fName,
+      lName,
+      mobile,
+    }, { abortEarly:false })
+      .then(() => {
+        const data = { fName, lName, mobile };
+        const { error } = globalState;
 
-        schema.validate({
-            fName: fName,
-            lName: lName,
-            mobile: mobile
-        }, {abortEarly:false})
-        .then(() => {
+        dispatch(candidateFormRequestAction(data));
+      })
+      .catch((error) => {
+        error.inner.forEach((e) => {
+          switch (e.path) {
+            case 'fName':
+              setUserState({
+                type:'fNameInvalid',
+                payload:{ value: fName, state:{ valid:false, message:e.message } } });
+              break;
 
-            const data = {fName, lName, mobile};
-            const error = globalState.error;
+            case 'lName':
+              setUserState({
+                type:'lNameInvalid',
+                payload:{ value: lName, state:{ valid:false, message:e.message } } });
+              break;
 
-            dispatch(candidateFormRequestAction(data));
-        })
-        .catch((error) => {
-            const errors = error.errors;
+            case 'mobile':
+              setUserState({
+                type:'mobileInvalid',
+                payload:{ value: mobile, state:{ valid:false, message:e.message } } });
+              break;
 
-            var hint = ""
-            errors.forEach(error => {
-                hint = error.split(" ")[0]
-                if (hint === "fName"){
-                    const message = error.replace("fName", "First name");
-                    setUserState({type:"fNameInvalid", payload:{value: fName, invalidState:{invalid:true, message:message}}});
-                }
-                if (hint === "lName"){
-                    const message = error.replace("lName", "Last name")
-                    setUserState({type:"lNameInvalid", payload:{value: lName, invalidState:{invalid:true, message:message}}});
-                }
-                if (hint === "mobile") {
-                    const message = error.replace("mobile", "Mobile")
-                    setUserState({type:"mobileInvalid", payload:{value: mobile, invalidState:{invalid:true, message:message}}})
-                }
-            });
+            default:
+              break;
+          }
         });
-    }
+      });
+  };
 
-    const toggle = () => setShowToast(globalState.error)
+  const toggle = () => setShowToast(globalState.error);
 
-    return(
-        <UserProfileComponent 
-            fNameChanged={handleFNameChange}
-            lNameChanged={handleLNameChange}
-
-            mobileChanged={handleMobileChange} 
-            buttonClicked={handleSubmit}
-
-            fNameInvalid={userState.fName.invalidState}
-            lNameInvalid={userState.lName.invalidState}
-            mobileInvalid={userState.mobile.invalidState}
-
-            result={globalState}
-            toggle={toggle}
-            showToast={showToast}
-        />
-    )
-}
+  return (
+    <UserProfileComponent
+      handleFirstNameChange={handleFirstNameChange}
+      handleLastNameChange={handleLastNameChange}
+      handleMobileChange={handleMobileChange}
+      handleSubmit={handleSubmit}
+      firstNameIsValid={userState.fName.state}
+      lastNameIsValid={userState.lName.state}
+      mobileIsValid={userState.mobile.state}
+      result={globalState}
+      toggle={toggle}
+      showToast={showToast}
+    />
+  );
+};
 export default UserProfileContainer;

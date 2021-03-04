@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import UserProfileComponent from 'components/UserProfileComponent';
@@ -19,22 +19,22 @@ const UserProfileContainer = () => {
   const [userState, setUserState] = useReducer(reducer, initialUserState);
   const [showToast, setShowToast] = useState(false);
 
-  const handleFirstNameChange = (event) => {
+  const handleFirstNameChange = useCallback((event) => {
     const fName = event.target.value;
     setUserState({ type:'fName', payload:{ value: fName, state: { valid:true, message:'' } } });
-  };
+  }, [userState.fName.value]);
 
-  const handleLastNameChange = (event) => {
+  const handleLastNameChange = useCallback((event) => {
     const lName = event.target.value;
     setUserState({ type:'lName', payload:{ value: lName, state: { valid:true, message:'' } } });
-  };
+  }, [userState.lName.value]);
 
-  const handleMobileChange = (event) => {
+  const handleMobileChange = useCallback((event) => {
     const mobile = event.target.value;
     setUserState({ type:'mobile', payload:{ value: mobile, state: { valid:true, message:'' } } });
-  };
+  }, [userState.mobile.value]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = useCallback((event) => {
     event.preventDefault();
 
     const fName = userState.fName.value.trim();
@@ -48,7 +48,6 @@ const UserProfileContainer = () => {
     }, { abortEarly:false })
       .then(() => {
         const data = { fName, lName, mobile };
-
         dispatch(candidateFormRequestAction(data));
       })
       .catch((error) => {
@@ -77,9 +76,9 @@ const UserProfileContainer = () => {
           }
         });
       });
-  };
+  }, [userState]);
 
-  const toggle = () => setShowToast(globalState.error);
+  const toggle = useCallback(() => setShowToast(globalState.error), [globalState.error]);
 
   return (
     <UserProfileComponent

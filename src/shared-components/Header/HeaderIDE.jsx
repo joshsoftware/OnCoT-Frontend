@@ -10,6 +10,7 @@ const HeaderIDE = (props) => {
     currentProblem,
     totalProblems,
     time,
+    ifSufficient,
   } = props;
 
   return (
@@ -32,7 +33,12 @@ const HeaderIDE = (props) => {
           </h5>
           <Button className='p-2 btn-circle'>{'>'}</Button>
         </div>
-        <h2 className='text-white align-middle font-weight-bold' id='timeLeft'>{time}</h2>
+        <h2
+          className={ifSufficient ? 'text-white align-middle font-weight-bold' : 'text-danger align-middle font-weight-bold'}
+          id='timeLeft'
+        >
+          {time}
+        </h2>
       </Col>
     </Navbar>
   );
@@ -43,6 +49,7 @@ HeaderIDE.propTypes = {
   currentProblem: PropTypes.number.isRequired,
   totalProblems:PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
+  ifSufficient: PropTypes.bool.isRequired,
 };
 
 export default React.memo(HeaderIDE);

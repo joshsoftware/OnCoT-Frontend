@@ -40,13 +40,23 @@ const CustomIOComponent = (props) => {
 
                 <CardHeader className='p-1 pl-2 text-left'>
                   OUTPUT
+
                   <Button
-                    className='py-0 px-2 mx-0 font-weight-bold float-right'
+                    className='py-0 px-2 mx-1 font-weight-bold float-right'
+                    color='danger'
+                    onClick={handleRunClick}
+                  >
+                    RUN
+                  </Button>
+
+                  <Button
+                    className='py-0 px-2 mx-1 font-weight-bold float-right'
                     color='success'
                     onClick={toggle}
                   >
                     CUSTOM INPUT
                   </Button>
+
                 </CardHeader>
 
                 <CardBody rows='10'>

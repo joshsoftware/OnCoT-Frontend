@@ -1,43 +1,60 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
+import produce from 'immer';
 
 import CustomIOComponent from 'components/IDE/CustomIOComponent';
 import customIOAPI from 'apis/customIOAPI';
 
+const initialState = {
+  outputValue: '',
+  inputValue: '',
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'output': return produce(state, (draft) => { draft.outputValue = action.payload.output; });
+    case 'input': return produce(state, (draft) => { draft.inputValue = action.payload.input; });
+    default: return state;
+  }
+};
+
 const IDEContainer = () => {
-  const [showOutput, setshowOutput] = useState(true);
-  const [inputValue, setInputValue] = useState('');
-  const [outputValue, setOutputValue] = useState('');
+  const [inputOutuptValue, setInputOutputValue] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
+  const [showOutput, setshowOutput] = useState(true);
 
   const toggle = () => setshowOutput(!showOutput);
 
   const globalState = {
     languageID: 12,
     sourceCode: 'CODE',
-    stdIN: inputValue,
+    stdIN: initialState.inputValue,
   };
 
   const handleRunClick = () => {
     setLoading(true);
-    setOutputValue('');
+    setInputOutputValue({ type:'output', payload:{ output: '' } });
 
-    if (inputValue) {
-      const data = {
-        language_id: globalState.languageID,
-        source_code: globalState.sourceCode,
-        std_id: globalState.stdIN,
-      };
+    const data = {
+      language_id: globalState.languageID,
+      source_code: globalState.sourceCode,
+      std_id: globalState.stdIN,
+    };
 
-      customIOAPI(data)
-        .then((response) => {
-          setLoading(false);
-          setOutputValue(response.data.stdout);
-        });
-    }
+    customIOAPI(data)
+      .then((response) => {
+        setLoading(false);
+        let outputValue = '';
+        if (response.data.strerr) {
+          outputValue = response.data.stderr;
+        } else {
+          outputValue = response.data.stdout;
+        }
+        setInputOutputValue({ type:'output', payload:{ output: outputValue } });
+      });
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    setInputOutputValue({ type:'input', payload:{ input: event.target.value } });
   };
 
   const handleCut = (event) => {
@@ -51,15 +68,15 @@ const IDEContainer = () => {
 
   return (
     <CustomIOComponent
-      showOutput={showOutput}
       toggle={toggle}
       handleRunClick={handleRunClick}
       handleInputChange={handleInputChange}
       handleCut={handleCut}
       handleCopy={handleCopy}
       handlePaste={handlePaste}
-      inputValue={inputValue}
-      outputValue={outputValue}
+      showOutput={showOutput}
+      inputValue={inputOutuptValue.inputValue}
+      outputValue={inputOutuptValue.outputValue}
       loading={loading}
     />
   );

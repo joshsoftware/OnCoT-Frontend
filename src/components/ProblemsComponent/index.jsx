@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Container } from 'core-components';
@@ -18,4 +19,4 @@ ProblemComponent.propTypes = {
   data: PropTypes.string.isRequired,
 };
 
-export default ProblemComponent;
+export default React.memo(ProblemComponent);

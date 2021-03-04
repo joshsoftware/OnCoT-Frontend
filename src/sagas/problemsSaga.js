@@ -10,7 +10,7 @@ export function* statementSaga() {
     const { data } = yield call(getStatement);
     yield put(statementAction(data));
   } catch (error) {
-    yield put(statementActionFailed('Something Went Wrong'));
+    yield put(statementActionFailed(true));
   }
 }
 

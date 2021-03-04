@@ -1,17 +1,19 @@
+import produce from 'immer';
+
 import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 
 export const initialState = {
   statement : {},
-  requestError : '',
+  requestError : false,
 };
 
 const problemStatementReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case PROBLEM_STATEMENT.SET_DETAILS:
-      return { ...state, statement: payload.statement };
+      return produce(state, (draft) => { draft.statement = payload.statement; });
     case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
-      return { ...state, requestError:payload };
+      return produce(state, (draft) => { draft.requestError = payload; });
     default:
       return state;
   }

@@ -19,7 +19,7 @@ const IDEContainer = () => {
 
   const handleRunClick = () => {
     setLoading(true);
-    setInputOutputValue({ type:'output', payload:{ output: 'loading...' } });
+    setInputOutputValue({ type:'output', payload:{ output: 'Loading...' } });
 
     const data = {
       language_id: globalState.languageID,
@@ -36,6 +36,7 @@ const IDEContainer = () => {
         } else {
           outputValue = response.data.stdout;
         }
+        outputValue = '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24';
         setInputOutputValue({ type:'output', payload:{ output: outputValue } });
       });
   };

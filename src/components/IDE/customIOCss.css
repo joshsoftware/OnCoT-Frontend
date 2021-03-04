@@ -4,10 +4,6 @@
     white-space:pre-wrap;
 }
 
-.textArea{
-    resize:none;
-}
-
 .card{
     height: 300px;
 }
@@ -21,8 +17,11 @@
     max-height: 245px;
 }
 
+.textArea{
+    resize:none;
+}
+
 .outputScreen{
-    background-color: white;
-    
-    border:#6c757d 1px solid;
+    resize:none;
+    caret-color: transparent;
 }

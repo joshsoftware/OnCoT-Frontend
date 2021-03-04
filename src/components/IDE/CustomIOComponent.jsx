@@ -35,6 +35,10 @@ const CustomIOComponent = (props) => {
               >
                 <CardHeader className='p-1 pl-2 text-left'>
                   OUTPUT
+                  {' '}
+                  {loading
+                    ? <Spinner classname='p-0 m-0' size='sm' />
+                    : ''}
 
                   <Button
                     className='py-0 px-2 mx-1 font-weight-bold float-right'
@@ -56,7 +60,7 @@ const CustomIOComponent = (props) => {
 
                 <CardBody>
                   <Input
-                    className='textArea h-100 bg-dark border-secondary font-weight-bold text-white'
+                    className='outputScreen h-100 bg-dark border-secondary font-weight-bold text-white'
                     type='textarea'
                     value={outputValue}
                   />

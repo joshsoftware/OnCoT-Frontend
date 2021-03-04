@@ -1,5 +1,7 @@
 .box {
-    margin-top: 20%;
+    background-color: black;
+    height: 100vh;
+    width: 100% !important;
 }
 
 .box Input {
@@ -45,4 +47,9 @@ input:not(:placeholder-shown) + Label,
 
 .b{
     width: 67%;
+}
+
+.formCard{
+    padding: 8%;
+    padding-top: 25%;
 }

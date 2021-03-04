@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -17,6 +18,7 @@ import {
 } from 'core-components/index';
 
 import './infoComponent.css';
+import { Container } from 'reactstrap';
 
 const UserProfileComponent = (props) => {
   const {
@@ -33,8 +35,8 @@ const UserProfileComponent = (props) => {
   } = props;
 
   return (
-    <div className='box'>
-      <Card className='bg-transparent border-0 opacity-5'>
+    <Container fluid className='box'>
+      <Card className='formCard bg-transparent border-5'>
         <CardBody className='text-white'>
 
           <h2 className='pb-3 text-success text-center font-weight-bolder'>OnCot</h2>
@@ -123,7 +125,7 @@ const UserProfileComponent = (props) => {
         )
         : null}
 
-    </div>
+    </Container>
   );
 };
 
@@ -142,4 +144,4 @@ UserProfileComponent.propTypes = {
   showToast: PropTypes.bool.isRequired,
 };
 
-export default UserProfileComponent;
+export default React.memo(UserProfileComponent);

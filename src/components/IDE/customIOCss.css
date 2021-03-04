@@ -3,8 +3,14 @@
     border-radius: 5px;
 }
 
-.inputTextArea{
-    height:100%;
-    color: whitesmoke;
-    resize:"none";
+.textArea{
+    resize:none;
+}
+
+.card{
+    height: 300px;
+}
+
+.spinner{
+    align-items: center;
 }

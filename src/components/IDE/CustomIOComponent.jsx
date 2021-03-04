@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
   Row,
   Col,
@@ -9,8 +10,7 @@ import {
   Button,
   Spinner,
   CardText,
-} from 'reactstrap';
-
+} from 'core-components/index';
 import './customIOCss.css';
 
 const CustomIOComponent = (props) => {
@@ -19,9 +19,6 @@ const CustomIOComponent = (props) => {
     toggle,
     handleRunClick,
     handleInputChange,
-    handleCut,
-    handleCopy,
-    handlePaste,
     inputValue,
     outputValue,
     loading,
@@ -34,10 +31,8 @@ const CustomIOComponent = (props) => {
           { showOutput
             ? (
               <Card
-                className='bg-dark text-white font-weight-bold'
-                style={{ height:300, borderRadius: 5 }}
+                className='card bg-dark text-white font-weight-bold'
               >
-
                 <CardHeader className='p-1 pl-2 text-left'>
                   OUTPUT
 
@@ -62,14 +57,13 @@ const CustomIOComponent = (props) => {
                 <CardBody rows='10'>
                   {!loading
                     ? <CardText className='text-left'>{outputValue}</CardText>
-                    : <Spinner style={{ alignItems:'center' }} className='text-center' size='sm' color='light' />}
+                    : <Spinner className='text-center' size='sm' color='light' />}
                 </CardBody>
               </Card>
             )
             :						(
               <Card
-                className='bg-dark text-white font-weight-bold'
-                style={{ height:300, borderRadius: 5 }}
+                className='card bg-dark text-white font-weight-bold'
               >
 
                 <CardHeader className='p-1 pl-2 text-left'>
@@ -85,15 +79,11 @@ const CustomIOComponent = (props) => {
 
                 <CardBody>
                   <Input
-                    className='bg-dark border-secondary text-white font-weight-bold'
-                    style={{ height:'100%', borderRadius: 5, resize:'none' }}
+                    className='textArea h-100 bg-dark border-secondary font-weight-bold text-white'
                     placeholder='Enter input...'
                     type='textarea'
                     value={inputValue}
                     onChange={handleInputChange}
-                    onCut={handleCut}
-                    onCopy={handleCopy}
-                    onPaste={handlePaste}
                   />
                 </CardBody>
               </Card>
@@ -108,13 +98,10 @@ CustomIOComponent.propTypes = {
   toggle: PropTypes.func.isRequired,
   handleRunClick: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  handleCopy: PropTypes.func.isRequired,
-  handleCut: PropTypes.func.isRequired,
-  handlePaste: PropTypes.func.isRequired,
   inputValue: PropTypes.string.isRequired,
   outputValue: PropTypes.string.isRequired,
   showOutput: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
-export default CustomIOComponent;
+export default React.memo(CustomIOComponent);

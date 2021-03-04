@@ -4,7 +4,7 @@ import HomeComponent from 'components/HomeComponent';
 import Layout from 'HOC/Layout';
 import OverviewContainer from 'containers/OverviewContainer';
 import CandidateProfileContainer from 'containers/CandidateProfileContainer';
-import IDEContainer from 'containers/IDEContainer';
+import IDEContainer from 'containers/IdeContainer/index';
 import ProtectedRoute from './ProtectedRoute';
 
 function Routes() {

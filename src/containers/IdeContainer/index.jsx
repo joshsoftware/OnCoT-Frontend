@@ -1,20 +1,13 @@
-import { useState, useReducer } from 'react';
-import produce from 'immer';
+import { useState, useReducer, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 
 import CustomIOComponent from 'components/IDE/CustomIOComponent';
 import customIOAPI from 'apis/customIOAPI';
+import { reducer } from 'containers/IdeContainer/reducer';
 
 const initialState = {
   outputValue: '',
   inputValue: '',
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'output': return produce(state, (draft) => { draft.outputValue = action.payload.output; });
-    case 'input': return produce(state, (draft) => { draft.inputValue = action.payload.input; });
-    default: return state;
-  }
 };
 
 const IDEContainer = () => {
@@ -22,13 +15,7 @@ const IDEContainer = () => {
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
 
-  const toggle = () => setshowOutput(!showOutput);
-
-  const globalState = {
-    languageID: 12,
-    sourceCode: 'CODE',
-    stdIN: initialState.inputValue,
-  };
+  const globalState = useSelector((state) => state);
 
   const handleRunClick = () => {
     setLoading(true);
@@ -53,27 +40,17 @@ const IDEContainer = () => {
       });
   };
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     setInputOutputValue({ type:'input', payload:{ input: event.target.value } });
-  };
+  }, [inputOutuptValue.inputValue]);
 
-  const handleCut = (event) => {
-  };
-
-  const handleCopy = (event) => {
-  };
-
-  const handlePaste = (event) => {
-  };
+  const toggle = () => setshowOutput(!showOutput);
 
   return (
     <CustomIOComponent
       toggle={toggle}
       handleRunClick={handleRunClick}
       handleInputChange={handleInputChange}
-      handleCut={handleCut}
-      handleCopy={handleCopy}
-      handlePaste={handlePaste}
       showOutput={showOutput}
       inputValue={inputOutuptValue.inputValue}
       outputValue={inputOutuptValue.outputValue}

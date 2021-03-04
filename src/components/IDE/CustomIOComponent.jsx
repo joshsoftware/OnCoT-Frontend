@@ -54,10 +54,12 @@ const CustomIOComponent = (props) => {
 
                 </CardHeader>
 
-                <CardBody rows='10'>
-                  {!loading
-                    ? <CardText className='text-left'>{outputValue}</CardText>
-                    : <Spinner className='text-center' size='sm' color='light' />}
+                <CardBody>
+                  <Input
+                    className='textArea h-100 bg-dark border-secondary font-weight-bold text-white'
+                    type='textarea'
+                    value={outputValue}
+                  />
                 </CardBody>
               </Card>
             )

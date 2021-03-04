@@ -1,6 +1,7 @@
 .mainClass{
     font-family:"monospace";
     border-radius: 5px;
+    white-space:pre-wrap;
 }
 
 .textArea{
@@ -13,4 +14,15 @@
 
 .spinner{
     align-items: center;
+}
+
+.scrollable{
+    overflow-y: scroll;
+    max-height: 245px;
+}
+
+.outputScreen{
+    background-color: white;
+    
+    border:#6c757d 1px solid;
 }

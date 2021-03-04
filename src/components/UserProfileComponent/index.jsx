@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types';
 import {
-  FormFeedback,
-  FormGroup,
-  Label,
-  CardBody,
-  Spinner,
-  ToastHeader,
-} from 'reactstrap';
-
-import {
   Input,
   Button,
   Form,
+  FormFeedback,
+  FormGroup,
   Card,
+  CardBody,
+  Toast,
+  ToastHeader,
   Row,
   Col,
-  Toast,
+  Label,
+  Spinner,
 } from 'core-components/index';
 
 import './infoComponent.css';

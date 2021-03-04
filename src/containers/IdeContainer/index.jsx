@@ -37,6 +37,9 @@ const IDEContainer = () => {
           outputValue = response.data.stdout;
         }
         setInputOutputValue({ type:'output', payload:{ output: outputValue } });
+      }).catch((error) => {
+        setLoading(false);
+        setInputOutputValue({ type:'output', payload:{ output: 'Something went wrong!' } });
       });
   };
 

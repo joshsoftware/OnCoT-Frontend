@@ -1,57 +1,10 @@
 import { useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import * as yup from 'yup';
-import produce from 'immer';
 
 import UserProfileComponent from 'components/UserProfileComponent';
 import { candidateFormRequestAction } from 'actions/candidateFormActions';
-
-const schema = yup.object().shape({
-  fName: yup.string()
-    .required('First name is a required field')
-    .matches(/^[A-Za-z '.-]*$/, 'First name should be valid'),
-
-  lName: yup.string()
-    .required('Last name is a required field')
-    .matches(/^[A-Za-z '.-]*$/, 'Last name should be valid'),
-
-  mobile: yup.string()
-    .max(10, 'Mobile should be a valid 10-digit numeric value')
-    .min(10, 'Mobile should be a valid 10-digit numeric value'),
-});
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'fName':
-      return produce(state, (draft) => {
-        draft.fName.value = action.payload.value;
-        draft.fName.state = action.payload.state;
-      });
-
-    case 'lName':
-      return produce(state, (draft) => {
-        draft.lName.value = action.payload.value;
-        draft.lName.state = action.payload.state;
-      });
-
-    case 'mobile':
-      return produce(state, (draft) => {
-        draft.mobile.value = action.payload.value;
-        draft.mobile.state = action.payload.state;
-      });
-
-    case 'fNameInvalid':
-      return produce(state, (draft) => { draft.fName.state = action.payload; });
-
-    case 'lNameInvalid':
-      return produce(state, (draft) => { draft.lName.state = action.payload; });
-
-    case 'mobileInvalid':
-      return produce(state, (draft) => { draft.mobile.state = action.payload; });
-
-    default: return state;
-  }
-};
+import { schema } from 'containers/UserProfileContainer/schema';
+import { reducer } from 'containers/UserProfileContainer/reducer';
 
 const UserProfileContainer = () => {
   const dispatch = useDispatch();

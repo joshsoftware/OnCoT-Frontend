@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'reactstrap';
-import UserProfileContainer from 'containers/UserProfileContainer';
+import UserProfileContainer from 'containers/UserProfileContainer/index';
 import RulesContainer from 'containers/RulesContainer';
 
 const ProfileComponent = () => (

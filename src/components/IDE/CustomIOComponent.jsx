@@ -55,7 +55,6 @@ const CustomIOComponent = (props) => {
                   >
                     CUSTOM INPUT
                   </Button>
-
                 </CardHeader>
 
                 <CardBody>
@@ -63,6 +62,7 @@ const CustomIOComponent = (props) => {
                     className='outputScreen h-100 bg-dark border-secondary font-weight-bold text-white'
                     type='textarea'
                     value={outputValue}
+                    placeholder='Output'
                   />
                 </CardBody>
               </Card>

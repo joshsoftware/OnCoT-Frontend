@@ -27,6 +27,6 @@ describe('Rules Saga', () => {
 
   it('Dispatch failure action', () => {
     gen.next();
-    expect(gen.throw('Something Went Wrong').value).toEqual(put(rulesRequestFailed('Something Went Wrong')));
+    expect(gen.throw(false).value).toEqual(put(rulesRequestFailed(true)));
   });
 });

@@ -10,7 +10,7 @@ export function* rulesSaga() {
     const response = yield call(getRules);
     yield put(rulesAction(response.data));
   } catch (error) {
-    yield put(rulesRequestFailed('Something Went Wrong'));
+    yield put(rulesRequestFailed(true));
   }
 }
 

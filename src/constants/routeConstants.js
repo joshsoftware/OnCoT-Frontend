@@ -1,8 +1,12 @@
-const ROUTES = {
+export const ROUTES = {
   HOME: '/',
-  OVERVIEW: '/overview/:id',
-  CANDIDATE_DETAILS: '/candidate/:id/details',
-  IDE: '/ide',
+  CANDIDATE: '/candidate',
+  ADMIN: '/admin',
+  REVIEWER: '/reviewer',
 };
 
-export default ROUTES;
+export const CANDIDATE_ROUTES = {
+  OVERVIEW: '/overview/:id',
+  CANDIDATE_DETAILS: '/:id/details',
+  IDE: '/ide',
+};

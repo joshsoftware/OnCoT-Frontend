@@ -8,6 +8,7 @@ export const initialState = {
     firstname: '',
     lastname: '',
     email: '',
+    role: '',
   },
   authToken: localStorage.getItem('authToken') || '',
 };

@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import LandingPageComponent from 'components/LandingPageComponent';
 import { driveDetailRequest } from 'actions/userDriveActions';
 
-import ROUTES from 'constants/routeConstants';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 function LandingPageContainer() {
   const { id: tokenId } = useParams();
@@ -25,7 +25,7 @@ function LandingPageContainer() {
   }, [dispatch, tokenId]);
 
   const handleClick = useCallback(() => {
-    history.push(ROUTES.IDE);
+    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.IDE);
   }, [history]);
 
   return (

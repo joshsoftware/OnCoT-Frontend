@@ -1,36 +1,22 @@
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import HomeComponent from 'components/HomeComponent';
-import Layout from 'HOC/Layout';
-import ProtectedRoute from 'root/ProtectedRoute';
-import LandingPageContainer from 'containers/LandingPageContainer';
-import CandidateProfileContainer from 'containers/CandidateProfileContainer';
-import IDEContainer from 'containers/IDEContainer';
+import CandidateRoutes from 'root/CandidateRoutes';
+import AdminRoutes from 'root/AdminRoutes';
+import ReviewerRoutes from 'root/ReviewerRoutes';
 
-import ROUTES from 'constants/routeConstants';
+import { ROUTES } from 'constants/routeConstants';
 
 function Routes() {
   return (
     <Switch>
-      <Route exact path={ROUTES.HOME}>
-        <Layout includeHeader WrappedComponent={HomeComponent} />
-      </Route>
-      <Route exact path={ROUTES.OVERVIEW}>
-        <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
-      </Route>
-      <ProtectedRoute
-        path={ROUTES.CANDIDATE_DETAILS}
-        component={CandidateProfileContainer}
-        isAuth
-        includeHeader={false}
-      />
-      <ProtectedRoute
-        path={ROUTES.IDE}
-        component={IDEContainer}
-        isAuth
-        includeHeader
-      />
-      <Redirect to={ROUTES.HOME} />
+      <Route exact path={ROUTES.HOME} component={HomeComponent} />
+
+      <Route path={ROUTES.ADMIN} component={AdminRoutes} />
+
+      <Route path={ROUTES.REVIEWER} component={ReviewerRoutes} />
+
+      <Route path={ROUTES.CANDIDATE} component={CandidateRoutes} />
     </Switch>
   );
 }

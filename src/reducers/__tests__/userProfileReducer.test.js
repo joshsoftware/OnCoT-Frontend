@@ -13,6 +13,7 @@ describe('user profile reducer', () => {
         firstname: 'vaibhav',
         lastname: 'chalse',
         email: 'v@gmail.com',
+        role: 'candidate',
       },
     };
     expect(

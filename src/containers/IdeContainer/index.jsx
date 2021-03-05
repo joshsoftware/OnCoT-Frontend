@@ -11,7 +11,7 @@ const initialState = {
   inputValue: '',
 };
 
-const IDEContainer = () => {
+const CustomIOContainer = () => {
   const [inputOutuptValue, setInputOutputValue] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
@@ -63,4 +63,4 @@ const IDEContainer = () => {
   );
 };
 
-export default React.memo(IDEContainer);
+export default React.memo(CustomIOContainer);

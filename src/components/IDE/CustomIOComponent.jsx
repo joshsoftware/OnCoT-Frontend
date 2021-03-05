@@ -9,8 +9,7 @@ import {
   Input,
   Button,
   Spinner,
-  CardText,
-} from 'core-components/index';
+} from 'core-components';
 import './customIOCss.css';
 
 const CustomIOComponent = (props) => {
@@ -37,7 +36,7 @@ const CustomIOComponent = (props) => {
                   OUTPUT
                   {' '}
                   {loading
-                    ? <Spinner classname='p-0 m-0' size='sm' />
+                    ? <Spinner classname='p-1 m-0' size='sm' />
                     : ''}
 
                   <Button
@@ -61,8 +60,8 @@ const CustomIOComponent = (props) => {
                   <Input
                     className='outputScreen h-100 bg-dark border-secondary font-weight-bold text-white'
                     type='textarea'
-                    value={outputValue}
-                    placeholder='Output'
+                    value={(loading) ? '' :  outputValue}
+                    placeholder={(loading) ? 'Loading...' : 'Run code to view output here'}
                   />
                 </CardBody>
               </Card>

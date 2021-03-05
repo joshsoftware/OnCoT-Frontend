@@ -6,7 +6,7 @@ import customIOAPI from 'apis/customIOAPI';
 import { reducer } from 'containers/IdeContainer/reducer';
 
 const initialState = {
-  outputValue: '',
+  outputValue: null,
   inputValue: '',
 };
 
@@ -19,7 +19,7 @@ const IDEContainer = () => {
 
   const handleRunClick = () => {
     setLoading(true);
-    setInputOutputValue({ type:'output', payload:{ output: 'Loading...' } });
+    setInputOutputValue({ type:'output', payload:{ output: '' } });
 
     const data = {
       language_id: globalState.languageID,
@@ -39,7 +39,7 @@ const IDEContainer = () => {
         setInputOutputValue({ type:'output', payload:{ output: outputValue } });
       }).catch((error) => {
         setLoading(false);
-        setInputOutputValue({ type:'output', payload:{ output: 'Something went wrong!' } });
+        setInputOutputValue({ type:'output', payload:{ output: error.message } });
       });
   };
 

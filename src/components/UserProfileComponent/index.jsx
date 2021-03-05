@@ -14,7 +14,7 @@ import {
   ToastHeader,
   Label,
   Spinner,
-} from 'core-components/index';
+} from 'core-components';
 
 import './infoComponent.css';
 

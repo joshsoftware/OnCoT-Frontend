@@ -6,8 +6,8 @@ import { setUserProfileDetails } from 'actions/userProfileActions';
 import {
   setUserDriveDetails,
   showErrorMessage,
-  setDriveLoading,
 } from 'actions/userDriveActions';
+import local from 'utils/local';
 
 // worker saga
 export function* driveDetails(action) {
@@ -16,7 +16,7 @@ export function* driveDetails(action) {
     const { userDetails, driveDetails: userDriveDetails, authToken } = data;
     yield put(setUserDriveDetails(userDriveDetails));
     yield put(setUserProfileDetails(userDetails));
-    localStorage.setItem('authToken', authToken);
+    local.setItem('authToken', authToken);
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

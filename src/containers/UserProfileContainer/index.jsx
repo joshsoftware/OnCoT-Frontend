@@ -1,4 +1,4 @@
-import { useReducer, useState, useCallback } from 'react';
+import React, { useReducer, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import UserProfileComponent from 'components/UserProfileComponent';
@@ -95,4 +95,4 @@ const UserProfileContainer = () => {
     />
   );
 };
-export default UserProfileContainer;
+export default React.memo(UserProfileContainer);

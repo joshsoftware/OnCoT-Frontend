@@ -1,5 +1,6 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import UserProfileComponent from 'components/UserProfileComponent';
 import { candidateFormRequestAction } from 'actions/candidateFormActions';
@@ -8,6 +9,7 @@ import { reducer } from 'containers/UserProfileContainer/reducer';
 
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const globalState = useSelector((state) => state);
 
   const initialUserState = {
@@ -49,6 +51,8 @@ const UserProfileContainer = () => {
       .then(() => {
         const data = { fName, lName, mobile };
         dispatch(candidateFormRequestAction(data));
+
+        history.push('/ide');
       })
       .catch((error) => {
         error.inner.forEach((e) => {

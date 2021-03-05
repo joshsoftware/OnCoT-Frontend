@@ -25,7 +25,7 @@ function LandingPageContainer() {
   }, [dispatch, tokenId]);
 
   const handleClick = useCallback(() => {
-    history.push(ROUTES.IDE);
+    history.push(ROUTES.RULES_AND_PROFILE);
   }, [history]);
 
   return (

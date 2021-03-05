@@ -4,8 +4,8 @@ import HomeComponent from 'components/HomeComponent';
 import Layout from 'HOC/Layout';
 import ProtectedRoute from 'root/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
-import CandidateProfileContainer from 'containers/CandidateProfileContainer';
 import IDEContainer from 'containers/IDEContainer';
+import ProfileComponent from 'components/ProfileComponent';
 
 import ROUTES from 'constants/routeConstants';
 
@@ -19,8 +19,8 @@ function Routes() {
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
       <ProtectedRoute
-        path={ROUTES.CANDIDATE_DETAILS}
-        component={CandidateProfileContainer}
+        path={ROUTES.RULES_AND_PROFILE}
+        component={ProfileComponent}
         isAuth
         includeHeader={false}
       />

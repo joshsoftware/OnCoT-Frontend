@@ -32,7 +32,12 @@ function LandingPageComponent(props) {
           {`Your test will start on ${moment(startTime).format('LLL')}`}
         </h4>
         <div>
-          <Button className='px-5' size='lg' onClick={handleClick}>
+          <Button
+            id='btn-style'
+            className='px-5'
+            size='lg'
+            onClick={handleClick}
+          >
             Continue
           </Button>
         </div>

@@ -13,6 +13,8 @@ import Input from 'core-components/Input';
 import Label from 'core-components/Label';
 import Container from 'core-components/Container';
 import Alert from 'core-components/Alert';
+import Navbar from 'core-components/Navbar';
+import NavbarBrand from 'core-components/NavbarBrand';
 
 export {
   Button,
@@ -30,4 +32,6 @@ export {
   Spinner,
   Container,
   Alert,
+  Navbar,
+  NavbarBrand,
 };

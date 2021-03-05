@@ -1,4 +1,4 @@
-import { useState, useReducer, useCallback } from 'react';
+import React, { useState, useReducer, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import CustomIOComponent from 'components/IDE/CustomIOComponent';
@@ -62,4 +62,4 @@ const IDEContainer = () => {
   );
 };
 
-export default IDEContainer;
+export default React.memo(IDEContainer);

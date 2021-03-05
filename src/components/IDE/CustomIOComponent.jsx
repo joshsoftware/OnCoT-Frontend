@@ -6,6 +6,7 @@ import {
   Card,
   CardHeader,
   CardBody,
+  Container,
   Input,
   Button,
   Spinner,
@@ -24,7 +25,7 @@ const CustomIOComponent = (props) => {
   } = props;
 
   return (
-    <div className='mainClass bg-secondary p-4'>
+    <Container className='mainClass bg-secondary p-4'>
       <Row>
         <Col>
           { showOutput
@@ -95,7 +96,7 @@ const CustomIOComponent = (props) => {
             )}
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 

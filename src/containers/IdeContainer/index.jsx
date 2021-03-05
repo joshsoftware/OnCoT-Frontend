@@ -7,7 +7,7 @@ import customIOAPI from 'apis/customIOAPI';
 import { reducer } from 'containers/IdeContainer/reducer';
 
 const initialState = {
-  outputValue: null,
+  outputValue: '',
   inputValue: '',
 };
 

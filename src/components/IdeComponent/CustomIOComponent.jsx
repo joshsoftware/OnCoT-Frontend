@@ -37,7 +37,7 @@ const CustomIOComponent = (props) => {
                   OUTPUT
                   {' '}
                   {loading
-                    ? <Spinner classname='p-1 m-0' size='sm' />
+                    ? <Spinner size='sm' />
                     : ''}
 
                   <Button

@@ -1,7 +1,8 @@
 import React, { useState, useReducer, useCallback } from 'react';
+
 import { useSelector } from 'react-redux';
 
-import CustomIOComponent from 'components/IDE/CustomIOComponent';
+import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
 import customIOAPI from 'apis/customIOAPI';
 import { reducer } from 'containers/IdeContainer/reducer';
 

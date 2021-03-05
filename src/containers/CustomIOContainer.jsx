@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomIOComponent from 'components/IDE/CustomIOComponent';
+import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
 
 const CustomIOContainer = () => (
   <CustomIOComponent />

@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+import rulesReducer from 'reducers/rulesReducer';
+import candidateFormReducer from 'reducers/candidateFormReducer';
+
+const rootReducer = combineReducers({ rulesReducer, candidateFormReducer });
 
 export default rootReducer;

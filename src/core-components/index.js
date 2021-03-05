@@ -11,7 +11,21 @@ import Row from 'core-components/Row';
 import Col from 'core-components/Col';
 import Input from 'core-components/Input';
 import Label from 'core-components/Label';
+import Container from 'core-components/Container';
 
-export { Button, Form, FormFeedback, FormGroup, Card, CardBody,
-  Toast, ToastHeader, Row, Col, Input,
-  Label, Spinner };
+export {
+  Button,
+  Form,
+  FormFeedback,
+  FormGroup,
+  Card,
+  CardBody,
+  Toast,
+  ToastHeader,
+  Row,
+  Col,
+  Input,
+  Label,
+  Spinner,
+  Container,
+};

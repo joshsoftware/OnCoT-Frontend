@@ -3,22 +3,24 @@ import { CANDIDATE_FORM_ACTIONS } from 'constants/candidateFormConstants';
 
 export const initialState = {
   state: {
-    loading : false,
-    error : false,
+    loading: false,
+    error: false,
     errorMsg: '',
   },
   candidateInfo: {
-    fName : undefined,
-    lName : undefined,
+    fName: undefined,
+    lName: undefined,
     mobile: undefined,
     email: undefined,
   },
 };
 
-export const candidateFormReducer = (state = initialState, action) => {
+const candidateFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
-      return produce(state, (draft) => { draft.loading = true; });
+      return produce(state, (draft) => {
+        draft.loading = true;
+      });
 
     case CANDIDATE_FORM_ACTIONS.SUCCESS_ACTION:
       return produce(state, (draft) => {
@@ -37,6 +39,9 @@ export const candidateFormReducer = (state = initialState, action) => {
         draft.state.errorMsg = action.payload;
       });
 
-    default: return state;
+    default:
+      return state;
   }
 };
+
+export default candidateFormReducer;

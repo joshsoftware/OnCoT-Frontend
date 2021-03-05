@@ -48,7 +48,7 @@ const CustomIOContainer = () => {
     setInputOutputValue({ type:'input', payload:{ input: event.target.value } });
   }, [inputOutuptValue.inputValue]);
 
-  const toggle = () => setshowOutput(!showOutput);
+  const toggle = useCallback(() => setshowOutput(!showOutput), [showOutput]);
 
   return (
     <CustomIOComponent

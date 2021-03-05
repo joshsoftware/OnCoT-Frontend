@@ -1,0 +1,30 @@
+.mainClass{
+    font-family:"monospace";
+    white-space:pre-wrap;
+}
+
+.card{
+    height: 50vh;
+}
+
+.spinner{
+    align-items: center;
+}
+
+.scrollable{
+    overflow-y: scroll;
+    max-height: 245px;
+}
+
+.header-color{
+    background-color: #292727;
+}
+
+.textArea{
+    resize:none;
+}
+
+.outputScreen{
+    resize:none;
+    caret-color: transparent;
+}

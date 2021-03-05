@@ -1,4 +1,5 @@
 .problemBody {
     background-color: #292727;
-    height: 100vh;
+    height: 50vh;
+    width: 100% !important;
   }

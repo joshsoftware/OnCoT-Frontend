@@ -3,9 +3,8 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import HomeComponent from 'components/HomeComponent';
 import Layout from 'HOC/Layout';
 import OverviewContainer from 'containers/OverviewContainer';
+import ProblemAndIOComponent from 'components/ProblemAndIOComponent';
 import CandidateProfileContainer from 'containers/CandidateProfileContainer';
-import IDEContainer from 'containers/IDEContainer';
-import ProblemsContainer from 'containers/ProblemsContainer';
 import ProtectedRoute from './ProtectedRoute';
 
 function Routes() {
@@ -21,7 +20,7 @@ function Routes() {
       {/* to test problem statement component */}
       <ProtectedRoute
         path='/problems/get'
-        component={ProblemsContainer}
+        component={ProblemAndIOComponent}
         isAuth
         includeHeader={false}
       />
@@ -32,12 +31,12 @@ function Routes() {
         isAuth
         includeHeader={false}
       />
-      <ProtectedRoute
+      {/* <ProtectedRoute
         path='/ide'
-        component={IDEContainer}
+        component={}
         isAuth
         includeHeader
-      />
+      /> */}
       <Redirect to='/' />
     </Switch>
   );

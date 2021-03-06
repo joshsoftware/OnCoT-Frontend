@@ -23,20 +23,28 @@ function EditorContainer() {
     dispatch(fetchLanguages());
   }, [dispatch]);
 
-  const handleToggle = () => setDropDownOpen(!isDropDownOpen);
+  const handleToggle = useCallback(() => setDropDownOpen(!isDropDownOpen), [
+    isDropDownOpen,
+  ]);
 
-  const handleCode = (value) => {
-    dispatch(setCode(value));
-  };
+  const handleCode = useCallback(
+    (value) => {
+      dispatch(setCode(value));
+    },
+    [dispatch],
+  );
+  console.log(languageSelected);
+  const handleClick = useCallback(
+    (e) => {
+      const langObj = {
+        id: e.currentTarget.getAttribute('id'),
+        name: e.currentTarget.textContent,
+      };
 
-  const handleClick = (e) => {
-    const langObj = {
-      id: e.currentTarget.getAttribute('id'),
-      name: e.currentTarget.textContent,
-    };
-
-    dispatch(setLanguageSelected(langObj));
-  };
+      dispatch(setLanguageSelected(langObj));
+    },
+    [dispatch],
+  );
 
   let lang = isEmpty(languageSelected)
     ? ''
@@ -57,10 +65,10 @@ function EditorContainer() {
     editor.focus();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const obj = { code, language: languageSelected };
     console.log(obj);
-  };
+  }, [code, languageSelected]);
 
   return (
     <Container fluid>

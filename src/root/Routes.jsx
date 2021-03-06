@@ -5,9 +5,9 @@ import Layout from "HOC/Layout";
 import ProtectedRoute from "root/ProtectedRoute";
 import LandingPageContainer from "containers/LandingPageContainer";
 import CandidateProfileContainer from "containers/CandidateProfileContainer";
-import IDEContainer from "containers/IDEContainer";
 
 import ROUTES from "constants/routeConstants";
+import IdeComponent from "components/IdeComponent";
 
 function Routes() {
   return (
@@ -26,7 +26,7 @@ function Routes() {
       />
       <ProtectedRoute
         path={ROUTES.IDE}
-        component={IDEContainer}
+        component={IdeComponent}
         isAuth={true}
         includeHeader={true}
       />

@@ -1,20 +1,25 @@
-import { USER } from "constants/actionConstants";
+import produce from 'immer';
+
+import { USER } from 'constants/actionConstants';
 
 export const initialState = {
-  id: "",
-  firstname: "",
-  lastname: "",
-  email: "",
-  authToken: localStorage.getItem("authToken") || "",
+  data: {
+    id: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+  },
+  authToken: localStorage.getItem('authToken') || '',
 };
 
-const userProfileReducer = (state = initialState, action) => {
+const userProfileReducer = produce((state = initialState, action) => {
   switch (action.type) {
     case USER.SET_DETAILS:
-      return { ...state, ...action.payload };
+      state.data = action.payload;
+      break;
     default:
       return state;
   }
-};
+});
 
 export default userProfileReducer;

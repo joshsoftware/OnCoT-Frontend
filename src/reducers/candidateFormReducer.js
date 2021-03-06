@@ -1,5 +1,6 @@
 import produce from 'immer';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
+import local from 'utils/local';
 
 export const initialState = {
   state: {
@@ -13,6 +14,7 @@ export const initialState = {
     mobile: undefined,
     email: undefined,
   },
+  authToken: local.getItem('authToken') || '',
 };
 
 const candidateFormReducer = (state = initialState, action) => {

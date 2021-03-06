@@ -21,13 +21,10 @@ function Routes() {
       <ProtectedRoute
         path={ROUTES.RULES_AND_PROFILE}
         component={ProfileComponent}
-        isAuth
-        includeHeader={false}
       />
       <ProtectedRoute
         path={ROUTES.IDE}
         component={IdeComponent}
-        isAuth
         includeHeader
       />
       <Redirect to={ROUTES.HOME} />

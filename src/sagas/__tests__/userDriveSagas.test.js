@@ -8,17 +8,9 @@ import {
 } from 'actions/userDriveActions';
 import { driveDetails } from 'sagas/userDriveSagas';
 
-import { setUserProfileDetails } from 'actions/userProfileActions';
-
 const response = {
   data: {
     id: '12345',
-    userDetails: {
-      id: '1',
-      firstname: 'vaibhav',
-      lastname: 'chalse',
-      email: 'v@gmail.com',
-    },
     driveDetails: {
       id: '2',
       name: 'kkwieer drive',
@@ -49,14 +41,6 @@ describe('user drive saga', () => {
     gen.next();
     expect(gen.next(response).value).toEqual(
       put(setUserDriveDetails(response.data.driveDetails)),
-    );
-  });
-
-  it('must set user details', () => {
-    gen.next();
-    gen.next(response);
-    expect(gen.next().value).toEqual(
-      put(setUserProfileDetails(response.data.userDetails)),
     );
     expect(gen.next().done).toEqual(true);
   });

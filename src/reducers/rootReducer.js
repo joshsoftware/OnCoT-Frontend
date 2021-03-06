@@ -5,6 +5,7 @@ import userProfileReducer from 'reducers/userProfileReducer';
 import rulesReducer from 'reducers/rulesReducer';
 import candidateFormReducer from 'reducers/candidateFormReducer';
 import TimerReducer from 'reducers/timerReducer';
+import languageReducer from 'reducers/languageReducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   userDriveReducer,
   userProfileReducer,
   TimerReducer,
+  languageReducer,
 });
 
 export default rootReducer;

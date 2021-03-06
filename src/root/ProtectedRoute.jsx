@@ -27,9 +27,9 @@ function ProtectedRoute(props) {
 
 ProtectedRoute.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-  component: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
   includeHeader: PropTypes.bool.isRequired,
-  location: PropTypes.string.isRequired,
+  location: PropTypes.shape().isRequired,
 };
 
 export default ProtectedRoute;

@@ -15,6 +15,11 @@ import Container from 'core-components/Container';
 import Alert from 'core-components/Alert';
 import Navbar from 'core-components/Navbar';
 import NavbarBrand from 'core-components/NavbarBrand';
+import DropdownItem from 'core-components/DropdownItem';
+import DropdownMenu from 'core-components/DropdownMenu';
+import DropdownToggle from 'core-components/DropdownToggle';
+import ButtonDropdown from 'core-components/ButtonDropDown';
+import Nav from 'core-components/Nav';
 
 export {
   Button,
@@ -34,4 +39,9 @@ export {
   Alert,
   Navbar,
   NavbarBrand,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Nav,
+  ButtonDropdown,
 };

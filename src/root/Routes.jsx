@@ -4,8 +4,8 @@ import HomeComponent from 'components/HomeComponent';
 import Layout from 'HOC/Layout';
 import ProtectedRoute from 'root/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
-import IDEContainer from 'containers/IDEContainer';
 import ProfileComponent from 'components/ProfileComponent';
+import IdeComponent from 'components/IdeComponent';
 
 import ROUTES from 'constants/routeConstants';
 
@@ -26,7 +26,7 @@ function Routes() {
       />
       <ProtectedRoute
         path={ROUTES.IDE}
-        component={IDEContainer}
+        component={IdeComponent}
         isAuth
         includeHeader
       />

@@ -3,6 +3,7 @@ import { LANGUAGE } from 'constants/actionConstants';
 const initialState = {
   languages: [],
   languageSelected: {},
+  code: '// write your code',
 };
 
 const languageReducer = (state = initialState, action) => {
@@ -14,6 +15,8 @@ const languageReducer = (state = initialState, action) => {
       };
     case LANGUAGE.SET_LANGUAGE_SELECTED:
       return { ...state, languageSelected: action.payload.languageSelected };
+    case LANGUAGE.SET_CODE:
+      return { ...state, code: action.payload.code };
     default:
       return state;
   }

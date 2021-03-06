@@ -11,9 +11,9 @@ function EditorPadComponent({
 }) {
   return (
     <MonacoEditor
-      className='border border-primary'
+      className='border border-primary custom-style'
       language={lang}
-      height='90vh'
+      height='80vh'
       theme='vs-dark'
       value={code}
       onChange={handleCode}

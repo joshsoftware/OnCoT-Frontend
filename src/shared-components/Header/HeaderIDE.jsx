@@ -20,7 +20,6 @@ const HeaderIDE = (props) => {
       md='auto'
       xl='auto'
       lg='auto'
-      p-1
     >
       <NavbarBrand className='mx-5 text-white font-weight-bold'>
         <h3 className='font-weight-bold'>{organisationName}</h3>
@@ -33,7 +32,7 @@ const HeaderIDE = (props) => {
       <Col className='mx-5 justify-content-end d-flex'>
         <div className='mx-5 justify-content-end d-flex'>
           <Button className='p-2 btn-circle'>{'<'}</Button>
-          <h5 className='text-white align-middle mt-2 mx-3'>
+          <h5 className='text-white align-middle mt-1 mx-3'>
             Problem {currentProblem}/{totalProblems}
           </h5>
           <Button className='p-2 btn-circle'>{'>'}</Button>

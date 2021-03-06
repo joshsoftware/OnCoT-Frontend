@@ -15,3 +15,8 @@ export const setLanguageSelected = (languageSelected) => ({
     languageSelected,
   },
 });
+
+export const setCode = (code) => ({
+  type: LANGUAGE.SET_CODE,
+  payload: { code },
+});

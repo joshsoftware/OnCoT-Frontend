@@ -6,7 +6,6 @@ import ProtectedRoute from 'root/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
 import ProfileComponent from 'components/ProfileComponent';
 import IdeComponent from 'components/IdeComponent';
-import ProblemAndIOComponent from 'components/ProblemAndIOComponent';
 
 import ROUTES from 'constants/routeConstants';
 
@@ -19,12 +18,6 @@ function Routes() {
       <Route exact path={ROUTES.OVERVIEW}>
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
-      <ProtectedRoute
-        path='/problems/get'
-        component={ProblemAndIOComponent}
-        isAuth
-        includeHeader={false}
-      />
       <ProtectedRoute
         path={ROUTES.RULES_AND_PROFILE}
         component={ProfileComponent}

@@ -20,7 +20,7 @@ function EditorNavComponent({
 }) {
   return (
     <Nav
-      className='p-3 justify-content-between'
+      className='p-2 justify-content-between'
       style={{ backgroundColor: '#272927' }}
     >
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
@@ -44,7 +44,7 @@ EditorNavComponent.propTypes = {
   isDropDownOpen: PropTypes.bool.isRequired,
   handleToggle: PropTypes.func.isRequired,
   languageSelected: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
   languages: PropTypes.arrayOf(

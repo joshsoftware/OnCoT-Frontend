@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import EditorNavComponent from 'components/EditorNavComponent';
 import EditorPadComponent from 'components/EditorPadComponent';
-import { fetchLanguages, setLanguageSelected } from 'actions/languageAction';
+import { Container } from 'core-components';
+import {
+  fetchLanguages,
+  setLanguageSelected,
+  setCode,
+} from 'actions/languageAction';
 import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
-  const [code, changeCode] = useState('//write your code here');
-
-  const { languages, languageSelected } = useSelector(
+  const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
 
+  useEffect(() => {
+    dispatch(fetchLanguages());
+  }, [dispatch]);
+
   const handleToggle = () => setDropDownOpen(!isDropDownOpen);
+
   const handleCode = (value) => {
-    changeCode(value);
+    dispatch(setCode(value));
   };
 
   const handleClick = (e) => {
@@ -29,10 +37,6 @@ function EditorContainer() {
 
     dispatch(setLanguageSelected(langObj));
   };
-
-  useEffect(() => {
-    dispatch(fetchLanguages());
-  }, [dispatch]);
 
   let lang = isEmpty(languageSelected)
     ? ''
@@ -59,7 +63,7 @@ function EditorContainer() {
   };
 
   return (
-    <div>
+    <Container fluid>
       <EditorNavComponent
         isDropDownOpen={isDropDownOpen}
         handleToggle={handleToggle}
@@ -75,7 +79,7 @@ function EditorContainer() {
         options={options}
         editorDidMount={editorDidMount}
       />
-    </div>
+    </Container>
   );
 }
 

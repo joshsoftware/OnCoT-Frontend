@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
 import customIOAPI from 'apis/customIOAPI';
-import { reducer } from 'containers/IdeContainer/reducer';
+import { reducer } from 'containers/InputOutputContainer/reducer';
 
 const initialState = {
   outputValue: '',
@@ -12,7 +12,10 @@ const initialState = {
 };
 
 const CustomIOContainer = () => {
-  const [inputOutuptValue, setInputOutputValue] = useReducer(reducer, initialState);
+  const [inputOutuptValue, setInputOutputValue] = useReducer(
+    reducer,
+    initialState,
+  );
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
 
@@ -20,7 +23,7 @@ const CustomIOContainer = () => {
 
   const handleRunClick = () => {
     setLoading(true);
-    setInputOutputValue({ type:'output', payload:{ output: '' } });
+    setInputOutputValue({ type: 'output', payload: { output: '' } });
 
     const data = {
       language_id: globalState.languageID,
@@ -37,16 +40,29 @@ const CustomIOContainer = () => {
         } else {
           outputValue = response.data.stdout;
         }
-        setInputOutputValue({ type:'output', payload:{ output: outputValue } });
-      }).catch((error) => {
+        setInputOutputValue({
+          type: 'output',
+          payload: { output: outputValue },
+        });
+      })
+      .catch((error) => {
         setLoading(false);
-        setInputOutputValue({ type:'output', payload:{ output: error.message } });
+        setInputOutputValue({
+          type: 'output',
+          payload: { output: error.message },
+        });
       });
   };
 
-  const handleInputChange = useCallback((event) => {
-    setInputOutputValue({ type:'input', payload:{ input: event.target.value } });
-  }, [inputOutuptValue.inputValue]);
+  const handleInputChange = useCallback(
+    (event) => {
+      setInputOutputValue({
+        type: 'input',
+        payload: { input: event.target.value },
+      });
+    },
+    [inputOutuptValue.inputValue],
+  );
 
   const toggle = useCallback(() => setshowOutput(!showOutput), [showOutput]);
 

@@ -4,6 +4,7 @@ import driveRulesSaga from 'sagas/rulesSaga';
 import formSaga from 'sagas/formSaga';
 import driveSagas from 'sagas/userDriveSagas';
 import languageSagas from 'sagas/languageSagas';
+import statementRequestSaga from 'sagas/problemsSaga';
 
 export default function* rootSagas() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSagas() {
     driveRulesSaga(),
     headerSaga(),
     languageSagas(),
+    statementRequestSaga(),
   ]);
 }

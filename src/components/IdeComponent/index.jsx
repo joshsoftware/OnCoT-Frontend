@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Col, Row } from 'core-components';
 import EditorContainer from 'containers/EditorContainer';
 
@@ -12,4 +14,4 @@ function IdeComponent() {
   );
 }
 
-export default IdeComponent;
+export default React.memo(IdeComponent);

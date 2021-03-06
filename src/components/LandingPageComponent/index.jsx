@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Alert, Container } from 'core-components';
 import Loading from 'shared-components/Loading';
+
 import './style.css';
 
 function LandingPageComponent(props) {

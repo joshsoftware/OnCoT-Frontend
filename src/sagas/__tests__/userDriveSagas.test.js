@@ -4,7 +4,6 @@ import driveDetail from 'apis/userDriveApis';
 import {
   driveDetailRequest,
   showErrorMessage,
-  setDriveLoading,
   setUserDriveDetails,
 } from 'actions/userDriveActions';
 import { driveDetails } from 'sagas/userDriveSagas';

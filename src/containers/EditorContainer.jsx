@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EditorNavComponent from 'components/EditorNavComponent';
 import EditorPadComponent from 'components/EditorPadComponent';
 import { fetchLanguages, setLanguageSelected } from 'actions/languageAction';
+import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
@@ -33,10 +34,9 @@ function EditorContainer() {
     dispatch(fetchLanguages());
   }, [dispatch]);
 
-  let lang =
-    Object.keys(languageSelected).length === 0
-      ? ''
-      : languageSelected.name.split(' ')[0].toLowerCase();
+  let lang = isEmpty(languageSelected)
+    ? ''
+    : languageSelected.name.split(' ')[0].toLowerCase();
 
   if (lang === 'c++') lang = 'cpp';
 
@@ -79,4 +79,4 @@ function EditorContainer() {
   );
 }
 
-export default EditorContainer;
+export default React.memo(EditorContainer);

@@ -20,6 +20,8 @@ import DropdownMenu from 'core-components/DropdownMenu';
 import DropdownToggle from 'core-components/DropdownToggle';
 import ButtonDropdown from 'core-components/ButtonDropDown';
 import Nav from 'core-components/Nav';
+import CardHeader from 'core-components/Card/CardHeader';
+import CardText from 'core-components/Card/CardText';
 
 export {
   Button,
@@ -44,4 +46,6 @@ export {
   DropdownToggle,
   Nav,
   ButtonDropdown,
+  CardHeader,
+  CardText,
 };

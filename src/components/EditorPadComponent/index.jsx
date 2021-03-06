@@ -1,3 +1,4 @@
+import React from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import PropTypes from 'prop-types';
 
@@ -30,4 +31,4 @@ EditorPadComponent.propTypes = {
   editorDidMount: PropTypes.func.isRequired,
 };
 
-export default EditorPadComponent;
+export default React.memo(EditorPadComponent);

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -56,4 +57,4 @@ EditorNavComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default EditorNavComponent;
+export default React.memo(EditorNavComponent);

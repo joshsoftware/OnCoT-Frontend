@@ -1,5 +1,5 @@
-import request from "apis/apiHelper";
+import request from 'apis/apiHelper';
 
-const fetchLanguages = () => request.get(`/languages`);
+const fetchLanguages = () => request.get('/languages');
 
 export default fetchLanguages;

@@ -1,4 +1,5 @@
-import MonacoEditor from "react-monaco-editor";
+import MonacoEditor from 'react-monaco-editor';
+import PropTypes from 'prop-types';
 
 function EditorPadComponent({
   lang,
@@ -9,10 +10,10 @@ function EditorPadComponent({
 }) {
   return (
     <MonacoEditor
-      className="border border-primary"
+      className='border border-primary'
       language={lang}
-      height="90vh"
-      theme="vs-dark"
+      height='90vh'
+      theme='vs-dark'
       value={code}
       onChange={handleCode}
       options={options}
@@ -20,5 +21,13 @@ function EditorPadComponent({
     />
   );
 }
+
+EditorPadComponent.propTypes = {
+  lang: PropTypes.string.isRequired,
+  code: PropTypes.string.isRequired,
+  handleCode: PropTypes.func.isRequired,
+  options: PropTypes.shape().isRequired,
+  editorDidMount: PropTypes.func.isRequired,
+};
 
 export default EditorPadComponent;

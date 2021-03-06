@@ -1,4 +1,4 @@
-import { LANGUAGE } from "constants/actionConstants";
+import { LANGUAGE } from 'constants/actionConstants';
 
 export const fetchLanguages = () => ({
   type: LANGUAGE.FETCH_ACTION,

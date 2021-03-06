@@ -1,3 +1,3 @@
-import { DropdownMenu } from "reactstrap";
+import { DropdownMenu } from 'reactstrap';
 
 export default DropdownMenu;

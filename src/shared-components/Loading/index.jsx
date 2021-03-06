@@ -1,10 +1,10 @@
-import { Spinner } from "core-components";
+import { Spinner } from 'core-components';
 
 function Loading() {
   return (
-    <div className="overview-block text-danger d-flex justify-content-center align-items-center ">
+    <div className='overview-block text-danger d-flex justify-content-center align-items-center '>
       <div>
-        <Spinner color="success" />
+        <Spinner color='success' />
       </div>
     </div>
   );

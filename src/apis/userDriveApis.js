@@ -1,4 +1,4 @@
-import request from "apis/apiHelper";
+import request from 'apis/apiHelper';
 
 const driveDetail = (token) => request.get(`/validate-token/${token}`);
 

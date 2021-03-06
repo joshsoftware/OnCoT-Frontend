@@ -1,11 +1,11 @@
-import { call, takeLatest, put } from "redux-saga/effects";
+import { call, takeLatest, put } from 'redux-saga/effects';
 
-import { LANGUAGE } from "constants/actionConstants";
-import fetchLanguages from "apis/languagesApis";
-import { showErrorMessage } from "actions/userDriveActions";
-import { setLanguages } from "actions/languageAction";
+import { LANGUAGE } from 'constants/actionConstants';
+import fetchLanguages from 'apis/languagesApis';
+import { showErrorMessage } from 'actions/userDriveActions';
+import { setLanguages } from 'actions/languageAction';
 
-//worker saga
+// worker saga
 export function* languageDetails(action) {
   try {
     const { data } = yield call(fetchLanguages);
@@ -15,7 +15,7 @@ export function* languageDetails(action) {
   }
 }
 
-//watcher saga
+// watcher saga
 export default function* languageSagas() {
   yield takeLatest(LANGUAGE.FETCH_ACTION, languageDetails);
 }

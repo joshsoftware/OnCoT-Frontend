@@ -1,4 +1,4 @@
-import { DRIVE } from "constants/actionConstants";
+import { DRIVE } from 'constants/actionConstants';
 
 export const driveDetailRequest = (token) => ({
   type: DRIVE.DRIVE_DETAIL_REQUEST,
@@ -13,9 +13,4 @@ export const setUserDriveDetails = (payload) => ({
 export const showErrorMessage = (errorMessage) => ({
   type: DRIVE.SET_ERROR_MESSAGE,
   payload: { isError: true, errorMessage },
-});
-
-export const setDriveLoading = (isLoading) => ({
-  type: DRIVE.SET_LOADING,
-  payload: { isLoading },
 });

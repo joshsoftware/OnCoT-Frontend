@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   Button,
   ButtonDropdown,
@@ -5,10 +7,10 @@ import {
   DropdownMenu,
   DropdownToggle,
   Nav,
-} from "core-components";
+} from 'core-components';
 
 function EditorNavComponent({
-  dropDownOpen,
+  isDropDownOpen,
   handleToggle,
   languageSelected,
   languages,
@@ -17,14 +19,14 @@ function EditorNavComponent({
 }) {
   return (
     <Nav
-      className="p-3 justify-content-between"
-      style={{ backgroundColor: "#272927" }}
+      className='p-3 justify-content-between'
+      style={{ backgroundColor: '#272927' }}
     >
-      <ButtonDropdown isOpen={dropDownOpen} toggle={handleToggle}>
-        <DropdownToggle caret style={{ minWidth: "120px", width: "auto" }}>
+      <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
+        <DropdownToggle caret style={{ minWidth: '120px', width: 'auto' }}>
           {languageSelected.name}
         </DropdownToggle>
-        <DropdownMenu style={{ maxHeight: "50vh", overflowY: "auto" }}>
+        <DropdownMenu style={{ maxHeight: '50vh', overflowY: 'auto' }}>
           {languages.map(({ id, name }) => (
             <DropdownItem id={id} key={id} onClick={handleClick}>
               {name}
@@ -36,5 +38,22 @@ function EditorNavComponent({
     </Nav>
   );
 }
+
+EditorNavComponent.propTypes = {
+  isDropDownOpen: PropTypes.bool.isRequired,
+  handleToggle: PropTypes.func.isRequired,
+  languageSelected: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+  }).isRequired,
+  languages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 export default EditorNavComponent;

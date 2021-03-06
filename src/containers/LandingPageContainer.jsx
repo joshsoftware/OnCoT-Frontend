@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
 
-import LandingPageComponent from "components/LandingPageComponent";
-import { driveDetailRequest } from "actions/userDriveActions";
+import LandingPageComponent from 'components/LandingPageComponent';
+import { driveDetailRequest } from 'actions/userDriveActions';
 
-import ROUTES from "constants/routeConstants";
+import ROUTES from 'constants/routeConstants';
 
 function LandingPageContainer() {
   const { id: tokenId } = useParams();
@@ -13,15 +13,20 @@ function LandingPageContainer() {
   const history = useHistory();
 
   const userDriveState = useSelector((state) => state.userDriveReducer);
-  const { startTime, isError, errorMessage, isLoading } = userDriveState;
+  const {
+    data: { startTime },
+    isError,
+    errorMessage,
+    isLoading,
+  } = userDriveState;
 
   useEffect(() => {
     dispatch(driveDetailRequest(tokenId));
   }, [dispatch, tokenId]);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     history.push(ROUTES.IDE);
-  };
+  }, [history]);
 
   return (
     <LandingPageComponent
@@ -34,4 +39,4 @@ function LandingPageContainer() {
   );
 }
 
-export default LandingPageContainer;
+export default React.memo(LandingPageContainer);

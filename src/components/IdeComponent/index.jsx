@@ -1,5 +1,5 @@
-import { Col, Row } from "core-components";
-import EditorContainer from "containers/EditorContainer";
+import { Col, Row } from 'core-components';
+import EditorContainer from 'containers/EditorContainer';
 
 function IdeComponent() {
   return (

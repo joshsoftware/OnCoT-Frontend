@@ -1,4 +1,4 @@
-import { LANGUAGE } from "constants/actionConstants";
+import { LANGUAGE } from 'constants/actionConstants';
 
 const initialState = {
   languages: [],

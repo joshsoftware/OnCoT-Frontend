@@ -1,29 +1,31 @@
-import userDriveReducer, { initialState } from "reducers/userDriveReducer";
+import userDriveReducer, { initialState } from 'reducers/userDriveReducer';
 import {
   setUserDriveDetails,
   showErrorMessage,
-  setDriveLoading,
-} from "actions/userDriveActions";
+  driveDetailRequest,
+} from 'actions/userDriveActions';
 
-describe("user drive reducer", () => {
-  it("return default state", () => {
+describe('user drive reducer', () => {
+  it('return default state', () => {
     expect(userDriveReducer(initialState, {})).toEqual(initialState);
   });
 
-  it("set details", () => {
+  it('set details', () => {
     const userObj = {
-      id: "1",
-      name: "kkwieer drive",
-      startTime: "2021-02-22T06:40:45Z",
-      endTime: "2021-02-22T08:40:45Z",
+      data: {
+        id: '1',
+        name: 'kkwieer drive',
+        startTime: '2021-02-22T06:40:45Z',
+        endTime: '2021-02-22T08:40:45Z',
+      },
     };
     expect(
-      userDriveReducer(initialState, setUserDriveDetails(userObj))
+      userDriveReducer(initialState, setUserDriveDetails(userObj.data)),
     ).toEqual({ ...initialState, ...userObj, isLoading: false });
   });
 
-  it("set error message", () => {
-    const errMsg = "something went wrong";
+  it('set error message', () => {
+    const errMsg = 'something went wrong';
     expect(userDriveReducer(initialState, showErrorMessage(errMsg))).toEqual({
       ...initialState,
       isError: true,
@@ -32,8 +34,8 @@ describe("user drive reducer", () => {
     });
   });
 
-  it("set drive loading", () => {
-    expect(userDriveReducer(initialState, setDriveLoading(true))).toEqual({
+  it('set drive loading', () => {
+    expect(userDriveReducer(initialState, driveDetailRequest())).toEqual({
       ...initialState,
       isLoading: true,
     });

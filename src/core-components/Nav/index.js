@@ -1,3 +1,3 @@
-import { Nav } from "reactstrap";
+import { Nav } from 'reactstrap';
 
 export default Nav;

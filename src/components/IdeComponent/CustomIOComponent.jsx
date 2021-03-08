@@ -25,11 +25,11 @@ const CustomIOComponent = ({
   loading,
 }) => {
   return (
-    <Container fluid className='mainClass p-0'>
+    <Container fluid className='mainClass p-0 pl-1 border-right border-dark'>
       <Row>
         <Col>
           {showOutput ? (
-            <Card className='rounded-0 card bg-dark text-white font-weight-bold'>
+            <Card className='rounded-0 card text-white font-weight-bold' style={{ backgroundColor: '#272927' }}>
               <CardHeader className='py-3 px-3 text-left'>
                 OUTPUT {loading ? <Spinner size='sm' /> : ''}
                 <Button
@@ -61,7 +61,7 @@ const CustomIOComponent = ({
             </Card>
           ) : (
             <Card className='card bg-dark text-white rounded-0 font-weight-bold'>
-              <CardHeader className='p-1 pl-2 text-left'>
+              <CardHeader className='p-2 pl-4'>
                 INPUT
                 <Button
                   className='py-0 px-2 mx-0 font-weight-bold float-right'

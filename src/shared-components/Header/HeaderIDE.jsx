@@ -16,10 +16,10 @@ const HeaderIDE = (props) => {
 
   return (
     <Navbar
-      className='bg-dark justify-content-around'
-      md='auto'
-      xl='auto'
-      lg='auto'
+      className='bg-dark justify-content-around myClass'
+      md={12}
+      xl={12}
+      lg={12}
     >
       <NavbarBrand className='mx-5 text-white font-weight-bold'>
         <h3 className='font-weight-bold'>{organisationName}</h3>
@@ -31,11 +31,11 @@ const HeaderIDE = (props) => {
       </Col>
       <Col className='mx-5 justify-content-end d-flex'>
         <div className='mx-5 justify-content-end d-flex'>
-          <Button className='p-2 btn-circle'>{'<'}</Button>
-          <h5 className='text-white align-middle mt-1 mx-3'>
+          <Button className='px-2 btn-circle'>{'<'}</Button>
+          <h5 className='text-white align-middle mx-3'>
             Problem {currentProblem}/{totalProblems}
           </h5>
-          <Button className='p-2 btn-circle'>{'>'}</Button>
+          <Button className='px-2 btn-circle'>{'>'}</Button>
         </div>
         <h2
           className={

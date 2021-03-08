@@ -7,11 +7,11 @@ import './problemStyle.css';
 
 const ProblemComponent = ({ data }) => {
   return (
-    <Container fluid className='problemBody'>
-      <h4 className='text-center text-white font-weight-bold mb-3'>
+    <Container fluid className='problemBody border border-dark'>
+      <h5 className='text-center text-white text-success font-weight-bold pt-1'>
         Problem Statement
-      </h4>
-      <div className='py-2'>
+      </h5>
+      <div className='pl-2'>
         <h6 className='text-white scrollable font-weight-light'>{data}</h6>
       </div>
     </Container>

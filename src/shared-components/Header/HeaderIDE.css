@@ -1,3 +1,7 @@
+.myClass{
+  width: 100% !important;
+  height: 10vh;
+}
 .btn-circle {
   width: 40px;
   height: 40px;

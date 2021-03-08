@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-import { RULES_LIST_URL } from 'constants/appConstants';
+import { SERVER_URL } from 'constants/appConstants';
 
-export const getRules = () => axios.get(`${RULES_LIST_URL}/rulesList`);
+export const getRules = () => axios.get(`${SERVER_URL}/rulesLis`);

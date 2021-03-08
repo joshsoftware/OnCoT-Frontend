@@ -1,10 +1,11 @@
 import produce from 'immer';
 
 import { DRIVE } from 'constants/actionConstants';
+import local from 'utils/local';
 
 export const initialState = {
   data: {
-    id: '',
+    id: local.getItem('driveId') || '',
     name: '',
     startTime: '',
     endTime: '',

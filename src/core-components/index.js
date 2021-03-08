@@ -12,7 +12,9 @@ import Col from 'core-components/Col';
 import Input from 'core-components/Input';
 import Label from 'core-components/Label';
 import Alert from 'core-components/Alert';
+import Navbar from 'core-components/Navbar';
+import NavbarBrand from 'core-components/NavbarBrand';
 
 export { Button, Form, FormFeedback, FormGroup, Card, CardBody,
   Toast, ToastHeader, Row, Col, Input,
-  Label, Spinner, Alert };
+  Label, Spinner, Alert, Navbar, NavbarBrand };

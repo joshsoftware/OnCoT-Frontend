@@ -12,8 +12,8 @@ import ROUTES from 'constants/routeConstants';
 function Routes() {
   return (
     <Switch>
-      <Route exact path={ROUTES.HOME}>
-        <Layout includeHeader WrappedComponent={HomeComponent} />
+      <Route exact path='/'>
+        <Layout includeHeader={false} WrappedComponent={HomeComponent} />
       </Route>
       <Route exact path={ROUTES.OVERVIEW}>
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />

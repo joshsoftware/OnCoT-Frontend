@@ -10,7 +10,7 @@ import Routes from 'root/Routes';
 function App() {
   return (
     <Provider store={store}>
-      <Container fluid>
+      <Container fluid className='text-center'>
         <BrowserRouter>
           <Routes />
         </BrowserRouter>

@@ -2,6 +2,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import candidateInfoPostApi from 'apis/candidateFormApi';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/candidateFormConstants';
 import { candidateFormSuccessAction, candidateFormFailureAction } from 'actions/candidateFormActions';
+import headerSaga from 'sagas/timerSaga';
 
 import driveSagas from 'sagas/userDriveSagas';
 
@@ -26,5 +27,5 @@ export function* userSaga() {
 }
 
 export default function* rootSaga() {
-  yield all([userSaga(), driveSagas()]);
+  yield all([headerSaga(), userSaga(), driveSagas()]);
 }

@@ -30,7 +30,7 @@ const CustomIOComponent = ({
         <Col>
           {showOutput ? (
             <Card className='rounded-0 card bg-dark text-white font-weight-bold'>
-              <CardHeader className='py-3 px-3 text-left'>
+              <CardHeader className='p-1 pl-2 text-left'>
                 OUTPUT {loading ? <Spinner size='sm' /> : ''}
                 <Button
                   className='py-0 px-2 mx-1 font-weight-bold float-right'

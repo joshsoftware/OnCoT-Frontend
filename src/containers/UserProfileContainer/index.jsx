@@ -1,14 +1,17 @@
 import React, { useReducer, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import UserProfileComponent from 'components/UserProfileComponent';
 import { candidateFormRequestAction } from 'actions/candidateFormActions';
 import { schema } from 'containers/UserProfileContainer/schema';
 import { reducer } from 'containers/UserProfileContainer/reducer';
+import ROUTES from 'constants/routeConstants';
 
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
-  const globalState = useSelector((state) => state);
+  const globalState = useSelector((state) => state.candidateFormReducer);
+  const history = useHistory();
 
   const initialUserState = {
     fName: { value: '', state: { valid: true, message: '' } },
@@ -103,12 +106,14 @@ const UserProfileContainer = () => {
           });
         });
     },
-    [userState],
+    [userState, globalState, history],
   );
 
-  const toggle = useCallback(() => setShowToast(globalState.error), [
-    globalState.error,
-  ]);
+  const toggle = useCallback(() => setShowToast(globalState.error), [globalState]);
+
+  if (globalState.state.nextPageAllowed) {
+    history.push(ROUTES.IDE);
+  }
 
   return (
     <UserProfileComponent

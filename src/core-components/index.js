@@ -9,5 +9,8 @@ import Input from 'core-components/Input';
 import Row from 'core-components/Row';
 import Spinner from 'core-components/Spinner';
 import Alert from 'core-components/Alert';
+import Navbar from 'core-components/Navbar';
+import NavbarBrand from 'core-components/NavbarBrand';
 
-export { Button, Card, CardText, CardBody, CardHeader, Col, Container, Input, Row, Spinner, Alert };
+export { Button, Card, CardText, CardBody, CardHeader,
+  Col, Container, Input, Row, Spinner, Alert, Navbar, NavbarBrand };

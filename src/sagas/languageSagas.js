@@ -8,8 +8,8 @@ import { setLanguages } from 'actions/languageAction';
 // worker saga
 export function* languageDetails(action) {
   try {
-    const { data } = yield call(fetchLanguages);
-    yield put(setLanguages(data));
+    const response = yield call(fetchLanguages);
+    yield put(setLanguages(response.data));
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

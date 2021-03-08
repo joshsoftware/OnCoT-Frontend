@@ -11,7 +11,8 @@ import Row from 'core-components/Row';
 import Col from 'core-components/Col';
 import Input from 'core-components/Input';
 import Label from 'core-components/Label';
+import Alert from 'core-components/Alert';
 
 export { Button, Form, FormFeedback, FormGroup, Card, CardBody,
   Toast, ToastHeader, Row, Col, Input,
-  Label, Spinner };
+  Label, Spinner, Alert };

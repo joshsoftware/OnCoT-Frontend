@@ -3,6 +3,8 @@ import candidateInfoPostApi from 'apis/candidateFormApi';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/candidateFormConstants';
 import { candidateFormSuccessAction, candidateFormFailureAction } from 'actions/candidateFormActions';
 
+import driveSagas from 'sagas/userDriveSagas';
+
 export function* candidateFormSaga(action) {
   try {
     const response = yield call(candidateInfoPostApi, action.payload);
@@ -24,5 +26,5 @@ export function* userSaga() {
 }
 
 export default function* rootSaga() {
-  yield all([userSaga()]);
+  yield all([userSaga(), driveSagas()]);
 }

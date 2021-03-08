@@ -19,7 +19,11 @@ const CustomIOContainer = () => {
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
 
-  const globalState = useSelector((state) => state);
+  const globalState = useSelector((state) => state.languageReducer);
+  const {
+    languageSelected,
+    code,
+  } = globalState;
 
   const handleRunClick = () => {
     setLoading(true);

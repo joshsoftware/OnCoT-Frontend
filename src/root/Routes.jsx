@@ -5,6 +5,7 @@ import Layout from 'HOC/Layout';
 import ProtectedRoute from 'root/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
 import CandidateProfileContainer from 'containers/CandidateProfileContainer';
+import ProblemsContainer from 'containers/ProblemsContainer';
 import ProfileComponent from 'components/ProfileComponent';
 
 import IDEContainer from 'containers/IdeContainer';
@@ -19,11 +20,20 @@ function Routes() {
       <Route exact path={ROUTES.OVERVIEW}>
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
+
+      {/* to test problem statement component */}
+      <Route
+        path='/problems/get'
+        component={ProblemsContainer}
+        isAuth
+        includeHeader={false}
+      />
+
       {/* Route to test Profile Component */}
       <Route
         path='/profile/create'
         component={ProfileComponent}
-        // isAuth
+        isAuth
         includeHeader={false}
       />
       <ProtectedRoute

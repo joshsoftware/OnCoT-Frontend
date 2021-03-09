@@ -4,7 +4,8 @@ import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 
 export const initialState = {
   statement: {},
-  requestError: false,
+  errorMessage: '',
+  isError: false,
 };
 
 const problemStatementReducer = produce((state = initialState, action) => {
@@ -20,7 +21,8 @@ const problemStatementReducer = produce((state = initialState, action) => {
       };
       break;
     case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
-      state.requestError = payload;
+      state.errorMessage = payload;
+      state.isError = true;
       break;
     default:
       return state;

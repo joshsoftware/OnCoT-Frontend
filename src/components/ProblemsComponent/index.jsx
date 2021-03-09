@@ -5,18 +5,20 @@ import { Container } from 'core-components';
 
 import './problemStyle.css';
 
-const ProblemComponent = ({ error, title, description }) => {
-  if (error) {
-    <Container fluid className='problemBody'>
-      <h4 className='text-center text-white font-weight-bold mb-3'>
-        Problem Statement
-      </h4>
-      <div className='py-2'>
-        <h6 className='text-white scrollable font-weight-light'>
-          Something went wrong
-        </h6>
-      </div>
-    </Container>;
+const ProblemComponent = ({ isError, errorMessage, title, description }) => {
+  if (isError) {
+    return (
+      <Container fluid className='problemBody'>
+        <h4 className='text-center text-white font-weight-bold mb-3'>
+          Problem Statement
+        </h4>
+        <div className='py-2'>
+          <h6 className='text-white scrollable font-weight-light'>
+            {errorMessage}
+          </h6>
+        </div>
+      </Container>
+    );
   }
   return (
     <Container fluid className='problemBody'>
@@ -33,7 +35,8 @@ const ProblemComponent = ({ error, title, description }) => {
 };
 
 ProblemComponent.propTypes = {
-  error: PropTypes.string.isRequired,
+  isError: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };

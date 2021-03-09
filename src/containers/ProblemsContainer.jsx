@@ -10,17 +10,21 @@ const ProblemsContainer = () => {
   const {
     data: { id },
   } = useSelector((state) => state.userDriveReducer);
-  const { statement, requestError } = result;
-  const errorMessage = 'Something Went wrong';
+  const {
+    statement: { title, description },
+    requestError,
+  } = result;
 
   useEffect(() => {
     dispatch(statementRequest(id));
   }, [dispatch]);
 
-  return requestError ? (
-    <ProblemsComponent data={errorMessage} />
-  ) : (
-    <ProblemsComponent data={statement} />
+  return (
+    <ProblemsComponent
+      error={requestError}
+      title={title}
+      description={description}
+    />
   );
 };
 

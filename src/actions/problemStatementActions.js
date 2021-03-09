@@ -7,7 +7,7 @@ export const statementRequest = (driveId) => ({
 
 export const statementAction = (statement) => ({
   type: PROBLEM_STATEMENT.SET_DETAILS,
-  payload: { statement },
+  payload: { ...statement },
 });
 
 export const statementActionFailed = (requestError) => ({

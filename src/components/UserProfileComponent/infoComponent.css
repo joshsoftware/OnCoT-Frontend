@@ -45,10 +45,6 @@ input:not(:placeholder-shown) + Label,
     left:30px;
 }
 
-.b{
-    width: 67%;
-}
-
 .formCard{
     padding: 8%;
     padding-top: 25%;

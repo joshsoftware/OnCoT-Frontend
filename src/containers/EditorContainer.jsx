@@ -33,7 +33,6 @@ function EditorContainer() {
     },
     [dispatch],
   );
-  console.log(languageSelected);
   const handleClick = useCallback(
     (e) => {
       const langObj = {
@@ -67,7 +66,6 @@ function EditorContainer() {
 
   const handleSubmit = useCallback(() => {
     const obj = { code, language: languageSelected };
-    console.log(obj);
   }, [code, languageSelected]);
 
   return (

@@ -109,7 +109,9 @@ const UserProfileContainer = () => {
     [userState, globalState, history],
   );
 
-  const toggle = useCallback(() => setShowToast(globalState.error), [globalState]);
+  const toggle = useCallback(() => setShowToast(globalState.error), [
+    globalState,
+  ]);
 
   if (globalState.state.nextPageAllowed) {
     history.push(ROUTES.IDE);
@@ -130,4 +132,5 @@ const UserProfileContainer = () => {
     />
   );
 };
+
 export default React.memo(UserProfileContainer);

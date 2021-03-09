@@ -15,7 +15,7 @@ export const initialState = {
   },
 };
 
-export const candidateFormReducer = (state = initialState, action) => {
+const candidateFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
       return produce(state, (draft) => { draft.loading = true; });
@@ -40,3 +40,5 @@ export const candidateFormReducer = (state = initialState, action) => {
     default: return state;
   }
 };
+
+export default candidateFormReducer;

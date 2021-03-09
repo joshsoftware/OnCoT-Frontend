@@ -1,5 +1,4 @@
 import { BrowserRouter } from 'react-router-dom';
-import { Container } from 'reactstrap';
 import { Provider } from 'react-redux';
 
 import { store } from 'store';
@@ -10,11 +9,9 @@ import Routes from 'root/Routes';
 function App() {
   return (
     <Provider store={store}>
-      <Container fluid className='text-center'>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </Container>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
     </Provider>
   );
 }

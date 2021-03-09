@@ -10,7 +10,7 @@ import { reducer } from 'containers/UserProfileContainer/reducer';
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const globalState = useSelector((state) => state);
+  const globalState = useSelector((state) => state.candidateFormReducer);
 
   const initialUserState = {
     fName: { value: '', state: { valid:true, message:'' } },
@@ -99,4 +99,5 @@ const UserProfileContainer = () => {
     />
   );
 };
+
 export default React.memo(UserProfileContainer);

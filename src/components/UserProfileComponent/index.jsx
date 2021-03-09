@@ -15,10 +15,10 @@ import {
   ToastHeader,
   Label,
   Spinner,
+  Container,
 } from 'core-components/index';
 
 import './infoComponent.css';
-import { Container } from 'reactstrap';
 
 const UserProfileComponent = (props) => {
   const {

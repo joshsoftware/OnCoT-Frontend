@@ -1,18 +1,20 @@
-import { Container, Row, Col } from 'reactstrap';
-import UserProfileContainer from 'containers/UserProfileContainer/index';
+import React from 'react';
+
+import { Container, Row, Col } from 'core-components';
 import RulesContainer from 'containers/RulesContainer';
+import UserProfileContainer from 'containers/UserProfileContainer/index';
 
 const ProfileComponent = () => (
-  <Container className='px-0 overflow-hidden' fluid>
+  <Container fluid className='px-0 overflow-hidden'>
     <Row>
-      <Col lg={5}>
+      <Col className='pr-0' xs={12} md={4} xl={4}>
         <UserProfileContainer />
       </Col>
-      <Col lg={7} className='bg-success'>
+      <Col className='pl-0' xs={12} md={8} xl={8}>
         <RulesContainer />
       </Col>
     </Row>
   </Container>
 );
 
-export default ProfileComponent;
+export default React.memo(ProfileComponent);

@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateTimer, timerRequest } from 'actions/timerActions';
-import { getCurrentTime, ifSufficientTime } from 'utils/helpers/HeaderIdeHelper';
+import {
+  getCurrentTime,
+  ifSufficientTime,
+} from 'utils/helpers/HeaderIdeHelper';
 import HeaderIDE from 'shared-components/Header/HeaderIDE';
 
 const HeaderIDEConatiner = () => {
-  const totalProblems = 3;
-  const currentProblem = 2;
+  const totalProblems = 1;
+  const currentProblem = 1;
   const organisationName = 'Josh Inc.';
 
   const dispatch = useDispatch();
@@ -20,7 +23,9 @@ const HeaderIDEConatiner = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (result.counter >= 0) { dispatch(updateTimer(result.counter - 1)); }
+      if (result.counter >= 0) {
+        dispatch(updateTimer(result.counter - 1));
+      }
     }, 1000);
   }, [result.counter]);
 

@@ -24,7 +24,7 @@ const HeaderIDEConatiner = () => {
   useEffect(() => {
     setTimeout(() => {
       if (result.counter >= 0) {
-        dispatch(updateTimer(result.counter - 1));
+        dispatch(updateTimer(Math.max(0, result.counter - 1)));
       }
     }, 1000);
   }, [result.counter]);

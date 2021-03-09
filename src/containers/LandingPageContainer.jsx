@@ -6,6 +6,10 @@ import LandingPageComponent from 'components/LandingPageComponent';
 import { driveDetailRequest } from 'actions/userDriveActions';
 
 import ROUTES from 'constants/routeConstants';
+import { driveTimerRequest, updateDriveTimer } from 'actions/driveTimerActions';
+import {
+  getCurrentTime,
+} from 'utils/helpers/HeaderIdeHelper';
 
 function LandingPageContainer() {
   const { id: tokenId } = useParams();
@@ -28,6 +32,22 @@ function LandingPageContainer() {
     history.push(ROUTES.RULES_AND_PROFILE);
   }, [history]);
 
+  const result = useSelector((state) => state.DriveTimerReducer);
+
+  useEffect(() => {
+    dispatch(driveTimerRequest());
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (result.counter >= 0) {
+        dispatch(updateDriveTimer(Math.max(0, result.counter - 1)));
+      }
+    }, 1000);
+  }, [result.counter]);
+
+  const driveTime = getCurrentTime(result.counter);
+
   return (
     <LandingPageComponent
       startTime={startTime}
@@ -35,6 +55,7 @@ function LandingPageContainer() {
       errorMessage={errorMessage}
       isLoading={isLoading}
       handleClick={handleClick}
+      driveTime={driveTime}
     />
   );
 }

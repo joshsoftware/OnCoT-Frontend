@@ -8,7 +8,7 @@ import Loading from 'shared-components/Loading';
 import './style.css';
 
 function LandingPageComponent(props) {
-  const { startTime, isError, errorMessage, isLoading, handleClick } = props;
+  const { startTime, isError, errorMessage, isLoading, handleClick, driveTime } = props;
 
   if (isLoading) {
     return <Loading />;
@@ -32,6 +32,10 @@ function LandingPageComponent(props) {
         <h4 className='my-5'>
           {`Your test will start on ${moment(startTime).format('LLL')}`}
         </h4>
+        <h3 className='text-success'>
+          {driveTime === 'Expired' ? null : driveTime}
+        </h3>
+        {driveTime === 'Expired' && (
         <div>
           <Button
             id='btn-style'
@@ -42,6 +46,7 @@ function LandingPageComponent(props) {
             Continue
           </Button>
         </div>
+        )}
       </div>
     </Container>
   );
@@ -53,6 +58,7 @@ LandingPageComponent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
+  driveTime: PropTypes.string.isRequired,
 };
 
 export default React.memo(LandingPageComponent);

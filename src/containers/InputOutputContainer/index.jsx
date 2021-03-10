@@ -55,7 +55,8 @@ const CustomIOContainer = () => {
               });
             })
             .catch((error) => {
-              console.log(error);
+              // something went wrong! error
+              setLoading(false);
             });
         }, 1000);
       })

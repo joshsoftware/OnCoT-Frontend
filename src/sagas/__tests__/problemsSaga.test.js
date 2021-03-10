@@ -10,7 +10,7 @@ import { getStatement } from 'apis/problemStatementApi';
 
 describe('Rules Saga', () => {
   let gen;
-  let response = {
+  const response = {
     data: {
       str: 'Lorem Ipsum Dolor Sit Amet',
     },

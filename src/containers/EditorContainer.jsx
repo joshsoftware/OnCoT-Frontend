@@ -33,7 +33,6 @@ function EditorContainer() {
     },
     [dispatch],
   );
-
   const handleClick = useCallback(
     (e) => {
       const langObj = {

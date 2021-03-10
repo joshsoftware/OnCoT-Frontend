@@ -18,14 +18,22 @@ function Routes() {
       <Route exact path={ROUTES.OVERVIEW}>
         <Layout includeHeader={false} WrappedComponent={LandingPageContainer} />
       </Route>
-      <ProtectedRoute
+      {/* <ProtectedRoute
+        path={ROUTES.RULES_AND_PROFILE}
+        component={ProfileComponent}
+      /> */}
+      <Route
         path={ROUTES.RULES_AND_PROFILE}
         component={ProfileComponent}
       />
-      <ProtectedRoute
+      {/* <ProtectedRoute
         path={ROUTES.IDE}
         component={IdeComponent}
         includeHeader
+      /> */}
+      <Route
+        path={ROUTES.IDE}
+        component={IdeComponent}
       />
       <Redirect to={ROUTES.HOME} />
     </Switch>

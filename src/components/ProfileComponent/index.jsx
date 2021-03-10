@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Container, Row, Col } from 'core-components';
-import UserProfileContainer from 'containers/UserProfileContainer';
 import RulesContainer from 'containers/RulesContainer';
+import UserProfileContainer from 'containers/UserProfileContainer/index';
 
 const ProfileComponent = () => (
   <Container fluid className='px-0 overflow-hidden'>

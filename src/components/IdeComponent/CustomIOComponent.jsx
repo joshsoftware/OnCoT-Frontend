@@ -25,7 +25,7 @@ const CustomIOComponent = ({
   loading,
 }) => {
   return (
-    <Container fluid className='mainClass p-0'>
+    <Container fluid className='mainClass p-0 pl-1 border-right border-dark'>
       <Row>
         <Col>
           {showOutput ? (

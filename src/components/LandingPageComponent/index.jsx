@@ -26,7 +26,7 @@ function LandingPageComponent(props) {
     <Container fluid className='dark'>
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
-        <h1 className='font-weight-bolder' id='title'>
+        <h1 className='font-weight-bolder title'>
           OnCoT
         </h1>
         <h4 className='my-5'>
@@ -38,8 +38,7 @@ function LandingPageComponent(props) {
         {driveTime === 'Expired' && (
         <div>
           <Button
-            id='btn-style'
-            className='px-5'
+            className='px-5 btn-style'
             size='lg'
             onClick={handleClick}
           >

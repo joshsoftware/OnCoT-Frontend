@@ -3,20 +3,20 @@ import rulesReducer, { initialState } from 'reducers/rulesReducer';
 
 describe('Rules Reducer', () => {
   const userlist = {
+    description: '1. The contest is open to anyone with a knack for programming.',
     id: 1,
-    title: 'campus',
-    description: '1.Rule Number 1',
-    createdBy: '12-21-12',
-    updatedBy: '12-12-12',
-  }
+  };
+  const errorMessage = 'Error 404';
+  const isError = true;
   it('Return Default State', () => {
     expect(rulesReducer(initialState, {})).toEqual(initialState);
   });
   it('Set Rules', () => {
-    expect(rulesReducer(initialState, rulesAction(userlist))).toEqual({ ...initialState, userlist });
+    expect(rulesReducer(initialState, rulesAction(userlist)))
+      .toEqual({ ...initialState, userlist });
   });
   it('Request Failed', () => {
-    const requestError = 'request failed';
-    expect(rulesReducer(initialState, rulesRequestFailed(requestError))).toEqual({ ...initialState, requestError });
+    expect(rulesReducer(initialState, rulesRequestFailed(errorMessage, isError)))
+      .toEqual({ ...initialState, errorMessage, isError });
   });
 });

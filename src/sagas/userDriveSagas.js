@@ -7,7 +7,6 @@ import {
   showErrorMessage,
 } from 'actions/userDriveActions';
 import local from 'utils/local';
-import { getStatement } from 'apis/problemStatementApi';
 
 // worker saga
 export function* driveDetails(action) {
@@ -18,8 +17,8 @@ export function* driveDetails(action) {
     const userDriveDetails = {
       id,
       name,
-      startTime: start_time,
-      endTime: end_time,
+      start_time,
+      end_time,
     };
     yield put(setUserDriveDetails(userDriveDetails));
     local.setItem('authToken', action.payload.token);

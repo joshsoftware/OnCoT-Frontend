@@ -14,10 +14,7 @@ const rulesReducer = produce((state = initialState, action) => {
     case RULES.SET_DETAILS:
       state.userlist = {
         id: payload.id,
-        title: payload.title,
         description: payload.description,
-        createdBy: payload.created_by_id,
-        updatedBy: payload.updated_by_id,
       };
       break;
     case RULES.SET_ERROR_MESSAGE:

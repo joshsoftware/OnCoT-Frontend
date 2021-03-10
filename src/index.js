@@ -4,6 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+document.oncontextmenu = function (e) {
+  if (e.button === 2) {
+    e.preventDefault();
+    return false;
+  }
+};
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

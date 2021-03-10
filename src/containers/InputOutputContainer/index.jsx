@@ -1,9 +1,8 @@
 import React, { useState, useReducer, useCallback } from 'react';
-
 import { useSelector } from 'react-redux';
 
 import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
-import customIOAPI from 'apis/customIOAPI';
+import { customInputOutputPostApi, customInputOutputSendTokenApi } from 'apis/customIOAPI';
 import { reducer } from 'containers/InputOutputContainer/reducer';
 
 const initialState = {
@@ -19,31 +18,43 @@ const CustomIOContainer = () => {
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
 
-  const globalState = useSelector((state) => state);
+  const globalState = useSelector((state) => state.languageReducer);
+  const {
+    languageSelected,
+    code,
+  } = globalState;
 
-  const handleRunClick = () => {
+  const handleRunClick = async () => {
     setLoading(true);
     setInputOutputValue({ type: 'output', payload: { output: '' } });
 
     const data = {
-      language_id: globalState.languageID,
-      source_code: globalState.sourceCode,
-      std_id: globalState.stdIN,
+      language_id: languageSelected.id,
+      language_name: languageSelected.name,
+      source_code: code,
+      stdin: inputOutuptValue.inputValue,
     };
 
-    customIOAPI(data)
+    customInputOutputPostApi(data)
       .then((response) => {
-        setLoading(false);
         let outputValue = '';
-        if (response.data.strerr) {
-          outputValue = response.data.stderr;
-        } else {
-          outputValue = response.data.stdout;
-        }
-        setInputOutputValue({
-          type: 'output',
-          payload: { output: outputValue },
-        });
+        const { token } = response.data;
+
+        setTimeout(() => {
+          customInputOutputSendTokenApi(token)
+            .then((output) => {
+              if (output.data.stderr) {
+                outputValue = output.data.stderr;
+              } else {
+                outputValue = output.data.stdout;
+              }
+              setLoading(false);
+              setInputOutputValue({
+                type: 'output',
+                payload: { output: outputValue },
+              });
+            });
+        }, 3000);
       })
       .catch((error) => {
         setLoading(false);

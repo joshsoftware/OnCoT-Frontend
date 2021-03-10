@@ -33,7 +33,6 @@ function EditorContainer() {
     },
     [dispatch],
   );
-  console.log(languageSelected);
   const handleClick = useCallback(
     (e) => {
       const langObj = {
@@ -50,7 +49,9 @@ function EditorContainer() {
     ? ''
     : languageSelected.name.split(' ')[0].toLowerCase();
 
-  if (lang === 'c++') lang = 'cpp';
+  if (lang === 'c++') {
+    lang = 'cpp';
+  }
 
   const options = {
     selectOnLineNumbers: true,
@@ -67,7 +68,6 @@ function EditorContainer() {
 
   const handleSubmit = useCallback(() => {
     const obj = { code, language: languageSelected };
-    console.log(obj);
   }, [code, languageSelected]);
 
   return (

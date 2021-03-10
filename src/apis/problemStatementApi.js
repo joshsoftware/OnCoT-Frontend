@@ -1,3 +1,3 @@
 import request from 'apis/apiHelper';
 
-export const getStatement = () => request.get('/statementsList');
+export const getStatement = (driveId) => request.get(`/problems/${driveId}`);

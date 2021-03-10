@@ -7,14 +7,22 @@ import {
   showErrorMessage,
 } from 'actions/userDriveActions';
 import local from 'utils/local';
+import { getStatement } from 'apis/problemStatementApi';
 
 // worker saga
 export function* driveDetails(action) {
   try {
-    const { data } = yield call(driveDetail, action.payload.token);
-    const { driveDetails: userDriveDetails, authToken } = data;
+    const response = yield call(driveDetail, action.payload.token);
+    const { id, name, start_time, end_time } = response.data.data;
+    const userDriveDetails = {
+      id,
+      name,
+      startTime: start_time,
+      endTime: end_time,
+    };
     yield put(setUserDriveDetails(userDriveDetails));
-    local.setItem('authToken', authToken);
+    local.setItem('authToken', action.payload.token);
+    local.setItem('driveId', id);
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

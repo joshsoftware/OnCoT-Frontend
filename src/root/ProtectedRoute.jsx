@@ -7,7 +7,6 @@ import ROUTES from 'constants/routeConstants';
 
 function ProtectedRoute({ component: Component, includeHeader, ...rest }) {
   const { authToken } = useSelector((state) => state.candidateFormReducer);
-  console.log(authToken);
   return (
     <Route
       {...rest}

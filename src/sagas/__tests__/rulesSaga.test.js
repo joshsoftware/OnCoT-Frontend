@@ -1,14 +1,19 @@
 import { call, put } from 'redux-saga/effects';
 
 import { rulesSaga } from 'sagas/rulesSaga';
-import { rulesAction, rulesRequest, rulesRequestFailed } from 'actions/rulesAction';
+import {
+  rulesAction,
+  rulesRequest,
+  rulesRequestFailed,
+} from 'actions/rulesAction';
 import { getRules } from 'apis/rulesApi';
 
 describe('Rules Saga', () => {
   let gen;
+  const driveId = '1';
   const response = {
     data: {
-      str : 'LoremIpsum Dolor Sit amet',
+      str: 'LoremIpsum Dolor Sit amet',
     },
   };
   beforeEach(() => {
@@ -16,7 +21,7 @@ describe('Rules Saga', () => {
   });
 
   it('API call should be successful', () => {
-    expect(gen.next().value).toEqual(call(getRules));
+    expect(gen.next().value).toEqual(call(getRules()));
   });
 
   it('Dispactch success action', () => {

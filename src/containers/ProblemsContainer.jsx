@@ -7,17 +7,25 @@ import { statementRequest } from 'actions/problemStatementActions';
 const ProblemsContainer = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.problemStatementReducer);
-  const { statement: { str: data }, requestError } = result;
-  const errorMessage = 'Something Went wrong';
-
+  const {
+    data: { id },
+  } = useSelector((state) => state.userDriveReducer);
+  const {
+    statement: { title, description },
+    errorMessage,
+    isError,
+  } = result;
   useEffect(() => {
-    dispatch(statementRequest());
+    dispatch(statementRequest(id));
   }, [dispatch]);
 
   return (
-    requestError
-      ? <ProblemsComponent data={errorMessage} />
-      : <ProblemsComponent data={data} />
+    <ProblemsComponent
+      isError={isError}
+      errorMessage={errorMessage}
+      title={title}
+      description={description}
+    />
   );
 };
 

@@ -110,7 +110,7 @@ const UserProfileComponent = (props) => {
                     type='submit'
                     onClick={handleSubmit}
                   >
-                    {result.loading ? (
+                    {result.state.loading ? (
                       <Spinner size='sm' color='light' />
                     ) : (
                       <>Continue</>

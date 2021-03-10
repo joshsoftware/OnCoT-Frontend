@@ -50,7 +50,9 @@ function EditorContainer() {
     ? ''
     : languageSelected.name.split(' ')[0].toLowerCase();
 
-  if (lang === 'c++') lang = 'cpp';
+  if (lang === 'c++') {
+    lang = 'cpp';
+  }
 
   const options = {
     selectOnLineNumbers: true,

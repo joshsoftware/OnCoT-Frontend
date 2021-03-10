@@ -6,3 +6,9 @@
   font-size: 12px;
   text-align: center;
 }
+.custom-height {
+  height: 10vh;
+}
+.custom-font-size{
+  font-size: 17px;
+}

@@ -7,7 +7,6 @@ import {
   showErrorMessage,
 } from 'actions/userDriveActions';
 import local from 'utils/local';
-import { getStatement } from 'apis/problemStatementApi';
 
 // worker saga
 export function* driveDetails(action) {

@@ -13,6 +13,8 @@ const UserProfileContainer = () => {
   const globalState = useSelector((state) => state.candidateFormReducer);
   const history = useHistory();
 
+  const { nextPageAllowed } = globalState.state;
+
   const initialUserState = {
     fName: { value: '', state: { valid: true, message: '' } },
     lName: { value: '', state: { valid: true, message: '' } },
@@ -62,6 +64,8 @@ const UserProfileContainer = () => {
       const fName = userState.fName.value.trim();
       const lName = userState.lName.value.trim();
       const mobile = userState.mobile.value.trim();
+      const currentTime = new Date().toLocaleString();
+      const token = globalState.authToken;
 
       schema
         .validate(
@@ -73,7 +77,14 @@ const UserProfileContainer = () => {
           { abortEarly: false },
         )
         .then(() => {
-          const data = { fName, lName, mobile };
+          const data = {
+            fName,
+            lName,
+            mobile,
+            updatedAt: currentTime,
+            createdAt: currentTime,
+            token,
+          };
           dispatch(candidateFormRequestAction(data));
         })
         .catch((error) => {
@@ -109,9 +120,9 @@ const UserProfileContainer = () => {
     [userState, globalState, history],
   );
 
-  const toggle = useCallback(() => setShowToast(globalState.error), [globalState]);
+  const toggle = () => setShowToast(!showToast);
 
-  if (globalState.state.nextPageAllowed) {
+  if (nextPageAllowed) {
     history.push(ROUTES.IDE);
   }
 

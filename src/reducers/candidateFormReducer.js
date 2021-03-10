@@ -14,6 +14,9 @@ export const initialState = {
     lName: undefined,
     mobile: undefined,
     email: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    isProfileComplete: false,
   },
   authToken: local.getItem('authToken') || '',
 };
@@ -34,6 +37,9 @@ const candidateFormReducer = (state = initialState, action) => {
         draft.candidateInfo.lName = action.payload.lName;
         draft.candidateInfo.email = action.payload.email;
         draft.candidateInfo.mobile = action.payload.mobile;
+        draft.candidateInfo.isProfileComplete = action.payload.isProfileComplete;
+        draft.candidateInfo.updatedAt = action.payload.updatedAt;
+        draft.candidateInfo.createdAt = action.payload.createdAt;
       });
 
     case CANDIDATE_FORM_ACTIONS.FAILURE_ACTION:

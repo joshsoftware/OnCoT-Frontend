@@ -28,6 +28,9 @@ test('candidateFormReducer Success', () => {
     draft.candidateInfo.lName = action.payload.lName;
     draft.candidateInfo.email = action.payload.email;
     draft.candidateInfo.mobile = action.payload.mobile;
+    draft.candidateInfo.isProfileComplete = action.payload.isProfileComplete;
+    draft.candidateInfo.updatedAt = action.payload.updatedAt;
+    draft.candidateInfo.createdAt = action.payload.createdAt;
   });
   expect(JSON.stringify(expectedSuccess)).toBe(JSON.stringify(recievedSuccess));
 });

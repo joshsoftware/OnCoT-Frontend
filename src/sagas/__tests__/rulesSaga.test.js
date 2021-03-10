@@ -6,6 +6,7 @@ import { getRules } from 'apis/rulesApi';
 
 describe('Rules Saga', () => {
   let gen;
+  const driveId = '1';
   const response = {
     data: {
       str : 'LoremIpsum Dolor Sit amet',
@@ -16,7 +17,8 @@ describe('Rules Saga', () => {
   });
 
   it('API call should be successful', () => {
-    expect(gen.next().value).toEqual(call(getRules));
+    console.log(gen.next().value);
+    expect(gen.next().value).toEqual(call(getRules()));
   });
 
   it('Dispactch success action', () => {

@@ -1,6 +1,9 @@
 import { RULES } from 'constants/actionConstants';
 
-export const rulesRequest = () => ({ type: RULES.DETAIL_REQUEST });
+export const rulesRequest = (driveId) => ({
+  type: RULES.DETAIL_REQUEST,
+  payload: { driveId },
+});
 
 export const rulesRequestFailed = (requestError) => ({
   type: RULES.SET_ERROR_MESSAGE,
@@ -9,5 +12,5 @@ export const rulesRequestFailed = (requestError) => ({
 
 export const rulesAction = (userlist) => ({
   type: RULES.SET_DETAILS,
-  payload: { userlist },
+  payload: { ...userlist },
 });

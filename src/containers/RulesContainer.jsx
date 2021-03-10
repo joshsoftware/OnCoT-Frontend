@@ -8,19 +8,24 @@ const RulesContainer = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.rulesReducer);
   const {
-    userlist: { str: data },
-    requestError,
+    userlist: { description },
+    errorMessage,
+    isError,
   } = result;
-  const errorMessage = 'Something Went Wrong';
+  const {
+    data: { id },
+  } = useSelector((state) => state.userDriveReducer);
 
   useEffect(() => {
-    dispatch(rulesRequest());
+    dispatch(rulesRequest(id));
   }, [dispatch]);
 
-  return requestError ? (
-    <RulesComponent data={errorMessage} />
-  ) : (
-    <RulesComponent data={data} />
+  return (
+    <RulesComponent
+      isError={isError}
+      errorMessage={errorMessage}
+      description={description}
+    />
   );
 };
 

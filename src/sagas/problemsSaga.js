@@ -11,9 +11,9 @@ import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 export function* statementSaga(action) {
   try {
     const response = yield call(getStatement, action.payload.driveId);
-    yield put(statementAction(response.data));
+    yield put(statementAction(response.data.data));
   } catch (error) {
-    yield put(statementActionFailed(true));
+    yield put(statementActionFailed(error.message));
   }
 }
 

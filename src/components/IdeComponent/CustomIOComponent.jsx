@@ -29,8 +29,8 @@ const CustomIOComponent = ({
       <Row>
         <Col>
           {showOutput ? (
-            <Card className='rounded-0 card bg-dark text-white font-weight-bold'>
-              <CardHeader className='p-1 pl-2 text-left'>
+            <Card className='rounded-0 card text-white font-weight-bold' style={{ backgroundColor: '#1E1E1E' }}>
+              <CardHeader className='p-2 pl-3 text-left'>
                 OUTPUT {loading ? <Spinner size='sm' /> : ''}
                 <Button
                   className='py-0 px-2 mx-1 font-weight-bold float-right'
@@ -61,7 +61,7 @@ const CustomIOComponent = ({
             </Card>
           ) : (
             <Card className='card bg-dark text-white rounded-0 font-weight-bold'>
-              <CardHeader className='p-1 pl-2 text-left'>
+              <CardHeader className=' p-2 p-1 pl-4 text-left'>
                 INPUT
                 <Button
                   className='py-0 px-2 mx-0 font-weight-bold float-right'

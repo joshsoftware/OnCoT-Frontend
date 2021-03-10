@@ -60,7 +60,7 @@ const CustomIOComponent = ({
               </CardBody>
             </Card>
           ) : (
-            <Card className='card bg-dark text-white rounded-0 font-weight-bold'>
+            <Card className='card text-white rounded-0 font-weight-bold' style={{ backgroundColor: '#1E1E1E' }}>
               <CardHeader className=' p-2 p-1 pl-4 text-left'>
                 INPUT
                 <Button

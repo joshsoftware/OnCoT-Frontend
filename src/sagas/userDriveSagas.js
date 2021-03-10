@@ -13,7 +13,6 @@ import { getStatement } from 'apis/problemStatementApi';
 export function* driveDetails(action) {
   try {
     const response = yield call(driveDetail, action.payload.token);
-    console.log(response);
     const { id, name, start_time, end_time } = response.data.data;
     const userDriveDetails = {
       id,

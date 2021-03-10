@@ -33,7 +33,7 @@ function EditorContainer() {
     },
     [dispatch],
   );
-  console.log(languageSelected);
+
   const handleClick = useCallback(
     (e) => {
       const langObj = {
@@ -64,12 +64,17 @@ function EditorContainer() {
   };
 
   const editorDidMount = (editor, monaco) => {
+    editor.onKeyDown((event) => {
+      const { keyCode, ctrlKey, metaKey } = event;
+      if ((keyCode === 33 || 52) && (metaKey || ctrlKey)) {
+        event.preventDefault();
+      }
+    });
     editor.focus();
   };
 
   const handleSubmit = useCallback(() => {
     const obj = { code, language: languageSelected };
-    console.log(obj);
   }, [code, languageSelected]);
 
   return (
@@ -83,6 +88,7 @@ function EditorContainer() {
         handleSubmit={handleSubmit}
       />
       <EditorPadComponent
+        id='editor'
         lang={lang}
         code={code}
         handleCode={handleCode}

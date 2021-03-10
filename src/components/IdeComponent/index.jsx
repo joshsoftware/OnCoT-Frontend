@@ -13,7 +13,7 @@ function IdeComponent() {
       <Row>
         <Header />
       </Row>
-      <Row overflow-hidden>
+      <Row>
         <Col className='pr-0' lg={5} xl={5}>
           <Row lg={12} xl={12}>
             <ProblemsContainer />

@@ -10,19 +10,23 @@ import { driveDetails } from 'sagas/userDriveSagas';
 
 const response = {
   data: {
-    id: '12345',
-    driveDetails: {
-      id: '2',
-      name: 'kkwieer drive',
-      startTime: '2021-02-22T05:40:45Z',
-      endTime: '2021-02-22T08:40:45Z',
+    data: {
+      created_at: '2021-03-08T05:27:22.673Z',
+      created_by_id: 1,
+      description: 'Testing drive add 2021',
+      duration: null,
+      end_time: '2021-07-09T12:00:00.000Z',
+      id: 1,
+      name: 'Drive 2021',
+      organization_id: 1,
+      start_time: '2021-07-07T10:00:00.000Z',
+      updated_at: '2021-03-08T05:27:22.673Z',
+      updated_by_id: 1,
     },
-    authToken: '12345',
   },
-  status: 200,
 };
 
-const error = { message: 'failed' };
+const error = 'failed';
 
 describe('user drive saga', () => {
   let gen;
@@ -40,16 +44,14 @@ describe('user drive saga', () => {
   it('must set drive details', () => {
     gen.next();
     expect(gen.next(response).value).toEqual(
-      put(setUserDriveDetails(response.data.driveDetails)),
+      put(setUserDriveDetails, response.data),
     );
     expect(gen.next().done).toEqual(true);
   });
 
   it('must throw error', () => {
     gen.next();
-    expect(gen.throw(error).value).toEqual(
-      put(showErrorMessage(error.message)),
-    );
+    expect(gen.throw(error).value).toEqual(put(showErrorMessage()));
     expect(gen.next().done).toEqual(true);
   });
 });

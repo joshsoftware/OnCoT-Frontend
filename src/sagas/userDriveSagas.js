@@ -7,12 +7,12 @@ import {
   showErrorMessage,
 } from 'actions/userDriveActions';
 import local from 'utils/local';
-import { getStatement } from 'apis/problemStatementApi';
 
 // worker saga
 export function* driveDetails(action) {
   try {
     const response = yield call(driveDetail, action.payload.token);
+    console.log(response);
     const { id, name, start_time, end_time } = response.data.data;
     const userDriveDetails = {
       id,

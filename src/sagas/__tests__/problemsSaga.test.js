@@ -28,7 +28,6 @@ describe('Rules Saga', () => {
   };
   const driveId = 1;
   const errorMessage = 'Error Message';
-  const isError = false;
   beforeEach(() => {
     gen = statementSaga(statementRequest(driveId));
   });
@@ -39,6 +38,7 @@ describe('Rules Saga', () => {
 
   it('Dispactch success action', () => {
     gen.next();
+    console.log(response);
     expect(gen.next(response).value).toEqual(
       put(statementAction(response.data.data)),
     );

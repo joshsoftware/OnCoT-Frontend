@@ -8,29 +8,22 @@ import {
 } from 'actions/userDriveActions';
 import { driveDetails } from 'sagas/userDriveSagas';
 
-const response = {
-  data: {
-    data: {
-      created_at: '2021-03-08T05:27:22.673Z',
-      created_by_id: 1,
-      description: 'Testing drive add 2021',
-      duration: null,
-      end_time: '2021-07-09T12:00:00.000Z',
-      id: 1,
-      name: 'Drive 2021',
-      organization_id: 1,
-      start_time: '2021-07-07T10:00:00.000Z',
-      updated_at: '2021-03-08T05:27:22.673Z',
-      updated_by_id: 1,
-    },
-  },
-};
-
-const error = 'failed';
-
 describe('user drive saga', () => {
   let gen;
   let action;
+
+  const response = {
+    data: {
+      data: {
+        id: 1,
+        name: 'Drive 2021',
+        start_time: '2021-07-07T10:00:00.000Z',
+        end_time: '2021-07-09T12:00:00.000Z',
+      },
+    },
+  };
+
+  const error = 'failed';
 
   beforeEach(() => {
     action = driveDetailRequest('12345');
@@ -43,8 +36,11 @@ describe('user drive saga', () => {
 
   it('must set drive details', () => {
     gen.next();
+    // expect(gen.next(response).value).toEqual(
+    //   put(setUserDriveDetails, response.data.data),
+    // );
     expect(gen.next(response).value).toEqual(
-      put(setUserDriveDetails, response.data),
+      put(setUserDriveDetails(response.data.data)),
     );
     expect(gen.next().done).toEqual(true);
   });

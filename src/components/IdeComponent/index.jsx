@@ -9,7 +9,7 @@ function IdeComponent() {
   return (
     <Container fluid className='pr-0 overflow-hidden h-100'>
       <Row>
-        <Col className='pr-0' lg={5}>
+        <Col className='px-0' lg={5}>
           <Row lg={12} xl={12} className='border-right border-dark'>
             <ProblemsContainer />
             <InputOutputContainer />

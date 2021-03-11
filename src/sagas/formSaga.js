@@ -19,7 +19,6 @@ export function* candidateFormSaga(action) {
 
   try {
     const response = yield call(candidateInfoPostApi, data, token);
-
     const {
       email,
       first_name,

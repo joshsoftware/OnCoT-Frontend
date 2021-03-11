@@ -5,7 +5,7 @@ export const initialState = {
   requestError: '',
 };
 
-const TimerReducer = (action, state = initialState) => {
+const TimerReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {

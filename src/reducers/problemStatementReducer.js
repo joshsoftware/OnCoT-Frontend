@@ -8,7 +8,7 @@ export const initialState = {
   isError: false,
 };
 
-const problemStatementReducer = produce((action, state = initialState) => {
+const problemStatementReducer = produce((state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case PROBLEM_STATEMENT.SET_DETAILS:

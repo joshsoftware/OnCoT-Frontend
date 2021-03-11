@@ -6,7 +6,7 @@ const initialState = {
   code: '// write your code',
 };
 
-const languageReducer = (action, state = initialState) => {
+const languageReducer = (state = initialState, action) => {
   switch (action.type) {
     case LANGUAGE.RESET_ACTION:
       return {

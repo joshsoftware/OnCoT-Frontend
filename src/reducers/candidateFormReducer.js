@@ -1,6 +1,7 @@
 import produce from 'immer';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
 import local from 'utils/local';
+import { act } from 'react-dom/test-utils';
 
 export const initialState = {
   state: {
@@ -10,18 +11,18 @@ export const initialState = {
     nextPageAllowed: false,
   },
   candidateInfo: {
-    fName: undefined,
-    lName: undefined,
-    mobile: undefined,
-    email: undefined,
-    createdAt: undefined,
-    updatedAt: undefined,
+    fName: '',
+    lName: '',
+    mobile: '',
+    email: '',
+    createdAt: '',
+    updatedAt: '',
     isProfileComplete: false,
   },
   authToken: local.getItem('authToken') || '',
 };
 
-const candidateFormReducer = (action, state = initialState) => {
+const candidateFormReducer = (state = initialState, action) => {
   switch (action.type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
       return produce(state, (draft) => {

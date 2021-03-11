@@ -63,6 +63,12 @@ function EditorContainer() {
   };
 
   const editorDidMount = (editor, monaco) => {
+    editor.onKeyDown((event) => {
+      const { keyCode, ctrlKey, metaKey } = event;
+      if ((keyCode === 33 || 52) && (metaKey || ctrlKey)) {
+        event.preventDefault();
+      }
+    });
     editor.focus();
   };
 
@@ -81,6 +87,7 @@ function EditorContainer() {
         handleSubmit={handleSubmit}
       />
       <EditorPadComponent
+        id='editor'
         lang={lang}
         code={code}
         handleCode={handleCode}

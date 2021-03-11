@@ -1,5 +1,5 @@
 import React from 'react';
-import MonacoEditor from 'react-monaco-editor';
+import MonacoEditor, { monaco } from 'react-monaco-editor';
 import PropTypes from 'prop-types';
 
 function EditorPadComponent({
@@ -11,7 +11,10 @@ function EditorPadComponent({
 }) {
   return (
     <MonacoEditor
-      className='border-bottom border-dark custom-style'
+      id='editor'
+      lg={12}
+      md={12}
+      className='custom-style '
       language={lang}
       height='80vh'
       theme='vs-dark'

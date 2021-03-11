@@ -1,8 +1,5 @@
-import {
-  candidateFormReducer,
-  initialState,
-} from 'reducers/candidateFormReducer';
-
+import produce from 'immer';
+import candidateFormReducer, { initialState } from 'reducers/candidateFormReducer';
 import {
   candidateFormRequestAction,
   candidateFormSuccessAction,
@@ -11,7 +8,7 @@ import {
 
 test('candidateFormReducer Request', () => {
   const expectedRequest = candidateFormReducer(initialState, candidateFormRequestAction());
-  const recievedRequest = { ...initialState, loading:true };
+  const recievedRequest = produce(initialState, (draft) => { draft.state.loading = true; });
   expect(JSON.stringify(expectedRequest)).toBe(JSON.stringify(recievedRequest));
 });
 
@@ -23,15 +20,18 @@ test('candidateFormReducer Success', () => {
     mobile: '9479488833',
   });
   const expectedSuccess = candidateFormReducer(initialState, action);
-  const recievedSuccess = {
-    ...initialState,
-    loading : false,
-    error : false,
-    fName : action.payload.fName,
-    lName : action.payload.lName,
-    email : action.payload.email,
-    mobile : action.payload.mobile,
-  };
+  const recievedSuccess = produce(initialState, (draft) => {
+    draft.state.loading = false;
+    draft.state.error = false;
+    draft.state.nextPageAllowed = true;
+    draft.candidateInfo.fName = action.payload.fName;
+    draft.candidateInfo.lName = action.payload.lName;
+    draft.candidateInfo.email = action.payload.email;
+    draft.candidateInfo.mobile = action.payload.mobile;
+    draft.candidateInfo.isProfileComplete = action.payload.isProfileComplete;
+    draft.candidateInfo.updatedAt = action.payload.updatedAt;
+    draft.candidateInfo.createdAt = action.payload.createdAt;
+  });
   expect(JSON.stringify(expectedSuccess)).toBe(JSON.stringify(recievedSuccess));
 });
 
@@ -40,12 +40,12 @@ test('candidateFormReducer Failure', () => {
     error: 'Error occured',
   });
   const expectedFailure = candidateFormReducer(initialState, action);
-  const recievedFaiure = {
-    ...initialState,
-    loading : false,
-    error : true,
-    errorMsg : action.payload,
-  };
+  const recievedFaiure = produce(initialState, (draft) => {
+    draft.state.loading = false;
+    draft.state.error = true;
+    draft.state.errorMsg = action.payload;
+    draft.state.nextPageAllowed = false;
+  });
   expect(JSON.stringify(expectedFailure)).toBe(JSON.stringify(recievedFaiure));
 });
 

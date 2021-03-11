@@ -16,8 +16,8 @@ export function* driveDetails(action) {
     const userDriveDetails = {
       id,
       name,
-      startTime: start_time,
-      endTime: end_time,
+      start_time,
+      end_time,
     };
     yield put(setUserDriveDetails(userDriveDetails));
     local.setItem('authToken', action.payload.token);

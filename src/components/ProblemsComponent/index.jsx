@@ -8,11 +8,11 @@ import './problemStyle.css';
 const ProblemComponent = ({ isError, errorMessage, title, description }) => {
   if (isError) {
     return (
-      <Container fluid className='problemBody'>
-        <h4 className='text-center text-white font-weight-bold mb-3'>
+      <Container fluid className='problemBody p-2 border-bottom border-dark'>
+        <h5 className='text-center text-white font-weight-bold mb-3'>
           Problem Statement
-        </h4>
-        <div className='py-2'>
+        </h5>
+        <div className='py-2 p-2 border-top border-dark'>
           <h6 className='text-white scrollable font-weight-light'>
             {errorMessage}
           </h6>
@@ -21,11 +21,11 @@ const ProblemComponent = ({ isError, errorMessage, title, description }) => {
     );
   }
   return (
-    <Container fluid className='problemBody'>
-      <h4 className='text-center text-white font-weight-bold mb-3'>
-        Problem Statement - {title}
-      </h4>
-      <div className='py-2'>
+    <Container fluid className='problemBody p-2 border-bottom border-dark'>
+      <h5 className='text-center text-white font-weight-bold mb-3 text-success'>
+        {title}
+      </h5>
+      <div className='py-2 p-2 border-top border-dark'>
         <h6 className='text-white scrollable font-weight-light'>
           {description}
         </h6>

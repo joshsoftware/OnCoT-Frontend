@@ -2,15 +2,23 @@ import { statementAction, statementActionFailed } from 'actions/problemStatement
 import problemStatementReducer, { initialState } from 'reducers/problemStatementReducer';
 
 describe('Problem Statement Reducer', () => {
+  const statement = {
+    id: '1',
+    title: 'Title',
+    description: 'Problem Statement',
+  };
+  const errorMessage = 'Request Error 404';
+  const isError = true;
+
   it('Return Default State', () => {
     expect(problemStatementReducer(initialState, {})).toEqual(initialState);
   });
   it('Set Problem Statement', () => {
-    const statement = { data :'Lorem ipsum dolor sit amet' };
-    expect(problemStatementReducer(initialState, statementAction(statement))).toEqual({ ...initialState, statement });
+    expect(problemStatementReducer(initialState, statementAction(statement)))
+      .toEqual({ ...initialState, statement });
   });
   it('Request Failed', () => {
-    const requestError = 'request failed';
-    expect(problemStatementReducer(initialState, statementActionFailed(requestError))).toEqual({ ...initialState, requestError });
+    expect(problemStatementReducer(initialState, statementActionFailed(errorMessage, isError)))
+      .toEqual({ ...initialState, errorMessage, isError });
   });
 });

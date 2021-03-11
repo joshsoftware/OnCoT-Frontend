@@ -16,8 +16,6 @@ const problemStatementReducer = produce((state = initialState, action) => {
         id: payload.id,
         title: payload.title,
         description: payload.description,
-        createdBy: payload.created_by_id,
-        updatedBy: payload.updated_by_id,
       };
       break;
     case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:

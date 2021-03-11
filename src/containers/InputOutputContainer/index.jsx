@@ -53,8 +53,12 @@ const CustomIOContainer = () => {
                 type: 'output',
                 payload: { output: outputValue },
               });
+            })
+            .catch((error) => {
+              // something went wrong! error
+              setLoading(false);
             });
-        }, 3000);
+        }, 1000);
       })
       .catch((error) => {
         setLoading(false);

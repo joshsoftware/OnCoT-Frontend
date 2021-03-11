@@ -1,25 +1,21 @@
 .problemBody {
-  background-color: #1E1E1E;
-  height: 45vh;
-  width: 100% !important;
-  font-weight: lighter;
-  font-size: 0px;
+    background-color: #1E1E1E;
+    height: 45vh;
+    width: 100% !important;
 }
+
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+::-webkit-scrollbar-thumb {
   background: #1E1E1E;
 }
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #313030;
 
-}
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

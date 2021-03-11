@@ -4,23 +4,18 @@ import { Col, Container, Row } from 'core-components';
 import EditorContainer from 'containers/EditorContainer';
 import ProblemsContainer from 'containers/ProblemsContainer';
 import InputOutputContainer from 'containers/InputOutputContainer';
-import HeaderIDE from 'shared-components/Header/HeaderIDE';
-import Header from 'shared-components/Header';
 
 function IdeComponent() {
   return (
-    <Container fluid className='px-0 overflow-hidden'>
+    <Container fluid className='pr-0 overflow-hidden h-100'>
       <Row>
-        <Header />
-      </Row>
-      <Row>
-        <Col className='pr-0' lg={5} xl={5}>
-          <Row lg={12} xl={12}>
+        <Col className='px-0' lg={5}>
+          <Row lg={12} xl={12} className='border-right border-dark'>
             <ProblemsContainer />
             <InputOutputContainer />
           </Row>
         </Col>
-        <Col className='px-0' lg={7} xl={7}>
+        <Col className='px-0' lg={7}>
           <EditorContainer />
         </Col>
       </Row>

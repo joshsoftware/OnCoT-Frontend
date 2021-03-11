@@ -15,7 +15,7 @@ export const initialState = {
   isLoading: false,
 };
 
-const userDriveReducer = produce((state = initialState, action) => {
+const userDriveReducer = produce((action, state = initialState) => {
   switch (action.type) {
     case DRIVE.SET_DETAILS:
       state.data = action.payload;

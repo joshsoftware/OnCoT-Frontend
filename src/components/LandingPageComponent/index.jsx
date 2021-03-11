@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { Button, Alert, Container } from 'core-components';
 import Loading from 'shared-components/Loading';
 
-import './style.css';
+import './landingPage.css';
 
 function LandingPageComponent(props) {
   const { startTime, isError, errorMessage, isLoading, handleClick, driveTime } = props;
+  const expired = 'Expired';
 
   if (isLoading) {
     return <Loading />;
@@ -26,19 +27,19 @@ function LandingPageComponent(props) {
     <Container fluid className='dark'>
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
-        <h1 className='font-weight-bolder title'>
+        <h1 className='font-weight-bolder title-color'>
           OnCoT
         </h1>
         <h4 className='my-5'>
           {`Your test will start on ${moment(startTime).format('LLL')}`}
         </h4>
         <h3 className='text-success'>
-          {driveTime === 'Expired' ? null : driveTime}
+          {driveTime === expired ? null : driveTime}
         </h3>
-        {driveTime === 'Expired' && (
+        {driveTime === expired && (
         <div>
           <Button
-            className='px-5 btn-style'
+            className='px-5 btn-success'
             size='lg'
             onClick={handleClick}
           >

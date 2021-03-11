@@ -5,7 +5,7 @@ export const initialState = {
   requestError: '',
 };
 
-const DriveTimerReducer = (state = initialState, action) => {
+const DriveTimerReducer = (state = initialState, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {

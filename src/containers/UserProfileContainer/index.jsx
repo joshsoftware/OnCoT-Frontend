@@ -11,14 +11,15 @@ import ROUTES from 'constants/routeConstants';
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.candidateFormReducer);
+  console.log(globalState);
   const history = useHistory();
 
   const { nextPageAllowed } = globalState.state;
-
+  const initialState = { value: '', state: { valid: true, message: '' } };
   const initialUserState = {
-    fName: { value: '', state: { valid: true, message: '' } },
-    lName: { value: '', state: { valid: true, message: '' } },
-    mobile: { value: '', state: { valid: true, message: '' } },
+    fName: initialState,
+    lName: initialState,
+    mobile: initialState,
   };
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);

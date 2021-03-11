@@ -9,11 +9,13 @@ import {
   setLanguageSelected,
   setCode,
 } from 'actions/languageAction';
+import { options } from 'constants/appConstants';
 import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
-
+  const C = 67;
+  const V = 86;
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
@@ -53,24 +55,15 @@ function EditorContainer() {
     lang = 'cpp';
   }
 
-  const options = {
-    selectOnLineNumbers: true,
-    wordWrap: 'on',
-    fontSize: 20,
-    minimap: {
-      enabled: false,
-    },
-  };
-
-  const editorDidMount = (editor, monaco) => {
+  const editorDidMount = useCallback((editor) => {
     editor.onKeyDown((event) => {
-      const { keyCode, ctrlKey, metaKey } = event;
-      if ((keyCode === 33 || 52) && (metaKey || ctrlKey)) {
+      const { which, ctrlKey, metaKey } = event;
+      if ((which === C || V) && (metaKey || ctrlKey)) {
         event.preventDefault();
       }
     });
     editor.focus();
-  };
+  }, []);
 
   const handleSubmit = useCallback(() => {
     const obj = { code, language: languageSelected };

@@ -22,7 +22,7 @@ export const initialState = {
   authToken: local.getItem('authToken') || '',
 };
 
-const candidateFormReducer = (state = initialState, action) => {
+const candidateFormReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
       return produce(state, (draft) => {

@@ -1,0 +1,14 @@
+.custom-nav { 
+    background-color:#272927;
+    height: 10vh;
+}
+
+.dropdown-toggle {
+    min-width: 120px;
+    width: auto;
+}
+
+.dropdown-menu{
+  max-height: 50vh;
+  overflow-y: auto;
+}

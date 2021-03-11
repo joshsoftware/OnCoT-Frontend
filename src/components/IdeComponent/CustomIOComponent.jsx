@@ -13,7 +13,7 @@ import {
   Spinner,
 } from 'core-components';
 
-import './customIOCss.css';
+import styles from './customIOStyle.css';
 
 const CustomIOComponent = ({
   showOutput,
@@ -29,7 +29,7 @@ const CustomIOComponent = ({
       <Row>
         <Col>
           {showOutput ? (
-            <Card className='rounded-0 card text-white font-weight-bold' style={{ backgroundColor: '#1E1E1E' }}>
+            <Card className=' card rounded-0 text-white font-weight-bold'>
               <CardHeader className='p-2 pl-3 text-left'>
                 OUTPUT {loading ? <Spinner size='sm' /> : ''}
                 <Button
@@ -60,8 +60,8 @@ const CustomIOComponent = ({
               </CardBody>
             </Card>
           ) : (
-            <Card className='card text-white rounded-0 font-weight-bold' style={{ backgroundColor: '#1E1E1E' }}>
-              <CardHeader className=' p-2 p-1 pl-4 text-left'>
+            <Card className='card text-white rounded-0 font-weight-bold'>
+              <CardHeader className=' p-2 p-1 pl-4 text-left '>
                 INPUT
                 <Button
                   className='py-0 px-2 mx-0 font-weight-bold float-right'

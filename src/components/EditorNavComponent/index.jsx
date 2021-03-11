@@ -9,6 +9,7 @@ import {
   DropdownToggle,
   Nav,
 } from 'core-components';
+import './editorNavStyle.css';
 
 function EditorNavComponent({
   isDropDownOpen,
@@ -19,15 +20,12 @@ function EditorNavComponent({
   handleSubmit,
 }) {
   return (
-    <Nav
-      className='p-3 justify-content-between'
-      style={{ backgroundColor: '#272927', height: '10vh' }}
-    >
+    <Nav className='p-3 justify-content-between custom-nav'>
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
-        <DropdownToggle caret style={{ minWidth: '120px', width: 'auto' }}>
+        <DropdownToggle caret className='dropdown-toggle'>
           {languageSelected.name}
         </DropdownToggle>
-        <DropdownMenu style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+        <DropdownMenu className='dropdown-menu'>
           {languages.map(({ id, name }) => (
             <DropdownItem id={id} key={id} onClick={handleClick}>
               {name}

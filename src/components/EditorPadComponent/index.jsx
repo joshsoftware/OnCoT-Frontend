@@ -1,5 +1,5 @@
 import React from 'react';
-import MonacoEditor, { monaco } from 'react-monaco-editor';
+import MonacoEditor from 'react-monaco-editor';
 import PropTypes from 'prop-types';
 
 function EditorPadComponent({

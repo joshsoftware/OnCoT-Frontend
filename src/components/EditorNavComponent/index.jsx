@@ -21,7 +21,7 @@ function EditorNavComponent({
   return (
     <Nav
       className='p-3 justify-content-between'
-      style={{ backgroundColor: '#272927', height: '10vh', width: '100% !important' }}
+      style={{ backgroundColor: '#272927', height: '10vh' }}
     >
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
         <DropdownToggle caret style={{ minWidth: '120px', width: 'auto' }}>

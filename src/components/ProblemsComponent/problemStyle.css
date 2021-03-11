@@ -1,7 +1,7 @@
 .problemBody {
     background-color: #1E1E1E;
     height: 45vh;
-    width: 100% !important;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {

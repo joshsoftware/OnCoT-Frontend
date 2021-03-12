@@ -83,6 +83,9 @@ const CustomIOComponent = ({
                     type='textarea'
                     value={inputValue}
                     onChange={handleInputChange}
+                    onCopy={(event) => { event.preventDefault(); }}
+                    onCut={(event) => { event.preventDefault(); }}
+                    onPaste={(event) => { event.preventDefault(); }}
                   />
                 </CardBody>
               </Card>

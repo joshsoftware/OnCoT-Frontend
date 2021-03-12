@@ -1,7 +1,8 @@
 .problemBody {
-    background-color: #1E1E1E;
-    height: 45vh;
-    width: 100%;
+  background-color: #1E1E1E;
+  height: 45vh;
+  width: 100%;
+  font-family: "Montserrat";
 }
 .text-green{
   color:#218838;

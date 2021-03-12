@@ -1,16 +1,16 @@
 .dark {
-    background-color: #292727;
-    height: 100vh;
-    width: 100%;
-  }
+  background-color: #292727;
+  font-family: "Montserrat";
+  height: 100vh;
+  width: 100%;
+}
 
 .custom-padding{
-    padding-top: 10%;
+  padding-top: 10%;
 }
 
 .title-color {
   font-size: 65px;
-  font-family: "Montserrat";
   color: #218838;
 }
 

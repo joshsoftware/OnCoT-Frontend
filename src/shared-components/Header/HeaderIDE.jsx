@@ -30,12 +30,12 @@ const HeaderIDE = (props) => {
         </h3>
       </Col>
       <Col className='mx-5 justify-content-end d-flex'>
-        <div className='mx-5 justify-content-end d-flex'>
-          <Button className='p-2 btn-circle'>{'<'}</Button>
+        <div className='mx-5 justify-content-end d-flex module'>
+          <Button className='p-2 custom-circle btn-circle'>{'<'}</Button>
           <h6 className='text-white text-center mt-2 mx-3 custom-font-size'>
             Problem {currentProblem}/{totalProblems}
           </h6>
-          <Button className='p-2 btn-circle'>{'>'}</Button>
+          <Button className='p-2 custom-circle btn-circle'>{'>'}</Button>
         </div>
         <h2
           className={

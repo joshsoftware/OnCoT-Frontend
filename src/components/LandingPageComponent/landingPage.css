@@ -14,8 +14,9 @@
   color: #218838;
 }
 
-.btn-style {
+.custom-color.btn-style {
   background-color: #218838;
+  border: none;
 }
-  
+
   

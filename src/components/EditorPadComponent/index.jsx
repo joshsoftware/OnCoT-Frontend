@@ -10,19 +10,21 @@ function EditorPadComponent({
   editorDidMount,
 }) {
   return (
-    <MonacoEditor
-      id='editor'
-      lg={12}
-      md={12}
-      className='custom-style '
-      language={lang}
-      height='80vh'
-      theme='vs-dark'
-      value={code}
-      onChange={handleCode}
-      options={options}
-      editorDidMount={editorDidMount}
-    />
+    <div>
+      <MonacoEditor
+        id='editor'
+        lg={12}
+        md={12}
+        className='custom-style'
+        language={lang}
+        height='80vh'
+        theme='vs-dark'
+        value={code}
+        onChange={handleCode}
+        options={options}
+        editorDidMount={editorDidMount}
+      />
+    </div>
   );
 }
 

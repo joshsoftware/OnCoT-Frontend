@@ -9,13 +9,12 @@ import {
   setLanguageSelected,
   setCode,
 } from 'actions/languageAction';
-import { options } from 'constants/appConstants';
+import { options, C, V } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
-  const C = 67;
-  const V = 86;
+
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
@@ -35,6 +34,7 @@ function EditorContainer() {
     },
     [dispatch],
   );
+
   const handleClick = useCallback(
     (e) => {
       const langObj = {

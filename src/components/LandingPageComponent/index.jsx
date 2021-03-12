@@ -37,9 +37,9 @@ function LandingPageComponent(props) {
           {driveTime === expired ? null : driveTime}
         </h3>
         {driveTime === expired && (
-        <div>
+        <div className='module'>
           <Button
-            className='px-5 btn-success'
+            className='px-5 custom-color btn-style'
             size='lg'
             onClick={handleClick}
           >

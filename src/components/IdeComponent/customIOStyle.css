@@ -1,5 +1,4 @@
 .mainClass{
-    font-family:"monospace";
     white-space:pre-wrap;
     height: 50%;
 }
@@ -30,3 +29,6 @@
     resize:none;
     caret-color: transparent;
 }
+.custom-btn.bg-color{
+    background-color: #218838;
+  }

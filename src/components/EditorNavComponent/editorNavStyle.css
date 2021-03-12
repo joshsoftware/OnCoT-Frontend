@@ -12,3 +12,6 @@
   max-height: 50vh;
   overflow-y: auto;
 }
+.custom-btn.bg-color{
+  background-color: #218838;
+}

@@ -31,11 +31,11 @@ const HeaderIDE = (props) => {
       </Col>
       <Col className='mx-5 justify-content-end d-flex'>
         <div className='mx-5 justify-content-end d-flex module'>
-          <Button className='p-2 custom-circle btn-circle'>{'<'}</Button>
-          <h6 className='text-white text-center mt-2 mx-3 custom-font-size'>
+          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'<'}</Button>
+          <h6 className='text-white text-center mt-2 mx-2 custom-font-size'>
             Problem {currentProblem}/{totalProblems}
           </h6>
-          <Button className='p-2 custom-circle btn-circle'>{'>'}</Button>
+          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'>'}</Button>
         </div>
         <h2
           className={

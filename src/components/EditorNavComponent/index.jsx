@@ -20,7 +20,7 @@ function EditorNavComponent({
   handleSubmit,
 }) {
   return (
-    <Nav className='p-3 pb-2 justify-content-between custom-nav'>
+    <Nav className='p-3 pb-2 justify-content-between custom-nav module'>
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
         <DropdownToggle caret className='dropdown-toggle bg-dark border-0'>
           {languageSelected.name}
@@ -33,7 +33,7 @@ function EditorNavComponent({
           ))}
         </DropdownMenu>
       </ButtonDropdown>
-      <Button className='bg-dark border-0' onClick={handleSubmit}>Submit</Button>
+      <Button className='custom-btn bg-color border-0' onClick={handleSubmit}>Submit</Button>
     </Nav>
   );
 }

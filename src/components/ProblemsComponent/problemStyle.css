@@ -3,7 +3,9 @@
     height: 45vh;
     width: 100%;
 }
-
+.text-green{
+  color:#218838;
+}
 ::-webkit-scrollbar {
   width: 5px;
 }

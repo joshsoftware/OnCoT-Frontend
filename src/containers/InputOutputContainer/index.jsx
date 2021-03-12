@@ -40,6 +40,7 @@ const CustomIOContainer = () => {
         let outputValue = '';
         const { token } = response.data;
 
+        // in future we will remove it
         setTimeout(() => {
           customInputOutputSendTokenApi(token)
             .then((output) => {

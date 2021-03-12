@@ -30,22 +30,20 @@ const CustomIOComponent = ({
         <Col>
           {showOutput ? (
             <div className='module'>
-              <Card className='card rounded-0 text-white font-weight-bold custom-color header-color'>
-                <CardHeader className='p-2 pl-3 text-left'>
-                  OUTPUT {loading ? <Spinner size='sm' /> : ''}
+              <Card className='card rounded-0 text-white  custom-color header-color'>
+                <CardHeader className='p-2 pl-4 pr-3 text-left'>
+                  Output {loading ? <Spinner size='sm' /> : ''}
                   <Button
-                    className='py-0 px-2 mx-1 font-weight-bold float-right'
-                    color='danger'
+                    className='py-0 px-2 mx-1 float-right bg-danger border-0'
                     onClick={handleRunClick}
                   >
-                    RUN
+                    Run
                   </Button>
                   <Button
-                    className='py-0 px-2 mx-1 font-weight-bold float-right'
-                    color='success'
+                    className='py-0 px-2 mx-1 border-0 float-right custom-btn bg-color'
                     onClick={toggle}
                   >
-                    CUSTOM INPUT
+                    Custom Input
                   </Button>
                 </CardHeader>
 
@@ -63,24 +61,24 @@ const CustomIOComponent = ({
             </div>
           ) : (
             <div className='module'>
-              <Card className='card text-white rounded-0 font-weight-bold custom-color header-color'>
-                <CardHeader className=' p-2 p-1 pl-4 text-left '>
-                  INPUT
+              <Card className='card text-white rounded-0 custom-color header-color'>
+                <CardHeader className=' p-2 p-1 pl-4 pr-3 text-left '>
+                  Input
                   <Button
-                    className='py-0 px-2 mx-0 font-weight-bold float-right'
+                    className='py-0 px-2 mx-0 float-right'
                     color='danger'
                     onClick={() => {
                       toggle();
                       handleRunClick();
                     }}
                   >
-                    RUN CODE
+                    Run Code
                   </Button>
                 </CardHeader>
 
                 <CardBody>
                   <Input
-                    className='textArea h-100 bg-dark border-secondary font-weight-bold text-white'
+                    className='textArea h-100 bg-dark border-secondary text-white'
                     placeholder='Enter input...'
                     type='textarea'
                     value={inputValue}

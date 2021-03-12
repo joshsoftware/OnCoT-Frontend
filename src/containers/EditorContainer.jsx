@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import EditorNavComponent from 'components/EditorNavComponent';
@@ -47,9 +47,12 @@ function EditorContainer() {
     [dispatch],
   );
 
-  let lang = isEmpty(languageSelected)
-    ? ''
-    : languageSelected.name.split(' ')[0].toLowerCase();
+  let lang = useMemo(() => {
+    if (isEmpty(languageSelected)) {
+      return '';
+    }
+    return languageSelected.name.split(' ')[0].toLowerCase();
+  });
 
   if (lang === 'c++') {
     lang = 'cpp';

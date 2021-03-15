@@ -9,7 +9,7 @@ import {
   setLanguageSelected,
   setCode,
 } from 'actions/languageAction';
-import { options, C, V } from 'components/EditorPadComponent/editorConstants';
+import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
@@ -63,7 +63,7 @@ function EditorContainer() {
   const editorDidMount = useCallback((editor) => {
     editor.onKeyDown((event) => {
       const { which, ctrlKey, metaKey } = event;
-      if ((which === C || V) && (metaKey || ctrlKey)) {
+      if ((which === keyValueC || keyValueV) && (metaKey || ctrlKey)) {
         event.preventDefault();
       }
     });

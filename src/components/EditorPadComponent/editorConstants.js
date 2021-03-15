@@ -7,5 +7,5 @@ export  const options = {
   },
 };
 
-export const C = 67;
-export const V = 86;
+export const keyValueC = 67;
+export const keyValueV = 86;

@@ -80,13 +80,23 @@ const CustomIOContainer = () => {
     [inputOutuptValue.inputValue],
   );
 
+  const handleEvent = (event) => {
+    event.preventDefault();
+  };
+
   const toggle = useCallback(() => setshowOutput(!showOutput), [showOutput]);
 
+  const handleOnInputClick = () => {
+    toggle();
+    handleRunClick();
+  };
   return (
     <CustomIOComponent
       toggle={toggle}
       handleRunClick={handleRunClick}
       handleInputChange={handleInputChange}
+      handleEvent={handleEvent}
+      handleOnInputClick={handleOnInputClick}
       showOutput={showOutput}
       inputValue={inputOutuptValue.inputValue}
       outputValue={inputOutuptValue.outputValue}

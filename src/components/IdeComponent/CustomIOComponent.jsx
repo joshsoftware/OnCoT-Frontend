@@ -20,6 +20,8 @@ const CustomIOComponent = ({
   toggle,
   handleRunClick,
   handleInputChange,
+  handleOnInputClick,
+  handleEvent,
   inputValue,
   outputValue,
   loading,
@@ -67,10 +69,7 @@ const CustomIOComponent = ({
                   <Button
                     className='py-0 px-2 mx-0 float-right'
                     color='danger'
-                    onClick={() => {
-                      toggle();
-                      handleRunClick();
-                    }}
+                    onClick={handleOnInputClick}
                   >
                     Run Code
                   </Button>
@@ -83,9 +82,9 @@ const CustomIOComponent = ({
                     type='textarea'
                     value={inputValue}
                     onChange={handleInputChange}
-                    onCopy={(event) => { event.preventDefault(); }}
-                    onCut={(event) => { event.preventDefault(); }}
-                    onPaste={(event) => { event.preventDefault(); }}
+                    onCopy={handleEvent}
+                    onCut={handleEvent}
+                    onPaste={handleEvent}
                   />
                 </CardBody>
               </Card>
@@ -101,6 +100,8 @@ CustomIOComponent.propTypes = {
   toggle: PropTypes.func.isRequired,
   handleRunClick: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
+  handleEvent: PropTypes.func.isRequired,
+  handleOnInputClick: PropTypes.func.isRequired,
   inputValue: PropTypes.string.isRequired,
   outputValue: PropTypes.string.isRequired,
   showOutput: PropTypes.bool.isRequired,

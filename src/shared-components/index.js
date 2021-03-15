@@ -1,3 +1,3 @@
-import HeaderIDEContainer from 'shared-components/Header';
+import HeaderInputOutputContainer from 'shared-components/Header';
 
-export {HeaderIDEContainer};
+export { HeaderInputOutputContainer };

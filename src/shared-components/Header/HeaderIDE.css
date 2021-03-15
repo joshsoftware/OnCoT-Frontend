@@ -1,12 +1,18 @@
-.header_container {
-  height: 180px;
+.myClass{
+  width: 100%;
+  height: 10vh;
 }
-
-.btn-circle {
-  width: 40px;
-  height: 40px;
-  padding: 10px 16px;
+.custom-circle.btn-circle {
+  width: 35px;
+  height: 35px;
   border-radius: 20px;
   font-size: 12px;
   text-align: center;
+}
+.custom-height {
+  height: 10vh;
+  font-family: "Montserrat";
+}
+.custom-font-size{
+  font-size: 17px;
 }

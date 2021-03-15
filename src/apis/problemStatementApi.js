@@ -1,5 +1,3 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
 
-import { SERVER_URL } from 'constants/appConstants';
-
-export const getStatement = () => axios.get(`${SERVER_URL}/statementsList`);
+export const getStatement = (driveId) => request.get(`/problems/${driveId}`);

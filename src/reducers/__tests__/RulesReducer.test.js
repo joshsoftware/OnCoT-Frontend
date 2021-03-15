@@ -2,15 +2,21 @@ import { rulesAction, rulesRequestFailed } from 'actions/rulesAction';
 import rulesReducer, { initialState } from 'reducers/rulesReducer';
 
 describe('Rules Reducer', () => {
+  const userlist = {
+    description: '1. The contest is open to anyone with a knack for programming.',
+    id: 1,
+  };
+  const errorMessage = 'Error 404';
+  const isError = true;
   it('Return Default State', () => {
     expect(rulesReducer(initialState, {})).toEqual(initialState);
   });
   it('Set Rules', () => {
-    const userlist = { data :'Lorem ipsum dolor sit amet' };
-    expect(rulesReducer(initialState, rulesAction(userlist))).toEqual({ ...initialState, userlist });
+    expect(rulesReducer(initialState, rulesAction(userlist)))
+      .toEqual({ ...initialState, userlist });
   });
   it('Request Failed', () => {
-    const requestError = 'request failed';
-    expect(rulesReducer(initialState, rulesRequestFailed(requestError))).toEqual({ ...initialState, requestError });
+    expect(rulesReducer(initialState, rulesRequestFailed(errorMessage, isError)))
+      .toEqual({ ...initialState, errorMessage, isError });
   });
 });

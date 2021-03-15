@@ -1,0 +1,20 @@
+.custom-nav { 
+  background-color:#1E1E1E;
+  height: 10vh;
+}
+
+.dropdown-toggle {
+  font-family: "Montserrat";
+  min-width: 120px;
+  width: auto;
+}
+
+.dropdown-menu{
+  font-family: "Montserrat";
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.custom-btn.bg-color{
+  background-color: #218838;
+  font-family: "Montserrat";
+}

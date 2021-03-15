@@ -2,14 +2,16 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Layout from 'HOC/Layout';
+import { useSelector } from 'react-redux';
+import ROUTES from 'constants/routeConstants';
 
-function ProtectedRoute(props) {
-  const { isAuth, component: Component, includeHeader, ...rest } = props;
+function ProtectedRoute({ component: Component, includeHeader, ...rest }) {
+  const { authToken } = useSelector((state) => state.candidateFormReducer);
   return (
     <Route
       {...rest}
-      render={(prop) => {
-        if (isAuth) {
+      render={(props) => {
+        if (authToken) {
           return (
             <Layout
               includeHeader={includeHeader}
@@ -17,19 +19,16 @@ function ProtectedRoute(props) {
             />
           );
         }
-        return (
-          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-        );
+        return <Redirect to={ROUTES.HOME} />;
       }}
     />
   );
 }
 
 ProtectedRoute.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
-  component: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
   includeHeader: PropTypes.bool.isRequired,
-  location: PropTypes.string.isRequired,
+  location: PropTypes.shape().isRequired,
 };
 
 export default ProtectedRoute;

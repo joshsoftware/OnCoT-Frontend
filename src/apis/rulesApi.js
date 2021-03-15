@@ -1,5 +1,3 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
 
-import { SERVER_URL } from 'constants/appConstants';
-
-export const getRules = () => axios.get(`${SERVER_URL}/rulesList`);
+export const getRules = (driveID) => request.get(`/rules/${driveID}`);

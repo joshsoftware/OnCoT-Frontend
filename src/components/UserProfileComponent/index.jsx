@@ -38,9 +38,12 @@ const UserProfileComponent = (props) => {
     <Container fluid className='box'>
       <Card className='formCard bg-transparent border-5'>
         <CardBody className='text-white'>
-
-          <h2 className='pb-3 text-success text-center font-weight-bolder'>OnCot</h2>
-          <h5 className='pb-3 text-center font-weight-bolder'>Please fill below details</h5>
+          <h2 className='pb-3 text-success text-center font-weight-bolder'>
+            OnCot
+          </h2>
+          <h5 className='pb-3 text-center font-weight-bolder'>
+            Please fill below details
+          </h5>
 
           <Form>
             <Row className='py-3'>
@@ -55,7 +58,9 @@ const UserProfileComponent = (props) => {
 
                   <Label className='text-left'>First Name</Label>
 
-                  <FormFeedback className='text-center'>{firstNameIsValid.message}</FormFeedback>
+                  <FormFeedback className='text-center'>
+                    {firstNameIsValid.message}
+                  </FormFeedback>
                 </FormGroup>
               </Col>
 
@@ -70,7 +75,9 @@ const UserProfileComponent = (props) => {
 
                   <Label className='text-left'>Last Name</Label>
 
-                  <FormFeedback className='text-center'>{lastNameIsValid.message}</FormFeedback>
+                  <FormFeedback className='text-center'>
+                    {lastNameIsValid.message}
+                  </FormFeedback>
                 </FormGroup>
               </Col>
             </Row>
@@ -87,7 +94,9 @@ const UserProfileComponent = (props) => {
 
                   <Label className='text-left'>Mobile</Label>
 
-                  <FormFeedback className='text-center'>{mobileIsValid.message}</FormFeedback>
+                  <FormFeedback className='text-center'>
+                    {mobileIsValid.message}
+                  </FormFeedback>
                 </FormGroup>
               </Col>
             </Row>
@@ -101,7 +110,11 @@ const UserProfileComponent = (props) => {
                     type='submit'
                     onClick={handleSubmit}
                   >
-                    {result.loading ? <Spinner size='sm' color='light' /> : <>Continue</> }
+                    {result.state.loading ? (
+                      <Spinner size='sm' color='light' />
+                    ) : (
+                      <>Continue</>
+                    )}
                   </Button>
                 </FormGroup>
               </Col>
@@ -110,21 +123,17 @@ const UserProfileComponent = (props) => {
         </CardBody>
       </Card>
 
-      {showToast
-
-        ? (
-          <div className='errorToast'>
-            <Toast isOpen={showToast}>
-              <ToastHeader className='w-100 px-4' icon='danger' toggle={toggle}>
-                The server encountered an error.
-                <br />
-                Please try again later.
-              </ToastHeader>
-            </Toast>
-          </div>
-        )
-        : null}
-
+      {showToast ? (
+        <div className='errorToast'>
+          <Toast isOpen={showToast}>
+            <ToastHeader className='w-100 px-4' icon='danger' toggle={toggle}>
+              The server encountered an error.
+              <br />
+              Please try again later.
+            </ToastHeader>
+          </Toast>
+        </div>
+      ) : null}
     </Container>
   );
 };

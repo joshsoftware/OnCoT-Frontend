@@ -14,9 +14,13 @@ function Layout(props) {
   );
 }
 
+Layout.defaultProps = {
+  includeHeader: false,
+};
+
 Layout.propTypes = {
   WrappedComponent: PropTypes.func.isRequired,
-  includeHeader: PropTypes.bool.isRequired,
+  includeHeader: PropTypes.bool,
 };
 
 export default Layout;

@@ -1,3 +1,3 @@
 import { Container } from 'reactstrap';
 
-export default  Container;
+export default Container;

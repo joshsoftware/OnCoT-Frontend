@@ -1,4 +1,4 @@
-import { CANDIDATE_FORM_ACTIONS } from 'constants/candidateFormConstants';
+import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
 
 // request
 export const candidateFormRequestAction = (data) => ({

@@ -2,9 +2,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { store } from 'store';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from 'root/Routes';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

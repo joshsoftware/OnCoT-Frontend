@@ -2,7 +2,6 @@ import { call, takeLatest, put } from 'redux-saga/effects';
 
 import { DRIVE } from 'constants/actionConstants';
 import driveDetail from 'apis/userDriveApis';
-import { setUserProfileDetails } from 'actions/userProfileActions';
 import {
   setUserDriveDetails,
   showErrorMessage,
@@ -12,11 +11,17 @@ import local from 'utils/local';
 // worker saga
 export function* driveDetails(action) {
   try {
-    const { data } = yield call(driveDetail, action.payload.token);
-    const { userDetails, driveDetails: userDriveDetails, authToken } = data;
+    const response = yield call(driveDetail, action.payload.token);
+    const { id, name, start_time, end_time } = response.data.data;
+    const userDriveDetails = {
+      id,
+      name,
+      start_time,
+      end_time,
+    };
     yield put(setUserDriveDetails(userDriveDetails));
-    yield put(setUserProfileDetails(userDetails));
-    local.setItem('authToken', authToken);
+    local.setItem('authToken', action.payload.token);
+    local.setItem('driveId', id);
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

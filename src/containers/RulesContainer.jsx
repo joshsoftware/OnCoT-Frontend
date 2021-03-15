@@ -7,17 +7,25 @@ import { rulesRequest } from 'actions/rulesAction';
 const RulesContainer = () => {
   const dispatch = useDispatch();
   const result = useSelector((state) => state.rulesReducer);
-  const { userlist : { str : data }, requestError } = result;
-  const errorMessage = 'Something Went Wrong';
+  const {
+    userlist: { description },
+    errorMessage,
+    isError,
+  } = result;
+  const {
+    data: { id },
+  } = useSelector((state) => state.userDriveReducer);
 
   useEffect(() => {
-    dispatch(rulesRequest());
+    dispatch(rulesRequest(id));
   }, [dispatch]);
 
   return (
-    requestError
-      ? <RulesComponent data={errorMessage} />
-      : <RulesComponent data={data} />
+    <RulesComponent
+      isError={isError}
+      errorMessage={errorMessage}
+      description={description}
+    />
   );
 };
 

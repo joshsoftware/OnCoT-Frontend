@@ -20,6 +20,8 @@ function EditorContainer() {
     (state) => state.languageReducer,
   );
 
+  const { statement: { id } } = useSelector((state) => state.problemStatementReducer);
+
   useEffect(() => {
     dispatch(fetchLanguages());
   }, [dispatch]);
@@ -69,7 +71,7 @@ function EditorContainer() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const obj = { code, language: languageSelected };
+    const obj = { code, language: languageSelected, id };
   }, [code, languageSelected]);
 
   return (

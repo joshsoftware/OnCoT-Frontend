@@ -24,19 +24,19 @@ const HeaderIDE = (props) => {
       <NavbarBrand className='mx-5 text-white font-weight-bold'>
         <h3 className='font-weight-bold'>{organisationName}</h3>
       </NavbarBrand>
-      <Col className='mx-5 d-flex justify-content-end mr-5'>
+      <Col className='mx-5 d-flex justify-content-end'>
         <h3 className='text-success align-middle mr-5 font-weight-bold'>
           OnCOT
         </h3>
       </Col>
-      <Col className='mx-5 justify-content-end d-flex'>
-        <div className='mx-5 justify-content-end d-flex module'>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'<'}</Button>
-          <h6 className='text-white text-center mt-2 mx-2 custom-font-size'>
-            Problem {currentProblem}/{totalProblems}
-          </h6>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'>'}</Button>
-        </div>
+      <Col className='justify-content-end d-flex module mx-0'>
+        <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'<'}</Button>
+        <h6 className='text-white text-center mt-2 mx-2 custom-font-size'>
+          Problem {currentProblem}/{totalProblems}
+        </h6>
+        <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'>'}</Button>
+      </Col>
+      <Col lg={2} className='justify-content-end d-flex'>
         <h2
           className={
             ifSufficient

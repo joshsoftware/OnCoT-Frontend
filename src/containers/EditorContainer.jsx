@@ -9,6 +9,7 @@ import {
   setLanguageSelected,
   setCode,
 } from 'actions/languageAction';
+import { submitRequest } from 'actions/codeSubmissionActions';
 import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
@@ -19,9 +20,14 @@ function EditorContainer() {
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
+  const result = useSelector((state) => state.codeSubmissionReducer);
+  console.log(result);
 
-  const { statement: { id } } = useSelector((state) => state.problemStatementReducer);
-
+  const { statement: { id, submission_count } } = useSelector(
+    (state) => state.problemStatementReducer,
+  );
+  // have to handle this count
+  const submissionCount = submission_count;
   useEffect(() => {
     dispatch(fetchLanguages());
   }, [dispatch]);
@@ -71,8 +77,13 @@ function EditorContainer() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const obj = { code, language: languageSelected, id };
-  }, [code, languageSelected]);
+    if (submission_count > 0) {
+      const obj = { code, languageSelected, id, submissionCount };
+      dispatch(submitRequest(obj));
+    } else {
+      alert('Submission Limit Exceeded');
+    }
+  }, [code, languageSelected, id, submissionCount]);
 
   return (
     <Container fluid>

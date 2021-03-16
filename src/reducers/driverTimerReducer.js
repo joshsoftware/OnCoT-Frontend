@@ -1,7 +1,7 @@
 import { DRIVE_TIMER } from 'constants/actionConstants';
 
 export const initialState = {
-  counter: -1,
+  counter: undefined,
   requestError: '',
 };
 

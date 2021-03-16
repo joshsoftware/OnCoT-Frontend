@@ -21,14 +21,20 @@ function EditorContainer() {
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
-  const result = useSelector((state) => state.codeSubmissionReducer);
-  console.log(result);
+  const { isError, errorMessage, responsedata:{
+    submissionAllowed, totalTestcases, testcasesPassed,
+  } } =
+  useSelector(
+    (state) => state.codeSubmissionReducer,
+  );
+  // console.log(errorMessage, submissionAllowed, totalTestcases, testcasesPassed);
 
-  const { statement: { id, submission_count } } = useSelector(
+  const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
   );
-  // have to handle this count
-  const submissionCount = submission_count;
+
+  localStorage.setItem('submissionCount', submissionCount);
+
   useEffect(() => {
     dispatch(fetchLanguages());
   }, [dispatch]);
@@ -76,14 +82,16 @@ function EditorContainer() {
     });
     editor.focus();
   }, []);
+  const [modal, setModal] = useState(false);
 
+  const toggle = () => setModal(!modal);
   const handleSubmit = useCallback(() => {
-    if (submissionCount > 0) {
+    if (localStorage.getItem(submissionCount) == null) {
+      localStorage.setItem('submissionCount', submissionCount - 1);
       const obj = { code, languageSelected, id };
       dispatch(submitRequest(obj));
+      toggle();
       dispatch(updateSubmissionCount(submissionCount - 1));
-    } else {
-      console.log('Limit Exceeded');
     }
   }, [code, languageSelected, id, submissionCount]);
 
@@ -96,6 +104,13 @@ function EditorContainer() {
         languages={languages}
         handleClick={handleClick}
         handleSubmit={handleSubmit}
+        toggle={toggle}
+        modal={modal}
+        errorMessage={errorMessage}
+        isError={isError}
+        submissionAllowed={submissionAllowed}
+        totalTestcases={totalTestcases}
+        testcasesPassed={testcasesPassed}
       />
       <EditorPadComponent
         id='editor'

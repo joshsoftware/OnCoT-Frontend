@@ -10,6 +10,7 @@ import {
   setCode,
 } from 'actions/languageAction';
 import { submitRequest } from 'actions/codeSubmissionActions';
+import { updateSubmissionCount } from 'actions/problemStatementActions';
 import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
@@ -77,11 +78,12 @@ function EditorContainer() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    if (submission_count > 0) {
-      const obj = { code, languageSelected, id, submissionCount };
+    if (submissionCount > 0) {
+      const obj = { code, languageSelected, id };
       dispatch(submitRequest(obj));
+      dispatch(updateSubmissionCount(submissionCount - 1));
     } else {
-      alert('Submission Limit Exceeded');
+      console.log('Limit Exceeded');
     }
   }, [code, languageSelected, id, submissionCount]);
 

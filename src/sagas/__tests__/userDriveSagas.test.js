@@ -36,9 +36,6 @@ describe('user drive saga', () => {
 
   it('must set drive details', () => {
     gen.next();
-    // expect(gen.next(response).value).toEqual(
-    //   put(setUserDriveDetails, response.data.data),
-    // );
     expect(gen.next(response).value).toEqual(
       put(setUserDriveDetails(response.data.data)),
     );

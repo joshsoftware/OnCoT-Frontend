@@ -11,7 +11,7 @@ export function* codeSubmissionSaga(action) {
     const response = yield call(codeSubmissionPostApi, action.payload);
     yield put(submitAction(response.data));
   } catch (error) {
-    yield put(submitRequestFailed(error));
+    yield put(submitRequestFailed(error.message));
   }
 }
 

@@ -1,0 +1,35 @@
+.mainClass{
+  font-family: "Montserrat";
+  white-space:pre-wrap;
+  height: 50%;
+}
+
+.card{
+  height: 45vh;
+  background-color: #1E1E1E;
+}
+
+.spinner{
+  align-items: center;
+}
+
+.scrollable{
+  overflow-y: scroll;
+  max-height: 245px;
+}
+
+.custom-color.header-color{
+  background-color: #1E1E1E;
+}
+
+.textArea{
+  resize:none;
+}
+
+.outputScreen{
+  resize:none;
+  caret-color: transparent;
+}
+.custom-btn.bg-color{
+  background-color: #218838;
+}

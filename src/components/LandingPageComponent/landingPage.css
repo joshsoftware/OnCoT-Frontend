@@ -1,0 +1,22 @@
+.dark {
+  background-color: #292727;
+  font-family: "Montserrat";
+  height: 100vh;
+  width: 100%;
+}
+
+.custom-padding{
+  padding-top: 10%;
+}
+
+.title-color {
+  font-size: 65px;
+  color: #218838;
+}
+
+.custom-color.btn-style {
+  background-color: #218838;
+  border: none;
+}
+
+  

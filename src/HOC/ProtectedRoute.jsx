@@ -6,21 +6,7 @@ import { useSelector } from 'react-redux';
 function ProtectedRoute({ component: Component, restricted, ...rest }) {
   const {
     authToken,
-    data: { role },
-  } = useSelector((state) => state.userProfileReducer);
-
-  if (role === 'admin' && restricted !== 'admin' && restricted !== '') {
-    return <Redirect to='/admin' />;
-  }
-
-  if (role === 'reviewer' && restricted !== 'reviewer' && restricted !== '') {
-    return <Redirect to='/reviewer' />;
-  }
-
-  if (role === 'candidate' && restricted !== 'candidate' && restricted !== '') {
-    return <Redirect to='/candidate' />;
-  }
-
+  } = useSelector((state) => state.candidateFormReducer);
   return (
     <Route
       {...rest}

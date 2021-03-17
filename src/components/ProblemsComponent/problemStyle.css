@@ -1,0 +1,24 @@
+.problemBody {
+  background-color: #1E1E1E;
+  height: 45vh;
+  width: 100%;
+  font-family: "Montserrat";
+}
+.text-green{
+  color:#218838;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #3b3b3b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E1E1E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

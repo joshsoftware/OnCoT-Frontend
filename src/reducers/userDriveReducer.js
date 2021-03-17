@@ -1,10 +1,11 @@
 import produce from 'immer';
 
 import { DRIVE } from 'constants/actionConstants';
+import local from 'utils/local';
 
 export const initialState = {
   data: {
-    id: '',
+    id: local.getItem('driveId') || '',
     name: '',
     startTime: '',
     endTime: '',
@@ -14,7 +15,7 @@ export const initialState = {
   isLoading: false,
 };
 
-const userDriveReducer = produce((state = initialState, action) => {
+const userDriveReducer = produce((state = initialState, action = {}) => {
   switch (action.type) {
     case DRIVE.SET_DETAILS:
       state.data = action.payload;

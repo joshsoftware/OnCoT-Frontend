@@ -34,7 +34,10 @@
     "no-tabs": 0,
     "quotes": ["error", "single"],
     "jsx-quotes": ["error", "prefer-single"],
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "react/jsx-one-expression-per-line":"off",
+    "operator-linebreak":"off",
+    "arrow-body-style":"off"
   },
   "plugins": ["react", "react-hooks"]
 }

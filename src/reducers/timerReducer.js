@@ -1,7 +1,7 @@
 import { TIMER } from 'constants/actionConstants';
 
 export const initialState = {
-  counter: undefined,
+  counter: -1,
   requestError: '',
 };
 

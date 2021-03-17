@@ -11,6 +11,7 @@ import ROUTES from 'constants/routeConstants';
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.candidateFormReducer);
+  console.log(globalState);
   const history = useHistory();
 
   const { nextPageAllowed } = globalState.state;

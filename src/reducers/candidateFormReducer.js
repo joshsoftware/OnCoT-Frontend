@@ -22,38 +22,36 @@ export const initialState = {
   authToken: local.getItem('authToken') || '',
 };
 
-const candidateFormReducer = (state = initialState, action = {}) => {
-  switch (action.type) {
+const candidateFormReducer = produce((draft = initialState, action = {}) => {
+  const { type, payload } = action;
+  switch (type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
-      return produce(state, (draft) => {
-        draft.state.loading = true;
-      });
+      draft.state.loading = true;
+      break;
 
     case CANDIDATE_FORM_ACTIONS.SUCCESS_ACTION:
-      return produce(state, (draft) => {
-        draft.state.loading = false;
-        draft.state.error = false;
-        draft.state.nextPageAllowed = true;
-        draft.candidateInfo.fName = action.payload.fName;
-        draft.candidateInfo.lName = action.payload.lName;
-        draft.candidateInfo.email = action.payload.email;
-        draft.candidateInfo.mobile = action.payload.mobile;
-        draft.candidateInfo.isProfileComplete = action.payload.isProfileComplete;
-        draft.candidateInfo.updatedAt = action.payload.updatedAt;
-        draft.candidateInfo.createdAt = action.payload.createdAt;
-      });
+      draft.state.loading = false;
+      draft.state.error = false;
+      draft.state.nextPageAllowed = true;
+      draft.candidateInfo.fName = payload.fName;
+      draft.candidateInfo.lName = payload.lName;
+      draft.candidateInfo.email = payload.email;
+      draft.candidateInfo.mobile = payload.mobile;
+      draft.candidateInfo.isProfileComplete = payload.isProfileComplete;
+      draft.candidateInfo.updatedAt = payload.updatedAt;
+      draft.candidateInfo.createdAt = payload.createdAt;
+      break;
 
     case CANDIDATE_FORM_ACTIONS.FAILURE_ACTION:
-      return produce(state, (draft) => {
-        draft.state.loading = false;
-        draft.state.error = true;
-        draft.state.errorMsg = action.payload;
-        draft.state.nextPageAllowed = false;
-      });
+      draft.state.loading = false;
+      draft.state.error = true;
+      draft.state.errorMsg = payload;
+      draft.state.nextPageAllowed = false;
+      break;
 
     default:
-      return state;
+      return draft;
   }
-};
+});
 
 export default candidateFormReducer;

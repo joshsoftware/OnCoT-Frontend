@@ -8,7 +8,7 @@ import {
 
 test('candidateFormReducer Request', () => {
   const expectedRequest = candidateFormReducer(initialState, candidateFormRequestAction());
-  const recievedRequest = produce(initialState, (state) => { state.state.loading = true; });
+  const recievedRequest = produce(initialState, (draft) => { draft.state.loading = true; });
   expect(JSON.stringify(expectedRequest)).toBe(JSON.stringify(recievedRequest));
 });
 

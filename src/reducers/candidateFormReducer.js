@@ -22,35 +22,35 @@ export const initialState = {
   authToken: local.getItem('authToken') || '',
 };
 
-const candidateFormReducer = produce((state = initialState, action = {}) => {
+const candidateFormReducer = produce((draft = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case CANDIDATE_FORM_ACTIONS.REQUEST_ACTION:
-      state.state.loading = true;
+      draft.state.loading = true;
       break;
 
     case CANDIDATE_FORM_ACTIONS.SUCCESS_ACTION:
-      state.state.loading = false;
-      state.state.error = false;
-      state.state.nextPageAllowed = true;
-      state.candidateInfo.fName = payload.fName;
-      state.candidateInfo.lName = payload.lName;
-      state.candidateInfo.email = payload.email;
-      state.candidateInfo.mobile = payload.mobile;
-      state.candidateInfo.isProfileComplete = payload.isProfileComplete;
-      state.candidateInfo.updatedAt = payload.updatedAt;
-      state.candidateInfo.createdAt = payload.createdAt;
+      draft.state.loading = false;
+      draft.state.error = false;
+      draft.state.nextPageAllowed = true;
+      draft.candidateInfo.fName = payload.fName;
+      draft.candidateInfo.lName = payload.lName;
+      draft.candidateInfo.email = payload.email;
+      draft.candidateInfo.mobile = payload.mobile;
+      draft.candidateInfo.isProfileComplete = payload.isProfileComplete;
+      draft.candidateInfo.updatedAt = payload.updatedAt;
+      draft.candidateInfo.createdAt = payload.createdAt;
       break;
 
     case CANDIDATE_FORM_ACTIONS.FAILURE_ACTION:
-      state.state.loading = false;
-      state.state.error = true;
-      state.state.errorMsg = payload;
-      state.state.nextPageAllowed = false;
+      draft.state.loading = false;
+      draft.state.error = true;
+      draft.state.errorMsg = payload;
+      draft.state.nextPageAllowed = false;
       break;
 
     default:
-      return state;
+      return draft;
   }
 });
 

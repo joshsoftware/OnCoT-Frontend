@@ -4,7 +4,8 @@
       "id": "1234",
       "userDetails": {
         "id": "123",
-        "email": "vaibhav.chalse99@gmail.com"
+        "email": "vaibhav.chalse99@gmail.com",
+        "role":"candidate"
       },
       "driveDetails": {
         "id": "456",
@@ -18,7 +19,8 @@
       "id": "5678",
       "userDetails": {
         "id": "123",
-        "email": "vaibhav.chalse99@gmail.com"
+        "email": "vaibhav.chalse99@gmail.com",
+        "role":"candidate"
       },
       "driveDetails": {
         "id": "456",

@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import LandingPageComponent from 'components/LandingPageComponent';
 import { driveDetailRequest } from 'actions/userDriveActions';
 
-import ROUTES from 'constants/routeConstants';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 import { driveTimerRequest, updateDriveTimer } from 'actions/driveTimerActions';
 import {
   getCurrentTime,
@@ -29,7 +29,7 @@ function LandingPageContainer() {
   }, [dispatch, tokenId]);
 
   const handleClick = useCallback(() => {
-    history.push(ROUTES.RULES_AND_PROFILE);
+    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.RULES_AND_PROFILE);
   }, [history]);
 
   const result = useSelector((state) => state.DriveTimerReducer);

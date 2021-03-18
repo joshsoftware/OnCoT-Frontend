@@ -6,7 +6,7 @@ import UserProfileComponent from 'components/UserProfileComponent';
 import { candidateFormRequestAction } from 'actions/candidateFormActions';
 import { schema } from 'containers/UserProfileContainer/schema';
 import { reducer } from 'containers/UserProfileContainer/reducer';
-import ROUTES from 'constants/routeConstants';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 const UserProfileContainer = () => {
   const dispatch = useDispatch();
@@ -123,7 +123,7 @@ const UserProfileContainer = () => {
   const toggle = () => setShowToast(!showToast);
 
   if (nextPageAllowed) {
-    history.push(ROUTES.IDE);
+    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.IDE);
   }
 
   return (

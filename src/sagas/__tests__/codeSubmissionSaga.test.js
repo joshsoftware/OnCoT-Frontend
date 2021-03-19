@@ -24,7 +24,7 @@ describe('CodeSubmission Saga', () => {
     code: 'cout<<"hello"<<endl;↵cin>>n;',
     id: 1,
     languageSelected: { id: '76', name: 'C++ (Clang 7.0.1)' },
-    submissionCount: undefined,
+    submissionCount: 2,
   });
 
   beforeEach(() => {

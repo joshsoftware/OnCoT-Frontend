@@ -29,22 +29,21 @@ function EditorNavComponent({
   totalTestcases,
   testcasesPassed,
 }) {
-  let showModal;
-  if (!isError) {
-    showModal = (
-      <ModalBody>
-        <p>Submission Left: {submissionAllowed}</p>
-        <p>Total Test Cases: {totalTestcases}</p>
-        <p>Passed Test Cases: {testcasesPassed}</p>
-      </ModalBody>
+  const getModalBody = () => {
+    if (!isError) {
+      return (
+        <>
+          <p>Submission Left: {submissionAllowed}</p>
+          <p>Total Test Cases: {totalTestcases}</p>
+          <p>Passed Test Cases: {testcasesPassed}</p>
+        </>
+      );
+    }
+    return (
+      <p className='text-danger'>{errorMessage}</p>
     );
-  } else {
-    showModal = (
-      <ModalBody>
-        <p className='text-danger'>{errorMessage}</p>
-      </ModalBody>
-    );
-  }
+  };
+
   return (
     <Nav className='p-3 pb-2 justify-content-between custom-nav module'>
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
@@ -62,7 +61,7 @@ function EditorNavComponent({
       <Button className='custom-btn bg-color border-0' onClick={handleSubmit}>Submit</Button>
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
         <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
-        {showModal}
+        <ModalBody>{getModalBody()}</ModalBody>
         <ModalFooter className='border-0'>
           <Button color='danger' onClick={toggle}>Cancel</Button>
         </ModalFooter>

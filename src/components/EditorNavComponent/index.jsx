@@ -33,15 +33,15 @@ function EditorNavComponent({
   if (!isError) {
     showModal = (
       <ModalBody>
-        <p isError={false}>Submission Left: {submissionAllowed}</p>
-        <p isError={false}>Total Test Cases: {totalTestcases}</p>
-        <p isError={false}>Passed Test Cases: {testcasesPassed}</p>
+        <p>Submission Left: {submissionAllowed}</p>
+        <p>Total Test Cases: {totalTestcases}</p>
+        <p>Passed Test Cases: {testcasesPassed}</p>
       </ModalBody>
     );
   } else {
     showModal = (
       <ModalBody>
-        <p className='text-danger' isError>{errorMessage}</p>
+        <p className='text-danger'>{errorMessage}</p>
       </ModalBody>
     );
   }

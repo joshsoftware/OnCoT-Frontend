@@ -64,7 +64,6 @@ function EditorNavComponent({
         <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
         {showModal}
         <ModalFooter className='border-0'>
-          <Button color='success' onClick={toggle}>Submit</Button>{' '}
           <Button color='danger' onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>

@@ -86,13 +86,13 @@ function EditorContainer() {
 
   const toggle = () => setModal(!modal);
   const handleSubmit = useCallback(() => {
-    if (localStorage.getItem(submissionCount) == null) {
-      localStorage.setItem('submissionCount', submissionCount - 1);
-      const obj = { code, languageSelected, id };
-      dispatch(submitRequest(obj));
-      toggle();
-      dispatch(updateSubmissionCount(submissionCount - 1));
-    }
+    // if (localStorage.getItem(submissionCount) == null) {
+    // localStorage.setItem('submissionCount', submissionCount - 1);
+    const obj = { code, languageSelected, id, submissionCount };
+    dispatch(submitRequest(obj));
+    toggle();
+    dispatch(updateSubmissionCount(submissionCount - 1));
+    // }
   }, [code, languageSelected, id, submissionCount]);
 
   return (

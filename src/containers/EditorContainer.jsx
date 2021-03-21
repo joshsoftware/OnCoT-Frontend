@@ -27,7 +27,6 @@ function EditorContainer() {
   useSelector(
     (state) => state.codeSubmissionReducer,
   );
-  // console.log(errorMessage, submissionAllowed, totalTestcases, testcasesPassed);
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
@@ -86,13 +85,9 @@ function EditorContainer() {
 
   const toggle = () => setModal(!modal);
   const handleSubmit = useCallback(() => {
-    // if (localStorage.getItem(submissionCount) == null) {
-    // localStorage.setItem('submissionCount', submissionCount - 1);
     const obj = { code, languageSelected, id, submissionCount };
     dispatch(submitRequest(obj));
     toggle();
-    dispatch(updateSubmissionCount(submissionCount - 1));
-    // }
   }, [code, languageSelected, id, submissionCount]);
 
   return (

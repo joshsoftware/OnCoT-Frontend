@@ -19,6 +19,7 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
         description: payload.description,
         submissionCount:payload.submission_count,
       };
+      state.isLoading = false;
       break;
     case PROBLEM_STATEMENT.UPDATE_SUBMISSION_COUNT:
       state.statement = {

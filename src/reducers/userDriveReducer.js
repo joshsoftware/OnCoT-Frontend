@@ -6,7 +6,7 @@ import local from 'utils/local';
 export const initialState = {
   data: {
     id: local.getItem('driveID') || '',
-    name: '',
+    name: local.getItem('name') || '',
     startTime: '',
     endTime: '',
   },

@@ -20,7 +20,7 @@ const userDriveReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case DRIVE.SET_DETAILS:
-      state.data = payload;
+      state.data = payload.data;
       state.candidateId = payload.candidate_id;
       state.isLoading = false;
       break;

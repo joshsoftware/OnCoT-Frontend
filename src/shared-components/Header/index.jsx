@@ -14,7 +14,7 @@ const HeaderIDEConatiner = () => {
   const organisationName = 'Josh Inc.';
 
   const drive = useSelector((state) => state.userDriveReducer);
-  const { name } = drive.data.data;
+  const { name } = drive.data;
 
   const dispatch = useDispatch();
 

@@ -22,7 +22,6 @@ export function* driveDetails(action) {
         endTime:end_time,
       },
       candidateId: candidate_id,
-
     };
     yield put(setUserDriveDetails(userDriveDetails));
     local.setItem('authToken', action.payload.token);

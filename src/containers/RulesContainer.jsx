@@ -11,6 +11,7 @@ const RulesContainer = () => {
     userlist: { description },
     errorMessage,
     isError,
+    isLoading,
   } = result;
   const user = useSelector((state) => state.userDriveReducer);
   const { id } = user.data;
@@ -24,6 +25,7 @@ const RulesContainer = () => {
       isError={isError}
       errorMessage={errorMessage}
       description={description}
+      isLoading={isLoading}
     />
   );
 };

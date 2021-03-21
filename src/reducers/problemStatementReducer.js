@@ -6,6 +6,7 @@ export const initialState = {
   statement: {},
   errorMessage: '',
   isError: false,
+  isLoading: false,
 };
 
 const problemStatementReducer = produce((state = initialState, action = {}) => {
@@ -17,10 +18,15 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
         title: payload.title,
         description: payload.description,
       };
+      state.isLoading = false;
       break;
     case PROBLEM_STATEMENT.SET_ERROR_MESSAGE:
       state.errorMessage = payload;
       state.isError = true;
+      state.isLoading = false;
+      break;
+    case PROBLEM_STATEMENT.DETAILS_REQUEST:
+      state.isLoading = true;
       break;
     default:
       return state;

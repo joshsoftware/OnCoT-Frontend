@@ -6,6 +6,7 @@ export const initialState = {
   userlist : {},
   errorMessage: '',
   isError: false,
+  isLoading: false,
 };
 
 const rulesReducer = produce((state = initialState, action = {}) => {
@@ -16,10 +17,15 @@ const rulesReducer = produce((state = initialState, action = {}) => {
         id: payload.id,
         description: payload.description,
       };
+      state.isLoading = false;
       break;
     case RULES.SET_ERROR_MESSAGE:
       state.errorMessage = payload;
       state.isError = true;
+      state.isLoading = false;
+      break;
+    case RULES.DETAIL_REQUEST:
+      state.isLoading = true;
       break;
     default:
       return state;

@@ -14,17 +14,19 @@ const ProblemsContainer = () => {
     statement: { title, description },
     errorMessage,
     isError,
+    isLoading,
   } = result;
+
   useEffect(() => {
     dispatch(statementRequest(id));
   }, [dispatch]);
-
   return (
     <ProblemsComponent
       isError={isError}
       errorMessage={errorMessage}
       title={title}
       description={description}
+      isLoading={isLoading}
     />
   );
 };

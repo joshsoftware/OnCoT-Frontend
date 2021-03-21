@@ -37,7 +37,7 @@ const ProblemComponent = ({ isError, errorMessage, title, description, isLoading
       <div className='py-2 p-2 border-top border-dark'>
         <h6 className='pl-2 text-white scrollable font-weight-light'>
           {loading()}
-          {description}
+          <p className='text-newline'>{description}</p>
         </h6>
       </div>
     </Container>

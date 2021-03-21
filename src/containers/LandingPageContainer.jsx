@@ -18,7 +18,7 @@ function LandingPageContainer() {
 
   const userDriveState = useSelector((state) => state.userDriveReducer);
   const {
-    data: { startTime },
+    data: { startTime, endTime, name },
     isError,
     errorMessage,
     isLoading,
@@ -51,6 +51,8 @@ function LandingPageContainer() {
   return (
     <LandingPageComponent
       startTime={startTime}
+      endTime={endTime}
+      name={name}
       isError={isError}
       errorMessage={errorMessage}
       isLoading={isLoading}

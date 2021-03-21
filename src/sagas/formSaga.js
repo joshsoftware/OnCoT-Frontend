@@ -10,8 +10,8 @@ export function* candidateFormSaga(action) {
   const { fName, lName, mobile, createdAt, updatedAt, token } = action.payload;
 
   const data =  {
-    first_Name: fName,
-    last_Name: lName,
+    first_name: fName,
+    last_name: lName,
     mobile_number: mobile,
     created_at: createdAt,
     updated_at: updatedAt,
@@ -20,6 +20,7 @@ export function* candidateFormSaga(action) {
   try {
     const response = yield call(candidateInfoPostApi, data, token);
     const {
+      id,
       email,
       first_name,
       last_name,

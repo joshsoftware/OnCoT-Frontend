@@ -1,7 +1,6 @@
 import produce from 'immer';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
 import local from 'utils/local';
-import { act } from 'react-dom/test-utils';
 
 export const initialState = {
   state: {

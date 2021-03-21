@@ -13,6 +13,9 @@ const HeaderIDEConatiner = () => {
   const currentProblem = 1;
   const organisationName = 'Josh Inc.';
 
+  const drive = useSelector((state) => state.userDriveReducer);
+  const { name } = drive.data.data;
+
   const dispatch = useDispatch();
 
   const result = useSelector((state) => state.TimerReducer);
@@ -37,7 +40,7 @@ const HeaderIDEConatiner = () => {
       <HeaderIDE
         totalProblems={totalProblems}
         currentProblem={currentProblem}
-        organisationName={organisationName}
+        organisationName={name}
         time={time}
         ifSufficient={sufficient}
       />

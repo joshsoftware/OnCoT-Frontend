@@ -12,9 +12,8 @@ const RulesContainer = () => {
     errorMessage,
     isError,
   } = result;
-  const {
-    data: { id },
-  } = useSelector((state) => state.userDriveReducer);
+  const user = useSelector((state) => state.userDriveReducer);
+  const { id } = user.data.data;
 
   useEffect(() => {
     dispatch(rulesRequest(id));

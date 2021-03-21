@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import UserProfileComponent from 'components/UserProfileComponent';
-import { candidateFormRequestAction } from 'actions/candidateFormActions';
+import { candidateFormRequestAction, candidateFormSuccessAction } from 'actions/candidateFormActions';
 import { schema } from 'containers/UserProfileContainer/schema';
 import { reducer } from 'containers/UserProfileContainer/reducer';
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
@@ -86,6 +86,7 @@ const UserProfileContainer = () => {
             token,
           };
           dispatch(candidateFormRequestAction(data));
+          // dispatch(candidateFormSuccessAction(data, token));
         })
         .catch((error) => {
           error.inner.forEach((e) => {

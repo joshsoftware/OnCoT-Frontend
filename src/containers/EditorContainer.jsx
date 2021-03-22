@@ -10,7 +10,6 @@ import {
   setCode,
 } from 'actions/languageAction';
 import { submitRequest } from 'actions/codeSubmissionActions';
-import { updateSubmissionCount } from 'actions/problemStatementActions';
 import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
@@ -20,6 +19,10 @@ function EditorContainer() {
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
+
+  const language_id = languageSelected.id;
+
+  const source_code = code;
 
   const { isError, errorMessage, responsedata:{
     submissionAllowed, totalTestcases, testcasesPassed, marks,
@@ -32,10 +35,11 @@ function EditorContainer() {
     (state) => state.problemStatementReducer,
   );
 
+  const submission_count = submissionCount;
   const { candidateId } = useSelector(
     (state) => state.userDriveReducer,
   );
-
+  const candidate_id = candidateId;
   useEffect(() => {
     dispatch(fetchLanguages());
   }, [dispatch]);
@@ -88,11 +92,16 @@ function EditorContainer() {
   const toggle = () => setModal(!modal);
 
   const handleSubmit = useCallback(() => {
-    const obj = { code, languageSelected, id, submissionCount, candidateId };
-    console.log(obj);
+    const obj = {
+      source_code,
+      language_id,
+      id,
+      submission_count,
+      candidate_id,
+    };
     dispatch(submitRequest(obj));
     toggle();
-  }, [code, languageSelected, id, submissionCount, candidateId]);
+  }, [source_code, language_id, id, submission_count, candidate_id]);
 
   return (
     <Container fluid>

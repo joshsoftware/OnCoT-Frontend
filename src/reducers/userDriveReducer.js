@@ -10,7 +10,7 @@ export const initialState = {
     startTime: '',
     endTime: '',
   },
-  candidateId: local.getItem('candidateId') || '',
+  candidateId: local.getItem('candidateId') || null,
   isError: false,
   errorMessage: '',
   isLoading: false,
@@ -21,7 +21,7 @@ const userDriveReducer = produce((state = initialState, action = {}) => {
   switch (type) {
     case DRIVE.SET_DETAILS:
       state.data = payload.data;
-      state.candidateId = payload.candidate_id;
+      state.candidateId = payload.candidateId;
       state.isLoading = false;
       break;
     case DRIVE.SET_ERROR_MESSAGE:

@@ -6,7 +6,6 @@ import {
   statementActionFailed,
 } from 'actions/problemStatementActions';
 import { PROBLEM_STATEMENT } from 'constants/actionConstants';
-import local from 'utils/local';
 
 // Problem statememt Saga
 export function* statementSaga(action) {
@@ -14,7 +13,6 @@ export function* statementSaga(action) {
     const response = yield call(getStatement, action.payload.driveId);
     yield put(statementAction(response.data.data));
     const { submission_count } = response.data.data;
-    local.setItem('submissionCount', submission_count);
   } catch (error) {
     yield put(statementActionFailed(error.message));
   }

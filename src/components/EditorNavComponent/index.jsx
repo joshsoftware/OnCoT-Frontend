@@ -14,6 +14,7 @@ import {
 } from 'core-components';
 import './editorNavStyle.css';
 
+let clicks = 0;
 function EditorNavComponent({
   isDropDownOpen,
   handleToggle,
@@ -46,6 +47,16 @@ function EditorNavComponent({
     );
   };
 
+  const myFunction = () => {
+    clicks += 1;
+    handleSubmit();
+  };
+
+  const getFinishButton = () => {
+    if (clicks >= 1) {
+      return <Button className='bg-danger border-0 ml-3'>Finish</Button>;
+    }
+  };
   return (
     <Nav className='p-3 pb-2 justify-content-between custom-nav module'>
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
@@ -60,7 +71,10 @@ function EditorNavComponent({
           ))}
         </DropdownMenu>
       </ButtonDropdown>
-      <Button className='custom-btn bg-color border-0' onClick={handleSubmit}>Submit</Button>
+      <div>
+        <Button className='custom-btn bg-color border-0' onClick={myFunction}>Submit</Button>
+        {getFinishButton()}
+      </div>
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
         <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
         <ModalBody>{getModalBody()}</ModalBody>

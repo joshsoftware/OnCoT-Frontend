@@ -16,7 +16,6 @@ import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
-
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
@@ -87,12 +86,13 @@ function EditorContainer() {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
   const handleSubmit = useCallback(() => {
     const obj = { code, languageSelected, id, submissionCount, candidateId };
     console.log(obj);
     dispatch(submitRequest(obj));
     toggle();
-  }, [code, languageSelected, id, submissionCount]);
+  }, [code, languageSelected, id, submissionCount, candidateId]);
 
   return (
     <Container fluid>

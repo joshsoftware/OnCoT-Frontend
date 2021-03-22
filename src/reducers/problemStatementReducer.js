@@ -1,9 +1,15 @@
 import produce from 'immer';
 
 import { PROBLEM_STATEMENT } from 'constants/actionConstants';
+import local from 'utils/local';
 
 export const initialState = {
-  statement: {},
+  statement: {
+    id:'',
+    title:'',
+    description:'',
+    submissionCount: local.getItem('submissionCount') || '',
+  },
   errorMessage: '',
   isError: false,
   isLoading: false,

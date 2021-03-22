@@ -21,8 +21,9 @@ function EditorContainer() {
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
+
   const { isError, errorMessage, responsedata:{
-    submissionAllowed, totalTestcases, testcasesPassed,
+    submissionAllowed, totalTestcases, testcasesPassed, marks,
   } } =
   useSelector(
     (state) => state.codeSubmissionReducer,
@@ -32,7 +33,9 @@ function EditorContainer() {
     (state) => state.problemStatementReducer,
   );
 
-  localStorage.setItem('submissionCount', submissionCount);
+  const { candidateId } = useSelector(
+    (state) => state.userDriveReducer,
+  );
 
   useEffect(() => {
     dispatch(fetchLanguages());
@@ -85,7 +88,8 @@ function EditorContainer() {
 
   const toggle = () => setModal(!modal);
   const handleSubmit = useCallback(() => {
-    const obj = { code, languageSelected, id, submissionCount };
+    const obj = { code, languageSelected, id, submissionCount, candidateId };
+    console.log(obj);
     dispatch(submitRequest(obj));
     toggle();
   }, [code, languageSelected, id, submissionCount]);
@@ -106,6 +110,7 @@ function EditorContainer() {
         submissionAllowed={submissionAllowed}
         totalTestcases={totalTestcases}
         testcasesPassed={testcasesPassed}
+        marks={marks}
       />
       <EditorPadComponent
         id='editor'

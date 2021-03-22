@@ -28,6 +28,7 @@ function EditorNavComponent({
   submissionAllowed,
   totalTestcases,
   testcasesPassed,
+  marks,
 }) {
   const getModalBody = () => {
     if (!isError) {
@@ -36,6 +37,7 @@ function EditorNavComponent({
           <p>Submission Left: {submissionAllowed}</p>
           <p>Total Test Cases: {totalTestcases}</p>
           <p>Passed Test Cases: {testcasesPassed}</p>
+          <p>Your Score: {marks}</p>
         </>
       );
     }
@@ -91,6 +93,7 @@ EditorNavComponent.propTypes = {
   submissionAllowed: PropTypes.number.isRequired,
   totalTestcases: PropTypes.number.isRequired,
   testcasesPassed: PropTypes.number.isRequired,
+  marks: PropTypes.number.isRequired,
   isError: PropTypes.bool.isRequired,
 };
 

@@ -22,6 +22,10 @@ import ButtonDropdown from 'core-components/ButtonDropDown';
 import Nav from 'core-components/Nav';
 import CardHeader from 'core-components/Card/CardHeader';
 import CardText from 'core-components/Card/CardText';
+import Modal from 'core-components/Modal';
+import ModalHeader from 'core-components/ModalHeader';
+import ModalBody from 'core-components/ModalBody';
+import ModalFooter from 'core-components/ModalFooter';
 
 export {
   Button,
@@ -48,4 +52,8 @@ export {
   ButtonDropdown,
   CardHeader,
   CardText,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 };

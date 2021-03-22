@@ -9,6 +9,8 @@ import {
   setLanguageSelected,
   setCode,
 } from 'actions/languageAction';
+import { submitRequest } from 'actions/codeSubmissionActions';
+import { updateSubmissionCount } from 'actions/problemStatementActions';
 import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
 import isEmpty from 'utils/isEmpty';
 
@@ -19,8 +21,19 @@ function EditorContainer() {
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
+  const { isError, errorMessage, responsedata:{
+    submissionAllowed, totalTestcases, testcasesPassed,
+  } } =
+  useSelector(
+    (state) => state.codeSubmissionReducer,
+  );
+  // console.log(errorMessage, submissionAllowed, totalTestcases, testcasesPassed);
 
-  const { statement: { id } } = useSelector((state) => state.problemStatementReducer);
+  const { statement: { id, submissionCount } } = useSelector(
+    (state) => state.problemStatementReducer,
+  );
+
+  localStorage.setItem('submissionCount', submissionCount);
 
   useEffect(() => {
     dispatch(fetchLanguages());
@@ -69,10 +82,18 @@ function EditorContainer() {
     });
     editor.focus();
   }, []);
+  const [modal, setModal] = useState(false);
 
+  const toggle = () => setModal(!modal);
   const handleSubmit = useCallback(() => {
-    const obj = { code, language: languageSelected, id };
-  }, [code, languageSelected]);
+    // if (localStorage.getItem(submissionCount) == null) {
+    // localStorage.setItem('submissionCount', submissionCount - 1);
+    const obj = { code, languageSelected, id, submissionCount };
+    dispatch(submitRequest(obj));
+    toggle();
+    dispatch(updateSubmissionCount(submissionCount - 1));
+    // }
+  }, [code, languageSelected, id, submissionCount]);
 
   return (
     <Container fluid>
@@ -83,6 +104,13 @@ function EditorContainer() {
         languages={languages}
         handleClick={handleClick}
         handleSubmit={handleSubmit}
+        toggle={toggle}
+        modal={modal}
+        errorMessage={errorMessage}
+        isError={isError}
+        submissionAllowed={submissionAllowed}
+        totalTestcases={totalTestcases}
+        testcasesPassed={testcasesPassed}
       />
       <EditorPadComponent
         id='editor'

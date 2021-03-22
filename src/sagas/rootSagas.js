@@ -6,6 +6,7 @@ import driveSagas from 'sagas/userDriveSagas';
 import languageSagas from 'sagas/languageSagas';
 import statementRequestSaga from 'sagas/problemsSaga';
 import driveTimerSaga from 'sagas/driveTimerSaga';
+import submitSaga from 'sagas/codeSubmissionSaga';
 
 export default function* rootSagas() {
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSagas() {
     languageSagas(),
     statementRequestSaga(),
     driveTimerSaga(),
+    submitSaga(),
   ]);
 }

@@ -24,7 +24,7 @@ function LandingPageComponent(props) {
   }
 
   return (
-    <Container fluid className='dark'>
+    <Container fluid className='dark-l'>
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>

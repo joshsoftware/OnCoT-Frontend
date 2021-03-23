@@ -30,6 +30,9 @@ function EditorNavComponent({
   totalTestcases,
   testcasesPassed,
   marks,
+  handleFinish,
+  toggleFinish,
+  finishModal,
 }) {
   const getModalBody = () => {
     if (!isError) {
@@ -47,16 +50,21 @@ function EditorNavComponent({
     );
   };
 
-  const myFunction = () => {
+  const onSubmitClick = () => {
     clicks += 1;
     handleSubmit();
   };
 
+  const handleFinishClick = () => {
+    console.log('inside finish');
+    toggleFinish();
+  };
   const getFinishButton = () => {
     if (clicks >= 1) {
-      return <Button className='bg-danger border-0 ml-3'>Finish</Button>;
+      return <Button className='bg-danger border-0 ml-3' onClick={handleFinishClick}>Finish</Button>;
     }
   };
+
   return (
     <Nav className='p-3 pb-2 justify-content-between custom-nav module'>
       <ButtonDropdown isOpen={isDropDownOpen} toggle={handleToggle}>
@@ -72,7 +80,7 @@ function EditorNavComponent({
         </DropdownMenu>
       </ButtonDropdown>
       <div>
-        <Button className='custom-btn bg-color border-0' onClick={myFunction}>Submit</Button>
+        <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>Submit</Button>
         {getFinishButton()}
       </div>
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
@@ -82,6 +90,17 @@ function EditorNavComponent({
           <Button color='danger' onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
+
+      <Modal className='modal-color' isOpen={finishModal} toggle={toggleFinish}>
+        <ModalHeader className='bg-success text-white' toggle={toggleFinish}>Finish the test</ModalHeader>
+        <ModalBody>
+          <p>Do you want to Submit the test?</p>
+        </ModalBody>
+        <ModalFooter className='border-0'>
+          <Button color='danger' onClick={toggleFinish}>Cancel</Button>
+          <Button color='success' onClick={handleFinish}>Finish</Button>
+        </ModalFooter>
+      </Modal>
     </Nav>
   );
 }
@@ -89,6 +108,7 @@ function EditorNavComponent({
 EditorNavComponent.propTypes = {
   isDropDownOpen: PropTypes.bool.isRequired,
   modal: PropTypes.bool.isRequired,
+  finishModal: PropTypes.bool.isRequired,
   handleToggle: PropTypes.func.isRequired,
   languageSelected: PropTypes.shape({
     id: PropTypes.string,
@@ -102,7 +122,9 @@ EditorNavComponent.propTypes = {
   ).isRequired,
   handleClick: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  handleFinish: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
+  toggleFinish:PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
   submissionAllowed: PropTypes.number.isRequired,
   totalTestcases: PropTypes.number.isRequired,

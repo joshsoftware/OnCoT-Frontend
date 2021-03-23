@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import EditorNavComponent from 'components/EditorNavComponent';
 import EditorPadComponent from 'components/EditorPadComponent';
 import { Container } from 'core-components';
+
 import {
   fetchLanguages,
   setLanguageSelected,
@@ -11,10 +13,14 @@ import {
 } from 'actions/languageAction';
 import { submitRequest } from 'actions/codeSubmissionActions';
 import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
+
 import isEmpty from 'utils/isEmpty';
 
 function EditorContainer() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
@@ -88,8 +94,10 @@ function EditorContainer() {
     editor.focus();
   }, []);
   const [modal, setModal] = useState(false);
+  const [finishModal, setFinishModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const toggleFinish = () => setFinishModal(!finishModal);
 
   const handleSubmit = useCallback(() => {
     const obj = {
@@ -102,6 +110,10 @@ function EditorContainer() {
     dispatch(submitRequest(obj));
     toggle();
   }, [source_code, language_id, id, submission_count, candidate_id]);
+
+  const handleFinish = useCallback(() => {
+    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
+  });
 
   return (
     <Container fluid>
@@ -120,6 +132,9 @@ function EditorContainer() {
         totalTestcases={totalTestcases}
         testcasesPassed={testcasesPassed}
         marks={marks}
+        handleFinish={handleFinish}
+        toggleFinish={toggleFinish}
+        finishModal={finishModal}
       />
       <EditorPadComponent
         id='editor'

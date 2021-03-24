@@ -1,13 +1,18 @@
-/* eslint-disable no-console */
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { useHistory } from 'react-router-dom';
 
 import LoginComponent from 'modules/admin/login/LoginComponent';
 import { adminLoginRequestAction } from 'redux/admin/login/action';
 import { reducer } from 'modules/admin/login/LoginContainer/reducer';
 import { schema } from 'modules/admin/login/LoginContainer/schema';
 
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
+
 const LoginContainer = () => {
+  const history = useHistory();
+
   const dispatch = useDispatch();
   const result = useSelector((state) => state.adminLoginReducer);
   useEffect(() => {
@@ -29,6 +34,12 @@ const LoginContainer = () => {
         type: 'email',
         payload: email,
       });
+      schema.validate({ email }).then(() => {
+        setLoginState({
+          type: 'emailError',
+          payload: '',
+        });
+      });
     },
     [loginState],
   );
@@ -40,6 +51,16 @@ const LoginContainer = () => {
         type: 'password',
         payload: password,
       });
+      schema
+        .validate({
+          password,
+        })
+        .then(() => {
+          setLoginState({
+            type: 'passwordError',
+            payload: '',
+          });
+        });
     },
     [loginState],
   );
@@ -62,10 +83,14 @@ const LoginContainer = () => {
           email,
           password,
         };
-        console.log('schema is valid)');
+        setLoginState({
+          type: 'emailError',
+          payload: '',
+        });
+        const adminHome = ROUTES.ADMIN + ADMIN_ROUTES.HOME;
+        history.push(adminHome);
       })
       .catch((error) => {
-        // console.log('error', error);
         error.inner.forEach((e) => {
           switch (e.path) {
             case 'email':
@@ -85,7 +110,6 @@ const LoginContainer = () => {
               break;
           }
         });
-        console.log('schema is invalid');
       });
   });
 

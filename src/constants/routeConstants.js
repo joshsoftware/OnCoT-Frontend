@@ -11,3 +11,8 @@ export const CANDIDATE_ROUTES = {
   IDE: '/ide',
   RULES_AND_PROFILE: '/profile/create',
 };
+
+export const ADMIN_ROUTES = {
+  HOME: '/home',
+  LOGIN: '/login',
+};

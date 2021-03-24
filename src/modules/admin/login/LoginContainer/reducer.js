@@ -6,7 +6,6 @@ const initialUserState = {
 };
 
 export const reducer = (state = initialUserState, action) => {
-  console.log(state);
   const { type, payload } = action;
   switch (type) {
     case 'email':

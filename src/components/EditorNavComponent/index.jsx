@@ -56,7 +56,6 @@ function EditorNavComponent({
   };
 
   const handleFinishClick = () => {
-    console.log('inside finish');
     toggleFinish();
   };
   const getFinishButton = () => {

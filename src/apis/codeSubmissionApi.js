@@ -1,5 +1,3 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
 
-export const codeSubmissionPostApi = (data) => {
-  return axios.post('https://oncot-platform.herokuapp.com/submissions', data);
-};
+export const codeSubmissionPostApi = (data) => request.post('submissions', data);

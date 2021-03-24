@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import candidateInfoPostApi from 'apis/candidateFormApi';
+import { candidateInfoPostApi } from 'apis/candidateFormApi';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
 import {
   candidateFormSuccessAction,

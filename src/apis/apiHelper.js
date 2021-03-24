@@ -8,14 +8,9 @@ const client = axios.create({
   baseURL: SERVER_URL,
 });
 
-const defaultHeader = {
-  'Content-Type':'application/json',
-
-};
-
 const get = (path) => client.get(path);
 
-const post = (path, data, provision = {}, header = defaultHeader) => {
+const post = (path, data, provision = {}) => {
   let updatedPath = path;
 
   if (!isEmpty(provision)) {
@@ -27,7 +22,7 @@ const post = (path, data, provision = {}, header = defaultHeader) => {
     });
     updatedPath = `${path}?${appendPath}`;
   }
-  return client.post(updatedPath, { headers:defaultHeader }, data);
+  return client.post(updatedPath, data);
 };
 
 const put = (path, data) => client.put(path, data);

@@ -32,7 +32,7 @@ function EditorContainer() {
 
   const { isError, errorMessage, responsedata:{
     submissionAllowed, totalTestcases, testcasesPassed, marks,
-  } } =
+  }, isLoading } =
   useSelector(
     (state) => state.codeSubmissionReducer,
   );
@@ -135,6 +135,7 @@ function EditorContainer() {
         handleFinish={handleFinish}
         toggleFinish={toggleFinish}
         finishModal={finishModal}
+        isLoading={isLoading}
       />
       <EditorPadComponent
         id='editor'

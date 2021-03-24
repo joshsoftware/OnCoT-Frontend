@@ -11,6 +11,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Spinner,
 } from 'core-components';
 import './editorNavStyle.css';
 
@@ -33,7 +34,17 @@ function EditorNavComponent({
   handleFinish,
   toggleFinish,
   finishModal,
+  isLoading,
 }) {
+  const loading = () => {
+    if (isLoading) {
+      return (
+        <div className='overview-block d-flex text-center justify-content-center text-success '>
+          <Spinner size='sm' />
+        </div>
+      );
+    }
+  };
   const getModalBody = () => {
     if (!isError) {
       return (
@@ -84,7 +95,10 @@ function EditorNavComponent({
       </div>
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
         <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
-        <ModalBody>{getModalBody()}</ModalBody>
+        <ModalBody>
+          {loading()}
+          {getModalBody()}
+        </ModalBody>
         <ModalFooter className='border-0'>
           <Button color='danger' onClick={toggle}>Cancel</Button>
         </ModalFooter>
@@ -130,6 +144,7 @@ EditorNavComponent.propTypes = {
   testcasesPassed: PropTypes.number.isRequired,
   marks: PropTypes.number.isRequired,
   isError: PropTypes.bool.isRequired,
+  isLoading:PropTypes.bool.isRequired,
 };
 
 export default React.memo(EditorNavComponent);

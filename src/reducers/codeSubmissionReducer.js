@@ -10,6 +10,7 @@ export const initialState = {
     testcasesPassed: null,
     marks: null,
   },
+  isLoading: false,
 };
 
 const codeSubmissionReducer = produce((state = initialState, action = {}) => {
@@ -24,11 +25,16 @@ const codeSubmissionReducer = produce((state = initialState, action = {}) => {
           testcasesPassed:passed_testcases,
           marks,
         };
+        state.isLoading = false;
       }
       break;
     case CODE_SUBMISSION.SET_ERROR_MESSAGE:
       state.errorMessage = payload;
       state.isError = true;
+      state.isLoading = false;
+      break;
+    case CODE_SUBMISSION.CODE_SUBMISSION_REQUEST:
+      state.isLoading = true;
       break;
     default:
       return state;

@@ -7,8 +7,14 @@ import {
 } from 'actions/finishTestActions';
 
 export function* finishTestWorkerSaga(action) {
+  const { id, candidateId } = action.payload;
+  const obj = {
+    id,
+    candidate_id:  candidateId,
+  };
   try {
-    const response = yield call(finishTestApi, action.payload);
+    const response = yield call(finishTestApi, obj);
+    console.log(response);
     yield put(finishTestSuccessAction(response.data));
   } catch (error) {
     yield put(finishTestRequestFailed(error.message));

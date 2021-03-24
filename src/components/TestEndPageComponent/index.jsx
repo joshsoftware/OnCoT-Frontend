@@ -5,7 +5,7 @@ import { Container, Spinner } from 'core-components';
 
 import './endPage.css';
 
-function TestEndPageComponent({ score, testTime, isLoading }) {
+function TestEndPageComponent({ score, isLoading }) {
   const loading = () => {
     if (isLoading) {
       return (
@@ -23,14 +23,12 @@ function TestEndPageComponent({ score, testTime, isLoading }) {
           Test Completed!
         </h3>
         <h3>Your Test Score is: {loading()}{score}</h3>
-        <h3>Test Time: {loading()} {testTime}</h3>
       </div>
     </Container>
   );
 }
 TestEndPageComponent.propTypes = {
   score: PropTypes.number.isRequired,
-  testTime: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 export default React.memo(TestEndPageComponent);

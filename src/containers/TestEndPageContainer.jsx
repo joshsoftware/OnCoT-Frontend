@@ -7,12 +7,11 @@ import { finishTestRequest } from 'actions/finishTestActions';
 const TestEndPageContainer = () => {
   const dispatch = useDispatch();
 
-  const { score, testTime, isLoading } = useSelector((state) => state.finishTestReducer);
+  const { score, isLoading } = useSelector((state) => state.finishTestReducer);
 
   const { candidateId } = useSelector(
     (state) => state.userDriveReducer,
   );
-  const candidate_id = candidateId;
 
   const { statement: { id } } = useSelector(
     (state) => state.problemStatementReducer,
@@ -21,14 +20,13 @@ const TestEndPageContainer = () => {
   useEffect(() => {
     const obj = {
       id,
-      candidate_id,
+      candidateId,
     };
     dispatch(finishTestRequest(obj));
   }, [dispatch]);
   return (
     <TestEndPageComponent
       score={score}
-      testTime={testTime}
       isLoading={isLoading}
     />
   );

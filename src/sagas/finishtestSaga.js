@@ -14,7 +14,6 @@ export function* finishTestWorkerSaga(action) {
   };
   try {
     const response = yield call(finishTestApi, obj);
-    console.log(response);
     yield put(finishTestSuccessAction(response.data));
   } catch (error) {
     yield put(finishTestRequestFailed(error.message));

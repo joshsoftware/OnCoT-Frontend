@@ -22,30 +22,25 @@ function EditorContainer() {
   const history = useHistory();
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
+
   const { languages, languageSelected, code } = useSelector(
     (state) => state.languageReducer,
   );
 
-  const language_id = languageSelected.id;
-
-  const source_code = code;
-
   const { isError, errorMessage, responsedata:{
     submissionAllowed, totalTestcases, testcasesPassed, marks,
-  }, isLoading } =
-  useSelector(
-    (state) => state.codeSubmissionReducer,
-  );
+  }, isLoading } = useSelector((state) => state.codeSubmissionReducer);
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
   );
 
-  const submission_count = submissionCount;
   const { candidateId } = useSelector(
     (state) => state.userDriveReducer,
   );
-  const candidate_id = candidateId;
+
+  const languageId = languageSelected.id;
+
   useEffect(() => {
     dispatch(fetchLanguages());
   }, [dispatch]);
@@ -60,6 +55,10 @@ function EditorContainer() {
     },
     [dispatch],
   );
+  const [modal, setModal] = useState(false);
+  const [finishModal, setFinishModal] = useState(false);
+  const toggle = () => setModal(!modal);
+  const toggleFinish = () => setFinishModal(!finishModal);
 
   const handleClick = useCallback(
     (e) => {
@@ -93,23 +92,18 @@ function EditorContainer() {
     });
     editor.focus();
   }, []);
-  const [modal, setModal] = useState(false);
-  const [finishModal, setFinishModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
-  const toggleFinish = () => setFinishModal(!finishModal);
 
   const handleSubmit = useCallback(() => {
     const obj = {
-      source_code,
-      language_id,
+      code,
+      languageId,
       id,
-      submission_count,
-      candidate_id,
+      submissionCount,
+      candidateId,
     };
     dispatch(submitRequest(obj));
     toggle();
-  }, [source_code, language_id, id, submission_count, candidate_id]);
+  }, [code, languageId, id, submissionCount, candidateId]);
 
   const handleFinish = useCallback(() => {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);

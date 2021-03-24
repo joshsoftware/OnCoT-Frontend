@@ -45,6 +45,7 @@ function EditorNavComponent({
       );
     }
   };
+
   const getModalBody = () => {
     if (!isError) {
       return (
@@ -61,17 +62,15 @@ function EditorNavComponent({
     );
   };
 
+  // needed count of clicks on submit button in order to show finish button
   const onSubmitClick = () => {
     clicks += 1;
     handleSubmit();
   };
 
-  const handleFinishClick = () => {
-    toggleFinish();
-  };
   const getFinishButton = () => {
     if (clicks >= 1) {
-      return <Button className='bg-danger border-0 ml-3' onClick={handleFinishClick}>Finish</Button>;
+      return <Button className='bg-danger border-0 ml-3' onClick={toggleFinish}>Finish</Button>;
     }
   };
 
@@ -93,6 +92,7 @@ function EditorNavComponent({
         <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>Submit</Button>
         {getFinishButton()}
       </div>
+
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
         <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
         <ModalBody>

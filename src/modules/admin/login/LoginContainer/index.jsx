@@ -14,7 +14,7 @@ const LoginContainer = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const { result } = useSelector((state) => state.adminLoginReducer);
+  const { isAuth } = useSelector((state) => state.adminLoginReducer);
 
   const initialUserState = {
     email: '',
@@ -76,8 +76,6 @@ const LoginContainer = () => {
         password,
       };
       dispatch(adminLoginRequestAction(data));
-      const adminHome = ROUTES.ADMIN + ADMIN_ROUTES.HOME;
-      history.push(adminHome);
     }).catch((error) => {
       error.inner.forEach((e) => {
         switch (e.path) {
@@ -99,6 +97,10 @@ const LoginContainer = () => {
       });
     });
   });
+
+  if (isAuth) {
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
+  }
 
   return (
     <LoginComponent

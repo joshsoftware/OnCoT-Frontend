@@ -19,6 +19,7 @@ export const initialState = {
     isProfileComplete: false,
   },
   authToken: local.getItem('authToken') || '',
+  candidateId: local.getItem('candidateId') || '',
 };
 
 const candidateFormReducer = produce((draft = initialState, action = {}) => {

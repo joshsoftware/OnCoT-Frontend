@@ -65,7 +65,7 @@ const UserProfileContainer = () => {
       const lName = userState.lName.value.trim();
       const mobile = userState.mobile.value.trim();
       const currentTime = new Date().toLocaleString();
-      const token = globalState.authToken;
+      const { candidateId } = globalState;
 
       schema
         .validate(
@@ -83,7 +83,7 @@ const UserProfileContainer = () => {
             mobile,
             updatedAt: currentTime,
             createdAt: currentTime,
-            token,
+            candidateId,
           };
           dispatch(candidateFormRequestAction(data));
           // dispatch(candidateFormSuccessAction(data, token));

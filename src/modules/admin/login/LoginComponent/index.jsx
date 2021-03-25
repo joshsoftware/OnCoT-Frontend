@@ -12,6 +12,7 @@ import {
   Label,
   Spinner,
   Container,
+  Toast,
 } from 'core-components/index';
 import josh from 'assets/images/josh.png';
 import './adminLoginStyle.css';
@@ -30,15 +31,16 @@ const LoginComponent = (props) => {
     errorMessage,
   } = props;
 
-  // const loading = () => {
-  //   if (isLoading) {
-  //     return (
-  //       <div className='overview-block d-flex text-center justify-content-center text-white '>
-  //         <Spinner size='sm' />
-  //       </div>
-  //     );
-  //   }<>Login</>;
-  // };
+  const invalidUser = () => {
+    if (isError) {
+      return (
+        <Toast className='bg-transparent p-2 border-0 shadow-0 text-center'>
+          <p>{errorMessage}</p>
+          <p>Unauthorized User</p>
+        </Toast>
+      );
+    }<>Login</>;
+  };
 
   return (
     <Container fluid className='admin-login-height'>
@@ -98,6 +100,7 @@ const LoginComponent = (props) => {
                 )}
                 </Button>
               </FormGroup>
+              {invalidUser()}
             </Form>
           </Row>
         </Col>

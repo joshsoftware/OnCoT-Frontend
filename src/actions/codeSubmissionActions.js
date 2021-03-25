@@ -2,7 +2,7 @@ import { CODE_SUBMISSION } from 'constants/actionConstants';
 
 export const submitRequest = (data) => ({
   type: CODE_SUBMISSION.CODE_SUBMISSION_REQUEST,
-  payload: { data },
+  payload: { ...data },
 });
 
 export const submitAction = (responsedata) => ({

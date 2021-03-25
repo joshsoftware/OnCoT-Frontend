@@ -27,6 +27,7 @@ export function* driveDetails(action) {
     local.setItem('authToken', action.payload.token);
     local.setItem('driveID', id);
     local.setItem('name', name);
+    local.setItem('candidateId', candidate_id);
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

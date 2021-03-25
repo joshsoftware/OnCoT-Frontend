@@ -8,6 +8,7 @@ import statementRequestSaga from 'sagas/problemsSaga';
 import driveTimerSaga from 'sagas/driveTimerSaga';
 import submitSaga from 'sagas/codeSubmissionSaga';
 import adminSaga from 'redux/admin/login/saga';
+import finishTestSaga from './finishtestSaga';
 
 export default function* rootSagas() {
   yield all([
@@ -20,5 +21,6 @@ export default function* rootSagas() {
     driveTimerSaga(),
     submitSaga(),
     adminSaga(),
+    finishTestSaga(),
   ]);
 }

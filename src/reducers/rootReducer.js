@@ -10,6 +10,7 @@ import DriveTimerReducer from 'reducers/driverTimerReducer';
 import codeSubmissionReducer from 'reducers/codeSubmissionReducer';
 import adminLoginReducer from 'redux/admin/login/reducer';
 import adminHomeComponentReducer from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
+import finishTestReducer from 'reducers/finishTestReducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   codeSubmissionReducer,
   adminLoginReducer,
   adminHomeComponentReducer,
+  finishTestReducer,
 });
 
 export default rootReducer;

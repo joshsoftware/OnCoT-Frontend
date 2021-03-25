@@ -12,6 +12,7 @@ export function* statementSaga(action) {
   try {
     const response = yield call(getStatement, action.payload.driveId);
     yield put(statementAction(response.data.data));
+    const { submission_count } = response.data.data;
   } catch (error) {
     yield put(statementActionFailed(error.message));
   }

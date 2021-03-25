@@ -3,7 +3,12 @@ import produce from 'immer';
 import { PROBLEM_STATEMENT } from 'constants/actionConstants';
 
 export const initialState = {
-  statement: {},
+  statement: {
+    id:'',
+    title:'',
+    description:'',
+    submissionCount: null,
+  },
   errorMessage: '',
   isError: false,
   isLoading: false,

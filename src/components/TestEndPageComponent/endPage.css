@@ -1,6 +1,7 @@
-.dark-l {
+.dark {
   background-color: #292727;
   font-family: "Montserrat";
+  padding-top: 100px;
   height: 100vh;
   width: 100%;
 }
@@ -10,7 +11,7 @@
 }
 
 .title-color {
-  font-size: 65px;
+  font-size: 50px;
   color: #218838;
 }
 

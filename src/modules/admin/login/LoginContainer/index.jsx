@@ -14,7 +14,9 @@ const LoginContainer = () => {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state) => state.adminLoginReducer);
+  const { isAuth, isLoading, isError, errorMessage } = useSelector(
+    (state) => state.adminLoginReducer,
+  );
 
   const initialUserState = {
     email: '',
@@ -111,6 +113,9 @@ const LoginContainer = () => {
       passwordError={loginState.passwordError}
       email={loginState.email}
       password={loginState.password}
+      isLoading={isLoading}
+      isError={isError}
+      errorMessage={errorMessage}
     />
   );
 };

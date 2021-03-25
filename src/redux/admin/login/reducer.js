@@ -10,7 +10,8 @@ export const initialState = {
   errorMessage: null,
   isError: false,
   isAuth: false,
-  authToken: local.getItem('accessToken') || '',
+  isLoading:false,
+  accessToken: local.getItem('accessToken') || '',
 };
 
 const adminLoginReducer = produce((state = initialState, action) => {
@@ -21,11 +22,16 @@ const adminLoginReducer = produce((state = initialState, action) => {
       state.firstName = payload.first_name;
       state.lastName = payload.last_name;
       state.isAuth = true;
+      state.isLoading = false;
       break;
     case ADMIN_LOGIN.ADMIN_FAILURE_ACTION:
       state.isAuth = false;
       state.isError = true;
       state.errorMessage = payload;
+      state.isLoading = false;
+      break;
+    case ADMIN_LOGIN.ADMIN_REQUEST_ACTION:
+      state.isLoading = true;
       break;
     default:
       return state;

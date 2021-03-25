@@ -25,7 +25,20 @@ const LoginComponent = (props) => {
     passwordError,
     email,
     password,
+    isError,
+    isLoading,
+    errorMessage,
   } = props;
+
+  // const loading = () => {
+  //   if (isLoading) {
+  //     return (
+  //       <div className='overview-block d-flex text-center justify-content-center text-white '>
+  //         <Spinner size='sm' />
+  //       </div>
+  //     );
+  //   }<>Login</>;
+  // };
 
   return (
     <Container fluid className='admin-login-height'>
@@ -75,7 +88,15 @@ const LoginComponent = (props) => {
                 <FormFeedback type='invalid' target='examplePassword'>{passwordError}</FormFeedback>
               </FormGroup>
               <FormGroup className='mt-5 d-flex justify-content-center'>
-                <Button className='bg-dark w-75 border-0' onClick={handleSubmit}>Login</Button>
+                <Button
+                  className='bg-dark w-75 border-0'
+                  onClick={handleSubmit}
+                >{isLoading ? (
+                  <Spinner size='sm' color='light' />
+                ) : (
+                  <>Login</>
+                )}
+                </Button>
               </FormGroup>
             </Form>
           </Row>
@@ -93,6 +114,9 @@ LoginComponent.propTypes = {
   passwordError: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  isError: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
 };
 
 export default React.memo(LoginComponent);

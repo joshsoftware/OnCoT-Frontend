@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Col, Container, Row } from 'core-components';
+import { Col, Container, Row, Button } from 'core-components';
 
 import AdminHeader from 'shared-components/AdminHeader';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
@@ -22,9 +22,12 @@ const HomeComponent = (props) => {
           <SideNavContainer />
         </Col>
         <Col className='max-height' md={10} lg={10} xl={10}>
+          {currentHomeComponent === HOME_SCREENS.HOME && <p>Home</p>}
           {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
             <CreateDriveContainer />
           )}
+
+          {currentHomeComponent === HOME_SCREENS.PROBLEMS && <p>PROBLEMS</p>}
         </Col>
       </Row>
     </Container>

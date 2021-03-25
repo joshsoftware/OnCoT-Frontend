@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 function ProtectedAdminRoute({ component: Component, restricted, ...rest }) {
-  const {
-    accessToken,
-  } = useSelector((state) => state.adminLoginReducer);
+  const { accessToken } = useSelector((state) => state.adminLoginReducer);
   return (
     <Route
       {...rest}
@@ -25,7 +23,7 @@ ProtectedAdminRoute.defaultProps = {
 };
 
 ProtectedAdminRoute.propTypes = {
-  component: PropTypes.shape().isRequired,
+  component: PropTypes.func.isRequired,
   restricted: PropTypes.string,
 };
 

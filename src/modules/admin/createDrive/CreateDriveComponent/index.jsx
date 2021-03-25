@@ -179,11 +179,11 @@ const CreateDriveComponent = () => {
                 <Table dark>
                   <thead>
                     <tr>
-                      <th>Reviewer Id</th>
-                      <th>Reviewer Name</th>
-                      <th>Department</th>
-                      <th>Expertise</th>
-                      <th>Experience</th>
+                      <th>Problem Id</th>
+                      <th>Problem Title</th>
+                      <th>Category</th>
+                      <th>Difficulty</th>
+                      <th>Marks</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -194,19 +194,16 @@ const CreateDriveComponent = () => {
               <FormGroup className='pt-3 px-5 w-25'>
                 <Row>
                   <Label>
-                    <h4>Add Problem to Drive</h4>
+                    <h4>Add Reviewer to Drive</h4>
                   </Label>
                 </Row>
 
                 <Row className='pt-3 w-100'>
                   <select
                     className='w-100'
-                    id='problems'
+                    id='reviewers'
                     value={data.problemId}
                   >
-                    <option disabled defaultValue>
-                      Choose Problem
-                    </option>
                     {data.map((e, key) => {
                       return (
                         <option key={e.problemId} value={e.problemId}>

@@ -1,21 +1,11 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import HomeComponent from 'modules/admin/home/HomeComponent';
-
-import { reducer } from 'modules/admin/home/HomeContainer/reducer';
+import { useSelector } from 'react-redux';
 
 const HomeContainer = () => {
-  const initialHomeState = {
-    currentScreen: 'CREATE_DRIVE',
-  };
+  const reducer = useSelector((state) => state.adminHomeComponentReducer);
 
-  const [currentHomeComponent, setCurrentHomeComponent] = useReducer(
-    reducer,
-    initialHomeState,
-  );
-
-  return (
-    <HomeComponent currentHomeComponent={currentHomeComponent.currentScreen} />
-  );
+  return <HomeComponent currentHomeComponent={reducer.currentScreen} />;
 };
 
 export default HomeContainer;

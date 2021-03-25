@@ -13,5 +13,6 @@ export const CANDIDATE_ROUTES = {
 };
 
 export const ADMIN_ROUTES = {
-  SIDENAV: '/sidenav',
+  HOME: '/home',
+  LOGIN: '/login',
 };

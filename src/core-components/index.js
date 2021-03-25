@@ -26,6 +26,8 @@ import Modal from 'core-components/Modal';
 import ModalHeader from 'core-components/ModalHeader';
 import ModalBody from 'core-components/ModalBody';
 import ModalFooter from 'core-components/ModalFooter';
+import Table from 'core-components/Table';
+import Dropdown from 'core-components/Dropdown';
 
 export {
   Button,
@@ -45,6 +47,7 @@ export {
   Alert,
   Navbar,
   NavbarBrand,
+  Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
@@ -55,5 +58,6 @@ export {
   Modal,
   ModalHeader,
   ModalBody,
+  Table,
   ModalFooter,
 };

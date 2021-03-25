@@ -6,13 +6,18 @@ const initialUserState = {
 };
 
 export const reducer = (state = initialUserState, action) => {
-  console.log(state);
   const { type, payload } = action;
   switch (type) {
     case 'email':
-      return ({ ...state, email: payload });
+      return ({ ...state,
+        email: payload.email,
+        emailError:'',
+      });
     case 'password':
-      return ({ ...state, password: payload });
+      return ({ ...state,
+        password: payload.password,
+        passwordError:'',
+      });
     case 'emailError':
       return ({ ...state, emailError: payload });
     case 'passwordError':

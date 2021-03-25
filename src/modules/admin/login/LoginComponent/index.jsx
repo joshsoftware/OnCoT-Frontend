@@ -1,21 +1,20 @@
+import React from 'react';
 import PropTypes from 'prop-types';
+
 import {
   Input,
   Button,
   Form,
   FormFeedback,
   FormGroup,
-  Card,
-  CardBody,
   Row,
   Col,
-  Toast,
-  ToastHeader,
   Label,
   Spinner,
   Container,
 } from 'core-components/index';
-import React from 'react';
+import josh from 'assets/images/josh.png';
+import './adminLoginStyle.css';
 
 const LoginComponent = (props) => {
   const {
@@ -24,56 +23,62 @@ const LoginComponent = (props) => {
     handleSubmit,
     emailError,
     passwordError,
+    email,
+    password,
   } = props;
+
   return (
-    <Container className='name' fluid>
-      <Row className='name pb-5'>
-        <Col className='pb-5 bg-success' xl={7} lg={7}>
-          Image
+    <Container fluid className='admin-login-height'>
+      <Row>
+        <Col className='admin-login-left d-flex align-items-center justify-content-center' md={7} xl={7} lg={7} sm={12}>
+
+          <div className='bg-white p-5 shadow'>
+            <div className='bg-white mb-2 p-0 border-bottom'>
+              <h6 className='title-css'>OnCoT Admin</h6>
+            </div>
+            <img src={josh} alt='Josh Logo' className='mt-2' height={100} width={500} />
+          </div>
         </Col>
 
-        <Col className='pb-5 bg-dark' xl={5} lg={5}>
-          <Card className='bg-transparent'>
-            <CardBody className='text-white'>
-              <h2 className='mt-5 text-success text-center font-weight-bolder'>
-                Login
-              </h2>
-
-              <Form className='pd-5 px-5'>
-                <Row className='d-flex justify-content-center pt-5 px-5'>
-                  <FormGroup className='w-50'>
-                    <Label className='text-left'>Email</Label>
-                    <Input
-                      className='shadow'
-                      type='email'
-                      placeholder=''
-                      onChange={handleEmailChange}
-                      invalid={emailError !== ''}
-                    />
-                    <FormFeedback>{emailError}</FormFeedback>
-                  </FormGroup>
-                </Row>
-                <Row className='d-flex justify-content-center pt-5 px-5'>
-                  <FormGroup className='w-50'>
-                    <Label className='text-left'>Password</Label>
-                    <Input
-                      type='password'
-                      className='shadow'
-                      placeholder=''
-                      onChange={handlePasswordChange}
-                      invalid={passwordError !== ''}
-                    />
-                    <FormFeedback>{passwordError}</FormFeedback>
-                  </FormGroup>
-                </Row>
-                <Row className='d-flex justify-content-center py-5 px-5'>
-                  <FormGroup className='w-50 d-flex justify-content-center'>
-                    <Button onClick={handleSubmit}>Login</Button>
-                  </FormGroup>
-                </Row>
-              </Form>
-            </CardBody>
-          </Card>
+        <Col className='admin-login-right d-flex align-items-center justify-content-center' md={5} xl={5} lg={5} sm={12}>
+          <Row className='p-0 border-0 text-white'>
+            <Form className='align-self-center'>
+              <div className='border-dark border-bottom p-3'>
+                <h2 className='text-center textColor font-weight-bolder'>
+                  Login
+                </h2>
+              </div>
+              <FormGroup className='mt-4'>
+                <Label className='text-left textColor'>Email</Label>
+                <Input
+                  className='shadow'
+                  id='exampleEmail'
+                  type='email'
+                  placeholder='example@gmail.com'
+                  value={email}
+                  onChange={handleEmailChange}
+                  invalid={emailError !== ''}
+                />
+                <FormFeedback type='invalid' target='exampleEmail'>{emailError}</FormFeedback>
+              </FormGroup>
+              <FormGroup>
+                <Label className='text-left textColor'>Password</Label>
+                <Input
+                  type='password'
+                  className='shadow'
+                  id='examplePassword'
+                  placeholder='******'
+                  value={password}
+                  onChange={handlePasswordChange}
+                  invalid={passwordError !== ''}
+                />
+                <FormFeedback type='invalid' target='examplePassword'>{passwordError}</FormFeedback>
+              </FormGroup>
+              <FormGroup className='mt-5 d-flex justify-content-center'>
+                <Button className='bg-dark w-75 border-0' onClick={handleSubmit}>Login</Button>
+              </FormGroup>
+            </Form>
+          </Row>
         </Col>
       </Row>
     </Container>
@@ -86,6 +91,8 @@ LoginComponent.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   emailError: PropTypes.string.isRequired,
   passwordError: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
 };
 
 export default React.memo(LoginComponent);

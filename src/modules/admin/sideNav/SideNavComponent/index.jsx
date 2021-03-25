@@ -11,8 +11,9 @@ const SideNavComponent = () => {
     <Container fluid className='p-0'>
       <Row className='bg-dark justify-content-around admin-sidenav-height'>
         <Col className='text-white font-weight-bold border-top'>
-          <Row className='mt-3'>
+          <Row className='p-3 mt-3'>
             <Button
+              className='w-100'
               onClick={() => {
                 dispatch({ type: 'CREATE_DRIVE', payload: 'CREATE_DRIVE' });
               }}
@@ -20,9 +21,9 @@ const SideNavComponent = () => {
               Create Drive
             </Button>
           </Row>
-          <Row>
+          <Row className='p-3 mt-3'>
             <Button
-              className='p-3 bg-transparent border-0'
+              className='w-100'
               onClick={() => {
                 dispatch({ type: 'PROBLEMS', payload: 'PROBLEMS' });
               }}

@@ -3,7 +3,6 @@ export const initialHomeState = {
 };
 
 export const adminHomeComponentReducer = (state = initialHomeState, action) => {
-  console.log('in home state', state);
   const { type, payload } = action;
   switch (type) {
     case 'HOME':

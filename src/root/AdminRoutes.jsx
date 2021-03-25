@@ -6,12 +6,15 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
+import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
       <Route exact path={path} component={AdminHomeComponent} />
+
+      <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
 
       <Route exact path={path + ADMIN_ROUTES.LOGIN} component={LoginContainer} />
 

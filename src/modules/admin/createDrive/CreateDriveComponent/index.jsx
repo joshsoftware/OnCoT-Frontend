@@ -9,10 +9,6 @@ import {
   Input,
   Table,
   Button,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'core-components';
 import { reducer } from '../CreateDriveCotainer/reducer';
 

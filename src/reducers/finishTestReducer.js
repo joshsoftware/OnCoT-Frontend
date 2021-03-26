@@ -12,7 +12,7 @@ const finishTestReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case FINISH_TEST.SET_FINISH_DETAILS:
-      state.score = payload.final_marks;
+      state.score = payload.data;
       state.isLoading = false;
       break;
     case FINISH_TEST.SET_FINISH_ERROR_MESSAGE:

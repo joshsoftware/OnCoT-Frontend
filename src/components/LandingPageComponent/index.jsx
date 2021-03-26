@@ -11,9 +11,11 @@ function LandingPageComponent(props) {
   const { startTime, isError, errorMessage, isLoading, handleClick, driveTime } = props;
   const expired = 'Expired';
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  const LoadingPage = () => {
+    if (isLoading) {
+      return <Loading className='text-dark' />;
+    }
+  };
 
   if (isError) {
     return (
@@ -26,6 +28,7 @@ function LandingPageComponent(props) {
   return (
     <Container fluid className='dark-l'>
       <div className='custom-padding text-center text-white'>
+        {LoadingPage()}
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>
           OnCoT

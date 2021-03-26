@@ -1,7 +1,3 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
 
-const codeSubmissionPostApi = (data) => {
-  return axios.post('https://api.mocki.io/v1/230fa52b', data);
-};
-
-export default codeSubmissionPostApi;
+export const codeSubmissionPostApi = (data) => request.post('submissions', data);

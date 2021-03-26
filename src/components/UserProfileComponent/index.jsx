@@ -19,6 +19,7 @@ import {
 } from 'core-components/index';
 
 import './infoComponent.css';
+import Loading from 'shared-components/Loading';
 
 const UserProfileComponent = (props) => {
   const {
@@ -111,7 +112,7 @@ const UserProfileComponent = (props) => {
                     onClick={handleSubmit}
                   >
                     {result.state.loading ? (
-                      <Spinner size='sm' color='light' />
+                      <Loading size='sm' color='light' />
                     ) : (
                       <>Continue</>
                     )}

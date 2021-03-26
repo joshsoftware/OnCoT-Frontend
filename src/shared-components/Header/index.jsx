@@ -11,7 +11,10 @@ import HeaderIDE from 'shared-components/Header/HeaderIDE';
 const HeaderIDEConatiner = () => {
   const totalProblems = 1;
   const currentProblem = 1;
-  const organisationName = 'Josh Inc.';
+
+  const drive = useSelector((state) => state.userDriveReducer);
+  const { name } = drive.data;
+  const organisationName = name;
 
   const dispatch = useDispatch();
 

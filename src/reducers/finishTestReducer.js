@@ -1,30 +1,26 @@
 import produce from 'immer';
-
-import { RULES } from 'constants/actionConstants';
+import { FINISH_TEST } from 'constants/actionConstants';
 
 export const initialState = {
-  userlist : {},
   errorMessage: '',
   isError: false,
+  score:null,
   isLoading: false,
 };
 
-const rulesReducer = produce((state = initialState, action = {}) => {
+const finishTestReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
-    case RULES.SET_DETAILS:
-      state.userlist = {
-        id: payload.id,
-        description: payload.description,
-      };
+    case FINISH_TEST.SET_FINISH_DETAILS:
+      state.score = payload.data;
       state.isLoading = false;
       break;
-    case RULES.SET_ERROR_MESSAGE:
+    case FINISH_TEST.SET_FINISH_ERROR_MESSAGE:
       state.errorMessage = payload;
       state.isError = true;
       state.isLoading = false;
       break;
-    case RULES.DETAIL_REQUEST:
+    case FINISH_TEST.FINISH_TEST_REQUEST:
       state.isLoading = true;
       break;
     default:
@@ -32,4 +28,4 @@ const rulesReducer = produce((state = initialState, action = {}) => {
   }
 });
 
-export default rulesReducer;
+export default finishTestReducer;

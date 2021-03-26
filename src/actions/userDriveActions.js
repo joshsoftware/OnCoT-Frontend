@@ -5,9 +5,9 @@ export const driveDetailRequest = (token) => ({
   payload: { token },
 });
 
-export const setUserDriveDetails = (payload) => ({
+export const setUserDriveDetails = (details) => ({
   type: DRIVE.SET_DETAILS,
-  payload,
+  payload:{ ...details },
 });
 
 export const showErrorMessage = (errorMessage) => ({

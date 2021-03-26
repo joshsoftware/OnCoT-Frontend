@@ -38,16 +38,16 @@ const CustomIOContainer = () => {
     customInputOutputPostApi(data)
       .then((response) => {
         let outputValue = '';
-        const { token } = response.data;
+        const { token } = response.data.data;
 
         // in future we will remove it
         setTimeout(() => {
           customInputOutputSendTokenApi(token)
             .then((output) => {
               if (output.data.stderr) {
-                outputValue = output.data.stderr;
+                outputValue = output.data.data.stderr;
               } else {
-                outputValue = output.data.stdout;
+                outputValue = output.data.data.stdout;
               }
               setLoading(false);
               setInputOutputValue({

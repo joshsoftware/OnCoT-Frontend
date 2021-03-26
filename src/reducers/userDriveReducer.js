@@ -5,25 +5,28 @@ import local from 'utils/local';
 
 export const initialState = {
   data: {
-    id: local.getItem('driveId') || '',
-    name: '',
+    id: local.getItem('driveID') || '',
+    name: local.getItem('name') || '',
     startTime: '',
     endTime: '',
   },
+  candidateId: local.getItem('candidateId') || null,
   isError: false,
   errorMessage: '',
   isLoading: false,
 };
 
 const userDriveReducer = produce((state = initialState, action = {}) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case DRIVE.SET_DETAILS:
-      state.data = action.payload;
+      state.data = payload.data;
+      state.candidateId = payload.candidateId;
       state.isLoading = false;
       break;
     case DRIVE.SET_ERROR_MESSAGE:
-      state.isError = action.payload.isError;
-      state.errorMessage = action.payload.errorMessage;
+      state.isError = payload.isError;
+      state.errorMessage = payload.errorMessage;
       state.isLoading = false;
       break;
     case DRIVE.DRIVE_DETAIL_REQUEST:

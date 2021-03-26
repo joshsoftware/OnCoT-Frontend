@@ -5,6 +5,7 @@ import ProtectedRoute from 'HOC/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
 import ProfileComponent from 'components/ProfileComponent';
 import IdeComponent from 'components/IdeComponent/index';
+import TestEndPageContainer from 'containers/TestEndPageContainer';
 
 import { CANDIDATE_ROUTES } from 'constants/routeConstants';
 
@@ -23,6 +24,10 @@ function CandidateRoutes() {
       <ProtectedRoute
         path={path + CANDIDATE_ROUTES.IDE}
         component={IdeComponent}
+      />
+      <ProtectedRoute
+        path={path + CANDIDATE_ROUTES.ENDPAGE}
+        component={TestEndPageContainer}
       />
       <Redirect to={path} />
     </Switch>

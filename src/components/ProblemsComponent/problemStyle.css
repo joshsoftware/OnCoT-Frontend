@@ -4,6 +4,9 @@
   width: 100%;
   font-family: "Montserrat";
 }
+.text-newline{
+  white-space: pre-wrap;
+}
 .text-green{
   color:#218838;
 }
@@ -12,11 +15,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #3b3b3b;
+  background: #1E1E1E;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E1E1E;
+  background: #3b3b3b;
 }
 
 ::-webkit-scrollbar-thumb:hover {

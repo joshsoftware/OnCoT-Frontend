@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import UserProfileComponent from 'components/UserProfileComponent';
-import { candidateFormRequestAction } from 'actions/candidateFormActions';
+import { candidateFormRequestAction, candidateFormSuccessAction } from 'actions/candidateFormActions';
 import { schema } from 'containers/UserProfileContainer/schema';
 import { reducer } from 'containers/UserProfileContainer/reducer';
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
@@ -65,7 +65,7 @@ const UserProfileContainer = () => {
       const lName = userState.lName.value.trim();
       const mobile = userState.mobile.value.trim();
       const currentTime = new Date().toLocaleString();
-      const token = globalState.authToken;
+      const { candidateId } = globalState;
 
       schema
         .validate(
@@ -83,9 +83,10 @@ const UserProfileContainer = () => {
             mobile,
             updatedAt: currentTime,
             createdAt: currentTime,
-            token,
+            candidateId,
           };
           dispatch(candidateFormRequestAction(data));
+          // dispatch(candidateFormSuccessAction(data, token));
         })
         .catch((error) => {
           error.inner.forEach((e) => {

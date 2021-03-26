@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import candidateInfoPostApi from 'apis/candidateFormApi';
+import { candidateInfoPostApi } from 'apis/candidateFormApi';
 import { CANDIDATE_FORM_ACTIONS } from 'constants/actionConstants';
 import {
   candidateFormSuccessAction,
@@ -7,19 +7,20 @@ import {
 } from 'actions/candidateFormActions';
 
 export function* candidateFormSaga(action) {
-  const { fName, lName, mobile, createdAt, updatedAt, token } = action.payload;
+  const { fName, lName, mobile, createdAt, updatedAt, candidateId } = action.payload;
 
   const data =  {
-    first_Name: fName,
-    last_Name: lName,
+    first_name: fName,
+    last_name: lName,
     mobile_number: mobile,
     created_at: createdAt,
     updated_at: updatedAt,
   };
 
   try {
-    const response = yield call(candidateInfoPostApi, data, token);
+    const response = yield call(candidateInfoPostApi, data, candidateId);
     const {
+      id,
       email,
       first_name,
       last_name,

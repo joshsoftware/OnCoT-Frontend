@@ -11,10 +11,10 @@ const RulesContainer = () => {
     userlist: { description },
     errorMessage,
     isError,
+    isLoading,
   } = result;
-  const {
-    data: { id },
-  } = useSelector((state) => state.userDriveReducer);
+  const user = useSelector((state) => state.userDriveReducer);
+  const { id } = user.data;
 
   useEffect(() => {
     dispatch(rulesRequest(id));
@@ -25,6 +25,7 @@ const RulesContainer = () => {
       isError={isError}
       errorMessage={errorMessage}
       description={description}
+      isLoading={isLoading}
     />
   );
 };

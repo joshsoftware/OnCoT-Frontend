@@ -12,16 +12,22 @@ import local from 'utils/local';
 export function* driveDetails(action) {
   try {
     const response = yield call(driveDetail, action.payload.token);
+    const { candidate_id } = response.data;
     const { id, name, start_time, end_time } = response.data.data;
     const userDriveDetails = {
-      id,
-      name,
-      start_time,
-      end_time,
+      data: {
+        id,
+        name,
+        startTime:start_time,
+        endTime:end_time,
+      },
+      candidateId: candidate_id,
     };
     yield put(setUserDriveDetails(userDriveDetails));
     local.setItem('authToken', action.payload.token);
-    local.setItem('driveId', id);
+    local.setItem('driveID', id);
+    local.setItem('name', name);
+    local.setItem('candidateId', candidate_id);
   } catch (err) {
     yield put(showErrorMessage(err.message));
   }

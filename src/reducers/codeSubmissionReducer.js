@@ -1,10 +1,11 @@
 import produce from 'immer';
 import { CODE_SUBMISSION } from 'constants/actionConstants';
+import local from 'utils/local';
 
 export const initialState = {
   errorMessage: '',
   isError: false,
-  submissionAllowed: null,
+  submissionAllowed:  parseInt(local.getItem('subCount') || null, 10),
   totalTestcases: null,
   testcasesPassed: null,
   marks: null,

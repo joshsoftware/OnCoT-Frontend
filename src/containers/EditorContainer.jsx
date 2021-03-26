@@ -16,6 +16,7 @@ import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/edi
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 import isEmpty from 'utils/isEmpty';
+import local from 'utils/local';
 
 function EditorContainer() {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ function EditorContainer() {
     testcasesPassed, marks, isLoading } = useSelector(
     (state) => state.codeSubmissionReducer,
   );
+
+  console.log(submissionAllowed);
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
@@ -99,12 +102,12 @@ function EditorContainer() {
       code,
       languageId,
       id,
-      submissionCount,
+      submissionAllowed,
       candidateId,
     };
     dispatch(submitRequest(obj));
     toggle();
-  }, [code, languageId, id, submissionCount, candidateId]);
+  }, [code, languageId, id, submissionAllowed, candidateId]);
 
   const handleFinish = useCallback(() => {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);

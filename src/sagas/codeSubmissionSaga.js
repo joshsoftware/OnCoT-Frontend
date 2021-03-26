@@ -7,13 +7,13 @@ import {
 } from 'actions/codeSubmissionActions';
 
 export function* codeSubmissionSaga(action) {
-  const { code, languageId, id, submissionCount, candidateId } = action.payload;
+  const { code, languageId, id, submissionAllowed, candidateId } = action.payload;
 
   const data = {
     source_code:code,
     language_id:languageId,
     id,
-    submission_count:submissionCount,
+    submission_count:submissionAllowed,
     candidate_id:candidateId,
   };
 

@@ -5,10 +5,10 @@ import local from 'utils/local';
 
 export const initialState = {
   statement: {
-    id:local.getItem('problemId') || null,
+    id:'',
     title:'',
     description:'',
-    submissionCount: null,
+    submissionCount: '',
   },
   errorMessage: '',
   isError: false,

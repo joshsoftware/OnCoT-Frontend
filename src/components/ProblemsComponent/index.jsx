@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, Spinner } from 'core-components';
+import { Container } from 'core-components';
+import Loading from 'shared-components/Loading';
 
 import './problemStyle.css';
 
@@ -9,9 +10,7 @@ const ProblemComponent = ({ isError, errorMessage, title, description, isLoading
   const loading = () => {
     if (isLoading) {
       return (
-        <div className='overview-block d-flex text-center justify-content-center text-success '>
-          <Spinner size='sm' />
-        </div>
+        <Loading />
       );
     }
   };

@@ -11,10 +11,9 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Spinner,
-  Toast,
 } from 'core-components';
 import './editorNavStyle.css';
+import Loading from 'shared-components/Loading';
 
 let clicks = 0;
 function EditorNavComponent({
@@ -41,19 +40,11 @@ function EditorNavComponent({
   const loading = () => {
     if (isLoading) {
       return (
-        <div className='overview-block d-flex text-center justify-content-center text-success '>
-          <Spinner size='sm' />
-        </div>
+        <Loading />
       );
     }
   };
 
-  // const limitExceed = () => {
-  //   if (limit) {
-  //     console.log('hello');
-  //     return <p>Limit Exceeded</p>;
-  //   }
-  // };
   const getModalBody = () => {
     if (!isError) {
       return (
@@ -98,11 +89,7 @@ function EditorNavComponent({
       </ButtonDropdown>
       <div>
         <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>
-          {limit ? (
-            <>Limit Exceeded</>
-          ) : (
-            <>Submit</>
-          )}
+          {limit ? 'Limit Exceeded' : 'Submit' }
         </Button>
         {getFinishButton()}
       </div>

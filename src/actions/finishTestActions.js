@@ -7,7 +7,7 @@ export const finishTestRequest = (data) => ({
 
 export const finishTestSuccessAction = (responsedata) => ({
   type: FINISH_TEST.SET_FINISH_DETAILS,
-  payload: { ...responsedata },
+  responsedata,
 });
 
 export const finishTestRequestFailed = (requestError) => ({

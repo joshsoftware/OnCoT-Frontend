@@ -8,12 +8,12 @@ import {
 
 export function* finishTestWorkerSaga(action) {
   const { id, candidateId } = action.payload;
-  const obj = {
+  const finishtesRequestPayload = {
     id,
     candidate_id:  candidateId,
   };
   try {
-    const response = yield call(finishTestApi, obj);
+    const response = yield call(finishTestApi, finishtesRequestPayload);
     yield put(finishTestSuccessAction(response.data));
   } catch (error) {
     yield put(finishTestRequestFailed(error.message));

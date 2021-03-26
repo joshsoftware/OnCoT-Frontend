@@ -116,7 +116,7 @@ const CreateDriveComponent = () => {
               </FormGroup>
               <FormGroup className='pt-3 w-25'>
                 <Label>
-                  <h4>Drive Start Date</h4>
+                  <h4>Drive End Date</h4>
                 </Label>
                 <Input type='date' />
               </FormGroup>

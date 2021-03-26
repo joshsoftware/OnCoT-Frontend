@@ -14,7 +14,7 @@ const HomeComponent = (props) => {
   const { currentHomeComponent } = props;
 
   return (
-    <Container className='max-height' fluid>
+    <Container className='max-height ' fluid>
       <Row>
         <AdminHeader />
       </Row>
@@ -22,7 +22,7 @@ const HomeComponent = (props) => {
         <Col>
           <SideNavContainer />
         </Col>
-        <Col className='max-height' md={10} lg={10} xl={10}>
+        <Col className='max-height overflow-auto' md={10} lg={10} xl={10}>
           {currentHomeComponent === HOME_SCREENS.HOME && <p>Home</p>}
           {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
             <CreateDriveContainer />

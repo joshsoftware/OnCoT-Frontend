@@ -27,9 +27,10 @@ function EditorContainer() {
     (state) => state.languageReducer,
   );
 
-  const { isError, errorMessage, responsedata:{
-    submissionAllowed, totalTestcases, testcasesPassed, marks,
-  }, isLoading } = useSelector((state) => state.codeSubmissionReducer);
+  const { isError, errorMessage, submissionAllowed, totalTestcases,
+    testcasesPassed, marks, isLoading } = useSelector(
+    (state) => state.codeSubmissionReducer,
+  );
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
@@ -55,6 +56,7 @@ function EditorContainer() {
     },
     [dispatch],
   );
+  const [limit, setlimit] = useState(false);
   const [modal, setModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -94,16 +96,20 @@ function EditorContainer() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const obj = {
-      code,
-      languageId,
-      id,
-      submissionCount,
-      candidateId,
-    };
-    dispatch(submitRequest(obj));
-    toggle();
-  }, [code, languageId, id, submissionCount, candidateId]);
+    if (submissionAllowed > 0) {
+      const obj = {
+        code,
+        languageId,
+        id,
+        submissionAllowed,
+        candidateId,
+      };
+      dispatch(submitRequest(obj));
+      toggle();
+    } else {
+      setlimit(!limit);
+    }
+  }, [code, languageId, id, submissionAllowed, candidateId]);
 
   const handleFinish = useCallback(() => {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
@@ -130,6 +136,7 @@ function EditorContainer() {
         toggleFinish={toggleFinish}
         finishModal={finishModal}
         isLoading={isLoading}
+        limit={limit}
       />
       <EditorPadComponent
         id='editor'

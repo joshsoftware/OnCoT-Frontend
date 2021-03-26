@@ -1,3 +1,6 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
 
-export const finishTestApi = (data) => axios.post('https://api.mocki.io/v1/2f784985', data);
+export const finishTestApi = (data) => {
+  const { id, candidate_id } = data;
+  request.get(`/results/${id}/${candidate_id}`);
+};

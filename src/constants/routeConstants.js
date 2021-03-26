@@ -10,6 +10,7 @@ export const CANDIDATE_ROUTES = {
   CANDIDATE_DETAILS: '/:id/details',
   IDE: '/ide',
   RULES_AND_PROFILE: '/profile/create',
+  ENDPAGE:'/endpage',
 };
 
 export const ADMIN_ROUTES = {

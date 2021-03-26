@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import codeSubmissionPostApi from 'apis/codeSubmissionApi';
+import { codeSubmissionPostApi } from 'apis/codeSubmissionApi';
 import { CODE_SUBMISSION } from 'constants/actionConstants';
 import {
   submitAction,
@@ -7,9 +7,19 @@ import {
 } from 'actions/codeSubmissionActions';
 
 export function* codeSubmissionSaga(action) {
+  const { code, languageId, id, submissionAllowed, candidateId } = action.payload;
+
+  const data = {
+    source_code:code,
+    language_id:languageId,
+    id,
+    submission_count:submissionAllowed,
+    candidate_id:candidateId,
+  };
+
   try {
-    const response = yield call(codeSubmissionPostApi, action.payload);
-    yield put(submitAction(response.data));
+    const response = yield call(codeSubmissionPostApi, data);
+    yield put(submitAction(response.data.data));
   } catch (error) {
     yield put(submitRequestFailed(error.message));
   }

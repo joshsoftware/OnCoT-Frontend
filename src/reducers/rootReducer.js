@@ -11,6 +11,8 @@ import codeSubmissionReducer from 'reducers/codeSubmissionReducer';
 import adminLoginReducer from 'redux/admin/login/reducer';
 import adminHomeComponentReducer from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
 import createDriveReducer from 'redux/admin/createDrive/reducer';
+import finishTestReducer from 'reducers/finishTestReducer';
+import createProblemReducer from 'redux/admin/createProblem/reducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -24,6 +26,8 @@ const rootReducer = combineReducers({
   adminLoginReducer,
   adminHomeComponentReducer,
   createDriveReducer,
+  finishTestReducer,
+  createProblemReducer,
 });
 
 export default rootReducer;

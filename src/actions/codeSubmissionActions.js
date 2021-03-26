@@ -2,12 +2,12 @@ import { CODE_SUBMISSION } from 'constants/actionConstants';
 
 export const submitRequest = (data) => ({
   type: CODE_SUBMISSION.CODE_SUBMISSION_REQUEST,
-  payload: { data },
+  payload: { ...data },
 });
 
-export const submitAction = (responsedata) => ({
+export const submitAction = (payload) => ({
   type: CODE_SUBMISSION.SET_DETAILS,
-  payload: { ...responsedata },
+  payload: { ...payload },
 });
 
 export const submitRequestFailed = (requestError) => ({

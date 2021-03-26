@@ -9,6 +9,8 @@ import driveTimerSaga from 'sagas/driveTimerSaga';
 import submitSaga from 'sagas/codeSubmissionSaga';
 import adminSaga from 'redux/admin/login/saga';
 import createDriveWatcherSaga from 'redux/admin/createDrive/saga';
+import problemWatcherSaga from 'redux/admin/createProblem/saga';
+import finishTestSaga from './finishtestSaga';
 
 export default function* rootSagas() {
   yield all([
@@ -22,5 +24,7 @@ export default function* rootSagas() {
     submitSaga(),
     adminSaga(),
     createDriveWatcherSaga(),
+    finishTestSaga(),
+    problemWatcherSaga(),
   ]);
 }

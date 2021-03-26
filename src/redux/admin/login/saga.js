@@ -16,6 +16,7 @@ export function* adminLoginSaga(action) {
     local.setItem('client', response.headers.client);
     local.setItem('expiry', response.headers.expiry);
     local.setItem('uid', response.headers.uid);
+    local.setItem('token-type', response.headers['token-type']);
     local.setItem('accessToken', response.headers['access-token']);
   } catch (error) {
     yield put(adminLoginFailureAction(error.message));

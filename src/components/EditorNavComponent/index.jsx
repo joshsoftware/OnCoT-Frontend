@@ -12,6 +12,7 @@ import {
   ModalBody,
   ModalFooter,
   Spinner,
+  Toast,
 } from 'core-components';
 import './editorNavStyle.css';
 
@@ -35,6 +36,7 @@ function EditorNavComponent({
   toggleFinish,
   finishModal,
   isLoading,
+  limit,
 }) {
   const loading = () => {
     if (isLoading) {
@@ -46,6 +48,12 @@ function EditorNavComponent({
     }
   };
 
+  // const limitExceed = () => {
+  //   if (limit) {
+  //     console.log('hello');
+  //     return <p>Limit Exceeded</p>;
+  //   }
+  // };
   const getModalBody = () => {
     if (!isError) {
       return (
@@ -89,7 +97,13 @@ function EditorNavComponent({
         </DropdownMenu>
       </ButtonDropdown>
       <div>
-        <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>Submit</Button>
+        <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>
+          {limit ? (
+            <>Limit Exceeded</>
+          ) : (
+            <>Submit</>
+          )}
+        </Button>
         {getFinishButton()}
       </div>
 
@@ -114,6 +128,7 @@ function EditorNavComponent({
           <Button color='success' onClick={handleFinish}>Finish</Button>
         </ModalFooter>
       </Modal>
+
     </Nav>
   );
 }
@@ -145,6 +160,7 @@ EditorNavComponent.propTypes = {
   marks: PropTypes.number.isRequired,
   isError: PropTypes.bool.isRequired,
   isLoading:PropTypes.bool.isRequired,
+  limit:PropTypes.bool.isRequired,
 };
 
 export default React.memo(EditorNavComponent);

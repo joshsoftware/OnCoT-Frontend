@@ -16,7 +16,6 @@ import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/edi
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 import isEmpty from 'utils/isEmpty';
-import local from 'utils/local';
 
 function EditorContainer() {
   const dispatch = useDispatch();
@@ -32,8 +31,6 @@ function EditorContainer() {
     testcasesPassed, marks, isLoading } = useSelector(
     (state) => state.codeSubmissionReducer,
   );
-
-  console.log(submissionAllowed);
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,
@@ -59,6 +56,7 @@ function EditorContainer() {
     },
     [dispatch],
   );
+  const [limit, setlimit] = useState(false);
   const [modal, setModal] = useState(false);
   const [finishModal, setFinishModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -98,15 +96,19 @@ function EditorContainer() {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    const obj = {
-      code,
-      languageId,
-      id,
-      submissionAllowed,
-      candidateId,
-    };
-    dispatch(submitRequest(obj));
-    toggle();
+    if (submissionAllowed > 0) {
+      const obj = {
+        code,
+        languageId,
+        id,
+        submissionAllowed,
+        candidateId,
+      };
+      dispatch(submitRequest(obj));
+      toggle();
+    } else {
+      setlimit(!limit);
+    }
   }, [code, languageId, id, submissionAllowed, candidateId]);
 
   const handleFinish = useCallback(() => {
@@ -134,6 +136,7 @@ function EditorContainer() {
         toggleFinish={toggleFinish}
         finishModal={finishModal}
         isLoading={isLoading}
+        limit={limit}
       />
       <EditorPadComponent
         id='editor'

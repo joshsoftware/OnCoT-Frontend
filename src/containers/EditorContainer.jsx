@@ -27,9 +27,10 @@ function EditorContainer() {
     (state) => state.languageReducer,
   );
 
-  const { isError, errorMessage, responsedata:{
-    submissionAllowed, totalTestcases, testcasesPassed, marks,
-  }, isLoading } = useSelector((state) => state.codeSubmissionReducer);
+  const { isError, errorMessage, submissionAllowed, totalTestcases,
+    testcasesPassed, marks, isLoading } = useSelector(
+    (state) => state.codeSubmissionReducer,
+  );
 
   const { statement: { id, submissionCount } } = useSelector(
     (state) => state.problemStatementReducer,

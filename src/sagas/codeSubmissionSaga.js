@@ -19,7 +19,7 @@ export function* codeSubmissionSaga(action) {
 
   try {
     const response = yield call(codeSubmissionPostApi, data);
-    yield put(submitAction(response.data));
+    yield put(submitAction(response.data.data));
   } catch (error) {
     yield put(submitRequestFailed(error.message));
   }

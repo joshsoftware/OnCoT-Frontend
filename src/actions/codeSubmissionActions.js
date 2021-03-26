@@ -5,9 +5,9 @@ export const submitRequest = (data) => ({
   payload: { ...data },
 });
 
-export const submitAction = (responsedata) => ({
+export const submitAction = (payload) => ({
   type: CODE_SUBMISSION.SET_DETAILS,
-  payload: { ...responsedata },
+  payload: { ...payload },
 });
 
 export const submitRequestFailed = (requestError) => ({

@@ -57,7 +57,7 @@ function EditorNavComponent({
       );
     }
     return (
-      <p className='text-danger'>{errorMessage}</p>
+      <p className='text-white'>{errorMessage}</p>
     );
   };
 
@@ -95,22 +95,22 @@ function EditorNavComponent({
       </div>
 
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
-        <ModalHeader className='bg-success text-white' toggle={toggle}>Final Output</ModalHeader>
-        <ModalBody>
+        <ModalHeader className='bg-dark text-white border-0' toggle={toggle}>Final Output</ModalHeader>
+        <ModalBody className='bg-secondary border-0 text-white'>
           {loading()}
           {getModalBody()}
         </ModalBody>
-        <ModalFooter className='border-0'>
+        <ModalFooter className='border-0 bg-secondary'>
           <Button color='danger' onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
 
       <Modal className='modal-color' isOpen={finishModal} toggle={toggleFinish}>
-        <ModalHeader className='bg-success text-white' toggle={toggleFinish}>Finish the test</ModalHeader>
-        <ModalBody>
+        <ModalHeader className='bg-dark text-white border-0' toggle={toggleFinish}>Finish the test</ModalHeader>
+        <ModalBody className='bg-secondary border-0 text-white'>
           <p>Do you want to Submit the test?</p>
         </ModalBody>
-        <ModalFooter className='border-0'>
+        <ModalFooter className='border-0 bg-secondary'>
           <Button color='danger' onClick={toggleFinish}>Cancel</Button>
           <Button color='success' onClick={handleFinish}>Finish</Button>
         </ModalFooter>

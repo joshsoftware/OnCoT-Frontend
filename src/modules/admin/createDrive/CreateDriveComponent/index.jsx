@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useReducer } from 'react';
-
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
   Container,
   Row,
@@ -9,88 +9,25 @@ import {
   Input,
   Table,
   Button,
+  Spinner,
 } from 'core-components';
-import { reducer } from '../CreateDriveCotainer/reducer';
 
-const data = [
-  {
-    problemId: '1',
-    problemTitle: 'Title 1',
-    problemCategory: 'Category 1',
-    problemDifficulty: 'Difficulty 1',
-    problemMarks: 'Marks 1',
-  },
-  {
-    problemId: '2',
-    problemTitle: 'Title 2',
-    problemCategory: 'Category 2',
-    problemDifficulty: 'Difficulty 2',
-    problemMarks: 'Marks 2',
-  },
-  {
-    problemId: '3',
-    problemTitle: 'Title 3',
-    problemCategory: 'Category 3',
-    problemDifficulty: 'Difficulty 3',
-    problemMarks: 'Marks 3',
-  },
-  {
-    problemId: '4',
-    problemTitle: 'Title 4',
-    problemCategory: 'Category 4',
-    problemDifficulty: 'Difficulty 4',
-    problemMarks: 'Marks 4',
-  },
-  {
-    problemId: '5',
-    problemTitle: 'Title 5',
-    problemCategory: 'Category 5',
-    problemDifficulty: 'Difficulty 5',
-    problemMarks: 'Marks 5',
-  },
-];
+const CreateDriveComponent = (props) => {
+  const {
+    renderTableData,
+    handleDriveNameChange,
+    handleDriveDescriptionChange,
+    handleDriveStartChange,
+    handleDriveEndChange,
+    handleSelectedProblemChange,
+    data,
+    problemLoading,
+    onCreateDriveSubmit,
+  } = props;
 
-const CreateDriveComponent = () => {
-  const initialProblemsState = {
-    currentProblems: [],
-  };
-  const [addedProblems, setCurrentProblems] = useReducer(
-    reducer,
-    initialProblemsState,
-  );
-
-  const renderTableData = useCallback(() => {
-    return addedProblems.currentProblems.map((val, index) => {
-      const {
-        problemId,
-        problemTitle,
-        problemCategory,
-        problemDifficulty,
-        problemMarks,
-      } = val;
-
-      return (
-        <tr key={problemId}>
-          <td>{problemId}</td>
-          <td>{problemTitle}</td>
-          <td>{problemCategory}</td>
-          <td>{problemDifficulty}</td>
-          <td>{problemMarks}</td>
-        </tr>
-      );
-    });
-  }, [addedProblems.currentProblems]);
-
-  useEffect(() => {
-    const e = document.getElementById('problems');
-
-    e.addEventListener('change', (event) => {
-      setCurrentProblems(data[event.target.value - 1]);
-      addedProblems.currentProblems.push(data[event.target.value - 1]);
-    });
-
-    renderTableData();
-  }, [setCurrentProblems]);
+  if (problemLoading) {
+    return <Spinner />;
+  }
 
   return (
     <Container fluid className='h-100'>
@@ -104,21 +41,41 @@ const CreateDriveComponent = () => {
               <Label>
                 <h4>Drive Title</h4>
               </Label>
-              <Input type='text' placeholder='Enter drive title' />
+              <Input
+                type='text'
+                placeholder='Enter drive title'
+                onChange={handleDriveNameChange}
+              />
             </FormGroup>
+
+            <Row className='px-3'>
+              <FormGroup className='px-3 w-50'>
+                <Label>
+                  <h4>Drive Description</h4>
+                </Label>
+                <Input
+                  type='textarea'
+                  placeholder='Enter drive title'
+                  onChange={handleDriveDescriptionChange}
+                />
+              </FormGroup>
+            </Row>
 
             <Row className='px-3 w-100 d-flex'>
               <FormGroup className='pt-3 px-3 w-25'>
                 <Label>
                   <h4>Drive Start Date</h4>
                 </Label>
-                <Input type='date' />
+                <Input
+                  type='datetime-local'
+                  onChange={handleDriveStartChange}
+                />
               </FormGroup>
               <FormGroup className='pt-3 w-25'>
                 <Label>
-                  <h4>Drive Start Date</h4>
+                  <h4>Drive End Date</h4>
                 </Label>
-                <Input type='date' />
+                <Input type='datetime-local' onChange={handleDriveEndChange} />
               </FormGroup>
             </Row>
 
@@ -154,11 +111,12 @@ const CreateDriveComponent = () => {
                     className='w-100'
                     id='problems'
                     value={data.problemId}
+                    onChange={handleSelectedProblemChange}
                   >
                     {data.map((e, key) => {
                       return (
-                        <option key={e.problemId} value={e.problemId}>
-                          {e.problemTitle}
+                        <option key={e.id} value={e.id}>
+                          {e.title}
                         </option>
                       );
                     })}
@@ -167,7 +125,7 @@ const CreateDriveComponent = () => {
               </FormGroup>
             </Row>
 
-            <Row className='px-3 w-100 d-flex'>
+            {/* <Row className='px-3 w-100 d-flex'>
               <FormGroup className='pt-3 pl-3 w-50'>
                 <Label>
                   <h4>Reviewers</h4>
@@ -210,15 +168,27 @@ const CreateDriveComponent = () => {
                   </select>
                 </Row>
               </FormGroup>
-            </Row>
+                  </Row> */}
             <Row className='p-3'>
-              <Button>Create Drive</Button>
+              <Button onClick={onCreateDriveSubmit}>Create Drive</Button>
             </Row>
           </Form>
         </Row>
       </div>
     </Container>
   );
+};
+
+CreateDriveComponent.propTypes = {
+  renderTableData: PropTypes.func.isRequired,
+  handleDriveNameChange: PropTypes.func.isRequired,
+  handleDriveDescriptionChange: PropTypes.func.isRequired,
+  handleDriveStartChange: PropTypes.func.isRequired,
+  handleDriveEndChange: PropTypes.func.isRequired,
+  handleSelectedProblemChange: PropTypes.func.isRequired,
+  data: PropTypes.string.isRequired,
+  problemLoading: PropTypes.bool.isRequired,
+  onCreateDriveSubmit: PropTypes.func.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

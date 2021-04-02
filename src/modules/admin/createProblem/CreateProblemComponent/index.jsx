@@ -20,7 +20,6 @@ const CreateProblemComponent = ({
   message,
   isSuccess,
 }) => {
-  console.log(message, isSuccess);
   const problemSuccess = () => {
     if (isSuccess) {
       return <h6 className='text-success pl-5 pt-2'>{message}</h6>;
@@ -67,13 +66,14 @@ const CreateProblemComponent = ({
           </FormGroup>
 
           <Row className='p-3'>
-            <Button className='' onClick={handleSubmit}>Create Problem</Button>
+            <Button className='' onClick={handleSubmit}>
+              Create Problem
+            </Button>
             {problemSuccess()}
           </Row>
         </Form>
       </Row>
       <Row>
-
         <Row className='p-3 w-100 d-flex'>
           <FormGroup className='pt-3 pl-3 w-50'>
             <Label>
@@ -130,9 +130,9 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
-  handleSubmit:PropTypes.func.isRequired,
-  message:PropTypes.string.isRequired,
-  isSuccess:PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
 };
 
 export default React.memo(CreateProblemComponent);

@@ -2,12 +2,15 @@ import axios from 'axios';
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
 
 import CreateDriveComponent from 'modules/admin/createDrive/CreateDriveComponent';
+import { Alert } from 'core-components';
 
 import { SERVER_URL } from 'constants/appConstants';
 import local from 'utils/local';
 import { createDriveRequestAction } from 'redux/admin/createDrive/action';
 import { useDispatch } from 'react-redux';
-import { reducer, initialState } from './reducer';
+import reducer, {
+  initialState,
+} from 'modules/admin/createDrive/CreateDriveCotainer/reducer';
 
 const CreateDriveContainer = () => {
   const [createDrive, setCreateDrive] = useReducer(reducer, initialState);
@@ -31,7 +34,9 @@ const CreateDriveContainer = () => {
         setProblemsData(response.data.data.problems);
         setProblemLoading(false);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        return <Alert className='danger'> {error} </Alert>;
+      });
   }, []);
 
   const renderTableData = useCallback(() => {

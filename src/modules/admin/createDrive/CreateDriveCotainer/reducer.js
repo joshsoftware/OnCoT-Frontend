@@ -17,7 +17,7 @@ export const initialState =
   problemLoading: true,
 };
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'name':

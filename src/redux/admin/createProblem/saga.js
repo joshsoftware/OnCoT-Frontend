@@ -17,7 +17,6 @@ export function* createProblemSaga(action) {
   };
   try {
     const response = yield call(createProblemPostApi, data);
-    console.log(response);
     yield put(createProblemSuccessAction(response.data.message));
   } catch (error) {
     yield put(createProblemFailureAction(error.message));

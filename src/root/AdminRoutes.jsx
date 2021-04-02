@@ -14,9 +14,11 @@ function AdminRoutes() {
     <Switch>
       <Route exact path={path} component={AdminHomeComponent} />
 
-      <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
-
-      <Route exact path={path + ADMIN_ROUTES.LOGIN} component={LoginContainer} />
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.LOGIN}
+        component={LoginContainer}
+      />
 
       <ProtectedAdminRoute
         path={path + ADMIN_ROUTES.HOME}

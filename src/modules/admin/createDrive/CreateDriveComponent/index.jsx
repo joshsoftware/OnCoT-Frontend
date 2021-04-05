@@ -21,11 +21,11 @@ const CreateDriveComponent = (props) => {
     handleDriveEndChange,
     handleSelectedProblemChange,
     data,
-    problemLoading,
+    problemIsLoading,
     onCreateDriveSubmit,
   } = props;
 
-  if (problemLoading) {
+  if (problemIsLoading) {
     return <Spinner />;
   }
 
@@ -95,7 +95,7 @@ const CreateDriveComponent = (props) => {
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>{renderTableData()}</tbody>
+                  <tbody>{renderTableData}</tbody>
                 </Table>
               </FormGroup>
 
@@ -142,7 +142,7 @@ CreateDriveComponent.propTypes = {
   handleDriveEndChange: PropTypes.func.isRequired,
   handleSelectedProblemChange: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
-  problemLoading: PropTypes.bool.isRequired,
+  problemIsLoading: PropTypes.bool.isRequired,
   onCreateDriveSubmit: PropTypes.func.isRequired,
 };
 

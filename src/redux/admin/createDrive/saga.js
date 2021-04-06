@@ -12,7 +12,6 @@ export function* createDriveSaga(action) {
   const { postData, problemId } = action.payload;
   try {
     const response = yield call(createDrivePostApi, postData, problemId);
-    console.log('in saga response', response);
     yield put(createDriveSuccessAction(response.data));
   } catch (error) {
     yield put(createDriveFailureAction(error.message));

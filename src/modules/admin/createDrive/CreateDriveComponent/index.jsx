@@ -27,7 +27,6 @@ const CreateDriveComponent = (props) => {
     message,
   } = props;
   const nothing = '';
-  console.log('message in comp', message);
 
   if (problemIsLoading) {
     return <Spinner />;

@@ -14,7 +14,7 @@ export const initialState = {
   accessToken: local.getItem('accessToken') || '',
 };
 
-const adminLoginReducer = produce((state = initialState, action) => {
+const adminLoginReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case ADMIN_LOGIN.ADMIN_SUCCESS_ACTION:

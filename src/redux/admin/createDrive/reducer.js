@@ -22,7 +22,7 @@ export const initialState =
 
     };
 
-const createDriveReducer = produce((state = initialState, action) => {
+const createDriveReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_DRIVE.CREATE_DRIVE_SUCCESS_ACTION:

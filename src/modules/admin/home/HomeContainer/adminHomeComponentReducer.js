@@ -2,7 +2,7 @@ export const initialHomeState = {
   currentScreen:'HOME',
 };
 
-export const adminHomeComponentReducer = (state = initialHomeState, action) => {
+export const adminHomeComponentReducer = (state = initialHomeState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case 'HOME':

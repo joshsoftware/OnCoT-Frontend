@@ -10,7 +10,7 @@ export const initialState = {
   errorMessage:'',
 };
 
-const createProblemReducer = produce((state = initialState, action) => {
+const createProblemReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_PROBLEM.CREATE_PROBLEM_SUCCESS_ACTION:

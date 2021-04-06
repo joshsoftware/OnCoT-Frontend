@@ -10,7 +10,7 @@ import { getTimer } from 'apis/timerApi';
 
 describe('Timer Saga', () => {
   let gen;
-  let response = {
+  const response = {
     data: 7200,
   };
 

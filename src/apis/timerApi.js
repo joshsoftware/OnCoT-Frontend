@@ -1,3 +1,12 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
+import { SERVER_URL } from 'constants/appConstants';
+import { useSelector } from 'react-redux';
+import local from 'utils/local';
 
-export const getTimer = () => axios.get('https://www.random.org/integers/?num=1&min=602&max=603&col=1&base=10&format=plain&rnd=new');
+export const getTimer = () => {
+  const driveId = local.getItem('driveId');
+  const candidateId = local.getItem('candidateId');
+  return request.get(
+    `${SERVER_URL}drives/${driveId}/candidates/${candidateId}/candidate_test_time_left`,
+  );
+};

@@ -12,3 +12,9 @@ export const CANDIDATE_ROUTES = {
   RULES_AND_PROFILE: '/profile/create',
   ENDPAGE:'/endpage',
 };
+
+export const ADMIN_ROUTES = {
+  HOME: '/home',
+  LOGIN: '/login',
+  CREATE_PROBLEM: '/create/problem',
+};

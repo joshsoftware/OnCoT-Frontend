@@ -22,7 +22,12 @@ const CreateProblemComponent = ({
 }) => {
   const problemSuccess = () => {
     if (isSuccess) {
-      return <h6 className='text-success pl-5 pt-2'>{message}</h6>;
+      return (
+        <>
+          <h6 className='text-success pl-5 pt-2'>{message}</h6>
+          <h6 className='text-success pl-5 pt-2'>Now you can add Test cases For the Problem statement</h6>
+        </>
+      );
     }
   };
   return (
@@ -30,17 +35,18 @@ const CreateProblemComponent = ({
       <Row className='px-3 pt-3'>
         <h4>Add New Problem</h4>
       </Row>
-      <Row className='p-3'>
+      <Row className='p-3' onSubmit={handleSubmit}>
         <Form className='w-100'>
           <Row>
             <FormGroup className='px-3 w-50'>
               <Label>
-                <h6>Drive Title</h6>
+                <h6>Problem Title</h6>
               </Label>
               <Input
                 type='text'
                 placeholder='Enter drive title'
                 onChange={handleTitleChange}
+                required
               />
             </FormGroup>
             <FormGroup className='px-3 w-50'>
@@ -51,6 +57,7 @@ const CreateProblemComponent = ({
                 type='number'
                 placeholder='Enter Submission Count'
                 onChange={handleCountChange}
+                required
               />
             </FormGroup>
           </Row>
@@ -62,11 +69,12 @@ const CreateProblemComponent = ({
               name='text'
               id='exampleText'
               onChange={handleDescriptionChange}
+              required
             />
           </FormGroup>
 
           <Row className='p-3'>
-            <Button className='' onClick={handleSubmit}>
+            <Button className=''>
               Create Problem
             </Button>
             {problemSuccess()}
@@ -75,51 +83,7 @@ const CreateProblemComponent = ({
       </Row>
       <Row>
         <Row className='p-3 w-100 d-flex'>
-          <FormGroup className='pt-3 pl-3 w-50'>
-            <Label>
-              <h6>Test Cases</h6>
-            </Label>
-            <Table className='bg-dark text-white' striped>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Input</th>
-                  <th>Output</th>
-                  <th>Marks</th>
-                </tr>
-              </thead>
-              <tbody />
-            </Table>
-          </FormGroup>
-
-          <FormGroup className='ml-5 p-3'>
-            <Label>
-              <h6>Add New Test case</h6>
-            </Label>
-            <FormGroup>
-              <Label>
-                <h6>Input</h6>
-              </Label>
-              <Input type='text' placeholder='Input' />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Output</h6>
-              </Label>
-              <Input type='text' placeholder='Output' />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Marks</h6>
-              </Label>
-              <Input type='text' placeholder='Marks' />
-            </FormGroup>
-
-            <Button className='m-2'>Add</Button>
-            <Button className='m-2'>Cancel</Button>
-          </FormGroup>
+          {/* Add Test Case Component */}
         </Row>
       </Row>
     </Container>

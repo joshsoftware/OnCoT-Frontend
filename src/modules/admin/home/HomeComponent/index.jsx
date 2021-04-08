@@ -6,7 +6,7 @@ import AdminHeader from 'shared-components/AdminHeader';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
 import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
+import ProblemsListContainer from 'modules/admin/problemsList/ProblemsListContainer';
 
 import './style.css';
 
@@ -29,7 +29,7 @@ const HomeComponent = (props) => {
           )}
 
           {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
-            <CreateProblemContainer />
+            <ProblemsListContainer />
           )}
         </Col>
       </Row>

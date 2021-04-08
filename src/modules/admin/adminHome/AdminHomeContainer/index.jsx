@@ -17,11 +17,44 @@ const CreateDriveContainer = () => {
     setQueryIsLoading(true);
   };
 
-  const renderOngoingDrives = useMemo(() => {
-    if (typeof driveDetailsData.ongoingDrives === 'undefined') {
-      return;
+  const ongoing = 'ongoingDrives';
+  const upcoming = 'upcomingDrives';
+  const completed = 'completedDrives';
+
+  const renderTableData = (driveStatus) => {
+    switch (driveStatus) {
+      case ongoing:
+        if (typeof driveDetailsData.ongoingDrives === 'undefined') {
+          return false;
+        }
+        break;
+      case upcoming:
+        if (typeof driveDetailsData.upcomingDrives === 'undefined') {
+          return false;
+        }
+        break;
+      case completed:
+        if (typeof driveDetailsData.completedDrives === 'undefined') {
+          return false;
+        }
+        break;
+      default:
+        return;
     }
-    return driveDetailsData.ongoingDrives.map((val, index) => {
+    const { ongoingDrives, upcomingDrives, completedDrives } = driveDetailsData;
+    const getCurrentRenderDrive = () => {
+      switch (driveStatus) {
+        case ongoing:
+          return ongoingDrives;
+        case upcoming:
+          return upcomingDrives;
+        case completed:
+          return completedDrives;
+        default:
+          return false;
+      }
+    };
+    return getCurrentRenderDrive().map((val, index) => {
       const { id, name, start_time, end_time } = val;
       if (name.toLowerCase().indexOf(q) > -1) {
         return (
@@ -30,36 +63,11 @@ const CreateDriveContainer = () => {
             <td>{name}</td>
             <td>{start_time}</td>
             <td>{end_time}</td>
-            <td>
-              <Button>Edit</Button>
-            </td>
-            <td>
-              <Button>Candidates</Button>
-            </td>
-          </tr>
-        );
-      }
-      return false;
-    });
-  }, [driveDetailsData.ongoingDrives]);
-
-  const renderUpcomingDrives = useMemo(() => {
-    if (typeof driveDetailsData.upcomingDrives === 'undefined') {
-      return;
-    }
-    return driveDetailsData.upcomingDrives.map((val, index) => {
-      const { id, name, start_time, end_time } = val;
-
-      if (name.toLowerCase().indexOf(q) > -1) {
-        return (
-          <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{start_time}</td>
-            <td>{end_time}</td>
-            <td>
-              <Button>Edit</Button>
-            </td>
+            {driveStatus !== completed && (
+              <td>
+                <Button>Edit</Button>
+              </td>
+            )}
             <td>
               <Button>Candidates</Button>
             </td>
@@ -68,31 +76,7 @@ const CreateDriveContainer = () => {
       }
       return false;
     });
-  }, [driveDetailsData.upcomingDrives]);
-
-  const renderCompletedDrives = useMemo(() => {
-    if (typeof driveDetailsData.completedDrives === 'undefined') {
-      return;
-    }
-    return driveDetailsData.completedDrives.map((val, index) => {
-      const { id, name, start_time, end_time } = val;
-
-      if (name.toLowerCase().indexOf(q) > -1) {
-        return (
-          <tr key={id}>
-            <td>{id}</td>
-            <td>{name}</td>
-            <td>{start_time}</td>
-            <td>{end_time}</td>
-            <td>
-              <Button>Candidates</Button>
-            </td>
-          </tr>
-        );
-      }
-      return false;
-    });
-  }, [driveDetailsData.completedDrives]);
+  };
 
   useEffect(async () => {
     const data = await getDriveDetails();
@@ -115,10 +99,7 @@ const CreateDriveContainer = () => {
 
   return (
     <AdminHomeComponent
-      driveDetailsData={driveDetailsData}
-      renderOngoingDrives={renderOngoingDrives}
-      renderUpcomingDrives={renderUpcomingDrives}
-      renderCompletedDrives={renderCompletedDrives}
+      renderTableData={renderTableData}
       handleQueryChange={handleQueryChange}
       query={q}
     />

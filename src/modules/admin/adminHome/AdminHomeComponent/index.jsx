@@ -17,15 +17,44 @@ import {
 } from 'core-components';
 
 const AdminHomeComponent = (props) => {
-  const {
-    driveDetailsData,
-    renderOngoingDrives,
-    renderCompletedDrives,
-    renderUpcomingDrives,
-    handleQueryChange,
-    query,
-  } = props;
+  const { handleQueryChange, query, renderTableData } = props;
+  const ongoingDrives = 'ongoingDrives';
+  const upcomingDrives = 'upcomingDrives';
+  const completedDrives = 'completedDrives';
   const dispatch = useDispatch();
+
+  const returnTable = (driveStatus) => {
+    return (
+      <Row className='py-2'>
+        <Col xs={10} lg={10} xl={10}>
+          <thead>
+            <h3 className='px-3'>
+              {driveStatus === ongoingDrives
+                ? 'Ongoing Drives'
+                : 'Upcoming Drives'}
+            </h3>
+          </thead>
+          <Table dark className='table-bordered'>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Organisation Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Edit</th>
+                <th>Candidates</th>
+              </tr>
+            </thead>
+            <tbody className='px-3'>
+              {driveStatus === ongoingDrives
+                ? renderTableData('ongoingDrives')
+                : renderTableData('upcomingDrives')}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+    );
+  };
 
   return (
     <Container fluid className='height-90'>
@@ -44,46 +73,8 @@ const AdminHomeComponent = (props) => {
           </Button>
         </Col>
       </Row>
-      <Row className='py-2'>
-        <Col xs={10} lg={10} xl={10}>
-          <thead>
-            <h3 className='px-3'>Ongoing Drives</h3>
-          </thead>
-          <Table dark className='table-bordered'>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Organisation Name</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Edit</th>
-                <th>Candidates</th>
-              </tr>
-            </thead>
-            <tbody className='px-3'>{renderOngoingDrives}</tbody>
-          </Table>
-        </Col>
-      </Row>
-      <Row className='py-2'>
-        <Col xs={10} lg={10} xl={10}>
-          <thead>
-            <h3 className='px-3'>Upcoming Drives</h3>
-          </thead>
-          <Table dark className='table-bordered overflow-y-scroll'>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Organisation Name</th>
-                <th>From</th>
-                <th>To</th>
-                <th>Edit</th>
-                <th>Candidates</th>
-              </tr>
-            </thead>
-            <tbody className='px-3'>{renderUpcomingDrives}</tbody>
-          </Table>
-        </Col>
-      </Row>
+      {returnTable(ongoingDrives)}
+      {returnTable(upcomingDrives)}
       <Row className='py-2'>
         <Col xs={10} lg={10} xl={10}>
           <b>
@@ -99,7 +90,7 @@ const AdminHomeComponent = (props) => {
                 <th>Candidates</th>
               </tr>
             </thead>
-            <tbody className='px-3'>{renderCompletedDrives}</tbody>
+            <tbody className='px-3'>{renderTableData(completedDrives)}</tbody>
           </Table>
         </Col>
       </Row>
@@ -108,10 +99,7 @@ const AdminHomeComponent = (props) => {
 };
 
 AdminHomeComponent.propTypes = {
-  driveDetailsData: PropTypes.string.isRequired,
-  renderOngoingDrives: PropTypes.func.isRequired,
-  renderUpcomingDrives: PropTypes.func.isRequired,
-  renderCompletedDrives: PropTypes.func.isRequired,
+  renderTableData: PropTypes.func.isRequired,
   handleQueryChange: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
 };

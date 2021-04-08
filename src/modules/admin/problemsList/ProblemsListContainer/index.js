@@ -1,11 +1,11 @@
-import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListComponent';
 import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
+
+import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListComponent';
+
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
-import { get } from 'redux/admin/apiHelper';
-import { SERVER_URL } from 'constants/appConstants';
-import { Alert } from 'core-components';
+
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const ProblemsListContainer = () => {
   const history = useHistory();

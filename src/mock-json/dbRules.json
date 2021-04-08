@@ -222,5 +222,27 @@
       "id": 47,
       "name": "Basic (FBC 1.07.1)"
     }
+  ],
+  "data": [
+    {
+      "candidate_id": 1,
+      "score":4,
+      "end_times":"12:12:12"
+    },
+    {
+      "candidate_id": 2,
+      "score":10,
+      "end_times":"12:12:12"
+    },
+    {
+      "candidate_id": 3,
+      "score":12,
+      "end_times":"12:12:12"
+    },
+    {
+      "candidate_id": 4,
+      "score":0,
+      "end_times":"12:12:12"
+    }
   ]
 }

@@ -8,14 +8,22 @@ import Loading from 'shared-components/Loading';
 import './landingPage.css';
 
 function LandingPageComponent(props) {
-  const { startTime, isError, errorMessage, isLoading, handleClick, driveTime } = props;
+  const {
+    startTime,
+    isError,
+    errorMessage,
+    isLoading,
+    handleClick,
+    driveTimer,
+  } = props;
   const expired = 'Expired';
-
-  const loadingPage = () => {
-    if (isLoading) {
-      return <Loading className='text-dark' />;
-    }
-  };
+  if (isLoading) {
+    return (
+      <div className='overview-block text-center text-white'>
+        <Alert color='success'> Loading</Alert>
+      </div>
+    );
+  }
 
   if (isError) {
     return (
@@ -28,19 +36,15 @@ function LandingPageComponent(props) {
   return (
     <Container fluid className='dark-l'>
       <div className='custom-padding text-center text-white'>
-        {loadingPage()}
         <h3>Welcome to</h3>
-        <h1 className='font-weight-bolder title-color'>
-          OnCoT
-        </h1>
+        <h1 className='font-weight-bolder title-color'>OnCoT</h1>
         <h4 className='my-5'>
           {`Your test will start on ${moment(startTime).format('LLL')}`}
         </h4>
         <h3 className='text-success'>
-          {driveTime === expired ? null : driveTime}
+          {driveTimer === expired ? null : driveTimer}
         </h3>
-        {driveTime === expired && (
-        <div className='module'>
+        {isLoading && (
           <Button
             className='px-5 custom-color btn-style'
             size='lg'
@@ -48,7 +52,6 @@ function LandingPageComponent(props) {
           >
             Continue
           </Button>
-        </div>
         )}
       </div>
     </Container>
@@ -61,7 +64,7 @@ LandingPageComponent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
-  driveTime: PropTypes.string.isRequired,
+  driveTimer: PropTypes.string.isRequired,
 };
 
 export default React.memo(LandingPageComponent);

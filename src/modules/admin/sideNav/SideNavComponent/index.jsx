@@ -1,8 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import { Col, Row, Button, Container } from 'core-components';
+
 import './sideNavStyle.css';
-import { ROUTES } from 'constants/routeConstants';
-import { useDispatch, useSelector } from 'react-redux';
 
 const SideNavComponent = () => {
   const dispatch = useDispatch();

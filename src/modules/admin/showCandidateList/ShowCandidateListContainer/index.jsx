@@ -10,7 +10,6 @@ import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const ShowCandidateListContainer = () => {
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
-  console.log(id);
   const history = useHistory();
   const [allCandidates, setAllCandidates] = useState([]);
   const [candidtesLodaning, SetCandidtesLodaning] = useState(true);

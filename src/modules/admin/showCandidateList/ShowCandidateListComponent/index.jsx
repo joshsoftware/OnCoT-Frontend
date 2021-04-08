@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const ShowCandidateListComponent = (props) => {
   const { renderTableData, candidtesLodaning, handleAddCandidateClick } = props;
 
-  // if (candidtesLodaning) {
-  //   return <Spinner />;
-  // }
+  if (candidtesLodaning) {
+    return <Spinner />;
+  }
   return (
     <>
       <Button onClick={handleAddCandidateClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>Add Candidates</Button>

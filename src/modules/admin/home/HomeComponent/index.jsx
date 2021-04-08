@@ -11,7 +11,7 @@ import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
 import './style.css';
-ss
+
 const HomeComponent = (props) => {
   const { currentHomeComponent } = props;
 

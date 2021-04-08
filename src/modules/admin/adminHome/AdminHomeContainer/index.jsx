@@ -4,7 +4,6 @@ import getDriveDetails from 'modules/admin/adminHome/AdminHomeContainer/getDrive
 import { Button } from 'core-components';
 
 const CreateDriveContainer = () => {
-  const und = undefined;
   const [driveDetailsIsLoading, setDriveDetailsIsLoading] = useState(true);
   const [driveDetailsData, setDriveDetailsData] = useState([]);
 
@@ -17,7 +16,7 @@ const CreateDriveContainer = () => {
   };
 
   const renderOngoingDrives = useMemo(() => {
-    if (driveDetailsData.ongoingDrives === und) {
+    if (typeof driveDetailsData.ongoingDrives === 'undefined') {
       return;
     }
     return driveDetailsData.ongoingDrives.map((val, index) => {
@@ -43,7 +42,7 @@ const CreateDriveContainer = () => {
   }, [driveDetailsData.ongoingDrives]);
 
   const renderUpcomingDrives = useMemo(() => {
-    if (driveDetailsData.upcomingDrives === und) {
+    if (typeof driveDetailsData.upcomingDrives === 'undefined') {
       return;
     }
     return driveDetailsData.upcomingDrives.map((val, index) => {
@@ -70,7 +69,7 @@ const CreateDriveContainer = () => {
   }, [driveDetailsData.upcomingDrives]);
 
   const renderCompletedDrives = useMemo(() => {
-    if (driveDetailsData.completedDrives === und) {
+    if (typeof driveDetailsData.completedDrives === 'undefined') {
       return;
     }
     return driveDetailsData.completedDrives.map((val, index) => {

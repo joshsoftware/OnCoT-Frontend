@@ -1,13 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
 import DriveResultComponent from '../DriveResultComponent';
 
 const DriveResultContainer = () => {
-  const { data } = useSelector((state) => state.driveResultReducer);
+  const { data, errorMessage, isError, isLoading } =
+   useSelector((state) => state.driveResultReducer);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(driveResultRequestAction());
+  }, [dispatch]);
 
-  dispatch(driveResultRequestAction());
   const renderTableData = useMemo(() => {
     return data.map((val, index) => {
       const {
@@ -27,6 +30,9 @@ const DriveResultContainer = () => {
   return (
     <DriveResultComponent
       renderTableData={renderTableData}
+      errorMessage={errorMessage}
+      isError={isError}
+      isLoading={isLoading}
     />
   );
 };

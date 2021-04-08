@@ -13,7 +13,7 @@ export function* driveResultSaga(action) {
     const response = yield call(driveResultPostApi);
     yield put(driveResultSuccessAction(response.data));
   } catch (error) {
-    yield put(driveResultFailureAction(error));
+    yield put(driveResultFailureAction(error.message));
   }
 }
 

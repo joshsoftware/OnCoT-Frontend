@@ -3,7 +3,7 @@ import produce from 'immer';
 import { DRIVE_RESULT } from 'redux/admin/driveResult/actionConstants';
 
 export const initialState = {
-  data:{},
+  data:[],
   isSuccess:false,
   isLoading:false,
   isError:false,

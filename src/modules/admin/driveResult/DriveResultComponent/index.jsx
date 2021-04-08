@@ -1,16 +1,35 @@
 import { Container, Row, FormGroup, Label, Table } from 'core-components';
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loading from 'shared-components/Loading';
+import { object } from 'yup/lib/locale';
 
 const DriveResultComponent = ({
   renderTableData,
+  errorMessage,
+  isError,
+  isLoading,
 }) => {
+  const loading = () => {
+    if (isLoading) {
+      return (
+        <Loading className='justify-content-center' />
+      );
+    }
+  };
+  const error = () => {
+    if (isError) {
+      return (<h6 className='text-danger font-weight-light'>{errorMessage}</h6>
+      );
+    }
+  };
+
   return (
-    <Container fluid>
+    <Container fluid className='px-5'>
       <FormGroup>
-        <Label>
-          <h6>Drive Result</h6>
-        </Label>
+        <Row fluid className='p-4 justify-content-center'>
+          <h4>Drive Result</h4>
+        </Row>
         <Table dark>
           <thead>
             <tr>
@@ -19,6 +38,8 @@ const DriveResultComponent = ({
               <th>Test End Time</th>
             </tr>
           </thead>
+          {error()}
+          {loading()}
           <tbody className='bg-secondary'>
             { renderTableData }
           </tbody>
@@ -28,7 +49,11 @@ const DriveResultComponent = ({
   );
 };
 DriveResultComponent.propTypes = {
-  renderTableData: PropTypes.objectOf(PropTypes.renderTableData).isRequired,
+  renderTableData: PropTypes.checkPropTypes.isRequired,
+
+  errorMessage:PropTypes.string.isRequired,
+  isError:PropTypes.bool.isRequired,
+  isLoading:PropTypes.bool.isRequired,
 };
 
 export default React.memo(DriveResultComponent);

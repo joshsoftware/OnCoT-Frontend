@@ -11,6 +11,7 @@ import {
   Button,
   Table,
 } from 'core-components';
+import { Icon } from 'rsuite';
 
 const CreateProblemComponent = ({
   handleInputChange,
@@ -59,8 +60,8 @@ const CreateProblemComponent = ({
                       <td> {testCase.output} </td>
                       <td> {testCase.marks} </td>
                       <td>
-                        <Button onClick={() => handleOnTestCaseEdit(testCase.id)} className='btn btn-primary'> Edit </Button>
-                        <Button onClick={() => handleOnTestCaseDelete(testCase.id)} style={{ marginLeft: '5px' }} className='btn btn-danger'> Delete </Button>
+                        <Button onClick={() => handleOnTestCaseEdit(testCase.id)} className='btn btn-sm btn-primary'>Edit</Button>
+                        <Button onClick={() => handleOnTestCaseDelete(testCase.id)} className='btn btn-sm btn-danger button_margin'>Delete</Button>
                       </td>
                     </tr>
                   );

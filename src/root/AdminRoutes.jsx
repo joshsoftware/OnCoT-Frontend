@@ -6,7 +6,8 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
+import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
+import CreateProblemComponent from 'modules/admin/createProblem/CreateProblemComponent';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -14,14 +15,25 @@ function AdminRoutes() {
     <Switch>
       <Route exact path={path + ADMIN_ROUTES.HOME} component={HomeContainer} />
 
-      <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
+      {/* To develop Drive result page */}
+      <Route exact path={path + ADMIN_ROUTES.DRIVE_RESULT} component={DriveResultContainer} />
 
-      <Route exact path={path + ADMIN_ROUTES.LOGIN} component={LoginContainer} />
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.LOGIN}
+        component={LoginContainer}
+      />
 
-      {/* <ProtectedAdminRoute
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.CREATE_PROBLEM}
+        component={CreateProblemComponent}
+      />
+
+      <ProtectedAdminRoute
         path={path + ADMIN_ROUTES.HOME}
         component={HomeContainer}
-      /> */}
+      />
 
       <Redirect to={path} />
     </Switch>

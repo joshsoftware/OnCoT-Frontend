@@ -21,7 +21,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
 
   const loadTestCases = useCallback(
     (event) => {
-      console.log(problem_id);
       const data = { problem_id };
       useEffect(async () => {
         const result =  await getTestCasesApi(data);
@@ -82,7 +81,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         problem_id: 2,
       };
       const result = await postTestCaseApi(data);
-      console.log(result);
       if (result.status === 200) {
         data.id = result.data.data.test_case.id;
         setUserState({
@@ -113,7 +111,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
   const handleOnTestCaseUpdate = useCallback(
     async (event) => {
       const { testCases, input, output, marks, id } = userState;
-      console.log(userState);
       const data = {
         input,
         output,
@@ -122,7 +119,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         id,
       };
       const result = await updateTestCaseApi(data);
-      console.log(result);
       let index;
       for (let i = 0; i < testCases.length; i += 1) {
         if (testCases[i].id === id) {
@@ -142,7 +138,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
   // delete testcase api is not yet finalise from backend
   const handleOnTestCaseDelete = useCallback(
     async (id) => {
-      console.log(id);
       const { testCases } = userState;
       const data = {
         id,

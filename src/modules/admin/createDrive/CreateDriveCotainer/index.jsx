@@ -1,40 +1,41 @@
-import axios from 'axios';
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
 
 import CreateDriveComponent from 'modules/admin/createDrive/CreateDriveComponent';
 
-import { SERVER_URL } from 'constants/appConstants';
-import local from 'utils/local';
+import reducer, {
+  initialState,
+} from 'modules/admin/createDrive/CreateDriveCotainer/reducer';
+
 import { createDriveRequestAction } from 'redux/admin/createDrive/action';
-import { useDispatch } from 'react-redux';
-import { reducer, initialState } from './reducer';
+import { Spinner } from 'core-components';
 
 const CreateDriveContainer = () => {
+  const { message } = useSelector((state) => state.createDriveReducer);
+
   const [createDrive, setCreateDrive] = useReducer(reducer, initialState);
-  const [problemLoading, setProblemLoading] = useState(true);
+  const [problemIsLoading, setProblemIsLoading] = useState(true);
   const [problemsData, setProblemsData] = useState([]);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    axios
-      .get(`${SERVER_URL}api/v1/admin/problems`, {
-        headers: {
-          'access-token': local.getItem('accessToken'),
-          'token-type': local.getItem('token-type'),
-          client: local.getItem('client'),
-          expiry: local.getItem('uid'),
-          uid: local.getItem('uid'),
-        },
-      })
-      .then((response) => {
-        setProblemsData(response.data.data.problems);
-        setProblemLoading(false);
-      })
-      .catch((error) => {});
-  }, []);
+  useEffect(async () => {
+    const data = await getProblems();
+    const { problems, problemLoading } = data;
+    if (!problemLoading) {
+      setProblemsData(problems);
+      setProblemIsLoading(problemLoading);
+    }
+  }, [problemIsLoading]);
 
-  const renderTableData = useCallback(() => {
+  const renderTableData = useMemo(() => {
     return createDrive.currentProblems.map((val, index) => {
       const {
         problemId,
@@ -132,6 +133,9 @@ const CreateDriveContainer = () => {
     dispatch(createDriveRequestAction({ postData, problemId }));
   };
 
+  if (problemIsLoading) {
+    return <Spinner />;
+  }
   return (
     <CreateDriveComponent
       renderTableData={renderTableData}
@@ -139,10 +143,11 @@ const CreateDriveContainer = () => {
       handleDriveEndChange={handleDriveEndChange}
       handleDriveNameChange={handleDriveNameChange}
       handleDriveStartChange={handleDriveStartChange}
-      problemLoading={problemLoading}
+      problemIsLoading={problemIsLoading}
       handleSelectedProblemChange={handleSelectedProblemChange}
       data={problemsData}
       onCreateDriveSubmit={onCreateDriveSubmit}
+      message={message}
     />
   );
 };

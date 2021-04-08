@@ -16,5 +16,6 @@ export const CANDIDATE_ROUTES = {
 export const ADMIN_ROUTES = {
   HOME: '/home',
   LOGIN: '/login',
+  DRIVE_RESULT: '/result',
   CREATE_PROBLEM: '/create/problem',
 };

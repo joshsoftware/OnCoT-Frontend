@@ -10,6 +10,7 @@ import {
   Table,
   Button,
   Spinner,
+  Alert,
 } from 'core-components';
 
 const CreateDriveComponent = (props) => {
@@ -21,12 +22,17 @@ const CreateDriveComponent = (props) => {
     handleDriveEndChange,
     handleSelectedProblemChange,
     data,
-    problemLoading,
+    problemIsLoading,
     onCreateDriveSubmit,
+    message,
   } = props;
+  const nothing = '';
 
-  if (problemLoading) {
+  if (problemIsLoading) {
     return <Spinner />;
+  }
+  if (message !== nothing) {
+    return <Alert>{message}</Alert>;
   }
 
   return (
@@ -95,7 +101,7 @@ const CreateDriveComponent = (props) => {
                       <th>Actions</th>
                     </tr>
                   </thead>
-                  <tbody>{renderTableData()}</tbody>
+                  <tbody>{renderTableData}</tbody>
                 </Table>
               </FormGroup>
 
@@ -124,51 +130,6 @@ const CreateDriveComponent = (props) => {
                 </Row>
               </FormGroup>
             </Row>
-
-            {/* <Row className='px-3 w-100 d-flex'>
-              <FormGroup className='pt-3 pl-3 w-50'>
-                <Label>
-                  <h4>Reviewers</h4>
-                </Label>
-                <Table dark>
-                  <thead>
-                    <tr>
-                      <th>Problem Id</th>
-                      <th>Problem Title</th>
-                      <th>Category</th>
-                      <th>Difficulty</th>
-                      <th>Marks</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>{renderTableData()}</tbody>
-                </Table>
-              </FormGroup>
-
-              <FormGroup className='pt-3 px-5 w-25'>
-                <Row>
-                  <Label>
-                    <h4>Add Reviewer to Drive</h4>
-                  </Label>
-                </Row>
-
-                <Row className='pt-3 w-100'>
-                  <select
-                    className='w-100'
-                    id='reviewers'
-                    value={data.problemId}
-                  >
-                    {data.map((e, key) => {
-                      return (
-                        <option key={e.problemId} value={e.problemId}>
-                          {e.problemTitle}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </Row>
-              </FormGroup>
-                  </Row> */}
             <Row className='p-3'>
               <Button onClick={onCreateDriveSubmit}>Create Drive</Button>
             </Row>
@@ -187,8 +148,9 @@ CreateDriveComponent.propTypes = {
   handleDriveEndChange: PropTypes.func.isRequired,
   handleSelectedProblemChange: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
-  problemLoading: PropTypes.bool.isRequired,
+  problemIsLoading: PropTypes.bool.isRequired,
   onCreateDriveSubmit: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

@@ -3,7 +3,7 @@
 }
 
 .fixed{
-    table-layout: fixed;
+    table-layout:auto;
 }
 .fixed td {
     word-wrap: break-word;

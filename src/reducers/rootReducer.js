@@ -14,6 +14,7 @@ import createDriveReducer from 'redux/admin/createDrive/reducer';
 import finishTestReducer from 'reducers/finishTestReducer';
 import createProblemReducer from 'redux/admin/createProblem/reducer';
 import testReducer from 'redux/admin/testCase/reducer';
+import driveResultReducer from 'redux/admin/driveResult/reducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   finishTestReducer,
   createProblemReducer,
   testReducer,
+  driveResultReducer,
 });
 
 export default rootReducer;

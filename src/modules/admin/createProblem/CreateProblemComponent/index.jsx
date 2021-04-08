@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -19,19 +19,17 @@ const CreateProblemComponent = ({
   handleCountChange,
   handleSubmit,
   message,
-  isProblemSuccess,
+  isSuccess,
   isTestCaseSuccess,
-  isTestCaseLoading,
 }) => {
-  console.log(message, isProblemSuccess);
   const problemSuccess = () => {
-    if (isProblemSuccess) {
-      console.log('success');
-    }
-  };
-  const testCaseSuccess = () => {
-    if (!isTestCaseLoading && isTestCaseSuccess) {
-      return <h6 className='text-success pl-5 pt-2'>{message}</h6>;
+    if (isSuccess && isTestCaseSuccess) {
+      return (
+        <>
+          <h6 className='text-success pl-5 pt-2'>{message}</h6>
+          <h6 className='text-success pl-5 pt-2'>Now you can add Test cases For the Problem statement</h6>
+        </>
+      );
     }
   };
   return (
@@ -39,17 +37,18 @@ const CreateProblemComponent = ({
       <Row className='px-3 pt-3'>
         <h4>Add New Problem</h4>
       </Row>
-      <Row className='p-3'>
+      <Row className='p-3' onSubmit={handleSubmit}>
         <Form className='w-100'>
           <Row>
             <FormGroup className='px-3 w-50'>
               <Label>
-                <h6>Drive Title</h6>
+                <h6>Problem Title</h6>
               </Label>
               <Input
                 type='text'
                 placeholder='Enter drive title'
                 onChange={handleTitleChange}
+                required
               />
             </FormGroup>
             <FormGroup className='px-3 w-50'>
@@ -60,6 +59,7 @@ const CreateProblemComponent = ({
                 type='number'
                 placeholder='Enter Submission Count'
                 onChange={handleCountChange}
+                required
               />
             </FormGroup>
           </Row>
@@ -71,16 +71,21 @@ const CreateProblemComponent = ({
               name='text'
               id='exampleText'
               onChange={handleDescriptionChange}
+              required
             />
           </FormGroup>
-          {/* <TestCaseContainer /> */}
-          <UpdateProbTestCaseCntainer problem_id={45} />
           <Row className='p-3'>
-            <Button className='' onClick={handleSubmit}>Create Problem</Button>
+            <Button className=''>
+              Create Problem
+            </Button>
             {problemSuccess()}
-            {testCaseSuccess()}
           </Row>
         </Form>
+      </Row>
+      <Row>
+        <Row className='p-3 w-100 d-flex'>
+          <TestCaseContainer />
+        </Row>
       </Row>
     </Container>
   );
@@ -90,11 +95,10 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
-  handleSubmit:PropTypes.func.isRequired,
-  message:PropTypes.string.isRequired,
   isTestCaseSuccess:PropTypes.bool.isRequired,
-  isTestCaseLoading:PropTypes.bool.isRequired,
-  isProblemSuccess:PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
 };
 
 export default React.memo(CreateProblemComponent);

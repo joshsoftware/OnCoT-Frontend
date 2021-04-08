@@ -57,7 +57,7 @@ const SendEmailInviteContainer = () => {
       setLoading(true);
       post(`${SERVER_URL}/api/v1/invite`, data)
         .then((response) => {
-          if (response.status === 201) {
+          if (response.message === 'ok') {
             setSuccessMessage('Email Invitations Sent Successfully!');
             setEmailsError('');
             setEmails('');

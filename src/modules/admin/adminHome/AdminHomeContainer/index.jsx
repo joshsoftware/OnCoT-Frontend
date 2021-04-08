@@ -11,10 +11,9 @@ const CreateDriveContainer = () => {
   const [driveDetailsData, setDriveDetailsData] = useState([]);
 
   const [queryIsLoading, setQueryIsLoading] = useState(true);
-
-  const [q, setQ] = useState('');
+  const [query, setQuery] = useState('');
   const handleQueryChange = (event) => {
-    setQ(event.target.value);
+    setQuery(event.target.value);
     setQueryIsLoading(true);
   };
 
@@ -75,7 +74,7 @@ const CreateDriveContainer = () => {
     };
     return getCurrentRenderDrive().map((val, index) => {
       const { id, name, start_time, end_time } = val;
-      if (name.toLowerCase().indexOf(q) > -1) {
+      if (name.toLowerCase().indexOf(query) > -1) {
         return (
           <tr key={id} id={id}>
             <td className='data'>{id}</td>
@@ -116,7 +115,7 @@ const CreateDriveContainer = () => {
     <AdminHomeComponent
       renderTableData={renderTableData}
       handleQueryChange={handleQueryChange}
-      query={q}
+      query={query}
     />
   );
 };

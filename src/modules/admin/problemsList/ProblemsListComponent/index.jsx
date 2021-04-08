@@ -3,15 +3,15 @@ import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
 import './style.css';
 
-const ProblemsListComponent = (props) => {
-  const { renderTableData, problemIsLoading, handleAddProblemClick } = props;
-
+const ProblemsListComponent = ({ renderTableData, problemIsLoading, handleAddProblemClick }) => {
   if (problemIsLoading) {
     return <Spinner className='loader' />;
   }
   return (
     <>
-      <Button onClick={handleAddProblemClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>Add Problem</Button>
+      <Button onClick={handleAddProblemClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>
+        Add Problem
+      </Button>
       <Table dark>
         <thead>
           <tr><th colSpan='6'>Problems Bank</th></tr>

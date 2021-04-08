@@ -25,6 +25,12 @@ const HomeComponent = (props) => {
         </Col>
         <Col className='max-height overflow-auto' md={10} lg={10} xl={10}>
           {currentHomeComponent === HOME_SCREENS.HOME && <AdminHomeConatiner />}
+          {currentHomeComponent === HOME_SCREENS.EDIT_DRIVE && (
+            <p>Edit Drive</p>
+          )}
+          {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
+            <p>Invite Candidates</p>
+          )}
           {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
             <CreateDriveContainer />
           )}

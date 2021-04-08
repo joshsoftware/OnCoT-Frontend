@@ -1,30 +1,26 @@
-import { useState } from 'react';
-import SendEmailInviteComponent from 'modules/admin/sendEmailInvite/SendEmailInviteComponent';
+import { useReducer, useState } from 'react';
 import { Redirect, useParams } from 'react-router';
+import SendEmailInviteComponent from 'modules/admin/sendEmailInvite/SendEmailInviteComponent';
+import reducer, { initialState } from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/reducer';
 import sendEmails from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/sendEmails';
 
 const SendEmailInviteContainer = () => {
-  const [emails, setEmails] = useState('');
-  const [csvEmails, setCsvEmails] = useState('');
-  const [emailsError, setEmailsError] = useState('');
-  const [csvFileError, setCsvFileError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [emailsState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
   const { drifeid } = useParams();
 
   const handleInvitationEmails = (event) => {
-    setEmails(event.target.value);
+    dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
   };
 
   const handleUploadedInvitationEmails = async (e) => {
     if (e.target.files[0].type === 'text/csv') {
-      setCsvFileError('');
-      let text = await e.target.files[0].text();
-      text = text.replace(/(\n)/gm, ',');
-      const text1 = text.replace(/,\s*$/, '');
-      setCsvEmails(text1);
+      let csvEmailText = await e.target.files[0].text();
+      csvEmailText = csvEmailText.replace(/(\n)/gm, ',');
+      const finalCsvEmailText = csvEmailText.replace(/,\s*$/, '');
+      dispatch({ type: 'VALID_CSV_FILETYPE', payload: finalCsvEmailText });
     } else {
-      setCsvFileError('Invalid file type.Content will be ignored(.csv needed)');
+      dispatch({ type: 'INVALID_CSV_FILETYPE' });
     }
   };
 
@@ -45,9 +41,8 @@ const SendEmailInviteContainer = () => {
   };
 
   const handleSendInvitation = async () => {
-    const allEmails = (`${emails},${csvEmails}`).replace(/^,|,$/g, '');
+    const allEmails = (`${emailsState.emails},${emailsState.csvEmails}`).replace(/^,|,$/g, '');
     const checkEmails = allEmails.split(',');
-
     if (validateEmails(checkEmails)) {
       const data = {
         emails: checkEmails.join(','),
@@ -57,23 +52,15 @@ const SendEmailInviteContainer = () => {
       try {
         const responseData = await sendEmails(data);
         if (responseData.message === 'ok') {
-          setSuccessMessage('Email Invitations Sent Successfully!');
-          setEmailsError('');
-          setEmails('');
-          setCsvEmails('');
-          setCsvFileError('');
+          dispatch({ type: 'EMAILS_SENT_SUCCESS' });
           setLoading(false);
         }
       } catch (error) {
-        setSuccessMessage('Something Went Wrong!');
-        setEmailsError('');
-        setCsvFileError('');
-        setCsvEmails('');
+        dispatch({ type: 'EMAILS_SENT_FAILURE' });
         setLoading(false);
       }
     } else {
-      setEmailsError('Invalid Email[s]');
-      setSuccessMessage('');
+      dispatch({ type: 'INVALID_EMAIL' });
     }
   };
 
@@ -82,33 +69,29 @@ const SendEmailInviteContainer = () => {
   };
 
   const handleCancel = (event) => {
-    event.preventDefault(); // Need to change when redirecting is available
+    event.preventDefault(); // Use Redirect to container when the dependent component is ready
   };
 
   const handleCsvRemove = () => {
-    setCsvFileError('');
-    setCsvEmails('');
+    dispatch({ type: 'VALID_CSV_FILETYPE', payload: '' });
   };
 
-  const handleInvitationEmailsErrorMessage = () => {
-    setEmailsError('');
+  const handleInvitationEmailsErrorMessage = (event) => {
+    dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
   };
 
   return (
     <>
       <SendEmailInviteComponent
-        emails={emails}
-        emailsError={emailsError}
+        emailsState={emailsState}
         handleInvitationEmails={handleInvitationEmails}
         handleUploadedInvitationEmails={handleUploadedInvitationEmails}
         handleSendInvitation={handleSendInvitation}
-        csvFileError={csvFileError}
         handleSubmit={handleSubmit}
-        successMessage={successMessage}
         handleCancel={handleCancel}
-        loading={loading}
         handleCsvRemove={handleCsvRemove}
         handleInvitationEmailsErrorMessage={handleInvitationEmailsErrorMessage}
+        loading={loading}
       />
     </>
   );

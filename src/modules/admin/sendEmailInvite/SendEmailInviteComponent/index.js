@@ -15,19 +15,22 @@ import {
 } from 'core-components';
 
 const SendEmailInviteComponent = (props) => {
-  const { emails,
-    emailsError,
+  const { emailsState,
     handleInvitationEmails,
     handleUploadedInvitationEmails,
     handleSendInvitation,
-    csvFileError,
     handleSubmit,
-    successMessage,
     handleCancel,
     loading,
     handleCsvRemove,
     handleInvitationEmailsErrorMessage,
   } = props;
+
+  const { emails,
+    emailsError,
+    csvFileError,
+    successMessage,
+  } = emailsState;
 
   if (loading) {
     return <Spinner />;
@@ -76,11 +79,11 @@ const SendEmailInviteComponent = (props) => {
                 <FormFeedback>{csvFileError}</FormFeedback>
               </FormGroup>
               <FormGroup className='mt-6'>
-                <Button color='success' className='mr-3 mt-3' onClick={handleSendInvitation}>
+                <Button className='mr-3 mt-3 bg-success' onClick={handleSendInvitation}>
                   Send Invitation
                 </Button>
-                <Button type='reset' color='warning' className='ml-3 mr-3 mt-3' onClick={handleCsvRemove}>Clear CSV File</Button>
-                <Button color='danger' className='ml-3 mt-3' onClick={handleCancel}>Cancel</Button>
+                <Button type='reset' className='ml-3 mr-3 mt-3 bg-warning' onClick={handleCsvRemove}>Clear CSV File</Button>
+                <Button className='ml-3 mt-3 bg-danger' onClick={handleCancel}>Cancel</Button>
               </FormGroup>
             </Form>
           </Row>
@@ -103,6 +106,7 @@ SendEmailInviteComponent.propTypes = {
   loading: PropTypes.bool.isRequired,
   handleCsvRemove: PropTypes.func.isRequired,
   handleInvitationEmailsErrorMessage: PropTypes.func.isRequired,
+  emailsState: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default SendEmailInviteComponent;

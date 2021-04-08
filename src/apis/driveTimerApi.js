@@ -1,3 +1,8 @@
-import axios from 'axios';
+import request from 'apis/apiHelper';
+import { SERVER_URL } from 'constants/appConstants';
+import local from 'utils/local';
 
-export const getDriveTimer = () => axios.get('https://www.random.org/integers/?num=1&min=9&max=11&col=1&base=10&format=plain&rnd=new');
+export const getDriveTimer = () => {
+  const driveId = local.getItem('driveID');
+  return request.get(`${SERVER_URL}drives/${driveId}/drive_time_left`);
+};

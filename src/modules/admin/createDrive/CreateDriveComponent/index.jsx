@@ -10,6 +10,7 @@ import {
   Table,
   Button,
   Spinner,
+  Alert,
 } from 'core-components';
 
 const CreateDriveComponent = (props) => {
@@ -23,10 +24,15 @@ const CreateDriveComponent = (props) => {
     data,
     problemIsLoading,
     onCreateDriveSubmit,
+    message,
   } = props;
+  const nothing = '';
 
   if (problemIsLoading) {
     return <Spinner />;
+  }
+  if (message !== nothing) {
+    return <Alert>{message}</Alert>;
   }
 
   return (
@@ -144,6 +150,7 @@ CreateDriveComponent.propTypes = {
   data: PropTypes.string.isRequired,
   problemIsLoading: PropTypes.bool.isRequired,
   onCreateDriveSubmit: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

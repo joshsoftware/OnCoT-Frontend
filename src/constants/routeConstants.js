@@ -18,4 +18,5 @@ export const ADMIN_ROUTES = {
   LOGIN: '/login',
   CREATE_PROBLEM: '/create/problem',
   SEND_INVITE: '/send/invite/:drifeid',  // Need to remove this later
+  DRIVE_RESULT: '/result',
 };

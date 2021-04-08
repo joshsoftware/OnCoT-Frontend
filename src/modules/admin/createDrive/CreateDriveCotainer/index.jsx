@@ -5,7 +5,7 @@ import React, {
   useReducer,
   useState,
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
 
 import CreateDriveComponent from 'modules/admin/createDrive/CreateDriveComponent';
@@ -18,6 +18,8 @@ import { createDriveRequestAction } from 'redux/admin/createDrive/action';
 import { Spinner } from 'core-components';
 
 const CreateDriveContainer = () => {
+  const { message } = useSelector((state) => state.createDriveReducer);
+
   const [createDrive, setCreateDrive] = useReducer(reducer, initialState);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
   const [problemsData, setProblemsData] = useState([]);
@@ -31,7 +33,7 @@ const CreateDriveContainer = () => {
       setProblemsData(problems);
       setProblemIsLoading(problemLoading);
     }
-  }, [problemsData, problemIsLoading]);
+  }, [problemIsLoading]);
 
   const renderTableData = useMemo(() => {
     return createDrive.currentProblems.map((val, index) => {
@@ -145,6 +147,7 @@ const CreateDriveContainer = () => {
       handleSelectedProblemChange={handleSelectedProblemChange}
       data={problemsData}
       onCreateDriveSubmit={onCreateDriveSubmit}
+      message={message}
     />
   );
 };

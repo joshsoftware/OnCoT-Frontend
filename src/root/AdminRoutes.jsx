@@ -8,12 +8,16 @@ import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
+import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
       <Route exact path={path} component={AdminHomeComponent} />
+
+      {/* To develop Drive result page */}
+      <Route exact path={path + ADMIN_ROUTES.DRIVE_RESULT} component={DriveResultContainer} />
 
       <Route
         exact

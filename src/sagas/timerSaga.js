@@ -7,8 +7,8 @@ import { TIMER } from 'constants/actionConstants';
 
 export function* timerSaga() {
   try {
-    const { data } = yield call(getTimer);
-    yield put(timerAction(data));
+    const response = yield call(getTimer);
+    yield put(timerAction(response.data.data.time_left));
   } catch (error) {
     yield put(timerRequestFailed('Something went wrong with timer!'));
   }

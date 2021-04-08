@@ -2,8 +2,6 @@ import axios from 'axios';
 import local from 'utils/local';
 import { SERVER_URL } from 'constants/appConstants';
 
-// https://jsonplaceholder.typicode.com/posts (3rd party api for testing purpose
-// `${SERVER_URL}api/v1/invite` (Actual backend api)
 export const sendEmails = (data) => {
   return axios({
     method: 'post',

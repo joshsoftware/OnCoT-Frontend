@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { post } from 'redux/admin/apiHelper';
 import SendEmailInviteComponent from 'modules/admin/sendEmailInvite/SendEmailInviteComponent';
 import { Redirect, useParams } from 'react-router';
-import { SERVER_URL } from 'constants/appConstants';
+import sendEmails from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/sendEmails';
 
 const SendEmailInviteContainer = () => {
   const [emails, setEmails] = useState('');
@@ -45,7 +44,7 @@ const SendEmailInviteContainer = () => {
     }
   };
 
-  const handleSendInvitation = () => {
+  const handleSendInvitation = async () => {
     const allEmails = (`${emails},${csvEmails}`).replace(/^,|,$/g, '');
     const checkEmails = allEmails.split(',');
 
@@ -55,24 +54,23 @@ const SendEmailInviteContainer = () => {
         drife_id: parseInt(drifeid, 10),
       };
       setLoading(true);
-      post(`${SERVER_URL}/api/v1/invite`, data)
-        .then((response) => {
-          if (response.message === 'ok') {
-            setSuccessMessage('Email Invitations Sent Successfully!');
-            setEmailsError('');
-            setEmails('');
-            setCsvEmails('');
-            setCsvFileError('');
-            setLoading(false);
-          }
-        })
-        .catch((error) => {
-          setSuccessMessage('Something Went Wrong!');
+      try {
+        const responseData = await sendEmails(data);
+        if (responseData.message === 'ok') {
+          setSuccessMessage('Email Invitations Sent Successfully!');
           setEmailsError('');
-          setCsvFileError('');
+          setEmails('');
           setCsvEmails('');
+          setCsvFileError('');
           setLoading(false);
-        });
+        }
+      } catch (error) {
+        setSuccessMessage('Something Went Wrong!');
+        setEmailsError('');
+        setCsvFileError('');
+        setCsvEmails('');
+        setLoading(false);
+      }
     } else {
       setEmailsError('Invalid Email[s]');
       setSuccessMessage('');
@@ -84,7 +82,6 @@ const SendEmailInviteContainer = () => {
   };
 
   const handleCancel = (event) => {
-    console.log('redirect');
     event.preventDefault(); // Need to change when redirecting is available
   };
 

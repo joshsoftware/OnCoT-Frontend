@@ -1,10 +1,7 @@
-import { useMemo } from 'react';
-import { get } from 'redux/admin/apiHelper';
-
 import { Alert } from 'core-components';
 
+import { get } from 'redux/admin/apiHelper';
 import { SERVER_URL } from 'constants/appConstants';
-import { now } from 'moment';
 
 const getDriveDetails = async () => {
   const drives = await get(`${SERVER_URL}api/v1/admin/drives`)

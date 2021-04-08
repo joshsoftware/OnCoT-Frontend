@@ -9,22 +9,18 @@ import { Alert } from 'core-components';
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const ShowCandidateListContainer = () => {
-  const driveDetails = useSelector((state) => state.createDriveReducer);
-  console.log(driveDetails);
+  const { id } = useSelector((state) => state.adminHomeComponentReducer);
+  console.log(id);
   const history = useHistory();
   const [allCandidates, setAllCandidates] = useState([]);
   const [candidtesLodaning, SetCandidtesLodaning] = useState(true);
   useEffect(async () => {
-    const id = Number(driveDetails.data.drive.id);
-    await get('https://oncot-platform.herokuapp.com/api/v1/admin/drives/:id/candidate_list')
+    await get(`https://oncot-platform.herokuapp.com/api/v1/admin/drives/${id}/candidate_list`)
       .then((response) => {
         SetCandidtesLodaning(false);
-        console.log(allCandidates);
-        console.log('from candidate list');
         setAllCandidates(response.data.candidates);
       })
       .catch((error) => {
-        console.log('in error block');
         return <Alert className='danger'> {error} </Alert>;
       });
   }, []);
@@ -49,7 +45,7 @@ const ShowCandidateListContainer = () => {
     });
   };
   const handleAddCandidateClick = () => {
-    history.push(ROUTES.ADMIN + ADMIN_ROUTES.CREATE_PROBLEM+id);
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
   };
   return (
     <ShowCandidateListComponent

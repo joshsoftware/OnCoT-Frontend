@@ -10,8 +10,8 @@ import { DRIVE_RESULT } from 'redux/admin/driveResult/actionConstants';
 // worker saga
 export function* driveResultSaga(action) {
   try {
-    const response = yield call(driveResultPostApi, action.payload);
-    yield put(driveResultSuccessAction(response.data.data));
+    const response = yield call(driveResultPostApi);
+    yield put(driveResultSuccessAction(response.data));
   } catch (error) {
     yield put(driveResultFailureAction(error));
   }

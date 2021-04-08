@@ -1,9 +1,3 @@
-import axios from 'axios';
-import local from 'utils/local';
+import request from 'apis/apiHelper';
 
-export const driveResultPostApi = (data) => {
-  return axios({
-    method: 'post',
-    url: 'https://oncot-platform.herokuapp.com/',
-  });
-};
+export const driveResultPostApi = () => request.get('http://localhost:3000/data');

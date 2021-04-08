@@ -2,7 +2,6 @@ import { Container, Row, FormGroup, Label, Table } from 'core-components';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Loading from 'shared-components/Loading';
-import { object } from 'yup/lib/locale';
 
 const DriveResultComponent = ({
   renderTableData,
@@ -19,8 +18,7 @@ const DriveResultComponent = ({
   };
   const error = () => {
     if (isError) {
-      return (<h6 className='text-danger font-weight-light'>{errorMessage}</h6>
-      );
+      return <h6 className='text-danger font-weight-light'>{errorMessage}</h6>;
     }
   };
 
@@ -50,7 +48,6 @@ const DriveResultComponent = ({
 };
 DriveResultComponent.propTypes = {
   renderTableData: PropTypes.checkPropTypes.isRequired,
-
   errorMessage:PropTypes.string.isRequired,
   isError:PropTypes.bool.isRequired,
   isLoading:PropTypes.bool.isRequired,

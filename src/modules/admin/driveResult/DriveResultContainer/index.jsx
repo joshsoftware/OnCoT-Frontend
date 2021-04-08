@@ -7,6 +7,7 @@ const DriveResultContainer = () => {
   const { data, errorMessage, isError, isLoading } =
    useSelector((state) => state.driveResultReducer);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(driveResultRequestAction());
   }, [dispatch]);

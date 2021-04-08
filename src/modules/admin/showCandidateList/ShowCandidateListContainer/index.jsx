@@ -12,11 +12,11 @@ const ShowCandidateListContainer = () => {
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
   const history = useHistory();
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidtesLodaning, SetCandidtesLodaning] = useState(true);
+  const [candidtesLodaning, setCandidtesLodaning] = useState(true);
   useEffect(async () => {
     await get(`https://oncot-platform.herokuapp.com/api/v1/admin/drives/${id}/candidate_list`)
       .then((response) => {
-        SetCandidtesLodaning(false);
+        setCandidtesLodaning(false);
         setAllCandidates(response.data.candidates);
       })
       .catch((error) => {

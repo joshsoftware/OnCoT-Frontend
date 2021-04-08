@@ -7,7 +7,6 @@ export const adminHomeComponentReducer = (
   state = initialHomeState,
   action = {},
 ) => {
-  console.log('homecomponentreducer', state);
   const { type, payload } = action;
   switch (type) {
     case 'HOME':

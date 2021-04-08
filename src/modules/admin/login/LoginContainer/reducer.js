@@ -5,7 +5,7 @@ const initialUserState = {
   passwordError:'',
 };
 
-export const reducer = (state = initialUserState, action) => {
+export const reducer = (state = initialUserState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case 'email':

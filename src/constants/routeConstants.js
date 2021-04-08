@@ -18,4 +18,5 @@ export const ADMIN_ROUTES = {
   LOGIN: '/login',
   CREATE_PROBLEM: '/create/problem',
   SHOW_CANDIDATE_LIST: '/showcandidatelist',
+  DRIVE_RESULT: '/result',
 };

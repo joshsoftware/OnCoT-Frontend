@@ -7,9 +7,7 @@ import { driveDetailRequest } from 'actions/userDriveActions';
 
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 import { driveTimerRequest, updateDriveTimer } from 'actions/driveTimerActions';
-import {
-  getCurrentTime,
-} from 'utils/helpers/HeaderIdeHelper';
+import { getCurrentTime } from 'utils/helpers/HeaderIdeHelper';
 
 function LandingPageContainer() {
   const { id: tokenId } = useParams();
@@ -57,7 +55,7 @@ function LandingPageContainer() {
       errorMessage={errorMessage}
       isLoading={isLoading}
       handleClick={handleClick}
-      driveTime={driveTime}
+      driveTimer={driveTime}
     />
   );
 }

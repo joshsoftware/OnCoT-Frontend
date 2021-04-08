@@ -13,6 +13,7 @@ import adminHomeComponentReducer from 'modules/admin/home/HomeContainer/adminHom
 import createDriveReducer from 'redux/admin/createDrive/reducer';
 import finishTestReducer from 'reducers/finishTestReducer';
 import createProblemReducer from 'redux/admin/createProblem/reducer';
+import driveResultReducer from 'redux/admin/driveResult/reducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   createDriveReducer,
   finishTestReducer,
   createProblemReducer,
+  driveResultReducer,
 });
 
 export default rootReducer;

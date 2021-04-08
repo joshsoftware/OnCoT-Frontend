@@ -9,8 +9,9 @@ import {
   Label,
   Input,
   Button,
-  Table,
 } from 'core-components';
+import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
+import UpdateProbTestCaseCntainer from 'modules/admin/testCase/UpdateProblemTestCaseContainer';
 
 const CreateProblemComponent = ({
   handleTitleChange,
@@ -18,11 +19,18 @@ const CreateProblemComponent = ({
   handleCountChange,
   handleSubmit,
   message,
-  isSuccess,
+  isProblemSuccess,
+  isTestCaseSuccess,
+  isTestCaseLoading,
 }) => {
-  console.log(message, isSuccess);
+  console.log(message, isProblemSuccess);
   const problemSuccess = () => {
-    if (isSuccess) {
+    if (isProblemSuccess) {
+      console.log('success');
+    }
+  };
+  const testCaseSuccess = () => {
+    if (!isTestCaseLoading && isTestCaseSuccess) {
       return <h6 className='text-success pl-5 pt-2'>{message}</h6>;
     }
   };
@@ -65,62 +73,14 @@ const CreateProblemComponent = ({
               onChange={handleDescriptionChange}
             />
           </FormGroup>
-
+          {/* <TestCaseContainer /> */}
+          <UpdateProbTestCaseCntainer problem_id={45} />
           <Row className='p-3'>
             <Button className='' onClick={handleSubmit}>Create Problem</Button>
             {problemSuccess()}
+            {testCaseSuccess()}
           </Row>
         </Form>
-      </Row>
-      <Row>
-
-        <Row className='p-3 w-100 d-flex'>
-          <FormGroup className='pt-3 pl-3 w-50'>
-            <Label>
-              <h6>Test Cases</h6>
-            </Label>
-            <Table className='bg-dark text-white' striped>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Input</th>
-                  <th>Output</th>
-                  <th>Marks</th>
-                </tr>
-              </thead>
-              <tbody />
-            </Table>
-          </FormGroup>
-
-          <FormGroup className='ml-5 p-3'>
-            <Label>
-              <h6>Add New Test case</h6>
-            </Label>
-            <FormGroup>
-              <Label>
-                <h6>Input</h6>
-              </Label>
-              <Input type='text' placeholder='Input' />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Output</h6>
-              </Label>
-              <Input type='text' placeholder='Output' />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>
-                <h6>Marks</h6>
-              </Label>
-              <Input type='text' placeholder='Marks' />
-            </FormGroup>
-
-            <Button className='m-2'>Add</Button>
-            <Button className='m-2'>Cancel</Button>
-          </FormGroup>
-        </Row>
       </Row>
     </Container>
   );
@@ -132,7 +92,9 @@ CreateProblemComponent.propTypes = {
   handleCountChange: PropTypes.func.isRequired,
   handleSubmit:PropTypes.func.isRequired,
   message:PropTypes.string.isRequired,
-  isSuccess:PropTypes.bool.isRequired,
+  isTestCaseSuccess:PropTypes.bool.isRequired,
+  isTestCaseLoading:PropTypes.bool.isRequired,
+  isProblemSuccess:PropTypes.bool.isRequired,
 };
 
 export default React.memo(CreateProblemComponent);

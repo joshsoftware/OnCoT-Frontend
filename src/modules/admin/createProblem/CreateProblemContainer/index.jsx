@@ -8,14 +8,15 @@ import { createProblemRequestAction } from 'redux/admin/createProblem/action';
 const CreateProblemContainer = () => {
   const dispatch = useDispatch();
   const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
+  const { isTestCaseSuccess, isTestCaseLoading } = useSelector((state) => state.testReducer);
   const initialUserState = {
     title: '',
     description: '',
     submissionCount: null,
+    testCases: [],
   };
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);
-
   const handleTitleChange = useCallback(
     (event) => {
       const title = event.target.value;
@@ -68,7 +69,11 @@ const CreateProblemContainer = () => {
       handleCountChange={handleCountChange}
       handleSubmit={handleSubmit}
       message={message}
-      isSuccess={isSuccess}
+      isProblemSuccess={isSuccess}
+      isTestCaseSuccess={isTestCaseSuccess}
+      isTestCaseLoading={isTestCaseLoading}
+      dispatch={dispatch}
+      testCases={userState.testCases}
     />
   );
 };

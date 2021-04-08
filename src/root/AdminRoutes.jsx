@@ -12,16 +12,16 @@ function AdminRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={path} component={AdminHomeComponent} />
+      <Route exact path={path + ADMIN_ROUTES.HOME} component={HomeContainer} />
 
       <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
 
       <Route exact path={path + ADMIN_ROUTES.LOGIN} component={LoginContainer} />
 
-      <ProtectedAdminRoute
+      {/* <ProtectedAdminRoute
         path={path + ADMIN_ROUTES.HOME}
         component={HomeContainer}
-      />
+      /> */}
 
       <Redirect to={path} />
     </Switch>

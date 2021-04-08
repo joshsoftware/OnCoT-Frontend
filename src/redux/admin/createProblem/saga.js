@@ -18,7 +18,8 @@ export function* createProblemSaga(action) {
   try {
     const response = yield call(createProblemPostApi, data);
     console.log(response);
-    yield put(createProblemSuccessAction(response.data.message));
+    yield put(createProblemSuccessAction({ message:response.data.message,
+      pid: response.data.data.problem.id }));
   } catch (error) {
     yield put(createProblemFailureAction(error.message));
   }

@@ -6,7 +6,7 @@ export const initialState = {
   successMessage: '',
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case 'EMAILS_SENT_SUCCESS': {

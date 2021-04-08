@@ -104,12 +104,8 @@ const CreateDriveContainer = () => {
       setDriveDetailsData(drives);
       setDriveDetailsIsLoading(drivesIsLoading);
     }
-  }, [
-    driveDetailsIsLoading,
-    driveDetailsData.ongoingDrives,
-    driveDetailsData.upcomingDrives,
-    driveDetailsData.completedDrives,
-  ]);
+  }, [driveDetailsIsLoading]);
+
   useEffect(() => {
     if (queryIsLoading) {
       setQueryIsLoading(false);

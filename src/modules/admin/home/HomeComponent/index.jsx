@@ -5,6 +5,7 @@ import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
+import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
 import { Col, Container, Row } from 'core-components';
 
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
@@ -30,6 +31,9 @@ const HomeComponent = (props) => {
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
             <p>Invite Candidates</p>
+          )}
+          {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
+            <DriveResultContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
             <CreateDriveContainer />

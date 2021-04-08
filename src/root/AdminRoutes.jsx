@@ -7,6 +7,7 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
+import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -18,6 +19,12 @@ function AdminRoutes() {
         exact
         path={path + ADMIN_ROUTES.LOGIN}
         component={LoginContainer}
+      />
+
+      {/* Need to remove this block later */}
+      <ProtectedAdminRoute
+        path={path + ADMIN_ROUTES.SEND_INVITE}
+        component={SendEmailInviteContainer}
       />
 
       <ProtectedAdminRoute

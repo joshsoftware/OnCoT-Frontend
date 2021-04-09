@@ -38,7 +38,7 @@ const getSeparatedDrives = (data) => {
 
 const getDriveDetails = async () => {
   try {
-    const response = await get('https://oncot-platform.herokuapp.com/api/v1/admin/drives');
+    const response = await get(`${SERVER_URL}/api/v1/admin/drives`);
     if (response.status !== 200) {
       throw new Error(`Error:${response.status}`);
     }

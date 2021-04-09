@@ -1,42 +1,41 @@
 import ShowCandidateListComponent from 'modules/admin/showCandidateList/ShowCandidateListComponent';
 import { useEffect, useState } from 'react';
-import { get } from 'redux/admin/apiHelper';
-import local from 'utils/local';
-import { useSelector } from 'react-redux';
-import { SERVER_URL } from 'constants/appConstants';
 import { useHistory } from 'react-router-dom';
-import { Alert } from 'core-components';
+import { useSelector } from 'react-redux';
+
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
+import { adminHomeComponentReducer } from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
+import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListContainer/api';
+
 const ShowCandidateListContainer = () => {
-  const { id } = useSelector((state) => state.adminHomeComponentReducer);
   const history = useHistory();
+  const { id } = useSelector((state) => state.adminHomeComponentReducer);
+  console.log(id);
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidtesLodaning, setCandidtesLodaning] = useState(true);
+  const [candidatesLodaning, setCandidatesLodaning] = useState(true);
   useEffect(async () => {
-    await get(`https://oncot-platform.herokuapp.com/api/v1/admin/drives/${id}/candidate_list`)
-      .then((response) => {
-        setCandidtesLodaning(false);
-        setAllCandidates(response.data.candidates);
-      })
-      .catch((error) => {
-        return <Alert className='danger'> {error} </Alert>;
-      });
+    const data = await getCandidates(id);
+    const { candidates, candidateLodaning } = data;
+    if (!candidateLodaning) {
+      setAllCandidates(candidates);
+      setCandidatesLodaning(candidateLodaning);
+    }
   }, []);
   const renderTableData = () => {
     return allCandidates.map((val, index) => {
       const {
         candidateId,
-        firstName,
-        lastName,
+        FirstName,
+        LastName,
         email,
         phoneNumber,
       } = val;
       return (
         <tr key={candidateId}>
           <td>{candidateId}</td>
-          <td>{firstName}</td>
-          <td>{lastName}</td>
+          <td>{FirstName}</td>
+          <td>{LastName}</td>
           <td>{email}</td>
           <td>{phoneNumber}</td>
         </tr>
@@ -49,7 +48,7 @@ const ShowCandidateListContainer = () => {
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
-      candidtesLodaning={candidtesLodaning}
+      candidatesLodaning={candidatesLodaning}
       handleAddCandidateClick={handleAddCandidateClick}
     />
   );

@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
-import { Link } from 'react-router-dom';
 
 const ShowCandidateListComponent = (props) => {
-  const { renderTableData, candidtesLodaning, handleAddCandidateClick } = props;
+  const { renderTableData, candidatesLodaning, handleAddCandidateClick } = props;
 
-  if (candidtesLodaning) {
+  if (candidatesLodaning) {
     return <Spinner />;
   }
   return (
@@ -21,7 +20,6 @@ const ShowCandidateListComponent = (props) => {
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th aria-label='Action' />
           </tr>
         </thead>
         <tbody>{renderTableData()}</tbody>
@@ -31,7 +29,7 @@ const ShowCandidateListComponent = (props) => {
 };
 ShowCandidateListComponent.propTypes = {
   renderTableData: PropTypes.func.isRequired,
-  candidtesLodaning: PropTypes.bool.isRequired,
+  candidatesLodaning: PropTypes.bool.isRequired,
   handleAddCandidateClick: PropTypes.func.isRequired,
 };
 

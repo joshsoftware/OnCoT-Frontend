@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListComponent';
 
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
-
-import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
+import { useDispatch } from 'react-redux';
 
 const ProblemsListContainer = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
 
   const [allProblems, setAllProblems] = useState([]);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
@@ -24,11 +22,7 @@ const ProblemsListContainer = () => {
 
   const renderTableData = useCallback(() => {
     return allProblems.map((val, index) => {
-      const {
-        id,
-        title,
-        description,
-      } = val;
+      const { id, title, description } = val;
       return (
         <tr key={id}>
           <td>{id}</td>
@@ -42,7 +36,10 @@ const ProblemsListContainer = () => {
   });
 
   const handleAddProblemClick = () => {
-    history.push(ROUTES.ADMIN + ADMIN_ROUTES.CREATE_PROBLEM);
+    dispatch({
+      type: 'CREATE_PROBLEM',
+      payload: 'CREATE_PROBLEM',
+    });
   };
 
   return (

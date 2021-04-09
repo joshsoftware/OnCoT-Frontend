@@ -1,15 +1,11 @@
 import ShowCandidateListComponent from 'modules/admin/showCandidateList/ShowCandidateListComponent';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
-
-import { adminHomeComponentReducer } from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
+import { useDispatch, useSelector } from 'react-redux';
 import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListContainer/api';
+import local from 'utils/local';
 
 const ShowCandidateListContainer = () => {
-  const history = useHistory();
+  const dispatch = useDispatch();
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
   const [allCandidates, setAllCandidates] = useState([]);
   const [candidatesLodaning, setCandidatesLodaning] = useState(true);
@@ -22,14 +18,15 @@ const ShowCandidateListContainer = () => {
     }
   }, []);
   const renderTableData = () => {
+    if (typeof allCandidates === 'undefined') {
+      return (
+        <tr>
+          <td>Invite candidate(s) to view data!</td>
+        </tr>
+      );
+    }
     return allCandidates.map((val, index) => {
-      const {
-        candidateId,
-        FirstName,
-        LastName,
-        email,
-        phoneNumber,
-      } = val;
+      const { candidateId, FirstName, LastName, email, phoneNumber } = val;
       return (
         <tr key={candidateId}>
           <td>{candidateId}</td>
@@ -42,7 +39,11 @@ const ShowCandidateListContainer = () => {
     });
   };
   const handleAddCandidateClick = () => {
-    history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
+    const driveId = local.getItem('showCandidatesId');
+    dispatch({
+      type: 'INVITE_CANDIDATES',
+      payload: { currentScreen: 'INVITE_CANDIDATES', id: driveId },
+    });
   };
   return (
     <ShowCandidateListComponent

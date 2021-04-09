@@ -9,6 +9,8 @@ import ProblemsListContainer from 'modules/admin/problemsList/ProblemsListContai
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
 import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
+import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
+import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
@@ -32,6 +34,9 @@ const HomeComponent = (props) => {
             <p>Edit Drive</p>
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
+            <SendEmailInviteContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.SHOW_CANDIDATES && (
             <ShowCandidateListContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
@@ -43,6 +48,9 @@ const HomeComponent = (props) => {
 
           {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
             <ProblemsListContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.CREATE_PROBLEM && (
+            <CreateProblemContainer />
           )}
         </Col>
       </Row>

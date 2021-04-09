@@ -5,7 +5,7 @@ import { Alert } from 'core-components';
 import { SERVER_URL } from 'constants/appConstants';
 
 const getProblems = async () => {
-  const problems = await get(`${SERVER_URL}api/v1/admin/problems`)
+  const problems = await get(`${SERVER_URL}admin/problems`)
     .then((response) => {
       return response.data.data.problems;
     })

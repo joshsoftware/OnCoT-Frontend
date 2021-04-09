@@ -30,23 +30,6 @@ const RulesContainer = () => {
     });
   });
 
-  // const renderRulesList = useMemo(() => {
-  //   return userlist.rules.map((val, index) => {
-  //     console.log(val);
-  //     const {
-  //       type_name,
-  //       description,
-  //     } = val;
-  //     return (
-  //       <h1>hi</h1>
-  //       // <li key={type_name}>
-  //       //   <td>{description}</td>
-  //       //   <td>{score}</td>
-  //       //   <td>{end_times}</td>
-  //       // </tr>
-  //     );
-  //   });
-  // }, []);
   return (
     <RulesComponent
       isError={isError}

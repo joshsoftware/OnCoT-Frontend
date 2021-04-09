@@ -5,7 +5,7 @@ import { SERVER_URL } from 'constants/appConstants';
 export const createDrivePostApi = (data) => {
   return axios({
     method: 'post',
-    url: 'https://oncot-apis.herokuapp.com/api/v1/admin/drives',
+    url: `${SERVER_URL}admin/drives`,
     data,
     headers: {
       'Content-Type': 'application/json',

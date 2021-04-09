@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import { deleteTestCaseApi, getTestCasesApi, postTestCaseApi, updateTestCaseApi } from 'redux/admin/testCase/api';
 import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
-import { reducer } from 'modules/admin/testCase/UpdateProblemTestCaseContainer/reducer';
+import { reducer } from 'modules/admin/testCase/reducer';
 import { validateData } from 'modules/admin/testCase/dataValidation';
 
 const UpdateProblemTestCaseContainer = ({ problem_id }) => {
@@ -37,8 +37,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         const result =  await getTestCasesApi(data);
         const tcs = [...result.data.data.test_cases];
         setUserState({
-          type: 'setTestCases',
-          payload: tcs,
+          type: 'setAndDeleteTestCase',
+          payload: {
+            subType: 'setTestCases',
+            data: tcs,
+          },
         });
       }, []);
     }, [userState.testCases],
@@ -189,8 +192,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
       }
       if (result.status === 200) {
         setUserState({
-          type: 'deleteTestCase',
-          payload: index,
+          type: 'setAndDeleteTestCase',
+          payload: {
+            subType: 'deleteTestCase',
+            data: index,
+          },
         });
       }
     }, [userState.testCases],

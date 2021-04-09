@@ -22,6 +22,15 @@ const setErrTxt = (payload, state) => {
   }
 };
 
+const setAndDeleteTestCase = (payload, state, [...testCases]) => {
+  if (payload.subType === 'setTestCases') {
+    state.testCases = [...payload];
+    state.isTestCaseLoaded = true;
+  } else if (payload.subType === 'deleteTestCase') {
+    state.testCases.splice(payload, 1);
+  }
+};
+
 export const reducer = produce((state, action = {}) => {
   const { type, payload } = action;
   switch (type) {
@@ -59,12 +68,8 @@ export const reducer = produce((state, action = {}) => {
       state.marksErrTxt = '';
       state.isTestCaseEdit = false;
       break;
-    case 'deleteTestCase':
-      state.testCases.splice(payload, 1);
-      break;
-    case 'setTestCases':
-      state.testCases = [...payload];
-      state.isTestCaseLoaded = true;
+    case 'setAndDeleteTestCase':
+      setAndDeleteTestCase(payload, state, state.testCases);
       break;
     default:
       state.input = '';

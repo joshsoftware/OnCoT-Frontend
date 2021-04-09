@@ -13,7 +13,6 @@ import {
   Col,
 } from 'core-components';
 import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
-import UpdateProblemTestCaseContainer from 'modules/admin/testCase/UpdateProblemTestCaseContainer';
 
 toast.configure();
 const CreateProblemComponent = (props) => {
@@ -74,8 +73,9 @@ const CreateProblemComponent = (props) => {
           </FormGroup>
           <Row>
             <Row className='p-3 w-100 d-flex'>
-              <TestCaseContainer /> 
-              {/* in case of update problem use -> <UpdateProblemTestCaseContainer problem_id={53} /> */}
+              <TestCaseContainer />
+              {/* in case of update problem use */}
+              {/* <UpdateProblemTestCaseContainer problem_id={53} /> */}
             </Row>
           </Row>
           <Row className='p-3'>

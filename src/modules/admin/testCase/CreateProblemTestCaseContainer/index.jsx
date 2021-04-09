@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
 import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
-import { reducer } from 'modules/admin/testCase/CreateProblemTestCaseContainer/reducer';
+import { reducer } from 'modules/admin/testCase/reducer';
 import { createTestCaseRequestAction } from 'redux/admin/testCase/action';
 import { validateData } from '../dataValidation';
 
@@ -180,8 +180,11 @@ const TestCaseContainer = () => {
       for (let i = 0; i < testCases.length; i += 1) {
         if (testCases[i].id === tempId) {
           setUserState({
-            type: 'deleteTestCase',
-            payload: i,
+            type: 'setAndDeleteTestCase',
+            payload: {
+              subType: 'deleteTestCase',
+              data: i,
+            },
           });
           break;
         }

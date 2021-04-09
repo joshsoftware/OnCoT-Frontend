@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
+
+import { Col, Container, Row } from 'core-components';
 import AdminHeader from 'shared-components/AdminHeader';
+
 import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
+import ProblemsListContainer from 'modules/admin/problemsList/ProblemsListContainer';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
-import { Col, Container, Row } from 'core-components';
 
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
@@ -40,7 +42,7 @@ const HomeComponent = (props) => {
           )}
 
           {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
-            <CreateProblemContainer />
+            <ProblemsListContainer />
           )}
         </Col>
       </Row>

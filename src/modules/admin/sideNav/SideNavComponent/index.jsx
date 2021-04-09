@@ -29,7 +29,7 @@ const SideNavComponent = () => {
                 dispatch({ type: 'PROBLEMS', payload: 'PROBLEMS' });
               }}
             >
-              Create Problem
+              Problems
             </Button>
           </Row>
         </Col>

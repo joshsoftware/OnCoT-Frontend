@@ -48,6 +48,10 @@ function AdminRoutes() {
         path={path + ADMIN_ROUTES.SHOW_CANDIDATE_LIST}
         component={ShowCandidateListContainer}
       />
+      <ProtectedAdminRoute
+        path={path + ADMIN_ROUTES.CREATE_PROBLEM}
+        component={CreateProblemContainer}
+      />
 
       <Redirect to={path} />
     </Switch>

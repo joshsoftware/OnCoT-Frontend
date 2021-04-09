@@ -11,6 +11,7 @@ import {
   Input,
   Button,
   Table,
+  Spinner,
 } from 'core-components';
 
 const CreateProblemComponent = ({
@@ -29,13 +30,9 @@ const CreateProblemComponent = ({
   outputErrTxt,
   marksErrTxt,
   isTestCaseEdit,
+  isLoading,
   testCases,
-  isProblemSuccess,
-  handleOnProblemSuccess,
 }) => {
-  if (isProblemSuccess) {
-    handleOnProblemSuccess();
-  }
   return (
     <Container fluid>
       <Row className='p-3 w-100 d-flex'>
@@ -100,9 +97,25 @@ const CreateProblemComponent = ({
           </FormGroup>
           {
             isTestCaseEdit ?
-              <Button onClick={handleOnTestCaseUpdate} className='btn btn-success'>Update</Button>
+              (
+                <Button onClick={handleOnTestCaseUpdate} className='btn btn-success'>
+                  {isLoading ? (
+                    <Spinner size='sm' color='light' />
+                  ) : (
+                    <>Update</>
+                  )}
+                </Button>
+              )
               :
-              <Button onClick={handleTestCaseOnAdd} className='btn btn-success'>Add</Button>
+              (
+                <Button onClick={handleTestCaseOnAdd} className='btn btn-success'>
+                  {isLoading ? (
+                    <Spinner size='sm' color='light' />
+                  ) : (
+                    <>Add</>
+                  )}
+                </Button>
+              )
           }
           <Button onClick={handleOnCancel} className='btn btn-danger button_margin'>Cancel</Button>
         </FormGroup>
@@ -119,7 +132,6 @@ CreateProblemComponent.propTypes = {
   handleOnTestCaseDelete:PropTypes.func.isRequired,
   handleOnTestCaseUpdate:PropTypes.func.isRequired,
   handleOnCancel:PropTypes.func.isRequired,
-  handleOnProblemSuccess:PropTypes.func.isRequired,
   input:PropTypes.string.isRequired,
   output:PropTypes.string.isRequired,
   marks:PropTypes.string.isRequired,
@@ -128,6 +140,6 @@ CreateProblemComponent.propTypes = {
   marksErrTxt:PropTypes.string.isRequired,
   testCases:PropTypes.string.isRequired,
   isTestCaseEdit:PropTypes.bool.isRequired,
-  isProblemSuccess:PropTypes.bool.isRequired,
+  isLoading:PropTypes.bool.isRequired,
 };
 export default React.memo(CreateProblemComponent);

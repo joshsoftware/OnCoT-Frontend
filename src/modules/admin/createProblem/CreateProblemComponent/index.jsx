@@ -12,7 +12,7 @@ import {
   Button,
   Col,
 } from 'core-components';
-import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
+import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
 
 toast.configure();
 const CreateProblemComponent = (props) => {
@@ -20,11 +20,11 @@ const CreateProblemComponent = (props) => {
     message, isSuccess, isTestCaseSuccess } = props;
   const problemSuccess = () => {
     // please redirect to problem list page
-    if (isSuccess && isTestCaseSuccess) {
+    if (isSuccess) {
       return (
         <>
           <h6 className='text-success pl-5 pt-2'>{message}</h6>
-          <h6 className='text-success pl-5 pt-2'>Problem created successfully</h6>
+          <h6 className='text-success pl-5 pt-2'>Problem created successfully now please add the test cases</h6>
         </>
       );
     }
@@ -71,24 +71,21 @@ const CreateProblemComponent = (props) => {
               required
             />
           </FormGroup>
-          <Row>
-            <Row className='p-3 w-100 d-flex'>
-              <TestCaseContainer />
-              {/* in case of update problem use */}
-              {/* <UpdateProblemTestCaseContainer problem_id={53} /> */}
-            </Row>
-          </Row>
+
           <Row className='p-3'>
-            <Col />
-            <Col>
-              <Button className=''>
-                Create Problem
-              </Button>
-              {problemSuccess()}
-            </Col>
-            <Col />
+            <Button className=''>
+              Create Problem
+            </Button>
+            {problemSuccess()}
           </Row>
         </Form>
+      </Row>
+      <Row>
+        <Row className='p-3 w-100 d-flex'>
+          {/* <TestCaseContainer /> */}
+          {/* in case of update problem use */}
+          <UpdateProblemTestCaseContainer />
+        </Row>
       </Row>
     </Container>
   );

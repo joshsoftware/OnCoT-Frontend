@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
@@ -8,8 +8,12 @@ import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
 import { reducer } from 'modules/admin/testCase/reducer';
 import { validateData } from 'modules/admin/testCase/dataValidation';
 
-const UpdateProblemTestCaseContainer = ({ problem_id }) => {
-  const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
+const problemSaved = (problem_id) => {
+  return problem_id === '';
+};
+
+const TestCaseContainer = () => {
+  const { message, isSuccess, problem_id } = useSelector((state) => state.createProblemReducer);
   const initialUserState = {
     input: '',
     output: '',
@@ -23,7 +27,7 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
     isTestCaseLoaded: false,
   };
   const [userState, setUserState] = useReducer(reducer, initialUserState);
-
+  const [isLoading, setIsLoading] = useState(false);
   const schema = yup.object().shape({
     input: yup.string().required(),
     output: yup.string().required(),
@@ -107,15 +111,31 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         if (!valid) {
           validateData(schema, data, setUserState);
         } else {
-          const result = await postTestCaseApi(data);
-          if (result.status === 200) {
-            data.id = result.data.data.test_case.id;
-            setUserState({
-              type: 'addTestCase',
-              payload: data,
-            });
-          } else {
+          if (problemSaved(problem_id)) {
+            toast.error('Please create problem first');
+            setUserState({ type: 'default' });
+            return;
+          }
+          setIsLoading(true);
+          try {
+            const result = await postTestCaseApi(data);
+            if (result.status === 200) {
+              setIsLoading(false);
+              data.id = result.data.data.test_case.id;
+              setUserState({
+                type: 'addTestCase',
+                payload: data,
+              });
+              return toast.success('Test case added successfully');
+            }
+            setIsLoading(false);
+            console.log(isLoading);
             return toast.error('Error in posting data');
+          } catch (err) {
+            console.log(err);
+            setIsLoading(false);
+            console.log(isLoading);
+            return toast.error('error in posting');
           }
         }
       });
@@ -153,7 +173,6 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         if (!valid) {
           validateData(schema, data, setUserState);
         } else {
-          const result = await updateTestCaseApi(data);
           let index;
           for (let i = 0; i < testCases.length; i += 1) {
             if (testCases[i].id === id) {
@@ -161,13 +180,20 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
               break;
             }
           }
-          if (result.status === 200) {
-            setUserState({
-              type: 'updateTestCase',
-              payload: { index, input, output, marks },
-            });
-          } else {
-            return toast.error('Error in posting data');
+          try {
+            const result = await updateTestCaseApi(data);
+            if (result.status === 200) {
+              setUserState({
+                type: 'updateTestCase',
+                payload: { index, input, output, marks },
+              });
+              return toast.success('Test case updated successfully');
+            }
+            setUserState({ type: 'default' });
+            return toast.error('Update failed');
+          } catch (err) {
+            setUserState({ type: 'default' });
+            return toast.error('Update failed');
           }
         }
       });
@@ -230,10 +256,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
       isProblemSuccess={isSuccess}
       isTestCaseEdit={userState.isTestCaseEdit}
       testCases={userState.testCases}
+      isLoading={isLoading}
     />
   );
 };
-UpdateProblemTestCaseContainer.propTypes = {
-  problem_id: PropTypes.number.isRequired,
-};
-export default React.memo(UpdateProblemTestCaseContainer);
+// UpdateProblemTestCaseContainer.propTypes = {
+//   problem_id: PropTypes.number.isRequired,
+// };
+export default React.memo(TestCaseContainer);

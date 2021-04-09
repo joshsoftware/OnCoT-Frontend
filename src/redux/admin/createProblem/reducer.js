@@ -4,7 +4,7 @@ import { CREATE_PROBLEM } from 'redux/admin/createProblem/actionConstants';
 
 export const initialState = {
   message:'',
-  problem_id:'',
+  problem_id:50,
   isSuccess:false,
   isLoading:false,
   isError:false,

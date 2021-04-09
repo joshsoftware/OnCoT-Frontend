@@ -6,7 +6,7 @@ import Loading from 'shared-components/Loading';
 
 import './endPage.css';
 
-function TestEndPageComponent({ score, isLoading }) {
+function TestEndPageComponent({ isLoading }) {
   const loading = () => {
     if (isLoading) {
       return (
@@ -21,13 +21,11 @@ function TestEndPageComponent({ score, isLoading }) {
         <h3 className='font-weight-bolder title-color'>
           Test Completed!
         </h3>
-        <h3>Your Test Score is: {loading()}{score}</h3>
       </div>
     </Container>
   );
 }
 TestEndPageComponent.propTypes = {
-  score: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 export default React.memo(TestEndPageComponent);

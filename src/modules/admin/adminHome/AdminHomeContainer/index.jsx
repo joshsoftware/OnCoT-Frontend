@@ -39,6 +39,15 @@ const CreateDriveContainer = () => {
     });
   };
 
+  const onClickResult = (e) => {
+    const rowId = e.target.parentNode.parentNode.id;
+    const data = document.getElementById(rowId).querySelectorAll('.data');
+    dispatch({
+      type: 'DRIVE_RESULT',
+      payload: { currentScreen: 'DRIVE_RESULT', id: data[0].innerHTML },
+    });
+  };
+
   const renderTableData = (driveStatus) => {
     switch (driveStatus) {
       case ongoing:
@@ -87,7 +96,13 @@ const CreateDriveContainer = () => {
               </td>
             )}
             <td>
-              <Button onClick={onClickCandidates}>Candidates</Button>
+              <Button
+                onClick={
+                  driveStatus === completed ? onClickResult : onClickCandidates
+                }
+              >
+                {driveStatus === completed ? 'Result' : 'Candidates'}
+              </Button>
             </td>
           </tr>
         );

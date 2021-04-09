@@ -1,4 +1,5 @@
 import produce from 'immer';
+import local from 'utils/local';
 
 export const initialHomeState = {
   currentScreen: 'HOME',
@@ -20,11 +21,18 @@ export const adminHomeComponentReducer = produce(
       case 'EDIT_DRIVE':
         state.currentScreen = payload.currentScreen;
         state.id = payload.id;
+        local.setItem('editDriveId', payload.id);
+        break;
+      case 'DRIVE_RESULT':
+        state.currentScreen = payload.currentScreen;
+        state.id = payload.id;
+        local.setItem('driveResultId', payload.id);
         break;
 
       case 'INVITE_CANDIDATES':
         state.currentScreen = payload.currentScreen;
         state.id = payload.id;
+        local.setItem('inviteCandidatesId', payload.id);
         break;
 
       case 'PROBLEMS':

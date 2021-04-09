@@ -11,7 +11,7 @@ import { DRIVE_RESULT } from 'redux/admin/driveResult/actionConstants';
 export function* driveResultSaga(action) {
   try {
     const response = yield call(driveResultPostApi);
-    yield put(driveResultSuccessAction(response.data));
+    yield put(driveResultSuccessAction(response.data.data));
   } catch (error) {
     yield put(driveResultFailureAction(error.message));
   }

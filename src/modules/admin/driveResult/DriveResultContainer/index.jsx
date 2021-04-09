@@ -16,14 +16,21 @@ const DriveResultContainer = () => {
     return data.map((val, index) => {
       const {
         candidate_id,
+        first_name,
+        last_name,
+        email,
         score,
         end_times,
       } = val;
       return (
         <tr key={candidate_id}>
           <td>{candidate_id}</td>
-          <td>{score}</td>
+          <td>{first_name}</td>
+          <td>{last_name}</td>
+          <td>{email}</td>
           <td>{end_times}</td>
+          <td>{score}</td>
+
         </tr>
       );
     });

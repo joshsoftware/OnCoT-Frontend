@@ -1,10 +1,11 @@
 import axios from 'axios';
 import local from 'utils/local';
+import { SERVER_URL } from 'constants/appConstants';
 
 export const createProblemPostApi = (data) => {
   return axios({
     method: 'post',
-    url: 'https://oncot-platform.herokuapp.com/api/v1/admin/problems',
+    url: `${SERVER_URL}admin/problems`,
     data,
     headers: {
       'Content-Type': 'application/json',

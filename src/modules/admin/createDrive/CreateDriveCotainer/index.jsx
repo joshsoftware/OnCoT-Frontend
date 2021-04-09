@@ -123,12 +123,19 @@ const CreateDriveContainer = () => {
     } = createDrive;
     const problemId = currentProblems[0];
 
+    const drive_problem_attributes = [
+      {
+        problem_id: problemId,
+        _destroy: false,
+      },
+    ];
+
     const postData = {
-      id,
       name,
       description,
       start_time,
       end_time,
+      drive_problem_attributes,
     };
     dispatch(createDriveRequestAction({ postData, problemId }));
   };

@@ -1,3 +1,8 @@
 import request from 'apis/apiHelper';
+import local from 'utils/local';
+import { SERVER_URL } from 'constants/appConstants';
 
-export const driveResultPostApi = () => request.get('http://localhost:3000/data');
+export const driveResultPostApi = () => {
+  const driveId = local.getItem('driveResultId');
+  return request.get(`${SERVER_URL}drives/${driveId}/results`);
+};

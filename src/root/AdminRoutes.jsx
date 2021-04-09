@@ -7,6 +7,7 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
+import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -16,6 +17,8 @@ function AdminRoutes() {
 
       {/* To develop Drive result page */}
       <Route exact path={path + ADMIN_ROUTES.DRIVE_RESULT} component={DriveResultContainer} />
+      {/* to develop create problem page */}
+      <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
 
       <Route
         exact

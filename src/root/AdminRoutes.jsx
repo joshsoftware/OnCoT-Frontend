@@ -8,8 +8,8 @@ import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
+import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -34,10 +34,9 @@ function AdminRoutes() {
         component={LoginContainer}
       />
 
-      <Route
-        exact
-        path={path + ADMIN_ROUTES.CREATE_PROBLEM}
-        component={CreateProblemContainer}
+      <ProtectedAdminRoute
+        path={path + ADMIN_ROUTES.SEND_INVITE}
+        component={SendEmailInviteContainer}
       />
 
       <ProtectedAdminRoute

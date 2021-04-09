@@ -10,7 +10,7 @@ export const CANDIDATE_ROUTES = {
   CANDIDATE_DETAILS: '/:id/details',
   IDE: '/ide',
   RULES_AND_PROFILE: '/profile/create',
-  ENDPAGE:'/endpage',
+  ENDPAGE: '/endpage',
 };
 
 export const ADMIN_ROUTES = {
@@ -18,6 +18,6 @@ export const ADMIN_ROUTES = {
   LOGIN: '/login',
   CREATE_PROBLEM: '/create/problem',
   SHOW_CANDIDATE_LIST: '/showcandidatelist',
+  SEND_INVITE: '/send/invite/:drifeid', // Need to remove this later
   DRIVE_RESULT: '/result',
-  CREATE_PROBLEM: '/create/problem',
 };

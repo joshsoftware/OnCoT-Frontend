@@ -132,7 +132,6 @@ const TestCaseContainer = () => {
             return toast.error('Error in posting data');
           } catch (err) {
             setIsLoading(false);
-            console.log(isLoading);
             return toast.error('error in posting');
           }
         }

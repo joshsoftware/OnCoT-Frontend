@@ -15,17 +15,29 @@ function AdminRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={path} component={AdminHomeComponent} />
-
       {/* To develop Drive result page */}
-      <Route exact path={path + ADMIN_ROUTES.DRIVE_RESULT} component={DriveResultContainer} />
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.DRIVE_RESULT}
+        component={DriveResultContainer}
+      />
       {/* to develop create problem page */}
-      <Route exact path={path + ADMIN_ROUTES.CREATE_PROBLEM} component={CreateProblemContainer} />
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.CREATE_PROBLEM}
+        component={CreateProblemContainer}
+      />
 
       <Route
         exact
         path={path + ADMIN_ROUTES.LOGIN}
         component={LoginContainer}
+      />
+
+      <Route
+        exact
+        path={path + ADMIN_ROUTES.CREATE_PROBLEM}
+        component={CreateProblemContainer}
       />
 
       <ProtectedAdminRoute

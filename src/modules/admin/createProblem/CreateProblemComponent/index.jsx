@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {
   Container,
   Row,
@@ -9,23 +8,21 @@ import {
   Label,
   Input,
   Button,
-  Table,
+  Col,
 } from 'core-components';
+import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
+import './createproblem.css';
 
-const CreateProblemComponent = ({
-  handleTitleChange,
-  handleDescriptionChange,
-  handleCountChange,
-  handleSubmit,
-  message,
-  isSuccess,
-}) => {
+const CreateProblemComponent = (props) => {
+  const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
+    message, isSuccess, isTestCaseSuccess } = props;
   const problemSuccess = () => {
-    if (isSuccess) {
+    // please redirect to problem list page
+    if (isSuccess && isTestCaseSuccess) {
       return (
         <>
           <h6 className='text-success pl-5 pt-2'>{message}</h6>
-          <h6 className='text-success pl-5 pt-2'>Now you can add Test cases For the Problem statement</h6>
+          <h6 className='text-success pl-5 pt-2'>Problem created successfully</h6>
         </>
       );
     }
@@ -72,19 +69,22 @@ const CreateProblemComponent = ({
               required
             />
           </FormGroup>
-
+          <Row>
+            <Row className='p-3 w-100 d-flex'>
+              <TestCaseContainer />
+            </Row>
+          </Row>
           <Row className='p-3'>
-            <Button className=''>
-              Create Problem
-            </Button>
-            {problemSuccess()}
+            <Col />
+            <Col>
+              <Button className=''>
+                Create Problem
+              </Button>
+              {problemSuccess()}
+            </Col>
+            <Col />
           </Row>
         </Form>
-      </Row>
-      <Row>
-        <Row className='p-3 w-100 d-flex'>
-          {/* Add Test Case Component */}
-        </Row>
       </Row>
     </Container>
   );
@@ -94,6 +94,7 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
+  isTestCaseSuccess:PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,

@@ -1,0 +1,10 @@
+.button_margin{
+    margin-left: 5px;
+}
+
+.fixed{
+    table-layout:auto;
+}
+.fixed td {
+    word-wrap: break-word;
+}

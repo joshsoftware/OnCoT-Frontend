@@ -21,13 +21,11 @@ const createProblemReducer = produce((state = initialState, action = {}) => {
       state.isSuccess = true;
       break;
     case CREATE_PROBLEM.CREATE_PROBLEM_FAILURE_ACTION:
-      console.log('in failuer');
       state.isError = true;
       state.errorMessage = payload;
       state.isLoading = false;
       break;
     case CREATE_PROBLEM.CREATE_PROBLEM_REQUEST_ACTION:
-      console.log('in loading');
       state.isLoading = true;
       break;
     default:

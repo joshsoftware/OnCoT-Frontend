@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { createTestCaseSuccessAction, createTestCaseFailureAction } from './action';
-import { postTestCaseApi } from './api';
-import { CREATE_TESTCASE } from './actionContants';
+import { createTestCaseSuccessAction, createTestCaseFailureAction } from 'redux/admin/testCase/action';
+import { postTestCaseApi } from 'redux/admin/testCase/api';
+import { CREATE_TESTCASE } from 'redux/admin/testCase/actionContants';
 
 export function* postTestCase(action) {
   const { input, output, marks, problem_id } = action.payload;

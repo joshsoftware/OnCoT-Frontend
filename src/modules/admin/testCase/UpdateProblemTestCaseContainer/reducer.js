@@ -1,8 +1,8 @@
 import produce from 'immer';
 
-export const reducer = produce((state, action) => {
+export const reducer = produce((state, action = {}) => {
   const { type, payload } = action;
-  switch (action.type) {
+  switch (type) {
     case 'input':
       state.input  = payload;
       break;

@@ -1,4 +1,4 @@
-import { CREATE_TESTCASE } from './actionContants';
+import { CREATE_TESTCASE } from 'redux/admin/testCase/actionContants';
 
 // create test cases actions
 export const createTestCaseRequestAction = (payload) => ({

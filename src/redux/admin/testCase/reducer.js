@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { CREATE_TESTCASE, UPDATE_TESTCASE, DELETE_TESTCASE } from './actionContants';
+import { CREATE_TESTCASE } from 'redux/admin/testCase/actionContants';
 
 export const initialState = {
   testCaseMessage:'',

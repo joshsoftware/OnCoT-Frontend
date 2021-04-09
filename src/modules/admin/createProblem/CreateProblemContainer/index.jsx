@@ -69,7 +69,7 @@ const CreateProblemContainer = () => {
       handleCountChange={handleCountChange}
       handleSubmit={handleSubmit}
       message={message}
-      isProblemSuccess={isSuccess}
+      isSuccess={isSuccess}
       isTestCaseSuccess={isTestCaseSuccess}
       isTestCaseLoading={isTestCaseLoading}
       dispatch={dispatch}

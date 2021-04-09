@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteTestCaseRequestAction } from 'redux/admin/testCase/action';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteTestCaseApi, getTestCasesApi, postTestCaseApi, updateTestCaseApi } from 'redux/admin/testCase/api';
-import TestCaseComponent from '../TestCaseComponent';
-import { reducer } from './reducer';
+import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
+import { reducer } from 'modules/admin/testCase/UpdateProblemTestCaseContainer/reducer';
 
 const UpdateProblemTestCaseContainer = ({ problem_id }) => {
   const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
@@ -33,7 +32,7 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
     }, [userState.testCases],
   );
   // check if problem id is supplied then only load the test cases
-  if (problem_id !== undefined) {
+  if (typeof problem_id !== 'undefined') {
     loadTestCases();
   }
 

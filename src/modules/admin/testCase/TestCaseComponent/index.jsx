@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './testCase.css';
 
@@ -11,7 +11,6 @@ import {
   Button,
   Table,
 } from 'core-components';
-import { Icon } from 'rsuite';
 
 const CreateProblemComponent = ({
   handleInputChange,

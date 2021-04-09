@@ -13,8 +13,6 @@ function AdminRoutes() {
   const { path } = useRouteMatch();
   return (
     <Switch>
-      <Route exact path={path + ADMIN_ROUTES.HOME} component={HomeContainer} />
-
       {/* To develop Drive result page */}
       <Route exact path={path + ADMIN_ROUTES.DRIVE_RESULT} component={DriveResultContainer} />
 

@@ -6,6 +6,8 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import AdminHomeComponent from 'components/AdminHomeComponent';
+import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
+import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
@@ -29,6 +31,11 @@ function AdminRoutes() {
       <ProtectedAdminRoute
         path={path + ADMIN_ROUTES.HOME}
         component={HomeContainer}
+      />
+
+      <ProtectedAdminRoute
+        path={path + ADMIN_ROUTES.SHOW_CANDIDATE_LIST}
+        component={ShowCandidateListContainer}
       />
 
       <Redirect to={path} />

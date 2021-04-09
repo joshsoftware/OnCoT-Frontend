@@ -7,7 +7,7 @@ export const get = (url) => {
       'access-token': local.getItem('accessToken'),
       'token-type': local.getItem('token-type'),
       client: local.getItem('client'),
-      expiry: local.getItem('uid'),
+      expiry: local.getItem('expiry'),
       uid: local.getItem('uid'),
     },
   });

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
 import AdminHeader from 'shared-components/AdminHeader';
 import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
@@ -30,7 +30,7 @@ const HomeComponent = (props) => {
             <p>Edit Drive</p>
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
-            <p>Invite Candidates</p>
+            <ShowCandidateListContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
             <DriveResultContainer />

@@ -28,7 +28,7 @@ function EditorContainer() {
   );
 
   const { isError, errorMessage, submissionAllowed, totalTestcases,
-    testcasesPassed, marks, isLoading } = useSelector(
+    testcasesPassed, isLoading } = useSelector(
     (state) => state.codeSubmissionReducer,
   );
 
@@ -131,7 +131,6 @@ function EditorContainer() {
         submissionAllowed={submissionAllowed}
         totalTestcases={totalTestcases}
         testcasesPassed={testcasesPassed}
-        marks={marks}
         handleFinish={handleFinish}
         toggleFinish={toggleFinish}
         finishModal={finishModal}

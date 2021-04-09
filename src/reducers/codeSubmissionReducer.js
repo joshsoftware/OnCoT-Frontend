@@ -8,7 +8,6 @@ export const initialState = {
   submissionAllowed:  parseInt(local.getItem('subCount') || null, 10),
   totalTestcases: null,
   testcasesPassed: null,
-  marks: null,
   isLoading: false,
 };
 
@@ -21,7 +20,6 @@ const codeSubmissionReducer = produce((state = initialState, action = {}) => {
         state.submissionAllowed = submission_count;
         state.totalTestcases = total_testcases;
         state.testcasesPassed = passed_testcases;
-        state.marks = marks;
         state.isLoading = false;
       }
       break;

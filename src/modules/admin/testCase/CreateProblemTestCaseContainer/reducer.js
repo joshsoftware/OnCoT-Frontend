@@ -1,18 +1,22 @@
 import produce from 'immer';
 
+const setterForCrud = (payload, state) => {
+  if (payload.subType === 'input') {
+    state.input  = payload.data;
+  } else if (payload.subType === 'output') {
+    state.output  = payload.data;
+  } else if (payload.subType === 'marks') {
+    state.marks  = payload.data;
+  } else if (payload.subType === 'id') {
+    state.id  = payload.data;
+  }
+};
+
 export const reducer = produce((state, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case 'set input/output/mark/id':
-      if (payload.subType === 'input') {
-        state.input  = payload.data;
-      } else if (payload.subType === 'output') {
-        state.output  = payload.data;
-      } else if (payload.subType === 'marks') {
-        state.marks  = payload.data;
-      } else if (payload.subType === 'id') {
-        state.id  = payload.data;
-      }
+      setterForCrud(payload, state);
       break;
     case 'addTestCase':
       state.testCases.push(payload);

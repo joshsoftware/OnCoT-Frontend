@@ -4,7 +4,7 @@ import local from 'utils/local';
 export const createDrivePostApi = (data, problemId) => {
   return axios({
     method: 'post',
-    url: `https://oncot-apis.herokuapp.com/api/v1/admin/drives/problem/${problemId}`,
+    url: 'https://oncot-apis.herokuapp.com/api/v1/admin/drives',
     data,
     headers: {
       'Content-Type': 'application/json',

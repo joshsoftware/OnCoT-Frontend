@@ -9,13 +9,6 @@ const DriveResultComponent = ({
   isError,
   isLoading,
 }) => {
-  const loading = () => {
-    if (isLoading) {
-      return (
-        <Loading className='justify-content-center' />
-      );
-    }
-  };
   const error = () => {
     if (isError) {
       return <h6 className='text-danger font-weight-light'>{errorMessage}</h6>;
@@ -40,7 +33,6 @@ const DriveResultComponent = ({
             </tr>
           </thead>
           {error()}
-          {loading()}
           <tbody className='bg-secondary'>
             { renderTableData }
           </tbody>

@@ -40,8 +40,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
     (event) => {
       const input = event.target.value;
       setUserState({
-        type: 'input',
-        payload: input,
+        type: 'set input/output/mark/id',
+        payload: {
+          data: input,
+          subType: 'input',
+        },
       });
     },
     [userState.input],
@@ -51,8 +54,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
     (event) => {
       const output = event.target.value;
       setUserState({
-        type: 'output',
-        payload: output,
+        type: 'set input/output/mark/id',
+        payload: {
+          data: output,
+          subType: 'output',
+        },
       });
     },
     [userState.output],
@@ -62,8 +68,11 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
     (event) => {
       const marks = event.target.value;
       setUserState({
-        type: 'marks',
-        payload: marks,
+        type: 'set input/output/mark/id',
+        payload: {
+          data: marks,
+          subType: 'marks',
+        },
       });
     },
     [userState.marks],

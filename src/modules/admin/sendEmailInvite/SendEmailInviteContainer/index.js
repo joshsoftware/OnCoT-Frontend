@@ -43,7 +43,6 @@ const SendEmailInviteContainer = () => {
   const handleSendInvitation = async () => {
     const allEmails = (`${emailsState.emails},${emailsState.csvEmails}`).replace(/^,|,$/g, '');
     const checkEmails = allEmails.split(',');
-    yupValid(checkEmails);
     if (validateEmails(checkEmails)) {
       const data = {
         emails: checkEmails.join(','),

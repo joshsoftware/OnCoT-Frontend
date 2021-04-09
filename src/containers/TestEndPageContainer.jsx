@@ -7,7 +7,7 @@ import { finishTestRequest } from 'actions/finishTestActions';
 const TestEndPageContainer = () => {
   const dispatch = useDispatch();
 
-  const { score, isLoading } = useSelector((state) => state.finishTestReducer);
+  const { isLoading } = useSelector((state) => state.finishTestReducer);
 
   const { candidateId } = useSelector(
     (state) => state.userDriveReducer,
@@ -26,7 +26,6 @@ const TestEndPageContainer = () => {
   }, [dispatch]);
   return (
     <TestEndPageComponent
-      score={score}
       isLoading={isLoading}
     />
   );

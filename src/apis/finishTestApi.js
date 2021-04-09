@@ -1,6 +1,6 @@
 import request from 'apis/apiHelper';
 
 export const finishTestApi = (data) => {
-  const { id, candidate_id } = data;
-  return request.get(`api/v1/candidates/${candidate_id}/results/${id}`);
+  const { candidate_id } = data;
+  return request.put(`api/v1/drives_candidates/${candidate_id}`);
 };

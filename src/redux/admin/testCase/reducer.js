@@ -10,7 +10,7 @@ export const initialState = {
   reqCount:0,
 };
 
-const createTestCaseReducer = produce((state = initialState, action) => {
+const createTestCaseReducer = produce((action, state = initialState) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_TESTCASE.CREATE_TESTCASE_REQUEST_ACTION:

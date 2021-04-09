@@ -4,11 +4,11 @@ import { postTestCaseApi } from 'redux/admin/testCase/api';
 import { call, put } from 'redux-saga/effects';
 
 describe('Test case saga', () => {
-    let ite, action
+    let ite, action;
     
     beforeEach(() => {
         action = createTestCaseRequestAction({input: 1, output: 2, problem_id: 4});
-        ite = postTestCase(action) 
+        ite = postTestCase(action); 
     });
 
     it('must call api', () => {
@@ -19,7 +19,7 @@ describe('Test case saga', () => {
     const data = {message: 'Successfull'};
     
     it('must dispatch success action', () => {
-        ite.next()
+        ite.next();
         expect(ite.next(data).value).toEqual(put(createTestCaseSuccessAction(data)));
         expect(ite.next().done).toEqual(true);
     });

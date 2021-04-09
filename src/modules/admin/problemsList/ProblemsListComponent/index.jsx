@@ -3,10 +3,13 @@ import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
 import './style.css';
 
-const ProblemsListComponent = ({ renderTableData, problemIsLoading, handleAddProblemClick }) => {
+const ProblemsListComponent = (
+  { renderTableData, problemIsLoading, handleAddProblemClick },
+) => {
   if (problemIsLoading) {
     return <Spinner className='loader' />;
   }
+
   return (
     <>
       <Button onClick={handleAddProblemClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>
@@ -34,6 +37,7 @@ ProblemsListComponent.propTypes = {
   renderTableData: PropTypes.func.isRequired,
   problemIsLoading: PropTypes.bool.isRequired,
   handleAddProblemClick: PropTypes.func.isRequired,
+
 };
 
 export default React.memo(ProblemsListComponent);

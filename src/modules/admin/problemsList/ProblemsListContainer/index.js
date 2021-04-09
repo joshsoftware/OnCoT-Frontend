@@ -16,30 +16,40 @@ const ProblemsListContainer = () => {
   useEffect(async () => {
     const data = await getProblems();
     const { problems, problemLoading } = data;
+
     if (!problemLoading) {
       setAllProblems(problems);
       setProblemIsLoading(problemLoading);
+    } else {
+      setAllProblems([]);
     }
   }, [problemIsLoading]);
 
   const renderTableData = useCallback(() => {
-    return allProblems.map((val, index) => {
-      const {
-        id,
-        title,
-        description,
-      } = val;
+    if (allProblems.length === 0) {
+      return;
+    }
+    if (allProblems.length > 0) {
       return (
-        <tr key={id}>
-          <td>{id}</td>
-          <td>{title}</td>
-          <td>{description}</td>
-          <td>Null</td>
-          <td>Null</td>
-        </tr>
+        allProblems.map((val, index) => {
+          const {
+            id,
+            title,
+            description,
+          } = val;
+          return (
+            <tr key={id}>
+              <td>{id}</td>
+              <td>{title}</td>
+              <td>{description}</td>
+              <td>Null</td>
+              <td>Null</td>
+            </tr>
+          );
+        })
       );
-    });
-  });
+    }
+  }, [problemIsLoading]);
 
   const handleAddProblemClick = () => {
     history.push(ROUTES.ADMIN + ADMIN_ROUTES.CREATE_PROBLEM);

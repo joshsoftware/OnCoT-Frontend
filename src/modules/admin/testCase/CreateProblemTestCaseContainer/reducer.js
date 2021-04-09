@@ -14,9 +14,6 @@ export const reducer = produce((state, action = {}) => {
         state.id  = payload.data;
       }
       break;
-    case 'id':
-      state.id  = payload;
-      break;
     case 'addTestCase':
       state.testCases.push(payload);
       state.input = '';

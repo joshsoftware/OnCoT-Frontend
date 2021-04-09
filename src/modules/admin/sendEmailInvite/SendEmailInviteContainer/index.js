@@ -1,13 +1,16 @@
 import { useReducer, useState } from 'react';
 import { Redirect, useParams } from 'react-router';
 import SendEmailInviteComponent from 'modules/admin/sendEmailInvite/SendEmailInviteComponent';
-import reducer, { initialState } from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/reducer';
+import reducer, {
+  initialState,
+} from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/reducer';
 import sendEmails from 'modules/admin/sendEmailInvite/SendEmailInviteContainer/sendEmails';
+import local from 'utils/local';
 
 const SendEmailInviteContainer = () => {
   const [emailsState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
-  const { drifeid } = useParams();
+  const { drifeid } = local.getItem('showCandidatesId');
 
   const handleInvitationEmails = (event) => {
     dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
@@ -41,7 +44,10 @@ const SendEmailInviteContainer = () => {
   };
 
   const handleSendInvitation = async () => {
-    const allEmails = (`${emailsState.emails},${emailsState.csvEmails}`).replace(/^,|,$/g, '');
+    const allEmails = `${emailsState.emails},${emailsState.csvEmails}`.replace(
+      /^,|,$/g,
+      '',
+    );
     const checkEmails = allEmails.split(',');
     if (validateEmails(checkEmails)) {
       const data = {
@@ -69,7 +75,10 @@ const SendEmailInviteContainer = () => {
   };
 
   const handleCancel = (event) => {
-    event.preventDefault(); // Use Redirect to container when the dependent component is ready
+    dispatch({
+      type: 'SHOW_CANDIDATES',
+      payload: { currentScreen: 'SHOW_CANDIDATES', id: drifeid },
+    });
   };
 
   const handleCsvRemove = () => {

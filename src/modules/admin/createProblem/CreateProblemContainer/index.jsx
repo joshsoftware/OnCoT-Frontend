@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useCallback } from 'react';
+import React, { useReducer, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import CreateProblemComponent from 'modules/admin/createProblem/CreateProblemComponent';
@@ -7,14 +7,20 @@ import { createProblemRequestAction } from 'redux/admin/createProblem/action';
 
 const CreateProblemContainer = () => {
   const dispatch = useDispatch();
-  const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
-  const { isTestCaseSuccess, isTestCaseLoading } = useSelector((state) => state.testReducer);
+  const { message, isSuccess } = useSelector(
+    (state) => state.createProblemReducer,
+  );
+  const { isTestCaseSuccess, isTestCaseLoading } = useSelector(
+    (state) => state.testReducer,
+  );
   const initialUserState = {
     title: '',
     description: '',
     submissionCount: null,
     testCases: [],
   };
+  console.log(message);
+  useEffect(() => {}, [isSuccess, message]);
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);
   const handleTitleChange = useCallback(
@@ -50,18 +56,16 @@ const CreateProblemContainer = () => {
     [userState.submissionCount],
   );
 
-  const handleSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-      const { title, description, submissionCount } = userState;
-      const data = {
-        title,
-        description,
-        submissionCount,
-      };
-      dispatch(createProblemRequestAction(data));
-    },
-  );
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    const { title, description, submissionCount } = userState;
+    const data = {
+      title,
+      description,
+      submissionCount,
+    };
+    dispatch(createProblemRequestAction(data));
+  });
   return (
     <CreateProblemComponent
       handleTitleChange={handleTitleChange}

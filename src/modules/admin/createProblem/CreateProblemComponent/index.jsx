@@ -9,24 +9,26 @@ import {
   Input,
   Button,
   Col,
+  Alert,
 } from 'core-components';
 import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
 import './createproblem.css';
 
 const CreateProblemComponent = (props) => {
-  const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
-    message, isSuccess, isTestCaseSuccess } = props;
-  const problemSuccess = () => {
-    // please redirect to problem list page
-    if (isSuccess && isTestCaseSuccess) {
-      return (
-        <>
-          <h6 className='text-success pl-5 pt-2'>{message}</h6>
-          <h6 className='text-success pl-5 pt-2'>Problem created successfully</h6>
-        </>
-      );
-    }
-  };
+  const {
+    handleTitleChange,
+    handleDescriptionChange,
+    handleCountChange,
+    handleSubmit,
+    message,
+    isSuccess,
+    isTestCaseSuccess,
+  } = props;
+
+  if (isSuccess) {
+    return <Alert>{message}</Alert>;
+  }
+
   return (
     <Container fluid>
       <Row className='px-3 pt-3'>
@@ -77,10 +79,7 @@ const CreateProblemComponent = (props) => {
           <Row className='p-3'>
             <Col />
             <Col>
-              <Button className=''>
-                Create Problem
-              </Button>
-              {problemSuccess()}
+              <Button className=''>Create Problem</Button>
             </Col>
             <Col />
           </Row>
@@ -94,7 +93,7 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
-  isTestCaseSuccess:PropTypes.bool.isRequired,
+  isTestCaseSuccess: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,

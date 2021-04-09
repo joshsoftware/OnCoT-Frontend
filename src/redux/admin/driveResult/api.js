@@ -4,5 +4,5 @@ import { SERVER_URL } from 'constants/appConstants';
 
 export const driveResultPostApi = () => {
   const driveId = local.getItem('driveResultId');
-  return request.get(`${SERVER_URL}api/v1/drives/1/results`);
+  return request.get(`${SERVER_URL}api/v1/drives/${driveId}/results`);
 };

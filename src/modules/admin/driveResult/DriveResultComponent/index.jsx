@@ -32,6 +32,9 @@ const DriveResultComponent = ({
           <thead>
             <tr>
               <th>Candidate Id</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
               <th>Score</th>
               <th>Test End Time</th>
             </tr>

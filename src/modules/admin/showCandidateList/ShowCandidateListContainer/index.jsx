@@ -11,7 +11,6 @@ import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListCont
 const ShowCandidateListContainer = () => {
   const history = useHistory();
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
-  console.log(id);
   const [allCandidates, setAllCandidates] = useState([]);
   const [candidatesLodaning, setCandidatesLodaning] = useState(true);
   useEffect(async () => {

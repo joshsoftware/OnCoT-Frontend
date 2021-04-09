@@ -22,7 +22,7 @@ const TestCaseContainer = () => {
     (event) => {
       const input = event.target.value;
       setUserState({
-        type: 'set input/output/mark',
+        type: 'set input/output/mark/id',
         payload: {
           data: input,
           subType: 'input',
@@ -36,7 +36,7 @@ const TestCaseContainer = () => {
     (event) => {
       const output = event.target.value;
       setUserState({
-        type: 'set input/output/mark',
+        type: 'set input/output/mark/id',
         payload: {
           data: output,
           subType: 'output',
@@ -50,7 +50,7 @@ const TestCaseContainer = () => {
     (event) => {
       const marks = event.target.value;
       setUserState({
-        type: 'set input/output/mark',
+        type: 'set input/output/mark/id',
         payload: {
           data: marks,
           subType: 'marks',
@@ -66,8 +66,11 @@ const TestCaseContainer = () => {
       let { id } = userState;
       id += 1;
       setUserState({
-        type: 'id',
-        payload: id,
+        type: 'set input/output/mark/id',
+        payload: {
+          data: id,
+          subType: 'id',
+        },
       });
       const { input, output, marks } = userState;
       const data = {

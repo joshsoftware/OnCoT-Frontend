@@ -77,7 +77,7 @@ const UpdateProblemTestCaseContainer = ({ problem_id }) => {
         input,
         output,
         marks,
-        problem_id: 2,
+        problem_id,
       };
       const result = await postTestCaseApi(data);
       if (result.status === 200) {

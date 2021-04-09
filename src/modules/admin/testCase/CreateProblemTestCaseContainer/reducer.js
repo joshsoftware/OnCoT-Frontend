@@ -3,13 +3,15 @@ import produce from 'immer';
 export const reducer = produce((state, action = {}) => {
   const { type, payload } = action;
   switch (type) {
-    case 'set input/output/mark':
+    case 'set input/output/mark/id':
       if (payload.subType === 'input') {
         state.input  = payload.data;
       } else if (payload.subType === 'output') {
         state.output  = payload.data;
       } else if (payload.subType === 'marks') {
         state.marks  = payload.data;
+      } else if (payload.subType === 'id') {
+        state.id  = payload.data;
       }
       break;
     case 'id':

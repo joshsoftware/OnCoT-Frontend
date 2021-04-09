@@ -13,7 +13,7 @@ describe('TestCase reducer', () => {
     });
 
     it('Request Failed', () => {
-        const testCaseErrorMessage = '401 Request failed!'
+        const testCaseErrorMessage = '401 Request failed!';
         const isTestCaseError = true;
         expect(testCaseReducer(initialState, createTestCaseFailureAction({error: '401 Request failed!'}, isTestCaseError)))
           .toEqual({ ...initialState, testCaseErrorMessage, isTestCaseError });

@@ -22,8 +22,11 @@ const TestCaseContainer = () => {
     (event) => {
       const input = event.target.value;
       setUserState({
-        type: 'input',
-        payload: input,
+        type: 'set input/output/mark',
+        payload: {
+          data: input,
+          subType: 'input',
+        },
       });
     },
     [userState.input],
@@ -33,8 +36,11 @@ const TestCaseContainer = () => {
     (event) => {
       const output = event.target.value;
       setUserState({
-        type: 'output',
-        payload: output,
+        type: 'set input/output/mark',
+        payload: {
+          data: output,
+          subType: 'output',
+        },
       });
     },
     [userState.output],
@@ -44,8 +50,11 @@ const TestCaseContainer = () => {
     (event) => {
       const marks = event.target.value;
       setUserState({
-        type: 'marks',
-        payload: marks,
+        type: 'set input/output/mark',
+        payload: {
+          data: marks,
+          subType: 'marks',
+        },
       });
     },
     [userState.marks],
@@ -150,7 +159,7 @@ const TestCaseContainer = () => {
     (event) => {
       event.preventDefault();
       setUserState({
-        type: 'setdefault',
+        type: 'default',
       });
     },
     [userState.input, userState.output, userState.marks],

@@ -44,11 +44,10 @@ export const reducer = produce((state, action = {}) => {
       state.testCases = [...payload];
       state.isTestCaseLoaded = true;
       break;
-    case 'setdefault':
+    default:
       state.input = '';
       state.output = '';
       state.marks = 0;
       break;
-    default: return state;
   }
 });

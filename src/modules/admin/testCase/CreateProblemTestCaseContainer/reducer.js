@@ -3,14 +3,14 @@ import produce from 'immer';
 export const reducer = produce((state, action = {}) => {
   const { type, payload } = action;
   switch (type) {
-    case 'input':
-      state.input  = payload;
-      break;
-    case 'output':
-      state.output  = payload;
-      break;
-    case 'marks':
-      state.marks  = payload;
+    case 'set input/output/mark':
+      if (payload.subType === 'input') {
+        state.input  = payload.data;
+      } else if (payload.subType === 'output') {
+        state.output  = payload.data;
+      } else if (payload.subType === 'marks') {
+        state.marks  = payload.data;
+      }
       break;
     case 'id':
       state.id  = payload;
@@ -40,11 +40,10 @@ export const reducer = produce((state, action = {}) => {
     case 'deleteTestCase':
       state.testCases.splice(payload, 1);
       break;
-    case 'setdefault':
+    default:
       state.input = '';
       state.output = '';
       state.marks = 0;
       break;
-    default: return state;
   }
 });

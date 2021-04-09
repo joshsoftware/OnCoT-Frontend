@@ -8,7 +8,6 @@ export const initialHomeState = {
 
 export const adminHomeComponentReducer = produce(
   (state = initialHomeState, action = {}) => {
-    console.log(state);
     const { type, payload } = action;
     switch (type) {
       case 'HOME':

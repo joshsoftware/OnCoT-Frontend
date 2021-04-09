@@ -1,8 +1,12 @@
 import React, { useReducer, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import * as yup from 'yup';
+import 'react-toastify/dist/ReactToastify.css';
 import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
 import { reducer } from 'modules/admin/testCase/CreateProblemTestCaseContainer/reducer';
 import { createTestCaseRequestAction } from 'redux/admin/testCase/action';
+import { validateData } from '../dataValidation';
 
 const TestCaseContainer = () => {
   const dispatch = useDispatch();
@@ -12,12 +16,21 @@ const TestCaseContainer = () => {
     input: '',
     output: '',
     marks: 0,
+    inputErrTxt: '',
+    outputErrTxt: '',
+    marksErrTxt: '',
     id: 0,
     testCases: [],
     isTestCaseEdit: false,
   };
   const [userState, setUserState] = useReducer(reducer, initialUserState);
+  const notify = () => toast.error('Please add test cases');
 
+  const schema = yup.object().shape({
+    input: yup.string().required(),
+    output: yup.string().required(),
+    marks: yup.number().required().min(0),
+  });
   const handleInputChange = useCallback(
     (event) => {
       const input = event.target.value;
@@ -61,7 +74,7 @@ const TestCaseContainer = () => {
   );
 
   const handleOnAdd = useCallback(
-    (event) => {
+    async (event) => {
       event.preventDefault();
       let { id } = userState;
       id += 1;
@@ -80,9 +93,15 @@ const TestCaseContainer = () => {
         problem_id,
         id,
       };
-      setUserState({
-        type: 'addTestCase',
-        payload: data,
+      schema.isValid(data).then((valid) => {
+        if (!valid) {
+          validateData(schema, data, setUserState);
+        } else {
+          setUserState({
+            type: 'addTestCase',
+            payload: data,
+          });
+        }
       });
     }, [userState.input, userState.marks, userState.output, userState.testCases],
   );
@@ -106,18 +125,27 @@ const TestCaseContainer = () => {
   );
   const handleOnTestCaseUpdate = useCallback(
     (tempId) => {
-      let testCase = {};
       const { testCases, input, output, marks, id } = userState;
-      for (let i = 0; i < testCases.length; i += 1) {
-        if (testCases[i].id === id) {
-          testCase = testCases[i];
-          setUserState({
-            type: 'updateTestCase',
-            payload: { index: i, input, output, marks },
-          });
-          break;
+      const data = {
+        input,
+        output,
+        marks,
+      };
+      schema.isValid(data).then((valid) => {
+        if (!valid) {
+          validateData(schema, data, setUserState);
+        } else {
+          for (let i = 0; i < testCases.length; i += 1) {
+            if (testCases[i].id === id) {
+              setUserState({
+                type: 'updateTestCase',
+                payload: { index: i, input, output, marks },
+              });
+              break;
+            }
+          }
         }
-      }
+      });
     }, [userState.input, userState.output, userState.marks, userState.testCases,
       userState.id],
   );
@@ -125,6 +153,9 @@ const TestCaseContainer = () => {
     (event) => {
       const { testCases } = userState;
       const len = testCases.length;
+      if (len === 0) {
+        return notify();
+      }
       testCases.forEach((tc) => {
         const { input, output, marks } = tc;
         const data = {
@@ -183,6 +214,9 @@ const TestCaseContainer = () => {
       input={userState.input}
       output={userState.output}
       marks={userState.marks}
+      inputErrTxt={userState.inputErrTxt}
+      outputErrTxt={userState.outputErrTxt}
+      marksErrTxt={userState.marksErrTxt}
       isProblemSuccess={isSuccess}
       isTestCaseEdit={userState.isTestCaseEdit}
       testCases={userState.testCases}

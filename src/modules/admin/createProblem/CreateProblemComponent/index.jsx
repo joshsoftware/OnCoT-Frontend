@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Container,
   Row,
@@ -11,8 +13,9 @@ import {
   Col,
 } from 'core-components';
 import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
-import './createproblem.css';
+import UpdateProblemTestCaseContainer from 'modules/admin/testCase/UpdateProblemTestCaseContainer';
 
+toast.configure();
 const CreateProblemComponent = (props) => {
   const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
     message, isSuccess, isTestCaseSuccess } = props;
@@ -71,7 +74,8 @@ const CreateProblemComponent = (props) => {
           </FormGroup>
           <Row>
             <Row className='p-3 w-100 d-flex'>
-              <TestCaseContainer />
+              <TestCaseContainer /> 
+              {/* in case of update problem use -> <UpdateProblemTestCaseContainer problem_id={53} /> */}
             </Row>
           </Row>
           <Row className='p-3'>

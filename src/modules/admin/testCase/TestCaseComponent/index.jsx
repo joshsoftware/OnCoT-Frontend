@@ -6,6 +6,7 @@ import {
   Container,
   Row,
   FormGroup,
+  FormFeedback,
   Label,
   Input,
   Button,
@@ -24,6 +25,9 @@ const CreateProblemComponent = ({
   input,
   output,
   marks,
+  inputErrTxt,
+  outputErrTxt,
+  marksErrTxt,
   isTestCaseEdit,
   testCases,
   isProblemSuccess,
@@ -77,19 +81,22 @@ const CreateProblemComponent = ({
             <Label>
               <h6>Input</h6>
             </Label>
-            <Input type='text' value={input} onChange={handleInputChange} placeholder='Input' />
+            <Input type='text' invalid={inputErrTxt !== ''} value={input} onChange={handleInputChange} placeholder='Input' />
+            <FormFeedback>{inputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>
               <h6>Output</h6>
             </Label>
-            <Input type='text' value={output} onChange={handleOutputChange} placeholder='Output' />
+            <Input type='text' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output' />
+            <FormFeedback>{outputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>
               <h6>Marks</h6>
             </Label>
-            <Input type='text' value={marks} onChange={handleMarksChange} placeholder='Marks' />
+            <Input type='number' invalid={marksErrTxt !== ''} value={marks} onChange={handleMarksChange} placeholder='Marks' />
+            <FormFeedback>{marksErrTxt}</FormFeedback>
           </FormGroup>
           {
             isTestCaseEdit ?
@@ -116,6 +123,9 @@ CreateProblemComponent.propTypes = {
   input:PropTypes.string.isRequired,
   output:PropTypes.string.isRequired,
   marks:PropTypes.string.isRequired,
+  inputErrTxt:PropTypes.string.isRequired,
+  outputErrTxt:PropTypes.string.isRequired,
+  marksErrTxt:PropTypes.string.isRequired,
   testCases:PropTypes.string.isRequired,
   isTestCaseEdit:PropTypes.bool.isRequired,
   isProblemSuccess:PropTypes.bool.isRequired,

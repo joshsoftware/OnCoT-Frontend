@@ -3,9 +3,9 @@ import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
 
 const ShowCandidateListComponent = (props) => {
-  const { renderTableData, candidatesLodaning, handleAddCandidateClick } = props;
+  const { renderTableData, candidatesLoading, handleAddCandidateClick } = props;
 
-  if (candidatesLodaning) {
+  if (candidatesLoading) {
     return <Spinner />;
   }
   return (
@@ -29,7 +29,7 @@ const ShowCandidateListComponent = (props) => {
 };
 ShowCandidateListComponent.propTypes = {
   renderTableData: PropTypes.func.isRequired,
-  candidatesLodaning: PropTypes.bool.isRequired,
+  candidatesLoading: PropTypes.bool.isRequired,
   handleAddCandidateClick: PropTypes.func.isRequired,
 };
 

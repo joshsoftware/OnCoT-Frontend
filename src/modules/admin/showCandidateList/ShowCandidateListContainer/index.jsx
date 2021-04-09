@@ -12,31 +12,32 @@ const ShowCandidateListContainer = () => {
   const history = useHistory();
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidatesLodaning, setCandidatesLodaning] = useState(true);
+  const [candidatesLoading, setCandidatesLoading] = useState(true);
   useEffect(async () => {
     const data = await getCandidates(id);
-    const { candidates, candidateLodaning } = data;
-    if (!candidateLodaning) {
+    const { candidates, candidateLoading } = data;
+    console.log('candidates ', candidates);
+    if (!candidateLoading) {
       setAllCandidates(candidates);
-      setCandidatesLodaning(candidateLodaning);
+      setCandidatesLoading(candidateLoading);
     }
   }, []);
   const renderTableData = () => {
     return allCandidates.map((val, index) => {
       const {
-        candidateId,
-        FirstName,
-        LastName,
+        Id,
+        first_name,
+        last_name,
         email,
-        phoneNumber,
+        mobile_number,
       } = val;
       return (
-        <tr key={candidateId}>
-          <td>{candidateId}</td>
-          <td>{FirstName}</td>
-          <td>{LastName}</td>
+        <tr key={Id}>
+          <td>{Id}</td>
+          <td>{first_name}</td>
+          <td>{last_name}</td>
           <td>{email}</td>
-          <td>{phoneNumber}</td>
+          <td>{mobile_number}</td>
         </tr>
       );
     });
@@ -47,7 +48,7 @@ const ShowCandidateListContainer = () => {
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
-      candidatesLodaning={candidatesLodaning}
+      candidatesLoading={candidatesLoading}
       handleAddCandidateClick={handleAddCandidateClick}
     />
   );

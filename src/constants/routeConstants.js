@@ -17,6 +17,7 @@ export const ADMIN_ROUTES = {
   HOME: '/home',
   LOGIN: '/login',
   CREATE_PROBLEM: '/create/problem',
-  SHOW_CANDIDATE_LIST: '/showcandidatelist',
+  SHOW_CANDIDATE_LIST: '/candidate/list',
+  SEND_INVITE: '/send/invite/:drifeid',
   DRIVE_RESULT: '/result',
 };

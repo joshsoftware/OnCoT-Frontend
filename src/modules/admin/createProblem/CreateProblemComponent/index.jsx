@@ -10,14 +10,14 @@ import {
   Label,
   Input,
   Button,
-  Col,
+  Spinner,
 } from 'core-components';
 import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
 
 toast.configure();
 const CreateProblemComponent = (props) => {
   const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
-    message, isSuccess, isTestCaseSuccess } = props;
+    message, isSuccess, isLoading } = props;
   const problemSuccess = () => {
     // please redirect to problem list page
     if (isSuccess) {
@@ -73,8 +73,12 @@ const CreateProblemComponent = (props) => {
           </FormGroup>
 
           <Row className='p-3'>
-            <Button className=''>
-              Create Problem
+            <Button disabled={isSuccess} className=''>
+              {isLoading ? (
+                <Spinner size='sm' color='light' />
+              ) : (
+                <>Create Problem</>
+              )}
             </Button>
             {problemSuccess()}
           </Row>
@@ -95,10 +99,10 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
-  isTestCaseSuccess:PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default React.memo(CreateProblemComponent);

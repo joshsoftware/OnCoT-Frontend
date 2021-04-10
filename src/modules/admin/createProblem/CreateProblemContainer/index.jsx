@@ -7,13 +7,11 @@ import { createProblemRequestAction } from 'redux/admin/createProblem/action';
 
 const CreateProblemContainer = () => {
   const dispatch = useDispatch();
-  const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
-  const { isTestCaseSuccess, isTestCaseLoading } = useSelector((state) => state.testReducer);
+  const { message, isSuccess, isLoading } = useSelector((state) => state.createProblemReducer);
   const initialUserState = {
     title: '',
     description: '',
     submissionCount: null,
-    testCases: [],
   };
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);
@@ -70,10 +68,7 @@ const CreateProblemContainer = () => {
       handleSubmit={handleSubmit}
       message={message}
       isSuccess={isSuccess}
-      isTestCaseSuccess={isTestCaseSuccess}
-      isTestCaseLoading={isTestCaseLoading}
-      dispatch={dispatch}
-      testCases={userState.testCases}
+      isLoading={isLoading}
     />
   );
 };

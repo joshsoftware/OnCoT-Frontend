@@ -11,7 +11,7 @@ const ShowCandidateListContainer = () => {
 
   useEffect(async () => {
     const data = await getCandidates(Id);
-    setAllCandidates(data);
+    setAllCandidates(data.candidates);
   }, []);
   const renderTableData = () => {
     if (typeof allCandidates === 'undefined') {
@@ -21,7 +21,7 @@ const ShowCandidateListContainer = () => {
         </tr>
       );
     }
-    return allCandidates.map((val, index) => {
+    return allCandidates.map((val) => {
       const { id, first_name, last_name, email, mobile_number } = val;
       return (
         <tr key={id}>

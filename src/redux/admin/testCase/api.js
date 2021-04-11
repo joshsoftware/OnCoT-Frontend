@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { SERVER_URL } from 'constants/appConstants';
-import { get, post, patch } from '../apiHelper';
+import { get, post, put } from '../apiHelper';
 
 const headers = {};
 export const postTestCaseApi = (data) => {
+  // return post(`${SERVER_URL}api/v1/admin/test_cases`, data);
   return post(`${SERVER_URL}api/v1/admin/test_cases`, data);
 };
 
@@ -12,7 +13,7 @@ export const getTestCasesApi = (data) => {
 };
 
 export const updateTestCaseApi = (data) => {
-  return patch(`${SERVER_URL}api/v1/admin/test_cases/${data.id}`, data);
+  return put(`${SERVER_URL}api/v1/admin/test_cases/${data.id}`, data);
 };
 
 // api is not yet finalised

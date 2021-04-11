@@ -3,17 +3,23 @@ import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
 
 const ShowCandidateListComponent = (props) => {
-  const { renderTableData, candidatesLoading, handleAddCandidateClick } = props;
+  const { renderTableData, handleAddCandidateClick } = props;
 
-  if (candidatesLoading) {
-    return <Spinner />;
-  }
   return (
     <>
-      <Button onClick={handleAddCandidateClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>Add Candidates</Button>
+      <Button
+        onClick={handleAddCandidateClick}
+        className='float-right mr-xl-5 mt-xl-5 mb-xl-5'
+      >
+        Add Candidates
+      </Button>
       <Table dark className='table-bordered'>
         <thead>
-          <tr><th colSpan='6' className='px-3'>Candidates</th></tr>
+          <tr>
+            <th colSpan='6' className='px-3'>
+              Candidates
+            </th>
+          </tr>
           <tr>
             <th>Id</th>
             <th>First Name</th>
@@ -29,7 +35,6 @@ const ShowCandidateListComponent = (props) => {
 };
 ShowCandidateListComponent.propTypes = {
   renderTableData: PropTypes.func.isRequired,
-  candidatesLoading: PropTypes.bool.isRequired,
   handleAddCandidateClick: PropTypes.func.isRequired,
 };
 

@@ -36,3 +36,15 @@ export const patch = (url, data = '') => {
     },
   });
 };
+
+export const put = (url, data = '') => {
+  return axios.put(url, data, {
+    headers: {
+      'access-token': local.getItem('accessToken'),
+      'token-type': local.getItem('token-type'),
+      client: local.getItem('client'),
+      expiry: local.getItem('uid'),
+      uid: local.getItem('uid'),
+    },
+  });
+};

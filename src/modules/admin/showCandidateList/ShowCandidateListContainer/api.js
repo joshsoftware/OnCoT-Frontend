@@ -10,7 +10,6 @@ const getCandidates = async (id) => {
     `${SERVER_URL}api/v1/admin/drives/${id}/candidate_list`,
   )
     .then((response) => {
-      candidateLoading = false;
       return response.data.data.candidates;
     })
     .catch((error) => {

@@ -6,10 +6,12 @@ import {
   Container,
   Row,
   FormGroup,
+  FormFeedback,
   Label,
   Input,
   Button,
   Table,
+  Spinner,
 } from 'core-components';
 
 const CreateProblemComponent = ({
@@ -24,14 +26,13 @@ const CreateProblemComponent = ({
   input,
   output,
   marks,
+  inputErrTxt,
+  outputErrTxt,
+  marksErrTxt,
   isTestCaseEdit,
+  isLoading,
   testCases,
-  isProblemSuccess,
-  handleOnProblemSuccess,
 }) => {
-  if (isProblemSuccess) {
-    handleOnProblemSuccess();
-  }
   return (
     <Container fluid>
       <Row className='p-3 w-100 d-flex'>
@@ -77,25 +78,44 @@ const CreateProblemComponent = ({
             <Label>
               <h6>Input</h6>
             </Label>
-            <Input type='text' value={input} onChange={handleInputChange} placeholder='Input' />
+            <Input type='text' invalid={inputErrTxt !== ''} value={input} onChange={handleInputChange} placeholder='Input' />
+            <FormFeedback>{inputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>
               <h6>Output</h6>
             </Label>
-            <Input type='text' value={output} onChange={handleOutputChange} placeholder='Output' />
+            <Input type='text' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output' />
+            <FormFeedback>{outputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>
               <h6>Marks</h6>
             </Label>
-            <Input type='text' value={marks} onChange={handleMarksChange} placeholder='Marks' />
+            <Input type='number' invalid={marksErrTxt !== ''} value={marks} onChange={handleMarksChange} placeholder='Marks' />
+            <FormFeedback>{marksErrTxt}</FormFeedback>
           </FormGroup>
           {
             isTestCaseEdit ?
-              <Button onClick={handleOnTestCaseUpdate} className='btn btn-success'>Update</Button>
+              (
+                <Button onClick={handleOnTestCaseUpdate} className='btn btn-success'>
+                  {isLoading ? (
+                    <Spinner size='sm' color='light' />
+                  ) : (
+                    <>Update</>
+                  )}
+                </Button>
+              )
               :
-              <Button onClick={handleTestCaseOnAdd} className='btn btn-success'>Add</Button>
+              (
+                <Button onClick={handleTestCaseOnAdd} className='btn btn-success'>
+                  {isLoading ? (
+                    <Spinner size='sm' color='light' />
+                  ) : (
+                    <>Add</>
+                  )}
+                </Button>
+              )
           }
           <Button onClick={handleOnCancel} className='btn btn-danger button_margin'>Cancel</Button>
         </FormGroup>
@@ -112,12 +132,14 @@ CreateProblemComponent.propTypes = {
   handleOnTestCaseDelete:PropTypes.func.isRequired,
   handleOnTestCaseUpdate:PropTypes.func.isRequired,
   handleOnCancel:PropTypes.func.isRequired,
-  handleOnProblemSuccess:PropTypes.func.isRequired,
   input:PropTypes.string.isRequired,
   output:PropTypes.string.isRequired,
   marks:PropTypes.string.isRequired,
+  inputErrTxt:PropTypes.string.isRequired,
+  outputErrTxt:PropTypes.string.isRequired,
+  marksErrTxt:PropTypes.string.isRequired,
   testCases:PropTypes.string.isRequired,
   isTestCaseEdit:PropTypes.bool.isRequired,
-  isProblemSuccess:PropTypes.bool.isRequired,
+  isLoading:PropTypes.bool.isRequired,
 };
 export default React.memo(CreateProblemComponent);

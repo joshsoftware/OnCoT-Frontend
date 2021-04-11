@@ -8,15 +8,11 @@ const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
   const Id = local.getItem('showCandidatesId');
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidatesLoading, setCandidatesLoading] = useState(true);
+
   useEffect(async () => {
-    const data = await getCandidates(Id);
-    const { candidates, candidateLoading } = data;
-    if (!candidateLoading) {
-      setAllCandidates(candidates);
-      setCandidatesLoading(candidateLoading);
-    }
-  }, [candidatesLoading]);
+    const data = await getCandidates(id);
+    setAllCandidates(data);
+  }, []);
   const renderTableData = () => {
     if (typeof allCandidates === 'undefined') {
       return (
@@ -48,7 +44,6 @@ const ShowCandidateListContainer = () => {
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
-      candidatesLoading={candidatesLoading}
       handleAddCandidateClick={handleAddCandidateClick}
     />
   );

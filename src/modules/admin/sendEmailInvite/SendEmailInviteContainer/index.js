@@ -11,7 +11,6 @@ const SendEmailInviteContainer = () => {
   const [emailsState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
   const drifeid = local.getItem('showCandidatesId');
-
   const handleInvitationEmails = (event) => {
     dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
   };
@@ -58,10 +57,7 @@ const SendEmailInviteContainer = () => {
       try {
         const responseData = await sendEmails(data);
         if (responseData.status === 200) {
-          dispatch({
-            type: 'EMAILS_SENT_SUCCESS',
-            payload: 'Email(s) sent successfully!',
-          });
+          dispatch({ type: 'EMAILS_SENT_SUCCESS' });
           setLoading(false);
         }
       } catch (error) {

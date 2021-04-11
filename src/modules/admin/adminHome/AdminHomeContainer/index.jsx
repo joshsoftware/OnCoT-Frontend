@@ -104,6 +104,11 @@ const CreateDriveContainer = () => {
                 {driveStatus === completed ? 'Result' : 'Candidates'}
               </Button>
             </td>
+            {driveStatus !== completed && (
+              <td>
+                <Button onClick={onClickResult}>Result</Button>
+              </td>
+            )}
           </tr>
         );
       }

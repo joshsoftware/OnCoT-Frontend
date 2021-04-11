@@ -7,17 +7,11 @@ import { createProblemRequestAction } from 'redux/admin/createProblem/action';
 
 const CreateProblemContainer = () => {
   const dispatch = useDispatch();
-  const { message, isSuccess } = useSelector(
-    (state) => state.createProblemReducer,
-  );
-  const { isTestCaseSuccess, isTestCaseLoading } = useSelector(
-    (state) => state.testReducer,
-  );
+  const { message, isSuccess, isLoading } = useSelector((state) => state.createProblemReducer);
   const initialUserState = {
     title: '',
     description: '',
     submissionCount: null,
-    testCases: [],
   };
   useEffect(() => {}, [isSuccess, message]);
 
@@ -65,6 +59,13 @@ const CreateProblemContainer = () => {
     };
     dispatch(createProblemRequestAction(data));
   });
+
+  const finishProblemCreation = useCallback(() => {
+    dispatch({
+      type: 'PROBLEMS',
+      payload: 'PROBLEMS',
+    });
+  });
   return (
     <CreateProblemComponent
       handleTitleChange={handleTitleChange}
@@ -73,10 +74,8 @@ const CreateProblemContainer = () => {
       handleSubmit={handleSubmit}
       message={message}
       isSuccess={isSuccess}
-      isTestCaseSuccess={isTestCaseSuccess}
-      isTestCaseLoading={isTestCaseLoading}
-      dispatch={dispatch}
-      testCases={userState.testCases}
+      isLoading={isLoading}
+      finishProblemCreation={finishProblemCreation}
     />
   );
 };

@@ -1,20 +1,28 @@
-import { get } from 'redux/admin/apiHelper';
-
 import { Alert } from 'core-components';
 
+import { get } from 'redux/admin/apiHelper';
+
+import { SERVER_URL } from 'constants/appConstants';
+
 const getCandidates = async (id) => {
+  let candidateLoading = false;
   const candidates = await get(
-    `https://oncot-apis.herokuapp.com/api/v1/admin/drives/${id}/candidate_list`,
+    `${SERVER_URL}api/v1/admin/drives/${id}/candidate_list`,
   )
     .then((response) => {
-      console.log('candidatesresponse', response.data.data.candidates);
+      candidateLoading = false;
       return response.data.data.candidates;
     })
     .catch((error) => {
+      candidateLoading = true;
       return <Alert className='danger'> {error} </Alert>;
     });
 
-  return candidates;
+  const customData = {
+    candidates,
+    candidateLoading,
+  };
+  return customData;
 };
 
 export default getCandidates;

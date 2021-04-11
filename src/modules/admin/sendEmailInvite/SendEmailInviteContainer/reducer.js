@@ -16,7 +16,7 @@ const reducer = (state = initialState, action = {}) => {
         csvEmails: '',
         emailsError: '',
         csvFileError: '',
-        successMessage: 'Email Invitations Sent Successfully!',
+        successMessage: payload,
       };
     }
     case 'EMAILS_SENT_FAILURE': {
@@ -26,7 +26,12 @@ const reducer = (state = initialState, action = {}) => {
       return { ...state, emailsError: 'Invalid Email[s]', successMessage: '' };
     }
     case 'INVALID_CSV_FILETYPE': {
-      return { ...state, csvEmails: '', csvFileError: 'Invalid Filetype (.csv need)', successMessage: '' };
+      return {
+        ...state,
+        csvEmails: '',
+        csvFileError: 'Invalid Filetype (.csv need)',
+        successMessage: '',
+      };
     }
     case 'VALID_EMAIL': {
       return { ...state, emails: payload, emailsError: '' };

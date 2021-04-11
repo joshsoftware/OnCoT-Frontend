@@ -6,18 +6,17 @@ import local from 'utils/local';
 
 const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.adminHomeComponentReducer);
+  const Id = local.getItem('showCandidatesId');
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidatesLodaning, setCandidatesLodaning] = useState(true);
+  const [candidatesLoading, setCandidatesLoading] = useState(true);
   useEffect(async () => {
-    const data = await getCandidates(id);
-    const { candidates, candidateLodaning } = data;
-    if (!candidateLodaning) {
+    const data = await getCandidates(Id);
+    const { candidates, candidateLoading } = data;
+    if (!candidateLoading) {
       setAllCandidates(candidates);
-      setCandidatesLodaning(candidateLodaning);
+      setCandidatesLoading(candidateLoading);
     }
-  }, []);
-  console.log(allCandidates);
+  }, [candidatesLoading]);
   const renderTableData = () => {
     if (typeof allCandidates === 'undefined') {
       return (
@@ -27,14 +26,14 @@ const ShowCandidateListContainer = () => {
       );
     }
     return allCandidates.map((val, index) => {
-      const { candidateId, FirstName, LastName, email, phoneNumber } = val;
+      const { id, first_name, last_name, email, mobile_number } = val;
       return (
-        <tr key={candidateId}>
-          <td>{candidateId}</td>
-          <td>{FirstName}</td>
-          <td>{LastName}</td>
+        <tr key={id}>
+          <td>{id}</td>
+          <td>{first_name}</td>
+          <td>{last_name}</td>
           <td>{email}</td>
-          <td>{phoneNumber}</td>
+          <td>{mobile_number}</td>
         </tr>
       );
     });
@@ -49,7 +48,7 @@ const ShowCandidateListContainer = () => {
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
-      candidatesLodaning={candidatesLodaning}
+      candidatesLoading={candidatesLoading}
       handleAddCandidateClick={handleAddCandidateClick}
     />
   );

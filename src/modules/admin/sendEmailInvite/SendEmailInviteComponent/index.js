@@ -13,9 +13,12 @@ import {
   FormFeedback,
   Alert,
 } from 'core-components';
+import { useDispatch } from 'react-redux';
 
 const SendEmailInviteComponent = (props) => {
-  const { emailsState,
+  const dispatch = useDispatch();
+  const {
+    emailsState,
     handleInvitationEmails,
     handleUploadedInvitationEmails,
     handleSendInvitation,
@@ -24,21 +27,18 @@ const SendEmailInviteComponent = (props) => {
     loading,
     handleCsvRemove,
     handleInvitationEmailsErrorMessage,
+    drifeid,
   } = props;
 
-  const { emails,
-    emailsError,
-    csvFileError,
-    successMessage,
-  } = emailsState;
+  const { emails, emailsError, csvFileError, successMessage } = emailsState;
 
   if (loading) {
     return <Spinner />;
   }
   return (
     <>
-      {successMessage !== '' && <Alert>{successMessage}</Alert>}
       <Container fluid className='h-100'>
+        {successMessage !== '' && <Alert>{successMessage}</Alert>}
         <div className='h-100'>
           <Row className='px-3 pt-3'>
             <h3>Invite Candidate</h3>
@@ -79,11 +79,33 @@ const SendEmailInviteComponent = (props) => {
                 <FormFeedback>{csvFileError}</FormFeedback>
               </FormGroup>
               <FormGroup className='mt-6'>
-                <Button className='mr-3 mt-3 bg-success' onClick={handleSendInvitation}>
+                <Button
+                  className='mr-3 mt-3 bg-success'
+                  onClick={handleSendInvitation}
+                >
                   Send Invitation
                 </Button>
-                <Button type='reset' className='ml-3 mr-3 mt-3 bg-warning' onClick={handleCsvRemove}>Clear CSV File</Button>
-                <Button className='ml-3 mt-3 bg-danger' onClick={handleCancel}>Cancel</Button>
+                <Button
+                  type='reset'
+                  className='ml-3 mr-3 mt-3 bg-warning'
+                  onClick={handleCsvRemove}
+                >
+                  Clear CSV File
+                </Button>
+                <Button
+                  className='ml-3 mt-3 bg-danger'
+                  onClick={() => {
+                    dispatch({
+                      type: 'SHOW_CANDIDATES',
+                      payload: {
+                        currentScreen: 'SHOW_CANDIDATES',
+                        id: drifeid,
+                      },
+                    });
+                  }}
+                >
+                  Cancel
+                </Button>
               </FormGroup>
             </Form>
           </Row>
@@ -107,6 +129,7 @@ SendEmailInviteComponent.propTypes = {
   handleCsvRemove: PropTypes.func.isRequired,
   handleInvitationEmailsErrorMessage: PropTypes.func.isRequired,
   emailsState: PropTypes.objectOf(PropTypes.any).isRequired,
+  drifeid: PropTypes.string.isRequired,
 };
 
 export default SendEmailInviteComponent;

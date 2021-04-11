@@ -44,7 +44,7 @@ function LandingPageComponent(props) {
         <h3 className='text-success'>
           {driveTimer === expired ? null : driveTimer}
         </h3>
-        {isLoading && (
+        {driveTimer === expired && (
           <Button
             className='px-5 custom-color btn-style'
             size='lg'

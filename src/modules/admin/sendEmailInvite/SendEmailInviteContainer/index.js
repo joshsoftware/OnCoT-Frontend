@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { Redirect, useParams } from 'react-router';
 import SendEmailInviteComponent from 'modules/admin/sendEmailInvite/SendEmailInviteComponent';
 import reducer, {
@@ -10,7 +10,7 @@ import local from 'utils/local';
 const SendEmailInviteContainer = () => {
   const [emailsState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
-  const { drifeid } = local.getItem('showCandidatesId');
+  const drifeid = local.getItem('showCandidatesId');
 
   const handleInvitationEmails = (event) => {
     dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
@@ -52,13 +52,16 @@ const SendEmailInviteContainer = () => {
     if (validateEmails(checkEmails)) {
       const data = {
         emails: checkEmails.join(','),
-        drife_id: parseInt(drifeid, 10),
+        drife_id: drifeid,
       };
       setLoading(true);
       try {
         const responseData = await sendEmails(data);
-        if (responseData.message === 'ok') {
-          dispatch({ type: 'EMAILS_SENT_SUCCESS' });
+        if (responseData.status === 200) {
+          dispatch({
+            type: 'EMAILS_SENT_SUCCESS',
+            payload: 'Email(s) sent successfully!',
+          });
           setLoading(false);
         }
       } catch (error) {
@@ -74,7 +77,9 @@ const SendEmailInviteContainer = () => {
     event.preventDefault();
   };
 
-  const handleCancel = (event) => {
+  useEffect(() => {}, [emailsState]);
+
+  const handleCancel = () => {
     dispatch({
       type: 'SHOW_CANDIDATES',
       payload: { currentScreen: 'SHOW_CANDIDATES', id: drifeid },
@@ -101,6 +106,7 @@ const SendEmailInviteContainer = () => {
         handleCsvRemove={handleCsvRemove}
         handleInvitationEmailsErrorMessage={handleInvitationEmailsErrorMessage}
         loading={loading}
+        drifeid={drifeid}
       />
     </>
   );

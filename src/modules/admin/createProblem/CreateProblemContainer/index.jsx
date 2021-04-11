@@ -19,7 +19,6 @@ const CreateProblemContainer = () => {
     submissionCount: null,
     testCases: [],
   };
-  console.log(message);
   useEffect(() => {}, [isSuccess, message]);
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);

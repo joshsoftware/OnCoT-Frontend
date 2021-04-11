@@ -1,11 +1,12 @@
 import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
-import DriveResultComponent from '../DriveResultComponent';
+import DriveResultComponent from 'modules/admin/driveResult/DriveResultComponent';
 
 const DriveResultContainer = () => {
   const { data, errorMessage, isError, isLoading } =
    useSelector((state) => state.driveResultReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

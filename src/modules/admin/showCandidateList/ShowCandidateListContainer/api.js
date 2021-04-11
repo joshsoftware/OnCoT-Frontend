@@ -7,7 +7,6 @@ const getCandidates = async (id) => {
     `https://oncot-apis.herokuapp.com/api/v1/admin/drives/${id}/candidate_list`,
   )
     .then((response) => {
-      console.log('candidatesresponse', response.data.data.candidates);
       return response.data.data.candidates;
     })
     .catch((error) => {

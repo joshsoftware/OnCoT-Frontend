@@ -17,7 +17,6 @@ const ShowCandidateListContainer = () => {
       setCandidatesLodaning(candidateLodaning);
     }
   }, []);
-  console.log(allCandidates);
   const renderTableData = () => {
     if (typeof allCandidates === 'undefined') {
       return (

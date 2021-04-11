@@ -93,7 +93,7 @@ const CreateDriveContainer = () => {
   const handleDriveStartChange = useCallback(
     (event) => {
       let start_time = event.target.value;
-      start_time += '.000Z +0530';
+      start_time += '.000Z';
       setCreateDrive({
         type: 'start_time',
         payload: start_time,
@@ -121,9 +121,9 @@ const CreateDriveContainer = () => {
       },
       currentProblems,
     } = createDrive;
-    const problemId = currentProblems;
+    const problemId = currentProblems[0];
 
-    const drive_problem_attributes = [
+    const drives_problems_attributes = [
       {
         problem_id: problemId,
         _destroy: false,
@@ -135,7 +135,7 @@ const CreateDriveContainer = () => {
       description,
       start_time,
       end_time,
-      drive_problem_attributes,
+      drives_problems_attributes,
     };
     dispatch(createDriveRequestAction({ postData, problemId }));
   };

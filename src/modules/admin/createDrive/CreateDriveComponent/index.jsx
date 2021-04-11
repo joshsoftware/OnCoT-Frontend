@@ -118,6 +118,7 @@ const CreateDriveComponent = (props) => {
                     value={data.problemId}
                     onChange={handleSelectedProblemChange}
                   >
+                    <option disabled selected>Select Problem</option>
                     {data.map((e, key) => {
                       return (
                         <option key={e.id} value={e.id}>

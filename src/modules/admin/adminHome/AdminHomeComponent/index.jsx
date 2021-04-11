@@ -43,6 +43,7 @@ const AdminHomeComponent = (props) => {
                 <th>To</th>
                 <th>Edit</th>
                 <th>Candidates</th>
+                <th>Result</th>
               </tr>
             </thead>
             <tbody className='px-3'>
@@ -87,7 +88,7 @@ const AdminHomeComponent = (props) => {
                 <th>Organisation Name</th>
                 <th>From</th>
                 <th>To</th>
-                <th>Candidates</th>
+                <th>Result</th>
               </tr>
             </thead>
             <tbody className='px-3'>{renderTableData(completedDrives)}</tbody>

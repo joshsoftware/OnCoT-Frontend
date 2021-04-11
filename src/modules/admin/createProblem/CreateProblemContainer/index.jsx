@@ -61,7 +61,10 @@ const CreateProblemContainer = () => {
   });
 
   const finishProblemCreation = useCallback(() => {
-
+    dispatch({
+      type: 'PROBLEMS',
+      payload: 'PROBLEMS',
+    });
   });
   return (
     <CreateProblemComponent

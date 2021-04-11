@@ -13,12 +13,13 @@ export const initialState =
     },
   },
   message: '',
-  currentProblems: [],
+  currentProblems: 1,
   problemLoading: true,
 };
 
 const reducer = (state = initialState, action = {}) => {
   const { type, payload } = action;
+  console.log(state);
   switch (type) {
     case 'name':
       state.data.drive.name = payload;
@@ -33,7 +34,7 @@ const reducer = (state = initialState, action = {}) => {
       state.data.drive.end_time = payload;
       break;
     case 'problem':
-      state.currentProblems.push(payload);
+      state.currentProblems = payload;
       break;
     default:
       return state;

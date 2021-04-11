@@ -93,7 +93,7 @@ const CreateProblemComponent = (props) => {
         </Row>
       </Row>
       <Row className='p-3'>
-        <Button className='bg-succsess' onClick={finishProblemCreation}>Finish</Button>
+        <Button className='bg-success' onClick={finishProblemCreation}>Finish and Go back</Button>
       </Row>
     </Container>
   );

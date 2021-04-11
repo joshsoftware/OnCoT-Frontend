@@ -32,9 +32,9 @@ const SendEmailInviteComponent = (props) => {
     successMessage,
   } = emailsState;
 
-  if (loading) {
-    return <Spinner />;
-  }
+  // if (loading) {
+  //   return <Spinner />;
+  // }
   return (
     <>
       {successMessage !== '' && <Alert>{successMessage}</Alert>}

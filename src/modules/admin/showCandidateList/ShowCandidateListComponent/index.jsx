@@ -3,11 +3,8 @@ import React from 'react';
 import { Table, Button, Spinner } from 'core-components';
 
 const ShowCandidateListComponent = (props) => {
-  const { renderTableData, candidatesLodaning, handleAddCandidateClick } = props;
+  const { renderTableData, handleAddCandidateClick } = props;
 
-  if (candidatesLodaning) {
-    return <Spinner />;
-  }
   return (
     <>
       <Button onClick={handleAddCandidateClick} className='float-right mr-xl-5 mt-xl-5 mb-xl-5'>Add Candidates</Button>
@@ -29,7 +26,6 @@ const ShowCandidateListComponent = (props) => {
 };
 ShowCandidateListComponent.propTypes = {
   renderTableData: PropTypes.func.isRequired,
-  candidatesLodaning: PropTypes.bool.isRequired,
   handleAddCandidateClick: PropTypes.func.isRequired,
 };
 

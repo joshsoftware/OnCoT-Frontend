@@ -8,14 +8,10 @@ const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.adminHomeComponentReducer);
   const [allCandidates, setAllCandidates] = useState([]);
-  const [candidatesLodaning, setCandidatesLodaning] = useState(true);
+
   useEffect(async () => {
     const data = await getCandidates(id);
-    const { candidates, candidateLodaning } = data;
-    if (!candidateLodaning) {
-      setAllCandidates(candidates);
-      setCandidatesLodaning(candidateLodaning);
-    }
+    setAllCandidates(data);
   }, []);
   const renderTableData = () => {
     if (typeof allCandidates === 'undefined') {
@@ -48,7 +44,6 @@ const ShowCandidateListContainer = () => {
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
-      candidatesLodaning={candidatesLodaning}
       handleAddCandidateClick={handleAddCandidateClick}
     />
   );

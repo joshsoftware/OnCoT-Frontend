@@ -10,8 +10,8 @@ import local from 'utils/local';
 const SendEmailInviteContainer = () => {
   const [emailsState, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
-  const { drifeid } = local.getItem('showCandidatesId');
-
+  const drifeid = local.getItem('showCandidatesId');
+  console.log(drifeid);
   const handleInvitationEmails = (event) => {
     dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
   };
@@ -57,7 +57,7 @@ const SendEmailInviteContainer = () => {
       setLoading(true);
       try {
         const responseData = await sendEmails(data);
-        if (responseData.message === 'ok') {
+        if (responseData.status === 200) {
           dispatch({ type: 'EMAILS_SENT_SUCCESS' });
           setLoading(false);
         }

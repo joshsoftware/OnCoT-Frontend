@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   Container,
   Row,
@@ -8,26 +10,25 @@ import {
   Label,
   Input,
   Button,
-  Col,
-  Alert,
+  Spinner,
 } from 'core-components';
-import TestCaseContainer from 'modules/admin/testCase/CreateProblemTestCaseContainer';
-import './createproblem.css';
+import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
 
+toast.configure();
 const CreateProblemComponent = (props) => {
-  const {
-    handleTitleChange,
-    handleDescriptionChange,
-    handleCountChange,
-    handleSubmit,
-    message,
-    isSuccess,
-    isTestCaseSuccess,
-  } = props;
-
-  if (isSuccess) {
-    return <Alert>{message}</Alert>;
-  }
+  const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
+    message, isSuccess, isLoading, finishProblemCreation } = props;
+  const problemSuccess = () => {
+    // please redirect to problem list page
+    if (isSuccess) {
+      return (
+        <>
+          <h6 className='text-success pl-5 pt-2'>{message}</h6>
+          <h6 className='text-success pl-5 pt-2'>Problem created successfully now please add the test cases</h6>
+        </>
+      );
+    }
+  };
 
   return (
     <Container fluid>
@@ -71,19 +72,28 @@ const CreateProblemComponent = (props) => {
               required
             />
           </FormGroup>
-          <Row>
-            <Row className='p-3 w-100 d-flex'>
-              <TestCaseContainer />
-            </Row>
-          </Row>
+
           <Row className='p-3'>
-            <Col />
-            <Col>
-              <Button className=''>Create Problem</Button>
-            </Col>
-            <Col />
+            <Button disabled={isSuccess} className=''>
+              {isLoading ? (
+                <Spinner size='sm' color='light' />
+              ) : (
+                <>Create Problem</>
+              )}
+            </Button>
+            {problemSuccess()}
           </Row>
         </Form>
+      </Row>
+      <Row>
+        <Row className='p-3 w-100 d-flex'>
+          {/* <TestCaseContainer /> */}
+          {/* in case of update problem use */}
+          <UpdateProblemTestCaseContainer />
+        </Row>
+      </Row>
+      <Row className='p-3'>
+        <Button className='bg-succsess' onClick={finishProblemCreation}>Finish</Button>
       </Row>
     </Container>
   );
@@ -93,10 +103,11 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
-  isTestCaseSuccess: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  finishProblemCreation: PropTypes.func.isRequired,
 };
 
 export default React.memo(CreateProblemComponent);

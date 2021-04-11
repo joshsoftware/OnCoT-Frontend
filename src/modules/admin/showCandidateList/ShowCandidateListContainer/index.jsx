@@ -10,7 +10,7 @@ const ShowCandidateListContainer = () => {
   const [allCandidates, setAllCandidates] = useState([]);
 
   useEffect(async () => {
-    const data = await getCandidates(id);
+    const data = await getCandidates(Id);
     setAllCandidates(data);
   }, []);
   const renderTableData = () => {

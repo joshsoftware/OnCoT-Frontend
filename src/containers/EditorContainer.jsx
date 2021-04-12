@@ -112,7 +112,7 @@ function EditorContainer() {
         dispatch(submitRequest(obj));
         toggle();
       } else {
-        // alert('Write your code First'); need to add proper error handling
+        // TODO handle error
       }
     } else {
       setlimit(!limit);

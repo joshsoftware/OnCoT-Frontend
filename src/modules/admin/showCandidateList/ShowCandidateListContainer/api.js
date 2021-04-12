@@ -7,7 +7,7 @@ import { SERVER_URL } from 'constants/appConstants';
 const getCandidates = async (id) => {
   let candidateLoading = false;
   const candidates = await get(
-    `${SERVER_URL}api/v1/admin/drives/${id}/candidate_list`,
+    `${SERVER_URL}admin/drives/${id}/candidate_list`,
   )
     .then((response) => {
       return response.data.data.candidates;

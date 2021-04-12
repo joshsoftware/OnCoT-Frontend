@@ -5,7 +5,7 @@ import { SERVER_URL } from 'constants/appConstants';
 export const sendEmails = (data) => {
   return axios({
     method: 'post',
-    url: `${SERVER_URL}api/v1/invite`,
+    url: `${SERVER_URL}invite`,
     data,
     headers: {
       'Content-Type': 'application/json',

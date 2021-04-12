@@ -73,8 +73,6 @@ const SendEmailInviteContainer = () => {
     event.preventDefault();
   };
 
-  useEffect(() => {}, [emailsState]);
-
   const handleCancel = () => {
     dispatch({
       type: 'SHOW_CANDIDATES',

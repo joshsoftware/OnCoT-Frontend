@@ -13,7 +13,6 @@ const CreateProblemContainer = () => {
     description: '',
     submissionCount: null,
   };
-  useEffect(() => {}, [isSuccess, message]);
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);
   const handleTitleChange = useCallback(

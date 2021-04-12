@@ -28,6 +28,10 @@ import ModalBody from 'core-components/ModalBody';
 import ModalFooter from 'core-components/ModalFooter';
 import Table from 'core-components/Table';
 import Dropdown from 'core-components/Dropdown';
+import NavItem from 'core-components/NavItem';
+import TabContent from 'core-components/TabContent';
+import TabPane from 'core-components/TabPane';
+import NavLink from 'core-components/NavLink';
 
 export {
   Button,
@@ -60,4 +64,8 @@ export {
   ModalBody,
   Table,
   ModalFooter,
+  NavItem,
+  TabContent,
+  TabPane,
+  NavLink,
 };

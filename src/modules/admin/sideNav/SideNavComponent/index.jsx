@@ -16,10 +16,10 @@ const SideNavComponent = () => {
             <Button
               className='w-100'
               onClick={() => {
-                dispatch({ type: 'CREATE_DRIVE', payload: 'CREATE_DRIVE' });
+                dispatch({ type: 'HOME', payload: 'HOME' });
               }}
             >
-              Create Drive
+              HOME
             </Button>
           </Row>
           <Row className='p-3 mt-3'>
@@ -29,7 +29,7 @@ const SideNavComponent = () => {
                 dispatch({ type: 'PROBLEMS', payload: 'PROBLEMS' });
               }}
             >
-              Create Problem
+              Problems
             </Button>
           </Row>
         </Col>

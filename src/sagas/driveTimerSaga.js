@@ -11,7 +11,7 @@ import { DRIVE_TIMER } from 'constants/actionConstants';
 export function* driveTimer() {
   try {
     const response = yield call(getDriveTimer);
-    yield put(driveTimerAction(response.data.data[0]));
+    yield put(driveTimerAction(response.data.data));
   } catch (error) {
     yield put(
       driveTimerRequestFailed('Something went wrong with drive timer!'),

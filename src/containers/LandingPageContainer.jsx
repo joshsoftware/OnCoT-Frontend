@@ -55,7 +55,7 @@ function LandingPageContainer() {
       errorMessage={errorMessage}
       isLoading={isLoading}
       handleClick={handleClick}
-      driveTimer={driveTime}
+      driveTime={driveTime}
     />
   );
 }

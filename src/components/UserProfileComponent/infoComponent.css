@@ -1,7 +1,7 @@
 .box {
   background-color: black;
   height: 100vh;
-  width: 100% !important;
+  width: 100%;
   font-family: "Montserrat";
 }
 
@@ -34,7 +34,6 @@ input:not(:placeholder-shown) + Label,
 .box Input:hover + Label {
   top: -25px;
   color: whitesmoke;
-  /* text-shadow: 2px 2px whitesmoke; */
   font-size: 15px;
   font-weight: bold;
   font-family: "Montserrat";

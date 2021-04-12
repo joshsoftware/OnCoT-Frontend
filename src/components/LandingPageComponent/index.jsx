@@ -3,7 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import { Button, Alert, Container } from 'core-components';
-import Loading from 'shared-components/Loading';
+import { DATE_TIME_FORMAT } from 'constants/appConstants';
 
 import './landingPage.css';
 
@@ -14,7 +14,7 @@ function LandingPageComponent(props) {
     errorMessage,
     isLoading,
     handleClick,
-    driveTimer,
+    driveTime,
   } = props;
   const expired = 'Expired';
   if (isLoading) {
@@ -39,12 +39,12 @@ function LandingPageComponent(props) {
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>OnCoT</h1>
         <h4 className='my-5'>
-          {`Your test will start on ${moment(startTime).format('LLL')}`}
+          {`Your test will start on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
         </h4>
         <h3 className='text-success'>
-          {driveTimer === expired ? null : driveTimer}
+          {driveTime === expired ? null : driveTime}
         </h3>
-        {isLoading && (
+        {driveTime === expired && (
           <Button
             className='px-5 custom-color btn-style'
             size='lg'
@@ -64,7 +64,7 @@ LandingPageComponent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
-  driveTimer: PropTypes.string.isRequired,
+  driveTime: PropTypes.string.isRequired,
 };
 
 export default React.memo(LandingPageComponent);

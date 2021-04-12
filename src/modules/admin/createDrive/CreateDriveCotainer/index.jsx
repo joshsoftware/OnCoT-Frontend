@@ -34,28 +34,28 @@ const CreateDriveContainer = () => {
       setProblemIsLoading(problemLoading);
     }
   }, [problemIsLoading]);
+  // will need this in future
+  // const renderTableData = useMemo(() => {
+  //   return createDrive.currentProblems.map((val, index) => {
+  //     const {
+  //       problemId,
+  //       problemTitle,
+  //       problemCategory,
+  //       problemDifficulty,
+  //       problemMarks,
+  //     } = val;
 
-  const renderTableData = useMemo(() => {
-    return createDrive.currentProblems.map((val, index) => {
-      const {
-        problemId,
-        problemTitle,
-        problemCategory,
-        problemDifficulty,
-        problemMarks,
-      } = val;
-
-      return (
-        <tr key={problemId}>
-          <td>{problemId}</td>
-          <td>{problemTitle}</td>
-          <td>{problemCategory}</td>
-          <td>{problemDifficulty}</td>
-          <td>{problemMarks}</td>
-        </tr>
-      );
-    });
-  }, [createDrive.currentProblems]);
+  //     return (
+  //       <tr key={problemId}>
+  //         <td>{problemId}</td>
+  //         <td>{problemTitle}</td>
+  //         <td>{problemCategory}</td>
+  //         <td>{problemDifficulty}</td>
+  //         <td>{problemMarks}</td>
+  //       </tr>
+  //     );
+  //   });
+  // }, [createDrive.currentProblems]);
 
   const handleSelectedProblemChange = useCallback(
     (event) => {
@@ -123,7 +123,7 @@ const CreateDriveContainer = () => {
     } = createDrive;
     const problemId = currentProblems[0];
 
-    const drive_problem_attributes = [
+    const drives_problems_attributes = [
       {
         problem_id: problemId,
         _destroy: false,
@@ -135,7 +135,7 @@ const CreateDriveContainer = () => {
       description,
       start_time,
       end_time,
-      drive_problem_attributes,
+      drives_problems_attributes,
     };
     dispatch(createDriveRequestAction({ postData, problemId }));
   };
@@ -145,7 +145,7 @@ const CreateDriveContainer = () => {
   }
   return (
     <CreateDriveComponent
-      renderTableData={renderTableData}
+      // renderTableData={renderTableData}
       handleDriveDescriptionChange={handleDriveDescriptionChange}
       handleDriveEndChange={handleDriveEndChange}
       handleDriveNameChange={handleDriveNameChange}

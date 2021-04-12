@@ -7,7 +7,7 @@ export const get = (url) => {
       'access-token': local.getItem('accessToken'),
       'token-type': local.getItem('token-type'),
       client: local.getItem('client'),
-      expiry: local.getItem('uid'),
+      expiry: local.getItem('expiry'),
       uid: local.getItem('uid'),
     },
   });
@@ -27,6 +27,18 @@ export const post = (url, data = '', headers = {}) => {
 
 export const patch = (url, data = '') => {
   return axios.patch(url, data, {
+    headers: {
+      'access-token': local.getItem('accessToken'),
+      'token-type': local.getItem('token-type'),
+      client: local.getItem('client'),
+      expiry: local.getItem('uid'),
+      uid: local.getItem('uid'),
+    },
+  });
+};
+
+export const put = (url, data = '') => {
+  return axios.put(url, data, {
     headers: {
       'access-token': local.getItem('accessToken'),
       'token-type': local.getItem('token-type'),

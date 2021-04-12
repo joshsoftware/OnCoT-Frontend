@@ -15,7 +15,6 @@ import {
 
 const CreateDriveComponent = (props) => {
   const {
-    renderTableData,
     handleDriveNameChange,
     handleDriveDescriptionChange,
     handleDriveStartChange,
@@ -86,7 +85,8 @@ const CreateDriveComponent = (props) => {
             </Row>
 
             <Row className='px-3 w-100 d-flex'>
-              <FormGroup className='pt-3 pl-3 w-50'>
+              {/* We need this code for later */}
+              {/* <FormGroup className='pt-3 pl-3 w-50'>
                 <Label>
                   <h4>Problems</h4>
                 </Label>
@@ -103,7 +103,7 @@ const CreateDriveComponent = (props) => {
                   </thead>
                   <tbody>{renderTableData}</tbody>
                 </Table>
-              </FormGroup>
+              </FormGroup> */}
 
               <FormGroup className='pt-3 px-5 w-25'>
                 <Row>
@@ -119,6 +119,7 @@ const CreateDriveComponent = (props) => {
                     value={data.problemId}
                     onChange={handleSelectedProblemChange}
                   >
+                    <option disabled selected>Select Problem</option>
                     {data.map((e, key) => {
                       return (
                         <option key={e.id} value={e.id}>
@@ -141,7 +142,6 @@ const CreateDriveComponent = (props) => {
 };
 
 CreateDriveComponent.propTypes = {
-  renderTableData: PropTypes.func.isRequired,
   handleDriveNameChange: PropTypes.func.isRequired,
   handleDriveDescriptionChange: PropTypes.func.isRequired,
   handleDriveStartChange: PropTypes.func.isRequired,

@@ -29,10 +29,20 @@ export const adminHomeComponentReducer = produce(
         local.setItem('driveResultId', payload.id);
         break;
 
+      case 'SHOW_CANDIDATES':
+        state.currentScreen = payload.currentScreen;
+        state.id = payload.id;
+        local.setItem('showCandidatesId', payload.id);
+        break;
+
       case 'INVITE_CANDIDATES':
         state.currentScreen = payload.currentScreen;
         state.id = payload.id;
         local.setItem('inviteCandidatesId', payload.id);
+        break;
+
+      case 'CREATE_PROBLEM':
+        state.currentScreen = payload;
         break;
 
       case 'PROBLEMS':

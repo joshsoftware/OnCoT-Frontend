@@ -34,8 +34,8 @@ const CreateDriveContainer = () => {
     const rowId = e.target.parentNode.parentNode.id;
     const data = document.getElementById(rowId).querySelectorAll('.data');
     dispatch({
-      type: 'INVITE_CANDIDATES',
-      payload: { currentScreen: 'INVITE_CANDIDATES', id: data[0].innerHTML },
+      type: 'SHOW_CANDIDATES',
+      payload: { currentScreen: 'SHOW_CANDIDATES', id: data[0].innerHTML },
     });
   };
 
@@ -104,6 +104,11 @@ const CreateDriveContainer = () => {
                 {driveStatus === completed ? 'Result' : 'Candidates'}
               </Button>
             </td>
+            {driveStatus !== completed && (
+              <td>
+                <Button onClick={onClickResult}>Result</Button>
+              </td>
+            )}
           </tr>
         );
       }

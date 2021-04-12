@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
+import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
 
+import { Col, Container, Row } from 'core-components';
 import AdminHeader from 'shared-components/AdminHeader';
+
 import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
+import ProblemsListContainer from 'modules/admin/problemsList/ProblemsListContainer';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
-import { Col, Container, Row } from 'core-components';
+import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
+import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
@@ -30,7 +34,10 @@ const HomeComponent = (props) => {
             <p>Edit Drive</p>
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
-            <p>Invite Candidates</p>
+            <SendEmailInviteContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.SHOW_CANDIDATES && (
+            <ShowCandidateListContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
             <DriveResultContainer />
@@ -40,6 +47,9 @@ const HomeComponent = (props) => {
           )}
 
           {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
+            <ProblemsListContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.CREATE_PROBLEM && (
             <CreateProblemContainer />
           )}
         </Col>

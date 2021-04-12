@@ -16,6 +16,7 @@ import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/edi
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 import isEmpty from 'utils/isEmpty';
+import local from 'utils/local';
 
 function EditorContainer() {
   const dispatch = useDispatch();
@@ -39,6 +40,8 @@ function EditorContainer() {
   const { candidateId } = useSelector(
     (state) => state.userDriveReducer,
   );
+
+  const driveID = local.getItem('driveID');
 
   const languageId = languageSelected.id;
 
@@ -97,15 +100,20 @@ function EditorContainer() {
 
   const handleSubmit = useCallback(() => {
     if (submissionAllowed > 0) {
-      const obj = {
-        code,
-        languageId,
-        id,
-        submissionAllowed,
-        candidateId,
-      };
-      dispatch(submitRequest(obj));
-      toggle();
+      if (code != null) {
+        const obj = {
+          code,
+          languageId,
+          id,
+          submissionAllowed,
+          candidateId,
+          driveID,
+        };
+        dispatch(submitRequest(obj));
+        toggle();
+      } else {
+        // TODO handle error
+      }
     } else {
       setlimit(!limit);
     }

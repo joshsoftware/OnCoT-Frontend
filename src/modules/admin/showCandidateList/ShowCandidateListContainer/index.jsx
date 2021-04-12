@@ -1,12 +1,11 @@
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
+
+import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListContainer/api';
 import ShowCandidateListComponent from 'modules/admin/showCandidateList/ShowCandidateListComponent';
+
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
-
-import { adminHomeComponentReducer } from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
-import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListContainer/api';
 
 const ShowCandidateListContainer = () => {
   const history = useHistory();
@@ -16,7 +15,6 @@ const ShowCandidateListContainer = () => {
   useEffect(async () => {
     const data = await getCandidates(id);
     const { candidates, candidateLoading } = data;
-    console.log('candidates ', candidates);
     if (!candidateLoading) {
       setAllCandidates(candidates);
       setCandidatesLoading(candidateLoading);

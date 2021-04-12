@@ -16,7 +16,7 @@ const reducer = (state = initialState, action = {}) => {
         csvEmails: '',
         emailsError: '',
         csvFileError: '',
-        successMessage: payload,
+        successMessage: 'Email Sent Successfully',
       };
     }
     case 'EMAILS_SENT_FAILURE': {

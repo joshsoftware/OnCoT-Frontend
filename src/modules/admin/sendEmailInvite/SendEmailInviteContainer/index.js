@@ -14,6 +14,7 @@ const SendEmailInviteContainer = () => {
   const handleInvitationEmails = (event) => {
     dispatch({ type: 'VALID_EMAIL', payload: event.target.value });
   };
+  console.log(emailsState.successMessage);
 
   const handleUploadedInvitationEmails = async (e) => {
     if (e.target.files[0].type === 'text/csv') {
@@ -57,6 +58,7 @@ const SendEmailInviteContainer = () => {
       try {
         const responseData = await sendEmails(data);
         if (responseData.status === 200) {
+          console.log('inside success');
           dispatch({ type: 'EMAILS_SENT_SUCCESS' });
           setLoading(false);
         }

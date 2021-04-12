@@ -35,6 +35,7 @@ const SendEmailInviteComponent = (props) => {
   // if (loading) {
   //   return <Spinner />;
   // }
+  console.log(successMessage);
   return (
     <>
       <Container fluid className='h-100'>

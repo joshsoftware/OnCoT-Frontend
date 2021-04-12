@@ -32,10 +32,6 @@ const SendEmailInviteComponent = (props) => {
 
   const { emails, emailsError, csvFileError, successMessage } = emailsState;
 
-  // if (loading) {
-  //   return <Spinner />;
-  // }
-  console.log(successMessage);
   return (
     <>
       <Container fluid className='h-100'>

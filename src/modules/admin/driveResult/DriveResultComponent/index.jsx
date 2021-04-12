@@ -28,7 +28,6 @@ const DriveResultComponent = ({
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
-              {/* <th>Test End Time</th> */}
               <th>Score</th>
             </tr>
           </thead>

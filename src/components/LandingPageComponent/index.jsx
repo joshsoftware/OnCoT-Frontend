@@ -39,8 +39,7 @@ function LandingPageComponent(props) {
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>OnCoT</h1>
         <h4 className='my-5'>
-          {/* {`Your test will start on ${moment(startTime).format('MMMM Do YYYY, h:mm:ss a')}`} */}
-          {`Your test will start on ${startTime}`}
+          {`Your test will start on ${moment(startTime).format('MMMM Do YYYY, h:mm:ss a')}`}
         </h4>
         <h3 className='text-success'>
           {driveTimer === expired ? null : driveTimer}

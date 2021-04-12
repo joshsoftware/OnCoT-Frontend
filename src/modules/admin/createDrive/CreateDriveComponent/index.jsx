@@ -85,6 +85,7 @@ const CreateDriveComponent = (props) => {
             </Row>
 
             <Row className='px-3 w-100 d-flex'>
+              {/* We need this code for later */}
               {/* <FormGroup className='pt-3 pl-3 w-50'>
                 <Label>
                   <h4>Problems</h4>

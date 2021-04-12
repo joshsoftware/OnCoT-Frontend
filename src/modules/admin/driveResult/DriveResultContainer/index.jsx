@@ -29,7 +29,6 @@ const DriveResultContainer = () => {
           <td>{first_name}</td>
           <td>{last_name}</td>
           <td>{email}</td>
-          {/* <td>{end_times}</td> */}
           <td>{score}</td>
 
         </tr>

@@ -87,7 +87,6 @@ const CreateProblemComponent = (props) => {
       </Row>
       <Row>
         <Row className='p-3 w-100 d-flex'>
-          {/* <TestCaseContainer /> */}
           {/* in case of update problem use */}
           <UpdateProblemTestCaseContainer />
         </Row>

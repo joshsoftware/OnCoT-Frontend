@@ -5,7 +5,6 @@ import LoginContainer from 'modules/admin/login/LoginContainer';
 import HomeContainer from 'modules/admin/home/HomeContainer';
 
 import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
-import AdminHomeComponent from 'components/AdminHomeComponent';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
 import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';

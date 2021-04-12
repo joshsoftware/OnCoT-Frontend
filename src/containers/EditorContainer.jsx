@@ -100,16 +100,20 @@ function EditorContainer() {
 
   const handleSubmit = useCallback(() => {
     if (submissionAllowed > 0) {
-      const obj = {
-        code,
-        languageId,
-        id,
-        submissionAllowed,
-        candidateId,
-        driveID,
-      };
-      dispatch(submitRequest(obj));
-      toggle();
+      if (code != null) {
+        const obj = {
+          code,
+          languageId,
+          id,
+          submissionAllowed,
+          candidateId,
+          driveID,
+        };
+        dispatch(submitRequest(obj));
+        toggle();
+      } else {
+        alert('Write your code First');
+      }
     } else {
       setlimit(!limit);
     }

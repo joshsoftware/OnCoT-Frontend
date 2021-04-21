@@ -5,6 +5,8 @@ import { Button } from 'core-components';
 
 import getDriveDetails from 'modules/admin/adminHome/AdminHomeContainer/getDriveDetails';
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
+import { DATE_TIME_FORMAT } from 'constants/appConstants';
 
 const CreateDriveContainer = () => {
   const [driveDetailsIsLoading, setDriveDetailsIsLoading] = useState(true);
@@ -88,8 +90,8 @@ const CreateDriveContainer = () => {
           <tr key={id} id={id}>
             <td className='data'>{id}</td>
             <td>{name}</td>
-            <td>{start_time}</td>
-            <td>{end_time}</td>
+            <td>{`${moment(start_time).format(DATE_TIME_FORMAT)}`}</td>
+            <td>{`${moment(end_time).format(DATE_TIME_FORMAT)}`}</td>
             {driveStatus !== completed && (
               <td>
                 <Button onClick={onClickEdit}>Edit</Button>

@@ -50,7 +50,7 @@ function LandingPageComponent(props) {
             size='lg'
             onClick={handleClick}
           >
-            Continue
+            Start Test
           </Button>
         )}
       </div>

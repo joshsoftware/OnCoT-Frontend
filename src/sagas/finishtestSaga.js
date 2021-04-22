@@ -7,10 +7,11 @@ import {
 } from 'actions/finishTestActions';
 
 export function* finishTestWorkerSaga(action) {
-  const { id, candidateId } = action.payload;
+  const { id, candidateId, driveID } = action.payload;
   const finishtesRequestPayload = {
     id,
     candidate_id:  candidateId,
+    drive_id: driveID,
   };
   try {
     const response = yield call(finishTestApi, finishtesRequestPayload);

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TestEndPageComponent from 'components/TestEndPageComponent';
 import { finishTestRequest } from 'actions/finishTestActions';
+import local from 'utils/local';
 
 const TestEndPageContainer = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,13 @@ const TestEndPageContainer = () => {
     (state) => state.problemStatementReducer,
   );
 
+  const driveID = local.getItem('driveID');
+
   useEffect(() => {
     const obj = {
       id,
       candidateId,
+      driveID,
     };
     dispatch(finishTestRequest(obj));
   }, [dispatch]);

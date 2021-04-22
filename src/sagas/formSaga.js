@@ -7,14 +7,14 @@ import {
 } from 'actions/candidateFormActions';
 
 export function* candidateFormSaga(action) {
-  const { fName, lName, mobile, createdAt, updatedAt, candidateId } = action.payload;
-
+  const { fName, lName, mobile, createdAt, updatedAt, candidateId, driveID } = action.payload;
   const data =  {
     first_name: fName,
     last_name: lName,
     mobile_number: mobile,
     created_at: createdAt,
     updated_at: updatedAt,
+    drive_id: driveID,
   };
 
   try {

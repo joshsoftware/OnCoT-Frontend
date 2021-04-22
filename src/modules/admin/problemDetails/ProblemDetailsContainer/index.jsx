@@ -12,16 +12,17 @@ const ProblemDetailsContainer = () => {
   const [testCaseLoading, setTestCaseLoading] = useState(true);
 
   useEffect(async () => {
-    const data = await getProblemDetails();
+    const problemId = local.getItem('problemDetailId');
+    const data = await getProblemDetails(problemId);
     const { candidateLoading, problem } = data;
     setProblemDetails(problem);
     setProblemIsLoading(candidateLoading);
-    const testCasedata = await getTestCases();
+
+    const testCasedata = await getTestCases(problemId);
     const { testLoading, testcase } = testCasedata;
     setTestCases(testcase);
     setTestCaseLoading(testLoading);
   }, [problemIsLoading, testCaseLoading]);
-  console.log(testCases);
 
   const renderTestCases = useCallback(() => {
     return testCases.map((val) => {
@@ -41,7 +42,7 @@ const ProblemDetailsContainer = () => {
       return <Spinner />;
     }
     return (
-      <Card className='w-50 border-0 shadow'>
+      <Card className='w-75 border-0 shadow'>
         <CardHeader className='bg-dark text-white'>{problemDetails.problem.title}</CardHeader>
         <CardBody>
           <h6>Description: {problemDetails.problem.description}</h6>

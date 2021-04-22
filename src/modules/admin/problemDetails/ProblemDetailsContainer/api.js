@@ -4,10 +4,10 @@ import { get } from 'redux/admin/apiHelper';
 
 import { SERVER_URL } from 'constants/appConstants';
 
-export const getTestCases = async () => {
+export const getTestCases = async (id) => {
   let testLoading = false;
   const testcase = await get(
-    `${SERVER_URL}admin/problem/19/test_cases`,
+    `${SERVER_URL}admin/problem/${id}/test_cases`,
   )
     .then((response) => {
       return response.data.data.test_cases;
@@ -25,10 +25,10 @@ export const getTestCases = async () => {
   return customData;
 };
 
-const getProblemDetails = async () => {
+const getProblemDetails = async (id) => {
   let candidateLoading = false;
   const problem = await get(
-    `${SERVER_URL}admin/problems/19`,
+    `${SERVER_URL}admin/problems/${id}`,
   )
     .then((response) => {
       return response.data.data;

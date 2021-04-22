@@ -19,8 +19,6 @@ const ProblemsListComponent = ({ renderTableData, problemIsLoading, handleAddPro
             <th>Id</th>
             <th>Title</th>
             <th>Description</th>
-            <th>Category</th>
-            <th>Marks</th>
             <th aria-label='Action' />
           </tr>
         </thead>

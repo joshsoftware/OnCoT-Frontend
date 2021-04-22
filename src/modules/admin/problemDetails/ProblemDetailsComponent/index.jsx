@@ -1,4 +1,4 @@
-import { Container, Row } from 'core-components';
+import { Container, Row, Table } from 'core-components';
 import PropTypes from 'prop-types';
 import React from 'react';
 

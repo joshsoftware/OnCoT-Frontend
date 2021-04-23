@@ -2,11 +2,14 @@ import React, { useMemo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
 import DriveResultComponent from 'modules/admin/driveResult/DriveResultComponent';
-import downloadResult from 'modules/admin/driveResult/DriveResultContainer/downloadResult';
-import local from 'utils/local';
+import { downloadResultRequestAction } from 'redux/admin/downloadResult/action';
 
 const DriveResultContainer = () => {
   const { data, errorMessage, isError, isLoading } = useSelector(
+    (state) => state.driveResultReducer,
+  );
+
+  const { driveResultMessage, driveResultIsLoading } = useSelector(
     (state) => state.driveResultReducer,
   );
 
@@ -16,9 +19,9 @@ const DriveResultContainer = () => {
     dispatch(driveResultRequestAction());
   }, [dispatch]);
 
-  const handleDownloadResult = () => {
-    return downloadResult();
-  };
+  const handleDownloadResult = useEffect(() => {
+    dispatch(downloadResultRequestAction());
+  }, [dispatch]);
 
   const renderTableData = useMemo(() => {
     return data.map((val, index) => {
@@ -48,6 +51,8 @@ const DriveResultContainer = () => {
       isError={isError}
       isLoading={isLoading}
       handleDownloadResult={handleDownloadResult}
+      driveResultMessage={driveResultMessage}
+      driveResultIsLoading={driveResultIsLoading}
     />
   );
 };

@@ -49,6 +49,9 @@ const CreateDriveContainer = () => {
   };
 
   const renderTableData = (driveStatus) => {
+    if (typeof driveDetailsData === 'undefined') {
+      return false;
+    }
     switch (driveStatus) {
       case ongoing:
         if (typeof driveDetailsData.ongoingDrives === 'undefined') {

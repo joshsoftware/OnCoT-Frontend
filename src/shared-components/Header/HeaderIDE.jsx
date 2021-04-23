@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Col, Navbar, NavbarBrand, Button, Container } from 'core-components';
+import axios from 'axios';
 
+import { Col, Navbar, NavbarBrand, Button, Container } from 'core-components';
+import WebcamCapture from 'shared-components/Header/Webcam/WebcamCapture';
 import './HeaderIDE.css';
 
 const HeaderIDE = (props) => {
@@ -30,20 +32,26 @@ const HeaderIDE = (props) => {
             OnCOT
           </h3>
         </Col>
+
+        <WebcamCapture />
         <Col className='justify-content-end d-flex module mx-0'>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'<'}</Button>
+          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>
+            {'<'}
+          </Button>
           <h6 className='text-white text-center mt-2 mx-2 custom-font-size'>
             Problem {currentProblem}/{totalProblems}
           </h6>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>{'>'}</Button>
+          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>
+            {'>'}
+          </Button>
         </Col>
         <Col lg={2} className='justify-content-end d-flex'>
           <h2
             className={
-            ifSufficient
-              ? 'text-white align-middle font-weight-bold'
-              : 'text-danger align-middle font-weight-bold'
-          }
+              ifSufficient
+                ? 'text-white align-middle font-weight-bold'
+                : 'text-danger align-middle font-weight-bold'
+            }
             id='timeLeft'
           >
             {time}

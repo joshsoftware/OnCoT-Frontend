@@ -21,7 +21,7 @@ const HeaderIDE = (props) => {
     height: 128,
     facingMode: 'user',
   };
-  const mockServer = 'https://6081361c73292b0017cdcf5f.mockapi.io/captures/';
+  // const mockServer = 'https://6081361c73292b0017cdcf5f.mockapi.io/captures/';
 
   let id = 1;
   const WebcamCapture = () => {
@@ -30,19 +30,17 @@ const HeaderIDE = (props) => {
     setInterval(
       React.useCallback(() => {
         if (webcamRef.current != null) {
-          console.log(webcamRef);
           const imageSrc = webcamRef.current.getScreenshot();
-          console.log(imageSrc);
           const data = {
             id,
             base64: imageSrc,
           };
-
-          axios.post(mockServer + id, data);
+          console.log(imageSrc);
+          // axios.post(mockServer + id, data);
           id += 1;
         }
       }, [webcamRef]),
-      5000,
+      300000,
     );
     return (
       <>

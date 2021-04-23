@@ -14,7 +14,6 @@ const WebcamCapture = () => {
     const interval = setInterval(() => {
       if (webcamRef.current != null) {
         const imageSrc = webcamRef.current.getScreenshot();
-        console.log(imageSrc);
       }
     }, 3000);
     return () => clearInterval(interval);

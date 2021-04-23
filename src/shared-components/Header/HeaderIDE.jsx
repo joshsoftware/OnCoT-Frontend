@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Webcam from 'react-webcam';
+
 import axios from 'axios';
 
 import { Col, Navbar, NavbarBrand, Button, Container } from 'core-components';
-
+import WebcamCapture from 'shared-components/Header/Webcam/WebcamCapture';
 import './HeaderIDE.css';
 
 const HeaderIDE = (props) => {
@@ -15,46 +15,6 @@ const HeaderIDE = (props) => {
     time,
     ifSufficient,
   } = props;
-
-  const videoConstraints = {
-    width: 128,
-    height: 128,
-    facingMode: 'user',
-  };
-  // const mockServer = 'https://6081361c73292b0017cdcf5f.mockapi.io/captures/';
-
-  let id = 1;
-  const WebcamCapture = () => {
-    const webcamRef = React.useRef(null);
-
-    setInterval(
-      React.useCallback(() => {
-        if (webcamRef.current != null) {
-          const imageSrc = webcamRef.current.getScreenshot();
-          const data = {
-            id,
-            base64: imageSrc,
-          };
-          // will need to upload screenshots on amazon s3 image
-          // axios.post(mockServer + id, data);
-          id += 1;
-        }
-      }, [webcamRef]),
-      300000,
-    );
-    return (
-      <>
-        <Webcam
-          audio={false}
-          height={80}
-          ref={webcamRef}
-          screenshotFormat='image/jpeg'
-          width={80}
-          videoConstraints={videoConstraints}
-        />
-      </>
-    );
-  };
 
   return (
     <Container fluid className='p-0'>

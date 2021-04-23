@@ -35,7 +35,7 @@ const HeaderIDE = (props) => {
             id,
             base64: imageSrc,
           };
-          console.log(imageSrc);
+          // will need to upload screenshots on amazon s3 image
           // axios.post(mockServer + id, data);
           id += 1;
         }

@@ -16,5 +16,4 @@ export const CANDIDATE_ROUTES = {
 export const ADMIN_ROUTES = {
   HOME: '/home',
   LOGIN: '/login',
-  PROBLEM_DETAILS: '/problem/detail',
 };

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import getProblemDetails, { getTestCases } from  'modules/admin/problemDetails/ProblemDetailsContainer/api';
 import local from 'utils/local';
 import ProblemDetailsComponent from 'modules/admin/problemDetails/ProblemDetailsComponent';
@@ -72,4 +72,4 @@ const ProblemDetailsContainer = () => {
   );
 };
 
-export default ProblemDetailsContainer;
+export default  React.memo(ProblemDetailsContainer);

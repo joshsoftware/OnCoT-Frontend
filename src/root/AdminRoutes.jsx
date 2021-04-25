@@ -24,10 +24,6 @@ function AdminRoutes() {
         path={path + ADMIN_ROUTES.HOME}
         component={HomeContainer}
       />
-      <ProtectedAdminRoute
-        path={path + ADMIN_ROUTES.PROBLEM_DETAILS}
-        component={ProblemDetailsContainer}
-      />
       <Redirect to={path} />
     </Switch>
   );

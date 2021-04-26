@@ -10,7 +10,7 @@ export const initialState = {
     startTime: '',
     endTime: '',
   },
-  candidateId: local.getItem('candidateId') || null,
+  candidateId: local.getItem('candidateId'),
   isError: false,
   errorMessage: '',
   isLoading: false,

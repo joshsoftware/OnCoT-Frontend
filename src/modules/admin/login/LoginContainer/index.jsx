@@ -67,37 +67,41 @@ const LoginContainer = () => {
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
     const { email, password } = loginState;
-    schema.validate(
-      {
-        email,
-        password,
-      }, { abortEarly: false },
-    ).then((response) => {
-      const data = {
-        email,
-        password,
-      };
-      dispatch(adminLoginRequestAction(data));
-    }).catch((error) => {
-      error.inner.forEach((e) => {
-        switch (e.path) {
-          case 'email':
-            setLoginState({
-              type: 'emailError',
-              payload: e.message,
-            });
-            break;
-          case 'password':
-            setLoginState({
-              type: 'passwordError',
-              payload: e.message,
-            });
-            break;
-          default:
-            break;
-        }
+    schema
+      .validate(
+        {
+          email,
+          password,
+        },
+        { abortEarly: false },
+      )
+      .then((response) => {
+        const data = {
+          email,
+          password,
+        };
+        dispatch(adminLoginRequestAction(data));
+      })
+      .catch((error) => {
+        error.inner.forEach((e) => {
+          switch (e.path) {
+            case 'email':
+              setLoginState({
+                type: 'emailError',
+                payload: e.message,
+              });
+              break;
+            case 'password':
+              setLoginState({
+                type: 'passwordError',
+                payload: e.message,
+              });
+              break;
+            default:
+              break;
+          }
+        });
       });
-    });
   });
 
   if (isAuth) {

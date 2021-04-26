@@ -19,9 +19,9 @@ const DriveResultContainer = () => {
     dispatch(driveResultRequestAction());
   }, [dispatch]);
 
-  const handleDownloadResult = useEffect(() => {
+  const handleDownloadResult = () => {
     dispatch(downloadResultRequestAction());
-  }, [dispatch]);
+  };
 
   const renderTableData = useMemo(() => {
     return data.map((val, index) => {

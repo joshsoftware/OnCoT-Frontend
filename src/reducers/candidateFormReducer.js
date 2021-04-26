@@ -18,7 +18,7 @@ export const initialState = {
     updatedAt: '',
     isProfileComplete: false,
   },
-  authToken: local.getItem('authToken') || '',
+  authToken: local.getItem('authToken') || 'sample_token',
   candidateId: local.getItem('candidateId') || '',
 };
 

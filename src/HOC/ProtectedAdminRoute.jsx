@@ -12,7 +12,7 @@ function ProtectedAdminRoute({ component: Component, restricted, ...rest }) {
         if (accessToken) {
           return <Component {...props} />;
         }
-        return <Redirect to='/' />;
+        return <Redirect to='/admin/login' />;
       }}
     />
   );

@@ -1,11 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import local from 'utils/local';
 import ProblemDetailsComponent from 'modules/admin/problemDetails/ProblemDetailsComponent';
-import { Alert, Card, CardBody, CardHeader, Spinner, Table } from 'core-components';
-
-import { get } from 'redux/admin/apiHelper';
-
-import { SERVER_URL } from 'constants/appConstants';
+import { Card, CardBody, CardHeader, Spinner, Table } from 'core-components';
+import { getProblemDetailsAPI, getTestApi } from './apis';
 
 const ProblemDetailsContainer = () => {
   const [problemDetails, setProblemDetails] = useState();
@@ -18,41 +15,29 @@ const ProblemDetailsContainer = () => {
     const problemId = local.getItem('problemDetailId');
 
     async function getProblemDetails() {
+      let candidateLoading = false;
       try {
-        let candidateLoading = false;
-        await get(`${SERVER_URL}admin/problems/${problemId}`)
-          .then((response) => {
-            setProblemDetails(response.data.data);
-          })
-          .catch((error) => {
-            candidateLoading = true;
-            setProblemIsLoading(candidateLoading);
-            return <Alert className='danger'> {error} </Alert>;
-          });
-      } catch (e) {
-        <Alert color='API Call Failed '> {e}</Alert>;
+        const response = await getProblemDetailsAPI(problemId);
+        setProblemDetails(response.data.data);
+      } catch (err) {
+        candidateLoading = true;
+        setProblemIsLoading(candidateLoading);
       }
     }
     getProblemDetails();
 
     async function getTestCases() {
+      let testLoading = false;
       try {
-        let testLoading = false;
-        await get(`${SERVER_URL}admin/problem/${problemId}/test_cases`)
-          .then((response) => {
-            setTestCases(response.data.data.test_cases);
-          })
-          .catch((error) => {
-            testLoading = true;
-            setTestCaseLoading(testLoading);
-            return <Alert className='danger'> {error} </Alert>;
-          });
-      } catch (e) {
-        <Alert color='API Call Failed '> {e}</Alert>;
+        const response = await getTestApi(problemId);
+        setTestCases(response.data.data.test_cases);
+      } catch (err) {
+        testLoading = true;
+        setTestCaseLoading(testLoading);
       }
     }
     getTestCases();
-  }, [problemDetails, testCases]);
+  }, [problemIsLoading, testCaseLoading]);
 
   const renderTestCases = useCallback(() => {
     return testCases.map((val) => {

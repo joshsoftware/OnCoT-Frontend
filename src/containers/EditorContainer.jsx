@@ -70,9 +70,11 @@ function EditorContainer() {
       const langObj = {
         id: e.currentTarget.getAttribute('id'),
         name: e.currentTarget.textContent,
+        code: e.currentTarget.getAttribute('code'),
       };
 
       dispatch(setLanguageSelected(langObj));
+      dispatch(setCode(langObj.code));
     },
     [dispatch],
   );

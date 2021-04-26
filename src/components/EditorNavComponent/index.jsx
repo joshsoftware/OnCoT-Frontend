@@ -78,8 +78,8 @@ function EditorNavComponent({
           {languageSelected.name}
         </DropdownToggle>
         <DropdownMenu className='dropdown-menu bg-secondary'>
-          {languages.map(({ id, name }) => (
-            <DropdownItem id={id} key={id} onClick={handleClick}>
+          {languages.map(({ id, name, code }) => (
+            <DropdownItem id={id} code={code} key={id} onClick={handleClick}>
               {name}
             </DropdownItem>
           ))}

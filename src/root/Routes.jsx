@@ -10,8 +10,6 @@ import { ROUTES } from 'constants/routeConstants';
 function Routes() {
   return (
     <Switch>
-      <Route exact path={ROUTES.HOME} component={HomeComponent} />
-
       <Route path={ROUTES.ADMIN} component={AdminRoutes} />
 
       <Route path={ROUTES.REVIEWER} component={ReviewerRoutes} />

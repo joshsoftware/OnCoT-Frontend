@@ -10,8 +10,8 @@ export const initialState = {
   errorMessage: null,
   isError: false,
   isAuth: false,
-  isLoading:false,
-  accessToken: local.getItem('accessToken') || '',
+  isLoading: false,
+  accessToken: local.getItem('accessToken') || 'sufvFuUDNlnLfocBAurFHA',
 };
 
 const adminLoginReducer = produce((state = initialState, action = {}) => {

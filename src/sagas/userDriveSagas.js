@@ -12,8 +12,8 @@ import local from 'utils/local';
 export function* driveDetails(action) {
   try {
     const response = yield call(driveDetail, action.payload.token);
-    const { candidate_id } = response.data.data;
-    const { id, name, start_time, end_time } = response.data.data.drive;
+    const { candidate_id } = response.data;
+    const { id, name, start_time, end_time } = response.data.data;
     const userDriveDetails = {
       data: {
         id,

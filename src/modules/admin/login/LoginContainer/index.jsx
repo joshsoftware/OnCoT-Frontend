@@ -105,7 +105,6 @@ const LoginContainer = () => {
   });
 
   if (isAuth) {
-    console.log(history);
     history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
   }
 

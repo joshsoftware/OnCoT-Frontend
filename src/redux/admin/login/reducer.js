@@ -11,7 +11,7 @@ export const initialState = {
   isError: false,
   isAuth: false,
   isLoading: false,
-  accessToken: local.getItem('accessToken') || 'sufvFuUDNlnLfocBAurFHA',
+  accessToken: local.getItem('accessToken') || 'initial_token',
 };
 
 const adminLoginReducer = produce((state = initialState, action = {}) => {

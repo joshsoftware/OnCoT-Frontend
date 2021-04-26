@@ -48,6 +48,12 @@ export const adminHomeComponentReducer = produce(
       case 'PROBLEMS':
         state.currentScreen = payload;
         break;
+
+      case 'PROBLEM_DETAILS':
+        state.currentScreen = payload.currentScreen;
+        state.id = payload.id;
+        local.setItem('problemDetailId', payload.id);
+        break;
       default:
         return state;
     }

@@ -9,6 +9,7 @@ import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemCon
 import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
 import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
+import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetailsContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();

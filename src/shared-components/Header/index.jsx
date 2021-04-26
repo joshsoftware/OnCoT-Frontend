@@ -7,6 +7,7 @@ import {
   ifSufficientTime,
 } from 'utils/helpers/HeaderIdeHelper';
 import HeaderIDE from 'shared-components/Header/HeaderIDE';
+import { Button } from 'core-components';
 
 const HeaderIDEConatiner = () => {
   const totalProblems = 1;

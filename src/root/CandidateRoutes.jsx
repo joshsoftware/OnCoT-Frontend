@@ -4,7 +4,7 @@ import HomeComponent from 'components/HomeComponent';
 import ProtectedRoute from 'HOC/ProtectedRoute';
 import LandingPageContainer from 'containers/LandingPageContainer';
 import ProfileComponent from 'components/ProfileComponent';
-import IdeComponent from 'components/IdeComponent/index';
+import IdeContainer from 'containers/IdeContainer';
 import TestEndPageContainer from 'containers/TestEndPageContainer';
 
 import { CANDIDATE_ROUTES } from 'constants/routeConstants';
@@ -15,7 +15,11 @@ function CandidateRoutes() {
     <Switch>
       <Route exact path={path} component={HomeComponent} />
 
-      <Route exact path={path + CANDIDATE_ROUTES.OVERVIEW} component={LandingPageContainer} />
+      <Route
+        exact
+        path={path + CANDIDATE_ROUTES.OVERVIEW}
+        component={LandingPageContainer}
+      />
 
       <ProtectedRoute
         path={path + CANDIDATE_ROUTES.RULES_AND_PROFILE}
@@ -23,7 +27,7 @@ function CandidateRoutes() {
       />
       <ProtectedRoute
         path={path + CANDIDATE_ROUTES.IDE}
-        component={IdeComponent}
+        component={IdeContainer}
       />
       <ProtectedRoute
         path={path + CANDIDATE_ROUTES.ENDPAGE}

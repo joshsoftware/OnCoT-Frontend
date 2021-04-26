@@ -12,6 +12,7 @@ import createDriveWatcherSaga from 'redux/admin/createDrive/saga';
 import problemWatcherSaga from 'redux/admin/createProblem/saga';
 import testCaseWatcherSaga from 'redux/admin/testCase/saga';
 import { driveResultSaga } from 'redux/admin/driveResult/saga';
+import downloadResultSaga from 'redux/admin/downloadResult/saga';
 import finishTestSaga from './finishtestSaga';
 
 export default function* rootSagas() {
@@ -30,5 +31,6 @@ export default function* rootSagas() {
     problemWatcherSaga(),
     testCaseWatcherSaga(),
     driveResultSaga(),
+    downloadResultSaga(),
   ]);
 }

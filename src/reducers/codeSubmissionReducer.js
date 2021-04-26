@@ -5,7 +5,7 @@ import local from 'utils/local';
 export const initialState = {
   errorMessage: '',
   isError: false,
-  submissionAllowed:  parseInt(local.getItem('subCount') || null, 10),
+  submissionAllowed:  parseInt(local.getItem('subCount') || 3, 10),
   totalTestcases: null,
   testcasesPassed: null,
   isLoading: false,

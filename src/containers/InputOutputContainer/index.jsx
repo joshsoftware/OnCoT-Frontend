@@ -35,15 +35,15 @@ const CustomIOContainer = () => {
       stdin: inputOutuptValue.inputValue,
     };
 
-    customInputOutputPostApi(data)
-      .then((response) => {
-        let outputValue = '';
-        const { token } = response.data.data;
-
-        // in future we will remove it
-        setTimeout(() => {
-          customInputOutputSendTokenApi(token)
-            .then((output) => {
+    const checkStatus = (token) => {
+      // in future we will remove it
+      let outputValue = '';
+      setTimeout(() => {
+        customInputOutputSendTokenApi(token)
+          .then((output) => {
+            if (output.data.data.status.description === 'Processing') {
+              checkStatus(token);
+            } else {
               if (output.data.stderr) {
                 outputValue = output.data.data.stderr;
               } else {
@@ -54,12 +54,19 @@ const CustomIOContainer = () => {
                 type: 'output',
                 payload: { output: outputValue },
               });
-            })
-            .catch((error) => {
-              // something went wrong! error
-              setLoading(false);
-            });
-        }, 1000);
+            }
+          })
+          .catch((error) => {
+            // something went wrong! error
+            setLoading(false);
+          });
+      }, 2000);
+    };
+
+    customInputOutputPostApi(data)
+      .then((response) => {
+        const { token } = response.data.data;
+        checkStatus(token);
       })
       .catch((error) => {
         setLoading(false);

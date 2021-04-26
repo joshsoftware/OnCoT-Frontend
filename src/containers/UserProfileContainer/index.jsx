@@ -57,6 +57,10 @@ const UserProfileContainer = () => {
     [userState.mobile.value],
   );
 
+  const { candidateId } = useSelector(
+    (state) => state.userDriveReducer,
+  );
+
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -65,7 +69,7 @@ const UserProfileContainer = () => {
       const lName = userState.lName.value.trim();
       const mobile = userState.mobile.value.trim();
       const currentTime = new Date().toLocaleString();
-      const { candidateId } = globalState;
+      // const { candidateId } = globalState;
 
       schema
         .validate(

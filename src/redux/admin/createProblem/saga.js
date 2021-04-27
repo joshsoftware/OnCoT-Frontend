@@ -9,16 +9,19 @@ import { CREATE_PROBLEM } from 'redux/admin/createProblem/actionConstants';
 
 // worker saga
 export function* createProblemSaga(action) {
-  const { title, description, submissionCount } = action.payload;
+  const { title, description, submissionCount, timeInMinutes } = action.payload;
   const data = {
     title,
     description,
-    submission_count:submissionCount,
+    submission_count: submissionCount,
+    time_in_minutes: timeInMinutes,
   };
   try {
     const response = yield call(createProblemPostApi, data);
-    yield put(createProblemSuccessAction({ message:response.data.message,
-      pid: response.data.data.problem.id }));
+    yield put(createProblemSuccessAction({
+      message: response.data.message,
+      pid: response.data.data.problem.id,
+    }));
   } catch (error) {
     yield put(createProblemFailureAction(error.message));
   }

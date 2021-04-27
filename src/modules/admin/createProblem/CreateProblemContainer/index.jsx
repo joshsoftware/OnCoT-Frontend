@@ -12,6 +12,7 @@ const CreateProblemContainer = () => {
     title: '',
     description: '',
     submissionCount: null,
+    timeInMinutes: '',
   };
 
   const [userState, setUserState] = useReducer(reducer, initialUserState);
@@ -48,13 +49,25 @@ const CreateProblemContainer = () => {
     [userState.submissionCount],
   );
 
+  const handleTimeChange = useCallback(
+    (event) => {
+      const timeInMinutes = event.target.value;
+      setUserState({
+        type: 'timeInMinutes',
+        payload: timeInMinutes,
+      });
+    },
+    [userState.timeInMinutes],
+  );
+
   const handleSubmit = useCallback((event) => {
     event.preventDefault();
-    const { title, description, submissionCount } = userState;
+    const { title, description, submissionCount, timeInMinutes } = userState;
     const data = {
       title,
       description,
       submissionCount,
+      timeInMinutes,
     };
     dispatch(createProblemRequestAction(data));
   });
@@ -70,6 +83,7 @@ const CreateProblemContainer = () => {
       handleTitleChange={handleTitleChange}
       handleDescriptionChange={handleDescriptionChange}
       handleCountChange={handleCountChange}
+      handleTimeChange={handleTimeChange}
       handleSubmit={handleSubmit}
       message={message}
       isSuccess={isSuccess}

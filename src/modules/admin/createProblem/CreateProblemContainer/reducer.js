@@ -12,6 +12,9 @@ export const reducer = produce((state, action) => {
     case 'submissionCount':
       state.submissionCount = payload;
       break;
+    case 'timeInMinutes':
+      state.timeInMinutes = payload;
+      break;
     default: return state;
   }
 });

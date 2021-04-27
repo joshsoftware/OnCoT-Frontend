@@ -6,8 +6,8 @@ import local from 'utils/local';
 export const initialState = {
   statement: {
     id: local.getItem('problemId') || '',
-    title:'',
-    description:'',
+    title: '',
+    description: '',
     submissionCount: '',
   },
   errorMessage: '',
@@ -23,13 +23,14 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
         id: payload.id,
         title: payload.title,
         description: payload.description,
-        submissionCount:payload.submission_count,
+        submissionCount: payload.submission_count,
+        timeInMinutes: payload.time_in_minutes,
       };
       state.isLoading = false;
       break;
     case PROBLEM_STATEMENT.UPDATE_SUBMISSION_COUNT:
       state.statement = {
-        submissionCount:payload,
+        submissionCount: payload,
       };
       state.isLoading = false;
       break;

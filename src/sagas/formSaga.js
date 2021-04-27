@@ -7,14 +7,14 @@ import {
 } from 'actions/candidateFormActions';
 
 export function* candidateFormSaga(action) {
-  const { fName, lName, mobile, createdAt, updatedAt, candidateId } = action.payload;
-
-  const data =  {
+  const { fName, lName, mobile, createdAt, updatedAt, candidateId, driveID } = action.payload;
+  const data = {
     first_name: fName,
     last_name: lName,
     mobile_number: mobile,
     created_at: createdAt,
     updated_at: updatedAt,
+    drife_id: driveID,
   };
 
   try {
@@ -28,6 +28,7 @@ export function* candidateFormSaga(action) {
       is_profile_complete,
       created_at,
       updated_at,
+      drife_id,
     } = response.data.data;
 
     const userData = {
@@ -37,6 +38,7 @@ export function* candidateFormSaga(action) {
       mobile: mobile_number,
       createdAt: created_at,
       updatedAt: updated_at,
+      driveID: drife_id,
       isProfileComplete: (is_profile_complete === 'true'),
     };
     yield put(candidateFormSuccessAction(userData));

@@ -91,8 +91,8 @@ const CreateProblemComponent = (props) => {
               {isLoading ? (
                 <Spinner size='sm' color='light' />
               ) : (
-                  <>Create Problem</>
-                )}
+                <>Create Problem</>
+              )}
             </Button>
             {problemSuccess()}
           </Row>

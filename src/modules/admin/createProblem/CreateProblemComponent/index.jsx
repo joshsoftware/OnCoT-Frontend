@@ -16,8 +16,8 @@ import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseConta
 
 toast.configure();
 const CreateProblemComponent = (props) => {
-  const { handleTitleChange, handleDescriptionChange, handleCountChange, handleSubmit,
-    message, isSuccess, isLoading, finishProblemCreation } = props;
+  const { handleTitleChange, handleDescriptionChange, handleCountChange, handleTimeChange,
+    handleSubmit, message, isSuccess, isLoading, finishProblemCreation } = props;
   const problemSuccess = () => {
     // please redirect to problem list page
     if (isSuccess) {
@@ -62,24 +62,37 @@ const CreateProblemComponent = (props) => {
             </FormGroup>
           </Row>
 
-          <FormGroup className='w-50'>
-            <Label for='exampleText'>Problem Description</Label>
-            <Input
-              type='textarea'
-              name='text'
-              id='exampleText'
-              onChange={handleDescriptionChange}
-              required
-            />
-          </FormGroup>
+          <Row>
+            <FormGroup className='w-50'>
+              <Label for='exampleText'>Problem Description</Label>
+              <Input
+                type='textarea'
+                name='text'
+                id='exampleText'
+                onChange={handleDescriptionChange}
+                required
+              />
+            </FormGroup>
+            <FormGroup className='px-3 w-50'>
+              <Label>
+                <h6>Time in minutes</h6>
+              </Label>
+              <Input
+                type='number'
+                placeholder='Enter Time allowed in minutes'
+                onChange={handleTimeChange}
+                required
+              />
+            </FormGroup>
+          </Row>
 
           <Row className='p-3'>
             <Button disabled={isSuccess} className=''>
               {isLoading ? (
                 <Spinner size='sm' color='light' />
               ) : (
-                <>Create Problem</>
-              )}
+                  <>Create Problem</>
+                )}
             </Button>
             {problemSuccess()}
           </Row>
@@ -102,6 +115,7 @@ CreateProblemComponent.propTypes = {
   handleTitleChange: PropTypes.func.isRequired,
   handleDescriptionChange: PropTypes.func.isRequired,
   handleCountChange: PropTypes.func.isRequired,
+  handleTimeChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,

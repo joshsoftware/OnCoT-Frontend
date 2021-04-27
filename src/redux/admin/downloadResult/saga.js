@@ -12,7 +12,7 @@ import { DOWNLOAD_RESULT } from 'redux/admin/downloadResult/actionConstants';
 export function* downloadResultCsvSaga(action) {
   try {
     const response = yield call(downloadResultApi);
-    yield put(downloadResultSuccessAction(response.data.message));
+    yield put(downloadResultSuccessAction(response.data));
   } catch (error) {
     yield put(downloadResultFailureAction(error.message));
   }

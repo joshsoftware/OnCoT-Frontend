@@ -10,6 +10,7 @@ import './landingPage.css';
 function LandingPageComponent(props) {
   const {
     startTime,
+    endTime,
     isError,
     errorMessage,
     isLoading,
@@ -38,20 +39,29 @@ function LandingPageComponent(props) {
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>OnCoT</h1>
-        <h4 className='my-5'>
-          {`Your test will start on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
-        </h4>
-        <h3 className='text-success'>
-          {driveTime === expired ? null : driveTime}
-        </h3>
-        {driveTime === expired && (
-          <Button
-            className='px-5 custom-color btn-style'
-            size='lg'
-            onClick={handleClick}
-          >
-            Continue
-          </Button>
+        { moment(endTime).isAfter() && (
+          <div>
+            <h4 className='my-5'>
+              {`Your test will start on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
+            </h4>
+            <h3 className='text-success'>
+              {driveTime === expired ? null : driveTime}
+            </h3>
+            {driveTime === expired && (
+              <Button
+                className='px-5 custom-color btn-style'
+                size='lg'
+                onClick={handleClick}
+              >
+                Continue
+              </Button>
+            )}
+          </div>
+        )}
+        {!moment(endTime).isAfter() && (
+          <p>
+            <h1> Test Over </h1>
+          </p>
         )}
       </div>
     </Container>
@@ -60,6 +70,7 @@ function LandingPageComponent(props) {
 
 LandingPageComponent.propTypes = {
   startTime: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,

@@ -15,7 +15,7 @@ export function* codeSubmissionStatusSaga(param) {
     yield put(submitAction(response.data.data));
   }
   if (status === 'processing') {
-    yield delay(2000);
+    yield delay(5000);
     yield call(codeSubmissionStatusSaga, { submission_id, status });
   }
 }

@@ -6,7 +6,7 @@ export const downloadResultApi = (data) => {
   const driveId = local.getItem('driveResultId');
   return axios({
     method: 'get',
-    url: `${SERVER_URL}drives/${driveId}/results/csv_result`,
+    url: `${SERVER_URL}drives/${driveId}/results/csv_result.csv`,
     data,
     headers: {
       'Content-Type': 'application/json',

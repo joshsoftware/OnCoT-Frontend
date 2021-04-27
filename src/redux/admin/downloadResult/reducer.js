@@ -1,6 +1,7 @@
 import produce from 'immer';
-
 import { DOWNLOAD_RESULT } from 'redux/admin/downloadResult/actionConstants';
+
+const fileSaver = require('file-saver');
 
 export const initialState = {
   downloadResultMessage: '',
@@ -13,6 +14,7 @@ const downloadResultReducer = produce((state = initialState, action = {}) => {
     case DOWNLOAD_RESULT.DOWNLOAD_RESULT_SUCCESS_ACTION:
       state.downloadResultMessage = payload;
       state.downloadResultIsLoading = false;
+      fileSaver.saveAs(new Blob([payload], { type: 'application/octet-stream' }), 'drive-result.csv');
       break;
     case DOWNLOAD_RESULT.DOWNLOAD_RESULT_FAILURE_ACTION:
       state.downloadResultMessage = payload;

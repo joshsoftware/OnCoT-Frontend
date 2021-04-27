@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "file-saver": "^2.0.5",
     "immer": "^8.0.1",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",

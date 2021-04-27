@@ -4,6 +4,7 @@ import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListCompon
 
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
 import { useDispatch } from 'react-redux';
+import { Button } from 'core-components';
 
 const ProblemsListContainer = () => {
   const dispatch = useDispatch();
@@ -20,16 +21,25 @@ const ProblemsListContainer = () => {
     }
   }, [problemIsLoading]);
 
+  const onClickResult = (e) => {
+    const rowId = e.target.parentNode.parentNode.id;
+    dispatch({
+      type: 'PROBLEM_DETAILS',
+      payload: { currentScreen: 'PROBLEM_DETAILS', id: rowId },
+    });
+  };
+
   const renderTableData = useCallback(() => {
     return allProblems.map((val, index) => {
       const { id, title, description } = val;
       return (
-        <tr key={id}>
-          <td>{id}</td>
+        <tr key={id} id={id}>
+          <td className='problemDetail'>{id}</td>
           <td>{title}</td>
           <td>{description}</td>
-          <td>Null</td>
-          <td>Null</td>
+          <td>
+            <Button onClick={onClickResult}>Details</Button>
+          </td>
         </tr>
       );
     });

@@ -15,6 +15,7 @@ import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemCon
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
 import './style.css';
+import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetailsContainer';
 
 const HomeComponent = (props) => {
   const { currentHomeComponent } = props;
@@ -45,9 +46,11 @@ const HomeComponent = (props) => {
           {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
             <CreateDriveContainer />
           )}
-
           {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
             <ProblemsListContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.PROBLEM_DETAILS && (
+            <ProblemDetailsContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.CREATE_PROBLEM && (
             <CreateProblemContainer />

@@ -6,11 +6,8 @@ import HomeContainer from 'modules/admin/home/HomeContainer';
 
 import { ADMIN_ROUTES } from 'constants/routeConstants';
 
-import { adminRoutesHelper } from 'modules/admin/AdminRoutesHelper';
-
 function AdminRoutes() {
   const { path } = useRouteMatch();
-  adminRoutesHelper();
 
   return (
     <Switch>

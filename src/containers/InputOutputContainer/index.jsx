@@ -41,11 +41,13 @@ const CustomIOContainer = () => {
       setTimeout(() => {
         customInputOutputSendTokenApi(token)
           .then((output) => {
+            console.log(output);
             if (output.data.data.status.description === 'Processing') {
               checkStatus(token);
             } else {
-              if (output.data.stderr) {
-                outputValue = output.data.data.stderr;
+              if (!output.data.data.stdout) {
+                console.log(output.data);
+                outputValue = output.data.data.compile_output;
               } else {
                 outputValue = output.data.data.stdout;
               }

@@ -33,7 +33,7 @@ function LandingPageContainer() {
   const result = useSelector((state) => state.DriveTimerReducer);
 
   useEffect(() => {
-    dispatch(driveTimerRequest());
+    dispatch(driveTimerRequest(tokenId));
   }, []);
 
   useEffect(() => {
@@ -55,6 +55,7 @@ function LandingPageContainer() {
       errorMessage={errorMessage}
       isLoading={isLoading}
       handleClick={handleClick}
+      counter={result.counter}
       driveTime={driveTime}
     />
   );

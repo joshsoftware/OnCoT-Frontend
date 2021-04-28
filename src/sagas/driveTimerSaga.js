@@ -8,9 +8,9 @@ import {
 
 import { DRIVE_TIMER } from 'constants/actionConstants';
 
-export function* driveTimer() {
+export function* driveTimer(action) {
   try {
-    const response = yield call(getDriveTimer);
+    const response = yield call(getDriveTimer, action.payload);
     yield put(driveTimerAction(response.data.data));
   } catch (error) {
     yield put(

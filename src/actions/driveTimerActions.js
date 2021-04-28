@@ -1,6 +1,9 @@
 import { DRIVE_TIMER } from 'constants/actionConstants';
 
-export const driveTimerRequest = () => ({ type: DRIVE_TIMER.DRIVE_TIMER_REQUEST });
+export const driveTimerRequest = (tokenId) => ({
+  type: DRIVE_TIMER.DRIVE_TIMER_REQUEST,
+  payload: tokenId,
+});
 
 export const driveTimerRequestFailed = (timerError) => ({
   type: DRIVE_TIMER.SET_DRIVE_TIMER_ERROR,

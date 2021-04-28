@@ -5,7 +5,7 @@ import local from 'utils/local';
 export const initialState = {
   errorMessage: '',
   isError: false,
-  submissionAllowed:  parseInt(local.getItem('subCount') || 3, 10),
+  submissionAllowed: parseInt(local.getItem('subCount'), 10),
   totalTestcases: null,
   testcasesPassed: null,
   isLoading: false,
@@ -16,8 +16,14 @@ const codeSubmissionReducer = produce((state = initialState, action = {}) => {
   switch (type) {
     case CODE_SUBMISSION.SET_DETAILS:
       {
-        const { submission_count, total_testcases, passed_testcases, marks } = payload;
+        const {
+          submission_count,
+          total_testcases,
+          passed_testcases,
+          marks,
+        } = payload;
         state.submissionAllowed = submission_count;
+        local.setItem('subCount', submission_count);
         state.totalTestcases = total_testcases;
         state.testcasesPassed = passed_testcases;
         state.isLoading = false;

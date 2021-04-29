@@ -16,6 +16,7 @@ import createProblemReducer from 'redux/admin/createProblem/reducer';
 import testReducer from 'redux/admin/testCase/reducer';
 import driveResultReducer from 'redux/admin/driveResult/reducer';
 import downloadResultReducer from 'redux/admin/downloadResult/reducer';
+import unauthorizedUserReducer from 'redux/admin/unauthorizedUser/reducer';
 
 const rootReducer = combineReducers({
   rulesReducer,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   testReducer,
   driveResultReducer,
   downloadResultReducer,
+  unauthorizedUserReducer,
 });
 
 export default rootReducer;

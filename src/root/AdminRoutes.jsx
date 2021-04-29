@@ -4,14 +4,11 @@ import ProtectedAdminRoute from 'HOC/ProtectedAdminRoute';
 import LoginContainer from 'modules/admin/login/LoginContainer';
 import HomeContainer from 'modules/admin/home/HomeContainer';
 
-import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
-import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
-import ShowCandidateListContainer from 'modules/admin/showCandidateList/ShowCandidateListContainer';
-import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
-import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
+import { ADMIN_ROUTES } from 'constants/routeConstants';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
+
   return (
     <Switch>
       <Route
@@ -19,11 +16,7 @@ function AdminRoutes() {
         path={path + ADMIN_ROUTES.LOGIN}
         component={LoginContainer}
       />
-      <Route
-        exact
-        path={path}
-        component={LoginContainer}
-      />
+      <Route exact path={path} component={LoginContainer} />
       <ProtectedAdminRoute
         path={path + ADMIN_ROUTES.HOME}
         component={HomeContainer}

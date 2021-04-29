@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import axios from 'axios';
+import { Redirect, useHistory } from 'react-router';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -10,6 +12,22 @@ document.oncontextmenu = function (e) {
     return false;
   }
 };
+
+axios.interceptors.request.use((request) => {
+  return request;
+});
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.message === 'Request failed with status code 401') {
+      window.location = '/admin/login';
+    }
+    return error;
+  },
+);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -28,7 +28,11 @@ const CreateDriveComponent = (props) => {
   const nothing = '';
 
   if (problemIsLoading) {
-    return <Spinner />;
+    return (
+      <Container className='d-flex justify-content-center align-content'>
+        <Spinner />
+      </Container>
+    );
   }
   if (message !== nothing) {
     return <Alert>{message}</Alert>;
@@ -119,7 +123,9 @@ const CreateDriveComponent = (props) => {
                     value={data.problemId}
                     onChange={handleSelectedProblemChange}
                   >
-                    <option disabled selected>Select Problem</option>
+                    <option disabled selected>
+                      Select Problem
+                    </option>
                     {data.map((e, key) => {
                       return (
                         <option key={e.id} value={e.id}>

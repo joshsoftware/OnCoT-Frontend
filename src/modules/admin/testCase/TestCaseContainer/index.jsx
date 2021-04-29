@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import { deleteTestCaseApi, getTestCasesApi, postTestCaseApi, updateTestCaseApi } from 'redux/admin/testCase/api';
+import {
+  deleteTestCaseApi,
+  getTestCasesApi,
+  postTestCaseApi,
+  updateTestCaseApi,
+} from 'redux/admin/testCase/api';
 import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
 import { reducer } from 'modules/admin/testCase/reducer';
 import { validateData } from 'modules/admin/testCase/dataValidation';
@@ -13,7 +18,9 @@ const problemSaved = (problem_id) => {
 };
 
 const TestCaseContainer = () => {
-  const { message, isSuccess, problem_id } = useSelector((state) => state.createProblemReducer);
+  const { message, isSuccess, problem_id } = useSelector(
+    (state) => state.createProblemReducer,
+  );
   const initialUserState = {
     input: '',
     output: '',
@@ -36,10 +43,10 @@ const TestCaseContainer = () => {
 
   const loadTestCases = useCallback(
     (event) => {
-      const data = { problem_id };
       useEffect(async () => {
-        const result =  await getTestCasesApi(data);
-        const tcs = [...result.data.data.test_cases];
+        const result = await getTestCasesApi(problem_id);
+
+        const tcs = result.data.data.test_cases;
         setUserState({
           type: 'setAndDeleteTestCase',
           payload: {
@@ -48,7 +55,8 @@ const TestCaseContainer = () => {
           },
         });
       }, []);
-    }, [userState.testCases],
+    },
+    [userState.testCases],
   );
   // check if problem id is supplied then only load the test cases
   if (typeof problem_id !== 'undefined') {
@@ -97,47 +105,46 @@ const TestCaseContainer = () => {
     [userState.marks],
   );
 
-  const handleOnAdd = useCallback(
-    (event) => {
-      // event.preventDefault();
-      const { input, output, marks } = userState;
-      const data = {
-        input,
-        output,
-        marks,
-        problem_id,
-      };
-      schema.isValid(data).then(async (valid) => {
-        if (!valid) {
-          validateData(schema, data, setUserState);
-        } else {
-          if (problemSaved(problem_id)) {
-            toast.error('Please create problem first');
-            setUserState({ type: 'default' });
-            return;
-          }
-          setIsLoading(true);
-          try {
-            const result = await postTestCaseApi(data);
-            if (result.status === 200) {
-              setIsLoading(false);
-              data.id = result.data.data.test_case.id;
-              setUserState({
-                type: 'addTestCase',
-                payload: data,
-              });
-              return toast.success('Test case added successfully');
-            }
-            setIsLoading(false);
-            return toast.error('Error in posting data');
-          } catch (err) {
-            setIsLoading(false);
-            return toast.error('error in posting');
-          }
+  const handleOnAdd = useCallback((event) => {
+    // event.preventDefault();
+    const { input, output, marks } = userState;
+    const data = {
+      input,
+      output,
+      marks,
+      problem_id,
+    };
+    schema.isValid(data).then(async (valid) => {
+      if (!valid) {
+        validateData(schema, data, setUserState);
+      } else {
+        if (problemSaved(problem_id)) {
+          toast.error('Please create problem first');
+          setUserState({ type: 'default' });
+          return;
         }
-      });
-    },
-  );
+        setIsLoading(true);
+        try {
+          const result = await postTestCaseApi(problem_id);
+
+          if (result.status === 200) {
+            setIsLoading(false);
+            data.id = result.data.data.test_case.id;
+            setUserState({
+              type: 'addTestCase',
+              payload: data,
+            });
+            return toast.success('Test case added successfully');
+          }
+          setIsLoading(false);
+          return toast.error('Error in posting data');
+        } catch (err) {
+          setIsLoading(false);
+          return toast.error('error in posting');
+        }
+      }
+    });
+  });
 
   const handleOnTestCaseEdit = useCallback(
     (tid) => {
@@ -154,7 +161,8 @@ const TestCaseContainer = () => {
           break;
         }
       }
-    }, [userState.input, userState.marks, userState.testCases, userState.id],
+    },
+    [userState.input, userState.marks, userState.testCases, userState.id],
   );
   const handleOnTestCaseUpdate = useCallback(
     (event) => {
@@ -194,8 +202,14 @@ const TestCaseContainer = () => {
           }
         }
       });
-    }, [userState.input, userState.output, userState.marks, userState.testCases,
-      userState.id],
+    },
+    [
+      userState.input,
+      userState.output,
+      userState.marks,
+      userState.testCases,
+      userState.id,
+    ],
   );
   // delete testcase api is not yet finalise from backend
   const handleOnTestCaseDelete = useCallback(
@@ -222,7 +236,8 @@ const TestCaseContainer = () => {
           },
         });
       }
-    }, [userState.testCases],
+    },
+    [userState.testCases],
   );
   const handleOnCancel = useCallback(
     (event) => {

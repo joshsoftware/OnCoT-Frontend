@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Row,
@@ -7,16 +7,16 @@ import {
   FormGroup,
   Label,
   Input,
-  Table,
+  Col,
   Button,
   Spinner,
   Alert,
+  Editor,
 } from 'core-components';
 
 const CreateDriveComponent = (props) => {
   const {
     handleDriveNameChange,
-    handleDriveDescriptionChange,
     handleDriveStartChange,
     handleDriveEndChange,
     handleSelectedProblemChange,
@@ -24,6 +24,9 @@ const CreateDriveComponent = (props) => {
     problemIsLoading,
     onCreateDriveSubmit,
     message,
+    editorState,
+    onEditorStateChange,
+    val,
   } = props;
   const nothing = '';
 
@@ -58,16 +61,34 @@ const CreateDriveComponent = (props) => {
             </FormGroup>
 
             <Row className='px-3'>
-              <FormGroup className='px-3 w-50'>
-                <Label>
-                  <h4>Drive Description</h4>
-                </Label>
-                <Input
+              <Col xl={10} lg={10} md={10} xs={10} sm={10}>
+                <FormGroup className='px-3 w-50'>
+                  <Label>
+                    <h4>Drive Description</h4>
+                  </Label>
+                  {/* <Input
                   type='textarea'
                   placeholder='Enter drive title'
                   onChange={handleDriveDescriptionChange}
+                /> */}
+                  <div className='border'>
+                    <Editor
+                      editorState={editorState}
+                      toolbarClassName='toolbarClassName'
+                      wrapperClassName='wrapperClassName'
+                      editorClassName='editorClassName'
+                      onEditorStateChange={onEditorStateChange}
+                    />
+                  </div>
+                </FormGroup>
+              </Col>
+              <Col xl={2} lg={2} md={2} xs={2} sm={2}>
+                <textarea
+                  className='w-100 h-100'
+                  id='pre-textarea'
+                  value={val}
                 />
-              </FormGroup>
+              </Col>
             </Row>
 
             <Row className='px-3 w-100 d-flex'>
@@ -149,7 +170,6 @@ const CreateDriveComponent = (props) => {
 
 CreateDriveComponent.propTypes = {
   handleDriveNameChange: PropTypes.func.isRequired,
-  handleDriveDescriptionChange: PropTypes.func.isRequired,
   handleDriveStartChange: PropTypes.func.isRequired,
   handleDriveEndChange: PropTypes.func.isRequired,
   handleSelectedProblemChange: PropTypes.func.isRequired,
@@ -157,6 +177,9 @@ CreateDriveComponent.propTypes = {
   problemIsLoading: PropTypes.bool.isRequired,
   onCreateDriveSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  editorState: PropTypes.bool.isRequired,
+  onEditorStateChange: PropTypes.func.isRequired,
+  val: PropTypes.string.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

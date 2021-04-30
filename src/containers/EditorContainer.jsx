@@ -93,9 +93,10 @@ function EditorContainer() {
   const editorDidMount = useCallback((editor) => {
     editor.onKeyDown((event) => {
       const { which, ctrlKey, metaKey } = event;
-      if ((which === keyValueC || keyValueV) && (metaKey || ctrlKey)) {
-        event.preventDefault();
-      }
+      // Enable copy paste for first live drive
+      // if ((which === keyValueC || keyValueV) && (metaKey || ctrlKey)) {
+      //   event.preventDefault();
+      // }
     });
     editor.focus();
   }, []);

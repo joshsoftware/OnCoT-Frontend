@@ -13,7 +13,7 @@ export const initialState =
     },
   },
   message: '',
-  currentProblems: [],
+  currentProblems: '',
   problemLoading: true,
 };
 
@@ -33,7 +33,11 @@ const reducer = (state = initialState, action = {}) => {
       state.data.drive.end_time = payload;
       break;
     case 'problem':
-      state.currentProblems.push(payload);
+      state.currentProblems = payload;
+      break;
+    case 'drive':
+      state = payload;
+      state.currentProblems = payload.drives_problems;
       break;
     default:
       return state;

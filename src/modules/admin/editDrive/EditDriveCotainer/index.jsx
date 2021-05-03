@@ -15,18 +15,64 @@ import reducer, {
 } from 'modules/admin/editDrive/EditDriveCotainer/reducer';
 
 import { editDriveRequestAction } from 'redux/admin/editDrive/action';
-import { Spinner } from 'core-components';
+import { Spinner, Alert } from 'core-components';
+
+import { get } from 'redux/admin/apiHelper';
+
+import { SERVER_URL } from 'constants/appConstants';
 
 const EditDriveContainer = () => {
-  // const { message } = useSelector((state) => state.editDriveReducer);
+  const { message } = useSelector((state) => state.editDriveReducer);
 
+  const [driveDetails, setDriveDetails] = useState();
   const [editDrive, setEditDrive] = useReducer(reducer, initialState);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
   const [problemsData, setProblemsData] = useState([]);
-  console.log();
   const dispatch = useDispatch();
 
   useEffect(async () => {
+    const driveId = localStorage.getItem('editDriveId');
+
+    async function getDriveDetails() {
+      try {
+        let candidateLoading = false;
+        await get(`${SERVER_URL}admin/drives/${driveId}`)
+          .then((response) => {
+            setDriveDetails(response.data.data);
+            const { name, description, start_time, end_time, drives_problems }
+              = response.data.data.drive;
+            setEditDrive({
+              type: 'problem',
+              payload: drives_problems[drives_problems.length - 1].problem_id,
+            });
+            setEditDrive({
+              type: 'name',
+              payload: name,
+            });
+            setEditDrive({
+              type: 'description',
+              payload: description,
+            });
+            setEditDrive({
+              type: 'start_time',
+              payload: start_time,
+            });
+            setEditDrive({
+              type: 'end_time',
+              payload: end_time,
+            });
+          })
+          .catch((error) => {
+            candidateLoading = true;
+            setDriveDetails(candidateLoading);
+            return <Alert className='danger'> {error} </Alert>;
+          });
+      } catch (e) {
+        <Alert color='API Call Failed '> {e}</Alert>;
+      }
+    }
+    getDriveDetails();
+
     const data = await getProblems();
     const { problems, problemLoading } = data;
     if (!problemLoading) {
@@ -99,10 +145,13 @@ const EditDriveContainer = () => {
       },
       currentProblems,
     } = editDrive;
-    const problemId = currentProblems[0];
+    const problemId = currentProblems;
+    const drivesProblemsid =
+      driveDetails.drive.drives_problems[driveDetails.drive.drives_problems.length - 1].id;
 
     const drives_problems_attributes = [
       {
+        id: drivesProblemsid,
         problem_id: problemId,
         _destroy: false,
       },
@@ -131,8 +180,9 @@ const EditDriveContainer = () => {
       problemIsLoading={problemIsLoading}
       handleSelectedProblemChange={handleSelectedProblemChange}
       data={problemsData}
+      driveDetails={driveDetails}
       onEditDriveSubmit={onEditDriveSubmit}
-    // message={message}
+      message={message}
     />
   );
 };

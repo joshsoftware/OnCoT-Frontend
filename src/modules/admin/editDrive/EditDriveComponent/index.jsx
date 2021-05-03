@@ -24,16 +24,16 @@ const EditDriveComponent = (props) => {
     problemIsLoading,
     onEditDriveSubmit,
     message,
+    driveDetails,
   } = props;
   const nothing = '';
-  console.log(data[0]);
 
   if (problemIsLoading) {
     return <Spinner />;
   }
-  if (message !== nothing) {
-    return <Alert>{message}</Alert>;
-  }
+  // if (message !== nothing) {
+  //   return <Alert>{message}</Alert>;
+  // }
 
   return (
     <Container fluid className='h-100'>
@@ -49,7 +49,7 @@ const EditDriveComponent = (props) => {
               </Label>
               <Input
                 type='text'
-                placeholder='Enter drive title'
+                defaultValue={driveDetails.drive.name}
                 onChange={handleDriveNameChange}
               />
             </FormGroup>
@@ -61,7 +61,7 @@ const EditDriveComponent = (props) => {
                 </Label>
                 <Input
                   type='textarea'
-                  placeholder='Enter drive title'
+                  defaultValue={driveDetails.drive.description}
                   onChange={handleDriveDescriptionChange}
                 />
               </FormGroup>
@@ -74,6 +74,7 @@ const EditDriveComponent = (props) => {
                 </Label>
                 <Input
                   type='datetime-local'
+                  defaultValue={driveDetails.drive.start_time}
                   onChange={handleDriveStartChange}
                 />
               </FormGroup>
@@ -81,30 +82,15 @@ const EditDriveComponent = (props) => {
                 <Label>
                   <h4>Drive End Date</h4>
                 </Label>
-                <Input type='datetime-local' onChange={handleDriveEndChange} />
+                <Input
+                  type='datetime-local'
+                  defaultValue={driveDetails.drive.end_time}
+                  onChange={handleDriveEndChange}
+                />
               </FormGroup>
             </Row>
 
             <Row className='px-3 w-100 d-flex'>
-              {/* We need this code for later */}
-              {/* <FormGroup className='pt-3 pl-3 w-50'>
-                <Label>
-                  <h4>Problems</h4>
-                </Label>
-                <Table dark>
-                  <thead>
-                    <tr>
-                      <th>Problem Id</th>
-                      <th>Problem Title</th>
-                      <th>Category</th>
-                      <th>Difficulty</th>
-                      <th>Marks</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>{renderTableData}</tbody>
-                </Table>
-              </FormGroup> */}
 
               <FormGroup className='pt-3 px-5 w-25'>
                 <Row>
@@ -149,6 +135,7 @@ EditDriveComponent.propTypes = {
   handleDriveEndChange: PropTypes.func.isRequired,
   handleSelectedProblemChange: PropTypes.func.isRequired,
   data: PropTypes.string.isRequired,
+  driveDetails: PropTypes.objectOf(PropTypes.object).isRequired,
   problemIsLoading: PropTypes.bool.isRequired,
   onEditDriveSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,

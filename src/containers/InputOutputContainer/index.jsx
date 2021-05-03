@@ -44,8 +44,10 @@ const CustomIOContainer = () => {
             if (output.data.data.status.description === 'Processing') {
               checkStatus(token);
             } else {
-              if (output.data.stderr) {
+              if (output.data.data.stderr) {
                 outputValue = output.data.data.stderr;
+              } else if (!output.data.data.stdout) {
+                outputValue = output.data.data.compile_output;
               } else {
                 outputValue = output.data.data.stdout;
               }
@@ -57,6 +59,10 @@ const CustomIOContainer = () => {
             }
           })
           .catch((error) => {
+            setInputOutputValue({
+              type: 'output',
+              payload: { output: 'Compiler error' },
+            });
             // something went wrong! error
             setLoading(false);
           });

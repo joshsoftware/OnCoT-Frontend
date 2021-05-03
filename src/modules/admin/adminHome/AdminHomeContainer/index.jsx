@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 
 import AdminHomeComponent from 'modules/admin/adminHome/AdminHomeComponent';
 import { Button } from 'core-components';
+import moment from 'moment';
 
 import getDriveDetails from 'modules/admin/adminHome/AdminHomeContainer/getDriveDetails';
 import { useDispatch } from 'react-redux';
@@ -91,8 +92,8 @@ const CreateDriveContainer = () => {
           <tr key={id} id={id}>
             <td className='data'>{id}</td>
             <td>{name}</td>
-            <td>{start_time}</td>
-            <td>{end_time}</td>
+            <td>{moment(start_time).format('DD-MMM-YYYY h:m A')}</td>
+            <td>{moment(end_time).format('DD-MMM-YYYY h:m A')}</td>
             {driveStatus !== completed && (
               <td>
                 <Button onClick={onClickEdit}>Edit</Button>

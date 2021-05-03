@@ -39,7 +39,7 @@ const TestCaseContainer = () => {
       const data = { problem_id };
       useEffect(async () => {
         const result =  await getTestCasesApi(data);
-        const tcs = [...result.data.data.test_cases];
+        const tcs = result.data !== undefined ? [...result.data.data.test_cases] : [];
         setUserState({
           type: 'setAndDeleteTestCase',
           payload: {

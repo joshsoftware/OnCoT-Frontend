@@ -1,7 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import local from 'utils/local';
 import ProblemDetailsComponent from 'modules/admin/problemDetails/ProblemDetailsComponent';
-import { Alert, Card, CardBody, CardHeader, Spinner, Table } from 'core-components';
+import {
+  Alert,
+  Card,
+  CardBody,
+  CardHeader,
+  Spinner,
+  Table,
+} from 'core-components';
 
 import { get } from 'redux/admin/apiHelper';
 
@@ -52,7 +59,7 @@ const ProblemDetailsContainer = () => {
       }
     }
     getTestCases();
-  }, [problemDetails, testCases]);
+  }, [problemIsLoading, testCaseLoading]);
 
   const renderTestCases = useCallback(() => {
     return testCases.map((val) => {
@@ -73,7 +80,9 @@ const ProblemDetailsContainer = () => {
     }
     return (
       <Card className='w-75 border-0 shadow'>
-        <CardHeader className='bg-dark text-white'>{problemDetails.problem.title}</CardHeader>
+        <CardHeader className='bg-dark text-white'>
+          {problemDetails.problem.title}
+        </CardHeader>
         <CardBody>
           <h6>Description: {problemDetails.problem.description}</h6>
           <h6>TestCases: </h6>
@@ -86,9 +95,7 @@ const ProblemDetailsContainer = () => {
                 <th>Marks</th>
               </tr>
             </thead>
-            <tbody className='bg-secondary'>
-              { renderTestCases() }
-            </tbody>
+            <tbody className='bg-secondary'>{renderTestCases()}</tbody>
           </Table>
         </CardBody>
       </Card>
@@ -96,10 +103,8 @@ const ProblemDetailsContainer = () => {
   });
 
   return (
-    <ProblemDetailsComponent
-      renderProblemDetails={renderProblemDetails}
-    />
+    <ProblemDetailsComponent renderProblemDetails={renderProblemDetails} />
   );
 };
 
-export default  React.memo(ProblemDetailsContainer);
+export default React.memo(ProblemDetailsContainer);

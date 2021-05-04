@@ -12,7 +12,11 @@ import {
   setCode,
 } from 'actions/languageAction';
 import { submitRequest } from 'actions/codeSubmissionActions';
-import { options, keyValueC, keyValueV } from 'components/EditorPadComponent/editorConstants';
+import {
+  options,
+  keyValueC,
+  keyValueV,
+} from 'components/EditorPadComponent/editorConstants';
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 import isEmpty from 'utils/isEmpty';
@@ -28,18 +32,20 @@ function EditorContainer() {
     (state) => state.languageReducer,
   );
 
-  const { isError, errorMessage, submissionAllowed, totalTestcases,
-    testcasesPassed, isLoading } = useSelector(
-    (state) => state.codeSubmissionReducer,
-  );
+  const {
+    isError,
+    errorMessage,
+    submissionAllowed,
+    totalTestcases,
+    testcasesPassed,
+    isLoading,
+  } = useSelector((state) => state.codeSubmissionReducer);
 
-  const { statement: { id, submissionCount } } = useSelector(
-    (state) => state.problemStatementReducer,
-  );
+  const {
+    statement: { id, submissionCount },
+  } = useSelector((state) => state.problemStatementReducer);
 
-  const { candidateId } = useSelector(
-    (state) => state.userDriveReducer,
-  );
+  const { candidateId } = useSelector((state) => state.userDriveReducer);
 
   const driveID = local.getItem('driveID');
 
@@ -61,9 +67,11 @@ function EditorContainer() {
   );
   const [limit, setlimit] = useState(false);
   const [modal, setModal] = useState(false);
-  const [finishModal, setFinishModal] = useState(false);
   const toggle = () => setModal(!modal);
+  const [finishModal, setFinishModal] = useState(false);
   const toggleFinish = () => setFinishModal(!finishModal);
+  const [confirmationModal, setConfirmationModal] = useState(false);
+  const toggleConfirmation = () => setConfirmationModal(!confirmationModal);
 
   const handleClick = useCallback(
     (e) => {
@@ -126,6 +134,11 @@ function EditorContainer() {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
   });
 
+  const handleConfirmation = useCallback(() => {
+    toggleConfirmation();
+    handleSubmit();
+  });
+
   return (
     <Container fluid>
       <EditorNavComponent
@@ -145,8 +158,11 @@ function EditorContainer() {
         handleFinish={handleFinish}
         toggleFinish={toggleFinish}
         finishModal={finishModal}
+        confirmationModal={confirmationModal}
         isLoading={isLoading}
         limit={limit}
+        handleConfirmation={handleConfirmation}
+        toggleConfirmation={toggleConfirmation}
       />
       <EditorPadComponent
         id='editor'

@@ -5,8 +5,9 @@ import React, {
   useReducer,
   useState,
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import getProblems from 'modules/admin/editDrive/EditDriveCotainer/getProblems';
+import getDriveDetails from 'modules/admin/editDrive/EditDriveCotainer/getDriveDetails';
 
 import EditDriveComponent from 'modules/admin/editDrive/EditDriveComponent';
 
@@ -15,11 +16,7 @@ import reducer, {
 } from 'modules/admin/editDrive/EditDriveCotainer/reducer';
 
 import { editDriveRequestAction } from 'redux/admin/editDrive/action';
-import { Spinner, Alert } from 'core-components';
-
-import { get } from 'redux/admin/apiHelper';
-
-import { SERVER_URL } from 'constants/appConstants';
+import { Spinner } from 'core-components';
 
 const EditDriveContainer = () => {
   const [driveDetails, setDriveDetails] = useState();
@@ -30,37 +27,22 @@ const EditDriveContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    const driveId = localStorage.getItem('editDriveId');
-
-    async function getDriveDetails() {
-      try {
-        let candidateLoading = false;
-        await get(`${SERVER_URL}admin/drives/${driveId}`)
-          .then((response) => {
-            setDriveDetails(response.data.data);
-            const { name, description, start_time, end_time, drives_problems }
-              = response.data.data.drive;
-            setEditDrive({
-              type: 'drive',
-              payload: {
-                name,
-                description,
-                start_time,
-                end_time,
-                problem: drives_problems[drives_problems.length - 1].problem_id,
-              },
-            });
-          })
-          .catch((error) => {
-            candidateLoading = true;
-            setDriveDetails(candidateLoading);
-            return <Alert className='danger'> {error} </Alert>;
-          });
-      } catch (e) {
-        <Alert color='API Call Failed '> {e}</Alert>;
-      }
+    const driveData = await getDriveDetails();
+    if (driveData) {
+      setDriveDetails(driveData);
     }
-    getDriveDetails();
+
+    const { name, description, start_time, end_time, drives_problems } = driveData.drive;
+    setEditDrive({
+      type: 'drive',
+      payload: {
+        name,
+        description,
+        start_time,
+        end_time,
+        problem: drives_problems[drives_problems.length - 1].problem_id,
+      },
+    });
 
     const data = await getProblems();
     const { problems, problemLoading } = data;

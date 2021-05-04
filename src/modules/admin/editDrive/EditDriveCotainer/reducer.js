@@ -36,8 +36,11 @@ const reducer = (state = initialState, action = {}) => {
       state.currentProblems = payload;
       break;
     case 'drive':
-      state = payload;
-      state.currentProblems = payload.drives_problems;
+      state.data.drive.name = payload.name;
+      state.data.drive.description = payload.description;
+      state.data.drive.start_time = payload.start_time;
+      state.data.drive.end_time = payload.end_time;
+      state.currentProblems = payload.problem;
       break;
     default:
       return state;

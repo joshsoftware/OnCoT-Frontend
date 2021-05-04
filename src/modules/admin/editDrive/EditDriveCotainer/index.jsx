@@ -22,12 +22,11 @@ import { get } from 'redux/admin/apiHelper';
 import { SERVER_URL } from 'constants/appConstants';
 
 const EditDriveContainer = () => {
-  const { message } = useSelector((state) => state.editDriveReducer);
-
   const [driveDetails, setDriveDetails] = useState();
   const [editDrive, setEditDrive] = useReducer(reducer, initialState);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
   const [problemsData, setProblemsData] = useState([]);
+  const { message } = editDrive;
   const dispatch = useDispatch();
 
   useEffect(async () => {
@@ -42,24 +41,14 @@ const EditDriveContainer = () => {
             const { name, description, start_time, end_time, drives_problems }
               = response.data.data.drive;
             setEditDrive({
-              type: 'problem',
-              payload: drives_problems[drives_problems.length - 1].problem_id,
-            });
-            setEditDrive({
-              type: 'name',
-              payload: name,
-            });
-            setEditDrive({
-              type: 'description',
-              payload: description,
-            });
-            setEditDrive({
-              type: 'start_time',
-              payload: start_time,
-            });
-            setEditDrive({
-              type: 'end_time',
-              payload: end_time,
+              type: 'drive',
+              payload: {
+                name,
+                description,
+                start_time,
+                end_time,
+                problem: drives_problems[drives_problems.length - 1].problem_id,
+              },
             });
           })
           .catch((error) => {
@@ -172,7 +161,6 @@ const EditDriveContainer = () => {
   }
   return (
     <EditDriveComponent
-      // renderTableData={renderTableData}
       handleDriveDescriptionChange={handleDriveDescriptionChange}
       handleDriveEndChange={handleDriveEndChange}
       handleDriveNameChange={handleDriveNameChange}

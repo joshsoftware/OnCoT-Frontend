@@ -31,9 +31,6 @@ const EditDriveComponent = (props) => {
   if (problemIsLoading) {
     return <Spinner />;
   }
-  // if (message !== nothing) {
-  //   return <Alert>{message}</Alert>;
-  // }
 
   return (
     <Container fluid className='h-100'>

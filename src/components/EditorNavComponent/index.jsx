@@ -61,7 +61,9 @@ function EditorNavComponent({
   // needed count of clicks on submit button in order to show finish button
   const onSubmitClick = () => {
     clicks += 1;
-    toggleConfirmation();
+    if (limit) {
+      toggleConfirmation();
+    }
   };
 
   const getFinishButton = () => {

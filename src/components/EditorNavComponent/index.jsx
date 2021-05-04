@@ -35,12 +35,13 @@ function EditorNavComponent({
   finishModal,
   isLoading,
   limit,
+  handleConfirmation,
+  toggleConfirmation,
+  confirmationModal,
 }) {
   const loading = () => {
     if (isLoading) {
-      return (
-        <Loading />
-      );
+      return <Loading />;
     }
   };
 
@@ -54,20 +55,22 @@ function EditorNavComponent({
         </>
       );
     }
-    return (
-      <p className='text-white'>{errorMessage}</p>
-    );
+    return <p className='text-white'>{errorMessage}</p>;
   };
 
   // needed count of clicks on submit button in order to show finish button
   const onSubmitClick = () => {
     clicks += 1;
-    handleSubmit();
+    toggleConfirmation();
   };
 
   const getFinishButton = () => {
     if (clicks >= 1) {
-      return <Button className='bg-danger border-0 ml-3' onClick={toggleFinish}>Finish</Button>;
+      return (
+        <Button className='bg-danger border-0 ml-3' onClick={toggleFinish}>
+          Finish
+        </Button>
+      );
     }
   };
 
@@ -86,34 +89,73 @@ function EditorNavComponent({
         </DropdownMenu>
       </ButtonDropdown>
       <div>
-        <Button className='custom-btn bg-color border-0' onClick={onSubmitClick}>
-          {limit ? 'Limit Exceeded' : 'Submit' }
+        <Button
+          className='custom-btn bg-color border-0'
+          onClick={onSubmitClick}
+        >
+          {limit ? 'Limit Exceeded' : 'Submit'}
         </Button>
         {getFinishButton()}
       </div>
 
       <Modal className='modal-color' isOpen={modal} toggle={toggle}>
-        <ModalHeader className='bg-dark text-white border-0' toggle={toggle}>Final Output</ModalHeader>
+        <ModalHeader className='bg-dark text-white border-0' toggle={toggle}>
+          Final Output
+        </ModalHeader>
         <ModalBody className='bg-secondary border-0 text-white'>
           {loading()}
           {getModalBody()}
         </ModalBody>
         <ModalFooter className='border-0 bg-secondary'>
-          <Button color='danger' onClick={toggle}>Cancel</Button>
+          <Button color='danger' onClick={toggle}>
+            Cancel
+          </Button>
         </ModalFooter>
       </Modal>
 
       <Modal className='modal-color' isOpen={finishModal} toggle={toggleFinish}>
-        <ModalHeader className='bg-dark text-white border-0' toggle={toggleFinish}>Finish the test</ModalHeader>
+        <ModalHeader
+          className='bg-dark text-white border-0'
+          toggle={toggleFinish}
+        >
+          Finish the test
+        </ModalHeader>
         <ModalBody className='bg-secondary border-0 text-white'>
           <p>Do you want to Submit the test?</p>
         </ModalBody>
         <ModalFooter className='border-0 bg-secondary'>
-          <Button color='danger' onClick={toggleFinish}>Cancel</Button>
-          <Button color='success' onClick={handleFinish}>Finish</Button>
+          <Button color='danger' onClick={toggleFinish}>
+            Cancel
+          </Button>
+          <Button color='success' onClick={handleFinish}>
+            Finish
+          </Button>
         </ModalFooter>
       </Modal>
 
+      <Modal
+        className='modal-color'
+        isOpen={confirmationModal}
+        toggle={toggleConfirmation}
+      >
+        <ModalHeader
+          className='bg-dark text-white border-0'
+          toggle={toggleFinish}
+        >
+          Confirm Submit
+        </ModalHeader>
+        <ModalBody className='bg-secondary border-0 text-white'>
+          <p>Do you want to confirm the submisson for this problem?</p>
+        </ModalBody>
+        <ModalFooter className='border-0 bg-secondary'>
+          <Button color='danger' onClick={toggleConfirmation}>
+            Cancel
+          </Button>
+          <Button color='success' onClick={handleConfirmation}>
+            Confirm
+          </Button>
+        </ModalFooter>
+      </Modal>
     </Nav>
   );
 }
@@ -122,6 +164,7 @@ EditorNavComponent.propTypes = {
   isDropDownOpen: PropTypes.bool.isRequired,
   modal: PropTypes.bool.isRequired,
   finishModal: PropTypes.bool.isRequired,
+  confirmationModal: PropTypes.bool.isRequired,
   handleToggle: PropTypes.func.isRequired,
   languageSelected: PropTypes.shape({
     id: PropTypes.string,
@@ -136,15 +179,17 @@ EditorNavComponent.propTypes = {
   handleClick: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleFinish: PropTypes.func.isRequired,
+  handleConfirmation: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
-  toggleFinish:PropTypes.func.isRequired,
+  toggleFinish: PropTypes.func.isRequired,
+  toggleConfirmation: PropTypes.func.isRequired,
   errorMessage: PropTypes.string.isRequired,
   submissionAllowed: PropTypes.number.isRequired,
   totalTestcases: PropTypes.number.isRequired,
   testcasesPassed: PropTypes.number.isRequired,
   isError: PropTypes.bool.isRequired,
-  isLoading:PropTypes.bool.isRequired,
-  limit:PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  limit: PropTypes.bool.isRequired,
 };
 
 export default React.memo(EditorNavComponent);

@@ -7,6 +7,7 @@ import AdminHeader from 'shared-components/AdminHeader';
 import SideNavContainer from 'modules/admin/sideNav/SideNavContainer';
 import ProblemsListContainer from 'modules/admin/problemsList/ProblemsListContainer';
 import CreateDriveContainer from 'modules/admin/createDrive/CreateDriveCotainer';
+import EditDriveContainer from 'modules/admin/editDrive/EditDriveCotainer';
 import AdminHomeConatiner from 'modules/admin/adminHome/AdminHomeContainer';
 import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer';
 import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
@@ -32,7 +33,7 @@ const HomeComponent = (props) => {
         <Col className='max-height overflow-auto' md={10} lg={10} xl={10}>
           {currentHomeComponent === HOME_SCREENS.HOME && <AdminHomeConatiner />}
           {currentHomeComponent === HOME_SCREENS.EDIT_DRIVE && (
-            <p>Edit Drive</p>
+            <EditDriveContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
             <SendEmailInviteContainer />

@@ -9,6 +9,7 @@ import driveTimerSaga from 'sagas/driveTimerSaga';
 import submitSaga from 'sagas/codeSubmissionSaga';
 import adminSaga from 'redux/admin/login/saga';
 import createDriveWatcherSaga from 'redux/admin/createDrive/saga';
+import editDriveWatcherSaga from 'redux/admin/editDrive/saga';
 import problemWatcherSaga from 'redux/admin/createProblem/saga';
 import testCaseWatcherSaga from 'redux/admin/testCase/saga';
 import driveResultSaga from 'redux/admin/driveResult/saga';
@@ -27,6 +28,7 @@ export default function* rootSagas() {
     submitSaga(),
     adminSaga(),
     createDriveWatcherSaga(),
+    editDriveWatcherSaga(),
     finishTestSaga(),
     problemWatcherSaga(),
     testCaseWatcherSaga(),

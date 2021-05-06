@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListComponent';
-
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
 import { useDispatch } from 'react-redux';
 import { Button } from 'core-components';
@@ -29,6 +28,15 @@ const ProblemsListContainer = () => {
     });
   };
 
+  const onClickEdit = (e) => {
+    const rowId = e.target.parentNode.parentNode.id;
+    const data = document.getElementById(rowId).querySelectorAll('.problemDetail');
+    dispatch({
+      type: 'EDIT_PROBLEM',
+      payload: { currentScreen: 'EDIT_PROBLEM', id: data[0].innerHTML },
+    });
+  };
+
   const renderTableData = useCallback(() => {
     return allProblems.map((val, index) => {
       const { id, title, description } = val;
@@ -37,6 +45,9 @@ const ProblemsListContainer = () => {
           <td className='problemDetail'>{id}</td>
           <td>{title}</td>
           <td>{description}</td>
+          <td>
+            <Button onClick={onClickEdit}>Edit</Button>
+          </td>
           <td>
             <Button onClick={onClickResult}>Details</Button>
           </td>

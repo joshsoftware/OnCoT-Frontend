@@ -36,13 +36,17 @@ function LandingPageContainer() {
     dispatch(driveTimerRequest(tokenId));
   }, []);
 
+  const data = {
+    data: Math.max(0, result.counter - 1),
+    is_live: result.isLive,
+  };
   useEffect(() => {
     setTimeout(() => {
-      if (result.counter >= 0) {
-        dispatch(updateDriveTimer(Math.max(0, result.counter - 1)));
+      if (result.counter >= 0 && result.isLive === true) {
+        dispatch(updateDriveTimer(data));
       }
     }, 1000);
-  }, [result.counter]);
+  }, [result.counter, result.isLive]);
 
   const driveTime = getCurrentTime(result.counter);
 
@@ -56,6 +60,7 @@ function LandingPageContainer() {
       isLoading={isLoading}
       handleClick={handleClick}
       counter={result.counter}
+      isLive={result.isLive}
       driveTime={driveTime}
     />
   );

@@ -1,14 +1,13 @@
-import axios from 'axios';
 import { SERVER_URL } from 'constants/appConstants';
 import { get, post, put } from '../apiHelper';
 
-const headers = {};
 export const postTestCaseApi = (data) => {
   return post(`${SERVER_URL}admin/test_cases`, data);
 };
 
 export const getTestCasesApi = (data) => {
-  return get(`${SERVER_URL}admin/problem/${data.problem_id}/test_cases`);
+  const problem_id = localStorage.getItem('editProblemId');
+  return get(`${SERVER_URL}admin/problem/${problem_id}/test_cases`);
 };
 
 export const updateTestCaseApi = (data) => {

@@ -12,7 +12,7 @@ import {
   Button,
   Spinner,
 } from 'core-components';
-import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
+import UpdateProblemTestCaseContainer from 'modules/admin/editTestCase/EditTestCaseContainer';
 
 toast.configure();
 const EditProblemComponent = (props) => {

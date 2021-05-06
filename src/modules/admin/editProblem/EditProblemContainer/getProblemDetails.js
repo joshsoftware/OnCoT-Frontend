@@ -26,7 +26,6 @@ export const getTestCases = async () => {
   const problemId = localStorage.getItem('editProblemId');
   const testCases = await get(`${SERVER_URL}admin/problem/${problemId}/test_cases`)
     .then((response) => {
-      // console.log('response', response);
       return response.data.data.test_cases;
     })
     .catch((error) => {

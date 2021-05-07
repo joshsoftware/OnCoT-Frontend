@@ -62,20 +62,33 @@ const SendEmailInviteComponent = (props) => {
               <Row className='p-3'>
                 <h4>OR</h4>
               </Row>
-              <FormGroup className='px-3 w-50'>
-                <Label>
-                  <h4>Upload CSV file</h4>
-                </Label>
-                <Input
-                  type='file'
-                  name='Selectfile'
-                  id='selectFile'
-                  onChange={handleUploadedInvitationEmails}
-                  invalid={csvFileError !== ''}
-                />
-                <FormFeedback>{csvFileError}</FormFeedback>
-              </FormGroup>
-              <FormGroup className='mt-6'>
+              <Row>
+                <FormGroup className='px-3 w-50'>
+                  <Label>
+                    <h4>Upload CSV file</h4>
+                  </Label>
+
+                  <Input
+                    type='file'
+                    name='Selectfile'
+                    id='selectFile'
+                    onChange={handleUploadedInvitationEmails}
+                    invalid={csvFileError !== ''}
+                  />
+                  <FormFeedback>{csvFileError}</FormFeedback>
+                </FormGroup>
+                <FormGroup className='mt-6'>
+                  <a
+                    className='btn btn-info'
+                    role='button'
+                    href={`${process.env.PUBLIC_URL}/sampleData.csv`}
+                    download='sampleData.csv'
+                  >
+                    Download sample csv
+                  </a>
+                </FormGroup>
+              </Row>
+              <FormGroup className='mt-6 '>
                 <Button
                   className='mr-3 mt-3 bg-success'
                   onClick={handleSendInvitation}

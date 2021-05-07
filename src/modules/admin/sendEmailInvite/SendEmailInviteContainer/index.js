@@ -19,6 +19,7 @@ const SendEmailInviteContainer = () => {
     if (e.target.files[0].type === 'text/csv') {
       let csvEmailText = await e.target.files[0].text();
       csvEmailText = csvEmailText.replace(/(\n)/gm, ',');
+      csvEmailText = csvEmailText.replace(/\s/gm, '');
       const finalCsvEmailText = csvEmailText.replace(/,\s*$/, '');
       dispatch({ type: 'VALID_CSV_FILETYPE', payload: finalCsvEmailText });
     } else {

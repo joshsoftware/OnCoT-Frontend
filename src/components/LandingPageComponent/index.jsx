@@ -16,6 +16,7 @@ function LandingPageComponent(props) {
     isLoading,
     handleClick,
     counter,
+    isLive,
     driveTime,
   } = props;
   const expired = 'Expired';
@@ -40,10 +41,10 @@ function LandingPageComponent(props) {
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>OnCoT</h1>
-        { moment(endTime).isAfter() && counter > -1 && (
+        {isLive && counter > -1 && (
           <div>
             <h4 className='my-5'>
-              {`Your test will start on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
+              {`Your test starts on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
             </h4>
             <h3 className='text-success'>
               {driveTime === expired ? null : driveTime}
@@ -59,7 +60,7 @@ function LandingPageComponent(props) {
             )}
           </div>
         )}
-        {!(moment(endTime).isAfter() && counter > -1) && (
+        {!(isLive && counter > -1) && (
           <p>
             <h1> Test Over </h1>
           </p>
@@ -74,6 +75,7 @@ LandingPageComponent.propTypes = {
   endTime: PropTypes.string.isRequired,
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isLive: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired,
   counter: PropTypes.func.isRequired,

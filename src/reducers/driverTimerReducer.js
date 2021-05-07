@@ -10,11 +10,11 @@ const DriveTimerReducer = (state = initialState, action = {}) => {
 
   switch (type) {
     case DRIVE_TIMER.SET_DRIVE_TIMER:
-      return { ...state, counter: payload };
+      return { ...state, counter: payload.data, isLive: payload.is_live };
     case DRIVE_TIMER.UPDATE_DRIVE_TIMER:
-      return { ...state, counter: payload };
+      return { ...state, counter: payload.data, isLive: payload.is_live };
     case DRIVE_TIMER.SET_DRIVE_TIMER_ERROR:
-      return { ...state, requestError: payload };
+      return { ...state, requestError: payload.data };
     default:
       return state;
   }

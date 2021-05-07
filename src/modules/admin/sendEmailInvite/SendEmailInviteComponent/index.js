@@ -14,7 +14,6 @@ import {
   Alert,
 } from 'core-components';
 import { useDispatch } from 'react-redux';
-import sampleData from 'sampleData.csv';
 
 const SendEmailInviteComponent = (props) => {
   const dispatch = useDispatch();
@@ -82,7 +81,7 @@ const SendEmailInviteComponent = (props) => {
                   <a
                     className='btn btn-info'
                     role='button'
-                    href={sampleData}
+                    href={`${process.env.PUBLIC_URL}/sampleData.csv`}
                     download='sampleData.csv'
                   >
                     Download sample csv

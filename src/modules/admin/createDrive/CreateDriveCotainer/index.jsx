@@ -7,9 +7,10 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
-
+import draftToHtml from 'draftjs-to-html';
 import CreateDriveComponent from 'modules/admin/createDrive/CreateDriveComponent';
 
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
 import reducer, {
   initialState,
 } from 'modules/admin/createDrive/CreateDriveCotainer/reducer';
@@ -23,6 +24,21 @@ const CreateDriveContainer = () => {
   const [createDrive, setCreateDrive] = useReducer(reducer, initialState);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
   const [problemsData, setProblemsData] = useState([]);
+
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  const onEditorStateChange = useCallback(
+    (event) => {
+      setEditorState(event);
+      let description = document.getElementById('pre-textarea').innerHTML;
+      description.replace('&nbsp;', ' ');
+      description += setCreateDrive({
+        type: 'description',
+        payload: description,
+      });
+    },
+    [createDrive.data.drive.description],
+  );
 
   const dispatch = useDispatch();
 
@@ -79,17 +95,6 @@ const CreateDriveContainer = () => {
     [createDrive.data.drive.name],
   );
 
-  const handleDriveDescriptionChange = useCallback(
-    (event) => {
-      const description = event.target.value;
-      setCreateDrive({
-        type: 'description',
-        payload: description,
-      });
-    },
-    [createDrive.data.drive.description],
-  );
-
   const handleDriveStartChange = useCallback(
     (event) => {
       let start_time = event.target.value;
@@ -144,18 +149,22 @@ const CreateDriveContainer = () => {
     return <Spinner />;
   }
   return (
-    <CreateDriveComponent
-      // renderTableData={renderTableData}
-      handleDriveDescriptionChange={handleDriveDescriptionChange}
-      handleDriveEndChange={handleDriveEndChange}
-      handleDriveNameChange={handleDriveNameChange}
-      handleDriveStartChange={handleDriveStartChange}
-      problemIsLoading={problemIsLoading}
-      handleSelectedProblemChange={handleSelectedProblemChange}
-      data={problemsData}
-      onCreateDriveSubmit={onCreateDriveSubmit}
-      message={message}
-    />
+    <>
+      <CreateDriveComponent
+        // renderTableData={renderTableData}
+        handleDriveEndChange={handleDriveEndChange}
+        handleDriveNameChange={handleDriveNameChange}
+        handleDriveStartChange={handleDriveStartChange}
+        problemIsLoading={problemIsLoading}
+        handleSelectedProblemChange={handleSelectedProblemChange}
+        data={problemsData}
+        onCreateDriveSubmit={onCreateDriveSubmit}
+        message={message}
+        editorState={editorState}
+        onEditorStateChange={onEditorStateChange}
+        val={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+      />
+    </>
   );
 };
 

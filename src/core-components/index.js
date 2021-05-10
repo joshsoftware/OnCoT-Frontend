@@ -32,7 +32,6 @@ import NavItem from 'core-components/NavItem';
 import TabContent from 'core-components/TabContent';
 import TabPane from 'core-components/TabPane';
 import NavLink from 'core-components/NavLink';
-import Editor from 'core-components/Editor';
 
 export {
   Button,
@@ -69,5 +68,4 @@ export {
   TabContent,
   TabPane,
   NavLink,
-  Editor,
 };

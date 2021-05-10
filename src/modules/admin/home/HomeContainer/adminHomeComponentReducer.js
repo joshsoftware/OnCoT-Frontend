@@ -23,6 +23,13 @@ export const adminHomeComponentReducer = produce(
         state.id = payload.id;
         local.setItem('editDriveId', payload.id);
         break;
+
+      case 'EDIT_PROBLEM':
+        state.currentScreen = payload.currentScreen;
+        state.id = payload.id;
+        local.setItem('editProblemId', payload.id);
+        break;
+
       case 'DRIVE_RESULT':
         state.currentScreen = payload.currentScreen;
         state.id = payload.id;

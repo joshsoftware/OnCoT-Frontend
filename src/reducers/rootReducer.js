@@ -14,6 +14,7 @@ import createDriveReducer from 'redux/admin/createDrive/reducer';
 import editDriveReducer from 'redux/admin/editDrive/reducer';
 import finishTestReducer from 'reducers/finishTestReducer';
 import createProblemReducer from 'redux/admin/createProblem/reducer';
+import editProblemReducer from 'redux/admin/editProblem/reducer';
 import testReducer from 'redux/admin/testCase/reducer';
 import driveResultReducer from 'redux/admin/driveResult/reducer';
 import downloadResultReducer from 'redux/admin/downloadResult/reducer';
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   editDriveReducer,
   finishTestReducer,
   createProblemReducer,
+  editProblemReducer,
   testReducer,
   driveResultReducer,
   downloadResultReducer,

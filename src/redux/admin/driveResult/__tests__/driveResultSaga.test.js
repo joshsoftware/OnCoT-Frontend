@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { driveResultSaga } from 'redux/admin/driveResult/saga';
 import { driveResultSuccessAction, driveResultFailureAction } from 'redux/admin/createProblem/action';
 
-import { driveResultPostApi } from 'redux/admin/driveResult/api';
+import { driveResultGetApi } from 'redux/admin/driveResult/api';
 
 describe('Drive Result Saga-Admin', () => {
   let gen;
@@ -24,7 +24,7 @@ describe('Drive Result Saga-Admin', () => {
   });
 
   it('API call should be successful', () => {
-    expect(gen.next().value).toEqual(call(driveResultPostApi));
+    expect(gen.next().value).toEqual(call(driveResultGetApi));
   });
 
   it('Dispactch success action', () => {

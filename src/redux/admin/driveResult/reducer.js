@@ -3,11 +3,15 @@ import produce from 'immer';
 import { DRIVE_RESULT } from 'redux/admin/driveResult/actionConstants';
 
 export const initialState = {
-  data:[],
-  isSuccess:false,
-  isLoading:false,
-  isError:false,
-  errorMessage:'',
+  data: {
+    result: [],
+    page: 1,
+    pages: 1,
+  },
+  isSuccess: false,
+  isLoading: false,
+  isError: false,
+  errorMessage: '',
 };
 
 const driveResultReducer = produce((state = initialState, action = {}) => {
@@ -24,6 +28,7 @@ const driveResultReducer = produce((state = initialState, action = {}) => {
       state.isLoading = false;
       break;
     case DRIVE_RESULT.DRIVE_RESULT_REQUEST_ACTION:
+      state.data.result = [];
       state.isLoading = true;
       break;
     default:

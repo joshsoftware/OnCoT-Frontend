@@ -9,6 +9,8 @@ import {
 } from 'core-components';
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactPaginate from 'react-paginate';
+import 'modules/admin/problemsList/ProblemsListComponent/style.css';
 
 const DriveResultComponent = ({
   renderTableData,
@@ -18,6 +20,8 @@ const DriveResultComponent = ({
   handleDownloadResult,
   driveResultMessage,
   driveResultIsLoading,
+  pageCount,
+  handlePageClick,
 }) => {
   const error = () => {
     if (isError) {
@@ -58,6 +62,22 @@ const DriveResultComponent = ({
             <tbody className='bg-secondary'>{renderTableData}</tbody>
           </Table>
         </Row>
+        <ReactPaginate
+          previousLabel='<'
+          nextLabel='>'
+          breakLabel='...'
+          breakClassName='break-me'
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName='pagination'
+          previousLinkClassName='pagination__link'
+          nextLinkClassName='pagination__link'
+          disabledClassName='pagination__link--disabled'
+          activeClassName='pagination__link--active'
+          pageLinkClassName='page__link'
+        />
       </FormGroup>
     </Container>
   );
@@ -70,6 +90,8 @@ DriveResultComponent.propTypes = {
   handleDownloadResult: PropTypes.func.isRequired,
   driveResultMessage: PropTypes.string.isRequired,
   driveResultIsLoading: PropTypes.bool.isRequired,
+  handlePageClick: PropTypes.func.isRequired,
+  pageCount: PropTypes.number.isRequired,
 };
 
 export default React.memo(DriveResultComponent);

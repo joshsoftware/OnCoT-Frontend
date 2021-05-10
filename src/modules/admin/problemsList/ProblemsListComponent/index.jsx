@@ -13,23 +13,8 @@ const ProblemsListComponent = ({ renderTableData, pageCount,
   return (
     <>
       <Row className='py-4'>
-        <Col xs={10} lg={10} xl={10}>
-          <ReactPaginate
-            previousLabel='<'
-            nextLabel='>'
-            breakLabel='...'
-            breakClassName='break-me'
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageClick}
-            containerClassName='pagination'
-            previousLinkClassName='pagination__link'
-            nextLinkClassName='pagination__link'
-            disabledClassName='pagination__link--disabled'
-            activeClassName='pagination__link--active'
-            pageLinkClassName='page__link'
-          />
+        <Col xl={10} lg={10} md={10} xs={10}>
+          <h4>Problems Bank</h4>
         </Col>
         <Col xs={2} lg={2} xl={2}>
           <Button onClick={handleAddProblemClick} className='mr-xl-1 mt-xl-1 mb-xl-1'>
@@ -39,7 +24,6 @@ const ProblemsListComponent = ({ renderTableData, pageCount,
       </Row>
       <Table dark>
         <thead>
-          <tr><th colSpan='6'>Problems Bank</th></tr>
           <tr>
             <th>Id</th>
             <th>Title</th>
@@ -49,6 +33,22 @@ const ProblemsListComponent = ({ renderTableData, pageCount,
         </thead>
         <tbody>{renderTableData()}</tbody>
       </Table>
+      <ReactPaginate
+        previousLabel='<'
+        nextLabel='>'
+        breakLabel='...'
+        breakClassName='break-me'
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName='pagination'
+        previousLinkClassName='pagination__link'
+        nextLinkClassName='pagination__link'
+        disabledClassName='pagination__link--disabled'
+        activeClassName='pagination__link--active'
+        pageLinkClassName='page__link'
+      />
     </>
   );
 };

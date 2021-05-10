@@ -4,13 +4,13 @@ import { get } from 'redux/admin/apiHelper';
 
 import { SERVER_URL } from 'constants/appConstants';
 
-const getCandidates = async (id) => {
+const getCandidates = async (params) => {
   let candidateLoading = false;
   const candidates = await get(
-    `${SERVER_URL}admin/drives/${id}/candidate_list`,
+    `${SERVER_URL}admin/drives/${params.Id}/candidate_list?page=${params.currentPageNumber}`,
   )
     .then((response) => {
-      return response.data.data.candidates;
+      return response.data.data;
     })
     .catch((error) => {
       candidateLoading = true;

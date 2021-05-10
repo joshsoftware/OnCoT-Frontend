@@ -8,7 +8,7 @@ export const postTestCaseApi = (data) => {
 };
 
 export const getTestCasesApi = (data) => {
-  return get(`${SERVER_URL}admin/problem/${data}/test_cases`);
+  return get(`${SERVER_URL}admin/problem/${data.problem_id}/test_cases`);
 };
 
 export const updateTestCaseApi = (data) => {

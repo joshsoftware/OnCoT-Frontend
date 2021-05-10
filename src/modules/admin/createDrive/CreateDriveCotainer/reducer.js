@@ -1,4 +1,5 @@
-export const initialState = {
+export const initialState =
+{
   data: {
     drive: {
       id: '',

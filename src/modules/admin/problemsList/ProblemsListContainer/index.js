@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import ProblemsListComponent from 'modules/admin/problemsList/ProblemsListComponent';
-
+import 'modules/admin/problemsList/ProblemsListComponent/style.css';
 import getProblems from 'modules/admin/problemsList/ProblemsListContainer/getProblems';
 import { useDispatch } from 'react-redux';
 import { Button } from 'core-components';
@@ -38,8 +38,8 @@ const ProblemsListContainer = () => {
       return (
         <tr key={id} id={id}>
           <td className='problemDetail'>{id}</td>
-          <td>{title}</td>
-          <td>{description}</td>
+          <td className='title'>{title}</td>
+          <td className='description'>{description}</td>
           <td>
             <Button onClick={onClickResult}>Details</Button>
           </td>

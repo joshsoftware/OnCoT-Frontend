@@ -15,8 +15,8 @@ const ProblemsListComponent = ({ renderTableData, pageCount,
       <Row className='py-4'>
         <Col xs={10} lg={10} xl={10}>
           <ReactPaginate
-            previousLabel='← Previous'
-            nextLabel='Next →'
+            previousLabel='<'
+            nextLabel='>'
             breakLabel='...'
             breakClassName='break-me'
             pageCount={pageCount}

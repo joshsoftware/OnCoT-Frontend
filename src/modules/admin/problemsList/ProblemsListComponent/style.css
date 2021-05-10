@@ -20,8 +20,9 @@
 
 .pagination a {
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #34363d;
+  margin-right: 5px;
   color: #2b2d35;
 }
 
@@ -41,4 +42,15 @@
 
 .page__link {
   color:#fff;
+}
+
+.title, .description{
+  max-height: 10rem;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.description{
+  max-width: 500px;
 }

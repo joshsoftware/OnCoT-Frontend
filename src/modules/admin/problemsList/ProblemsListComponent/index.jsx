@@ -33,22 +33,24 @@ const ProblemsListComponent = ({ renderTableData, pageCount,
         </thead>
         <tbody>{renderTableData()}</tbody>
       </Table>
-      <ReactPaginate
-        previousLabel='<'
-        nextLabel='>'
-        breakLabel='...'
-        breakClassName='break-me'
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName='pagination'
-        previousLinkClassName='pagination__link'
-        nextLinkClassName='pagination__link'
-        disabledClassName='pagination__link--disabled'
-        activeClassName='pagination__link--active'
-        pageLinkClassName='page__link'
-      />
+      {pageCount > 1 && (
+        <ReactPaginate
+          previousLabel='<'
+          nextLabel='>'
+          breakLabel='...'
+          breakClassName='break-me'
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName='pagination'
+          previousLinkClassName='pagination__link'
+          nextLinkClassName='pagination__link'
+          disabledClassName='pagination__link--disabled'
+          activeClassName='pagination__link--active'
+          pageLinkClassName='page__link'
+        />
+      )}
     </>
   );
 };

@@ -20,7 +20,7 @@ const ShowCandidateListComponent = (props) => {
         <Col xs={2} lg={2} xl={2}>
           <Button
             onClick={handleAddCandidateClick}
-            className='float-right mr-xl-5 mt-xl-5 mb-xl-5'
+            className='float-right mr-xl-1 mt-xl-1 mb-xl-1'
           >
             Add Candidates
           </Button>
@@ -29,11 +29,6 @@ const ShowCandidateListComponent = (props) => {
 
       <Table dark className='table-bordered'>
         <thead>
-          <tr>
-            <th colSpan='6' className='px-3'>
-              Candidates
-            </th>
-          </tr>
           <tr>
             <th>Id</th>
             <th>First Name</th>
@@ -44,22 +39,24 @@ const ShowCandidateListComponent = (props) => {
         </thead>
         <tbody>{renderTableData()}</tbody>
       </Table>
-      <ReactPaginate
-        previousLabel='<'
-        nextLabel='>'
-        breakLabel='...'
-        breakClassName='break-me'
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName='pagination'
-        previousLinkClassName='pagination__link'
-        nextLinkClassName='pagination__link'
-        disabledClassName='pagination__link--disabled'
-        activeClassName='pagination__link--active'
-        pageLinkClassName='page__link'
-      />
+      {pageCount > 1 && (
+        <ReactPaginate
+          previousLabel='<'
+          nextLabel='>'
+          breakLabel='...'
+          breakClassName='break-me'
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName='pagination'
+          previousLinkClassName='pagination__link'
+          nextLinkClassName='pagination__link'
+          disabledClassName='pagination__link--disabled'
+          activeClassName='pagination__link--active'
+          pageLinkClassName='page__link'
+        />
+      )}
     </>
   );
 };

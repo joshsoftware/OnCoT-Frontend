@@ -13,6 +13,7 @@ import {
 import { get } from 'redux/admin/apiHelper';
 
 import { SERVER_URL } from 'constants/appConstants';
+import './style.css';
 
 const ProblemDetailsContainer = () => {
   const [problemDetails, setProblemDetails] = useState();
@@ -84,7 +85,7 @@ const ProblemDetailsContainer = () => {
           {problemDetails.problem.title}
         </CardHeader>
         <CardBody>
-          <h6>Description: {problemDetails.problem.description}</h6>
+          <pre>{problemDetails.problem.description}</pre>
           <h6>TestCases: </h6>
           <Table dark>
             <thead>

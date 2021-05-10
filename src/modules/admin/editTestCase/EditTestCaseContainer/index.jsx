@@ -3,17 +3,19 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-import { deleteTestCaseApi, getTestCasesApi, postTestCaseApi, updateTestCaseApi } from 'redux/admin/testCase/api';
-import TestCaseComponent from 'modules/admin/testCase/TestCaseComponent';
-import { reducer } from 'modules/admin/testCase/reducer';
-import { validateData } from 'modules/admin/testCase/dataValidation';
+import { deleteTestCaseApi, getTestCasesApi, postTestCaseApi, updateTestCaseApi } from 'redux/admin/editTestCase/api';
+import EditTestCaseComponent from 'modules/admin/editTestCase/EditTestCaseComponent';
+import { reducer } from 'modules/admin/editTestCase/reducer';
+import { validateData } from 'modules/admin/editTestCase/dataValidation';
+import { editProblemSaga } from 'redux/admin/editProblem/saga';
 
 const problemSaved = (problem_id) => {
   return problem_id === '';
 };
 
-const TestCaseContainer = () => {
-  const { message, isSuccess, problem_id } = useSelector((state) => state.createProblemReducer);
+const EditTestCaseContainer = () => {
+  const { message, isSuccess } = useSelector((state) => state.editProblemReducer);
+  const problem_id = localStorage.getItem('editProblemId');
   const initialUserState = {
     input: '',
     output: '',
@@ -24,6 +26,7 @@ const TestCaseContainer = () => {
     outputErrTxt: '',
     marksErrTxt: '',
     id: -1,
+    is_active: true,
     isTestCaseLoaded: false,
   };
   const [userState, setUserState] = useReducer(reducer, initialUserState);
@@ -38,7 +41,7 @@ const TestCaseContainer = () => {
     (event) => {
       const data = { problem_id };
       useEffect(async () => {
-        const result =  await getTestCasesApi(data);
+        const result = await getTestCasesApi(data);
         const tcs = result.data !== undefined ? [...result.data.data.test_cases] : [];
         setUserState({
           type: 'setAndDeleteTestCase',
@@ -50,7 +53,7 @@ const TestCaseContainer = () => {
       }, []);
     }, [userState.testCases],
   );
-  // check if problem id is supplied then only load the test cases
+
   if (typeof problem_id !== 'undefined') {
     loadTestCases();
   }
@@ -99,7 +102,6 @@ const TestCaseContainer = () => {
 
   const handleOnAdd = useCallback(
     (event) => {
-      // event.preventDefault();
       const { input, output, marks } = userState;
       const data = {
         input,
@@ -194,10 +196,9 @@ const TestCaseContainer = () => {
           }
         }
       });
-    }, [userState.input, userState.output, userState.marks, userState.testCases,
-      userState.id],
+    }, [userState.input, userState.output, userState.marks, userState.testCases, userState.id],
   );
-  // delete testcase api is not yet finalise from backend
+
   const handleOnTestCaseDelete = useCallback(
     async (id) => {
       const { testCases } = userState;
@@ -234,7 +235,7 @@ const TestCaseContainer = () => {
     [userState.input, userState.output, userState.marks],
   );
   return (
-    <TestCaseComponent
+    <EditTestCaseComponent
       handleInputChange={handleInputChange}
       handleOutputChange={handleOutputChange}
       handleMarksChange={handleMarksChange}
@@ -257,7 +258,4 @@ const TestCaseContainer = () => {
     />
   );
 };
-// UpdateProblemTestCaseContainer.propTypes = {
-//   problem_id: PropTypes.number.isRequired,
-// };
-export default React.memo(TestCaseContainer);
+export default React.memo(EditTestCaseContainer);

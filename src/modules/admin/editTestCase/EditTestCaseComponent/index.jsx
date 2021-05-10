@@ -14,7 +14,7 @@ import {
   Spinner,
 } from 'core-components';
 
-const CreateProblemComponent = ({
+const EditProblemComponent = ({
   handleInputChange,
   handleOutputChange,
   handleMarksChange,
@@ -85,7 +85,7 @@ const CreateProblemComponent = ({
             <Label>
               <h6>Output</h6>
             </Label>
-            <Input type='text' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output' />
+            <Input type='text' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output 4' />
             <FormFeedback>{outputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
@@ -123,23 +123,23 @@ const CreateProblemComponent = ({
     </Container>
   );
 };
-CreateProblemComponent.propTypes = {
-  handleInputChange:PropTypes.func.isRequired,
-  handleOutputChange:PropTypes.func.isRequired,
-  handleMarksChange:PropTypes.func.isRequired,
-  handleTestCaseOnAdd:PropTypes.func.isRequired,
-  handleOnTestCaseEdit:PropTypes.func.isRequired,
-  handleOnTestCaseDelete:PropTypes.func.isRequired,
-  handleOnTestCaseUpdate:PropTypes.func.isRequired,
-  handleOnCancel:PropTypes.func.isRequired,
-  input:PropTypes.string.isRequired,
-  output:PropTypes.string.isRequired,
-  marks:PropTypes.string.isRequired,
-  inputErrTxt:PropTypes.string.isRequired,
-  outputErrTxt:PropTypes.string.isRequired,
-  marksErrTxt:PropTypes.string.isRequired,
-  testCases:PropTypes.string.isRequired,
-  isTestCaseEdit:PropTypes.bool.isRequired,
-  isLoading:PropTypes.bool.isRequired,
+EditProblemComponent.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleOutputChange: PropTypes.func.isRequired,
+  handleMarksChange: PropTypes.func.isRequired,
+  handleTestCaseOnAdd: PropTypes.func.isRequired,
+  handleOnTestCaseEdit: PropTypes.func.isRequired,
+  handleOnTestCaseDelete: PropTypes.func.isRequired,
+  handleOnTestCaseUpdate: PropTypes.func.isRequired,
+  handleOnCancel: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  output: PropTypes.string.isRequired,
+  marks: PropTypes.string.isRequired,
+  inputErrTxt: PropTypes.string.isRequired,
+  outputErrTxt: PropTypes.string.isRequired,
+  marksErrTxt: PropTypes.string.isRequired,
+  testCases: PropTypes.string.isRequired,
+  isTestCaseEdit: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
-export default React.memo(CreateProblemComponent);
+export default React.memo(EditProblemComponent);

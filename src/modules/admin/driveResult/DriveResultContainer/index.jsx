@@ -17,6 +17,9 @@ const DriveResultContainer = () => {
 
   useEffect(() => {
     dispatch(driveResultRequestAction(data.page));
+    return () => {
+      dispatch(driveResultRequestAction(data.page));
+    };
   }, [dispatch]);
 
   const handleDownloadResult = () => {

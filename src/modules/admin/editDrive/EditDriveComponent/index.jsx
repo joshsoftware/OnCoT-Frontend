@@ -32,7 +32,8 @@ const EditDriveComponent = (props) => {
   if (problemIsLoading) {
     return <Spinner />;
   }
-
+  const len = driveDetails.drive.drives_problems.length;
+  const details = driveDetails.drive.drives_problems[len - 1];
   const options = [];
   data.map((e) => {
     return options.push({ value: e.id, label: e.title });
@@ -98,7 +99,7 @@ const EditDriveComponent = (props) => {
               <FormGroup className='pt-3 px-5 w-50'>
                 <Row>
                   <Label>
-                    <h4>Add Problem to Drive</h4>
+                    <h4>Change Problem</h4>
                   </Label>
                 </Row>
 
@@ -107,7 +108,7 @@ const EditDriveComponent = (props) => {
                     className='w-100'
                     id='problems'
                     value={options.id}
-                    // placeholder={driveDetails.drive.problems.last.title}
+                    placeholder={options[details.problem_id].label}
                     onChange={handleSelectedProblemChange}
                     options={options}
                   />

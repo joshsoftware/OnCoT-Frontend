@@ -36,7 +36,7 @@ const CreateProblemComponent = ({
   return (
     <Container fluid>
       <Row className='p-3 w-100 d-flex'>
-        <FormGroup className='pt-3 pl-3 w-50'>
+        <FormGroup className='pt-3 pl-3 w-70'>
           <Label>
             <h3>Test Cases</h3>
           </Label>
@@ -56,8 +56,8 @@ const CreateProblemComponent = ({
                   return (
                     <tr>
                       <td> {key + 1} </td>
-                      <td> {testCase.input} </td>
-                      <td> {testCase.output} </td>
+                      <td className='input border-right'> {testCase.input} </td>
+                      <td className='output'> {testCase.output} </td>
                       <td> {testCase.marks} </td>
                       <td>
                         <Button onClick={() => handleOnTestCaseEdit(testCase.id)} className='btn btn-sm btn-primary'>Edit</Button>
@@ -124,22 +124,22 @@ const CreateProblemComponent = ({
   );
 };
 CreateProblemComponent.propTypes = {
-  handleInputChange:PropTypes.func.isRequired,
-  handleOutputChange:PropTypes.func.isRequired,
-  handleMarksChange:PropTypes.func.isRequired,
-  handleTestCaseOnAdd:PropTypes.func.isRequired,
-  handleOnTestCaseEdit:PropTypes.func.isRequired,
-  handleOnTestCaseDelete:PropTypes.func.isRequired,
-  handleOnTestCaseUpdate:PropTypes.func.isRequired,
-  handleOnCancel:PropTypes.func.isRequired,
-  input:PropTypes.string.isRequired,
-  output:PropTypes.string.isRequired,
-  marks:PropTypes.string.isRequired,
-  inputErrTxt:PropTypes.string.isRequired,
-  outputErrTxt:PropTypes.string.isRequired,
-  marksErrTxt:PropTypes.string.isRequired,
-  testCases:PropTypes.string.isRequired,
-  isTestCaseEdit:PropTypes.bool.isRequired,
-  isLoading:PropTypes.bool.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleOutputChange: PropTypes.func.isRequired,
+  handleMarksChange: PropTypes.func.isRequired,
+  handleTestCaseOnAdd: PropTypes.func.isRequired,
+  handleOnTestCaseEdit: PropTypes.func.isRequired,
+  handleOnTestCaseDelete: PropTypes.func.isRequired,
+  handleOnTestCaseUpdate: PropTypes.func.isRequired,
+  handleOnCancel: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  output: PropTypes.string.isRequired,
+  marks: PropTypes.string.isRequired,
+  inputErrTxt: PropTypes.string.isRequired,
+  outputErrTxt: PropTypes.string.isRequired,
+  marksErrTxt: PropTypes.string.isRequired,
+  testCases: PropTypes.string.isRequired,
+  isTestCaseEdit: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 export default React.memo(CreateProblemComponent);

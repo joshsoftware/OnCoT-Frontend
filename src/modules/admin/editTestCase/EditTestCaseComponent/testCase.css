@@ -8,3 +8,12 @@
 .fixed td {
     word-wrap: break-word;
 }
+.input, .output{
+    max-width: 250px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.border-right {
+    border-right: 1px solid black;
+}

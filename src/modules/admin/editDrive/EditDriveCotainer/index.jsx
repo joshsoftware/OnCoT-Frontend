@@ -54,7 +54,7 @@ const EditDriveContainer = () => {
 
   const handleSelectedProblemChange = useCallback(
     (event) => {
-      const problem = event.target.value;
+      const problem = event.value;
       setEditDrive({
         type: 'problem',
         payload: problem,

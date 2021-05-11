@@ -59,7 +59,7 @@ const CreateDriveContainer = () => {
 
   const handleSelectedProblemChange = useCallback(
     (event) => {
-      const problem = event.target.value;
+      const problem = event.value;
       setCreateDrive({
         type: 'problem',
         payload: problem,

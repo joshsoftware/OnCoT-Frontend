@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
 import DriveResultComponent from 'modules/admin/driveResult/DriveResultComponent';
@@ -16,15 +16,21 @@ const DriveResultContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(driveResultRequestAction());
+    dispatch(driveResultRequestAction(data.page));
+    return () => {
+      dispatch(driveResultRequestAction(data.page));
+    };
   }, [dispatch]);
 
   const handleDownloadResult = () => {
     dispatch(downloadResultRequestAction());
   };
+  const handlePageClick = (event) => {
+    dispatch(driveResultRequestAction(event.selected + 1));
+  };
 
   const renderTableData = useMemo(() => {
-    return data.map((val, index) => {
+    return data.result.map((val, index) => {
       const {
         candidate_id,
         first_name,
@@ -53,6 +59,8 @@ const DriveResultContainer = () => {
       handleDownloadResult={handleDownloadResult}
       driveResultMessage={driveResultMessage}
       driveResultIsLoading={driveResultIsLoading}
+      handlePageClick={handlePageClick}
+      pageCount={data.pages}
     />
   );
 };

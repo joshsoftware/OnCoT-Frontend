@@ -8,13 +8,23 @@ const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
   const Id = local.getItem('showCandidatesId');
   const [allCandidates, setAllCandidates] = useState([]);
+  const [candidateIsLoading, setCandidateIsLoading] = useState(true);
+  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
 
   useEffect(async () => {
-    const data = await getCandidates(Id);
-    setAllCandidates(data.candidates);
-  }, []);
+    const params = { currentPageNumber, Id };
+    const data = await getCandidates(params);
+    setAllCandidates([]);
+    if (!data.candidateLoading) {
+      setAllCandidates(data.candidates.candidates);
+      setPageCount(data.candidates.pages);
+      setCandidateIsLoading(data.candidateLoading);
+    }
+  }, [candidateIsLoading, currentPageNumber]);
+
   const renderTableData = () => {
-    if (typeof allCandidates === 'undefined') {
+    if (allCandidates.length === 0) {
       return (
         <tr>
           <td>Invite candidate(s) to view data!</td>
@@ -41,10 +51,16 @@ const ShowCandidateListContainer = () => {
       payload: { currentScreen: 'INVITE_CANDIDATES', id: driveId },
     });
   };
+  const handlePageClick = (data) => {
+    setCurrentPageNumber(data.selected + 1);
+  };
   return (
     <ShowCandidateListComponent
       renderTableData={renderTableData}
       handleAddCandidateClick={handleAddCandidateClick}
+      handlePageClick={handlePageClick}
+      pageCount={pageCount}
+      candidateIsLoading={candidateIsLoading}
     />
   );
 };

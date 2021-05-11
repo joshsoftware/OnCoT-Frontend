@@ -12,6 +12,7 @@ import {
   Spinner,
   Alert,
 } from 'core-components';
+import Select from 'react-select';
 
 const EditDriveComponent = (props) => {
   const {
@@ -31,6 +32,12 @@ const EditDriveComponent = (props) => {
   if (problemIsLoading) {
     return <Spinner />;
   }
+  const len = driveDetails.drive.drives_problems.length;
+  const details = driveDetails.drive.drives_problems[len - 1];
+  const options = [];
+  data.map((e) => {
+    return options.push({ value: e.id, label: e.title });
+  });
 
   return (
     <Container fluid className='h-100'>
@@ -89,29 +96,22 @@ const EditDriveComponent = (props) => {
 
             <Row className='px-3 w-100 d-flex'>
 
-              <FormGroup className='pt-3 px-5 w-25'>
+              <FormGroup className='pt-3 px-5 w-50'>
                 <Row>
                   <Label>
-                    <h4>Add Problem to Drive</h4>
+                    <h4>Change Problem</h4>
                   </Label>
                 </Row>
 
-                <Row className='pt-3 w-100'>
-                  <select
+                <Row className='pt-3 w-200'>
+                  <Select
                     className='w-100'
                     id='problems'
-                    value={data.problemId}
+                    value={options.id}
+                    placeholder={options[details.problem_id].label}
                     onChange={handleSelectedProblemChange}
-                  >
-                    <option disabled selected>Select Problem</option>
-                    {data.map((e, key) => {
-                      return (
-                        <option key={e.id} value={e.id}>
-                          {e.title}
-                        </option>
-                      );
-                    })}
-                  </select>
+                    options={options}
+                  />
                 </Row>
               </FormGroup>
             </Row>

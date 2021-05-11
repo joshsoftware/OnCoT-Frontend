@@ -4,13 +4,13 @@ import {
   driveResultSuccessAction,
   driveResultFailureAction,
 } from 'redux/admin/driveResult/action';
-import { driveResultPostApi } from 'redux/admin/driveResult/api';
+import { driveResultGetApi } from 'redux/admin/driveResult/api';
 import { DRIVE_RESULT } from 'redux/admin/driveResult/actionConstants';
 
 // worker saga
 export function* driveResultSaga(action) {
   try {
-    const response = yield call(driveResultPostApi);
+    const response = yield call(driveResultGetApi, action.payload);
     yield put(driveResultSuccessAction(response.data.data));
   } catch (error) {
     yield put(driveResultFailureAction(error.message));

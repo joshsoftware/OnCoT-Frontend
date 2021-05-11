@@ -36,7 +36,7 @@ const EditProblemComponent = ({
   return (
     <Container fluid>
       <Row className='p-3 w-100 d-flex'>
-        <FormGroup className='pt-3 pl-3 w-50'>
+        <FormGroup className='pt-3 pl-3 w-70'>
           <Label>
             <h3>Test Cases</h3>
           </Label>
@@ -56,8 +56,8 @@ const EditProblemComponent = ({
                   return (
                     <tr>
                       <td> {key + 1} </td>
-                      <td> {testCase.input} </td>
-                      <td> {testCase.output} </td>
+                      <td className='input border-right'> {testCase.input} </td>
+                      <td className='output'> {testCase.output} </td>
                       <td> {testCase.marks} </td>
                       <td>
                         <Button onClick={() => handleOnTestCaseEdit(testCase.id)} className='btn btn-sm btn-primary'>Edit</Button>

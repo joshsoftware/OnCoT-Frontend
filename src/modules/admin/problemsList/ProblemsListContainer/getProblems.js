@@ -4,10 +4,10 @@ import { Alert } from 'core-components';
 
 import { SERVER_URL } from 'constants/appConstants';
 
-const getProblems = async () => {
-  const problems = await get(`${SERVER_URL}admin/problems_list`)
+const getProblems = async (page) => {
+  const problems = await get(`${SERVER_URL}admin/problems?page=${page}`)
     .then((response) => {
-      return response.data.data.problems;
+      return response.data.data;
     })
     .catch((error) => {
       return <Alert className='danger'> {error} </Alert>;

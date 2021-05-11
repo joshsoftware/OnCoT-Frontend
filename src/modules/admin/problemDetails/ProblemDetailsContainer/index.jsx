@@ -11,7 +11,7 @@ import {
 } from 'core-components';
 
 import { get } from 'redux/admin/apiHelper';
-
+import 'modules/admin/editTestCase/EditTestCaseComponent/testCase.css';
 import { SERVER_URL } from 'constants/appConstants';
 import './style.css';
 
@@ -68,8 +68,8 @@ const ProblemDetailsContainer = () => {
       return (
         <tr key={id}>
           <td>{id}</td>
-          <td>{input}</td>
-          <td>{output}</td>
+          <td className='input border-right'>{input}</td>
+          <td className='output'>{output}</td>
           <td>{marks}</td>
         </tr>
       );

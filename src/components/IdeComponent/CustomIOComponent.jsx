@@ -34,12 +34,13 @@ const CustomIOComponent = ({
             <div className='module'>
               <Card className='card rounded-0 text-white  custom-color header-color'>
                 <CardHeader className='p-2 pl-4 pr-3 text-left'>
-                  Output {loading ? <Spinner size='sm' /> : ''}
+                  Output
                   <Button
-                    className='py-0 px-2 mx-1 float-right bg-danger border-0'
+                    className='py-0 px-2 mx-1 float-right bg-danger border-0 w-25'
                     onClick={handleRunClick}
+                    disabled={loading}
                   >
-                    Run
+                    { loading ? <Spinner size='sm' /> : 'Run' }
                   </Button>
                   <Button
                     className='py-0 px-2 mx-1 border-0 float-right custom-btn bg-color'

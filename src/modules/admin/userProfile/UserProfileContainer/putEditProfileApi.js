@@ -1,10 +1,10 @@
 import axios from 'axios';
 import local from 'utils/local';
 import { put } from 'redux/admin/apiHelper';
-import { BASE_URL } from 'constants/appConstants';
+import { BASE_URL, SERVER_URL } from 'constants/appConstants';
 
-export const putChangePasswordApi = async (data) => {
-  const result = await put(`${BASE_URL}auth/password`, data)
+export const putEditProfileApi = async (data) => {
+  const result = await put(`${SERVER_URL}admin/users/${data.id}`, data)
     .then((response) => {
       return response;
     }).catch((error) => {

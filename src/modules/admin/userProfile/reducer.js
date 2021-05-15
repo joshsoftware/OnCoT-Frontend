@@ -25,6 +25,9 @@ export const reducer = produce((state, action) => {
       state.password = '';
       state.currentPassword = '';
       state.passwordConfirmation = '';
+      state.passwordConfirmationErrTxt = '';
+      state.passwordErrTxt = '';
+      state.currentPasswordErrTxt = '';
       break;
     case 'resetErrTxt':
       state.passwordConfirmationErrTxt = '';

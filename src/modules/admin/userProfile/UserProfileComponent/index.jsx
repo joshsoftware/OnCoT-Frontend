@@ -35,6 +35,11 @@ const UserProfileComponent = (props) => {
     handleOnClickChangePassword,
     status,
     setStatus,
+    firstNameErrTxt,
+    lastNameErrTxt,
+    emailErrTxt,
+    handleEditCancelClick,
+    handleChangePasswordCancel,
   } = props;
   const { first_name, last_name, email, id } = profileDetails;
 
@@ -56,12 +61,13 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            // invalid={inputErrTxt !== ''}
+            invalid={firstNameErrTxt !== ''}
             onChange={handleFirstNameChange}
             defaultValue={first_name}
             className='w-50'
+            required
           />
-          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
+          <FormFeedback>{firstNameErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label>
@@ -69,12 +75,13 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            // invalid={inputErrTxt !== ''}
-            onChange={handleFirstNameChange}
+            invalid={lastNameErrTxt !== ''}
+            onChange={handleLastNameChange}
             defaultValue={last_name}
             className='w-50'
+            required
           />
-          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
+          <FormFeedback>{lastNameErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label>
@@ -82,25 +89,26 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            // invalid={inputErrTxt !== ''}
-            onChange={handleFirstNameChange}
+            invalid={emailErrTxt !== ''}
+            onChange={handleEmailChange}
             defaultValue={email}
             className='w-50'
+            required
           />
-          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
+          <FormFeedback>{emailErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Row>
             <Col>
               <Button
                 className='btn btn-danger'
-                onClick={() => setStatus({ changePassword: false, editProfile: false })}
+                onClick={handleEditCancelClick}
               >
                 Cancel
               </Button>
               <Button
                 className='btn btn-success ml-3'
-              // onC/lick={() => setStatus({ changePassword: false, editProfile: false })}
+                onClick={handleOnClickEdit}
               >
                 Edit
               </Button>
@@ -127,7 +135,7 @@ const UserProfileComponent = (props) => {
             type='password'
             invalid={currentPasswordErrTxt !== ''}
             onChange={handleCurrentPasswordChange}
-            placeholder='Input'
+            placeholder='Current password'
             className='w-50'
             required
           />
@@ -141,7 +149,7 @@ const UserProfileComponent = (props) => {
             type='password'
             invalid={passwordErrTxt !== ''}
             onChange={handlePasswordChange}
-            placeholder='Input'
+            placeholder='Password'
             className='w-50'
             required
           />
@@ -155,7 +163,7 @@ const UserProfileComponent = (props) => {
             type='password'
             invalid={passwordConfirmationErrTxt !== ''}
             onChange={handleConfirmPasswordChange}
-            placeholder='Input'
+            placeholder='Confirm password'
             className='w-50'
             required
           />
@@ -166,7 +174,7 @@ const UserProfileComponent = (props) => {
             <Col>
               <Button
                 className='btn btn-danger'
-                onClick={() => setStatus({ changePassword: false, editProfile: false })}
+                onClick={handleChangePasswordCancel}
               >
                 Cancel
               </Button>
@@ -251,6 +259,11 @@ UserProfileComponent.propTypes = {
   handleOnClickChangePassword: PropTypes.func.isRequired,
   status: PropTypes.bool.isRequired,
   setStatus: PropTypes.func.isRequired,
+  firstNameErrTxt: PropTypes.string.isRequired,
+  lastNameErrTxt: PropTypes.string.isRequired,
+  emailErrTxt: PropTypes.string.isRequired,
+  handleEditCancelClick: PropTypes.func.isRequired,
+  handleChangePasswordCancel: PropTypes.func.isRequired,
 };
 
 export default React.memo(UserProfileComponent);

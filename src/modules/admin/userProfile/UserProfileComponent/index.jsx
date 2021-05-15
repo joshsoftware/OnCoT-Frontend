@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component, useState } from 'react';
-// import { set } from 'react-redux';
+
 import './style.css';
 import {
   Alert,
@@ -22,15 +22,21 @@ import {
 const UserProfileComponent = (props) => {
   const {
     profileDetails,
-    inputErrTxt,
-    outputErrTxt,
+    passwordErrTxt,
+    currentPasswordErrTxt,
+    passwordConfirmationErrTxt,
     handleFirstNameChange,
     handleLastNameChange,
     handleEmailChange,
+    handlePasswordChange,
+    handleCurrentPasswordChange,
+    handleConfirmPasswordChange,
+    handleOnClickEdit,
+    handleOnClickChangePassword,
+    status,
+    setStatus,
   } = props;
   const { first_name, last_name, email, id } = profileDetails;
-
-  const [status, setStatus] = useState({ changePassword: false, editProfile: false });
 
   if (typeof email === 'undefined') {
     return <Spinner />;
@@ -50,12 +56,12 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            invalid={inputErrTxt !== ''}
+            // invalid={inputErrTxt !== ''}
             onChange={handleFirstNameChange}
             defaultValue={first_name}
             className='w-50'
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
         </FormGroup>
         <FormGroup>
           <Label>
@@ -63,12 +69,12 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            invalid={inputErrTxt !== ''}
+            // invalid={inputErrTxt !== ''}
             onChange={handleFirstNameChange}
             defaultValue={last_name}
             className='w-50'
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
         </FormGroup>
         <FormGroup>
           <Label>
@@ -76,12 +82,12 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='text'
-            invalid={inputErrTxt !== ''}
+            // invalid={inputErrTxt !== ''}
             onChange={handleFirstNameChange}
             defaultValue={email}
             className='w-50'
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          {/* <FormFeedback>{inputErrTxt}</FormFeedback> */}
         </FormGroup>
         <FormGroup>
           <Row>
@@ -119,38 +125,41 @@ const UserProfileComponent = (props) => {
           </Label>
           <Input
             type='password'
-            invalid={inputErrTxt !== ''}
-            onChange={handleFirstNameChange}
+            invalid={currentPasswordErrTxt !== ''}
+            onChange={handleCurrentPasswordChange}
             placeholder='Input'
             className='w-50'
+            required
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          <FormFeedback>{currentPasswordErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label>
             <h6>New Password</h6>
           </Label>
           <Input
-            type='text'
-            invalid={inputErrTxt !== ''}
-            onChange={handleFirstNameChange}
+            type='password'
+            invalid={passwordErrTxt !== ''}
+            onChange={handlePasswordChange}
             placeholder='Input'
             className='w-50'
+            required
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          <FormFeedback>{passwordErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Label>
-            <h6>Confirm Password</h6>
+            <h6>Password Confirmation</h6>
           </Label>
           <Input
-            type='text'
-            invalid={inputErrTxt !== ''}
-            onChange={handleFirstNameChange}
+            type='password'
+            invalid={passwordConfirmationErrTxt !== ''}
+            onChange={handleConfirmPasswordChange}
             placeholder='Input'
             className='w-50'
+            required
           />
-          <FormFeedback>{inputErrTxt}</FormFeedback>
+          <FormFeedback>{passwordConfirmationErrTxt}</FormFeedback>
         </FormGroup>
         <FormGroup>
           <Row>
@@ -163,7 +172,7 @@ const UserProfileComponent = (props) => {
               </Button>
               <Button
                 className='btn btn-success ml-3'
-              // onClick={() => setStatus({ changePassword: false, editProfile: false })}
+                onClick={handleOnClickChangePassword}
               >
                 Change Password
               </Button>
@@ -229,11 +238,19 @@ const UserProfileComponent = (props) => {
 };
 UserProfileComponent.propTypes = {
   profileDetails: PropTypes.objectOf(PropTypes.object).isRequired,
-  inputErrTxt: PropTypes.string.isRequired,
-  outputErrTxt: PropTypes.string.isRequired,
+  passwordErrTxt: PropTypes.string.isRequired,
+  currentPasswordErrTxt: PropTypes.string.isRequired,
+  passwordConfirmationErrTxt: PropTypes.string.isRequired,
   handleEmailChange: PropTypes.string.isRequired,
   handleFirstNameChange: PropTypes.string.isRequired,
   handleLastNameChange: PropTypes.string.isRequired,
+  handleConfirmPasswordChange: PropTypes.func.isRequired,
+  handlePasswordChange: PropTypes.func.isRequired,
+  handleCurrentPasswordChange: PropTypes.func.isRequired,
+  handleOnClickEdit: PropTypes.func.isRequired,
+  handleOnClickChangePassword: PropTypes.func.isRequired,
+  status: PropTypes.bool.isRequired,
+  setStatus: PropTypes.func.isRequired,
 };
 
 export default React.memo(UserProfileComponent);

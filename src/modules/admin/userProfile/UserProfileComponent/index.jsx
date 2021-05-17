@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { Component, useState } from 'react';
+import React from 'react';
 
 import './style.css';
 import {
-  Alert,
   Card,
   CardBody,
   CardHeader,
@@ -12,184 +11,24 @@ import {
   Row,
   Col,
   Container,
-  FormGroup,
-  FormFeedback,
-  Label,
-  Input,
   Button,
 } from 'core-components';
+import EditProfileContainer from 'modules/admin/editProfile/EditProfileContainer';
+import ChangePasswordContainer from 'modules/admin/changePassword/ChangePasswordContainer';
 
 const UserProfileComponent = (props) => {
   const {
     profileDetails,
-    passwordErrTxt,
-    currentPasswordErrTxt,
-    passwordConfirmationErrTxt,
-    handleFirstNameChange,
-    handleLastNameChange,
-    handleEmailChange,
-    handlePasswordChange,
-    handleCurrentPasswordChange,
-    handleConfirmPasswordChange,
-    handleOnClickEdit,
-    handleOnClickChangePassword,
-    status,
-    setStatus,
-    firstNameErrTxt,
-    lastNameErrTxt,
-    emailErrTxt,
-    handleEditCancelClick,
-    handleChangePasswordCancel,
+    changePassVisible,
+    setChangePassVisible,
+    editProfileVisible,
+    setEditProfileVisible,
   } = props;
   const { first_name, last_name, email, id } = profileDetails;
 
   if (typeof email === 'undefined') {
     return <Spinner />;
   }
-
-  const renderEditProfileForm = () => {
-    return (
-      <div>
-        <br />
-        <br />
-        <Label>
-          <h3>Edit User Information</h3>
-        </Label>
-        <FormGroup>
-          <Label>
-            <h6>First Name</h6>
-          </Label>
-          <Input
-            type='text'
-            invalid={firstNameErrTxt !== ''}
-            onChange={handleFirstNameChange}
-            defaultValue={first_name}
-            className='w-50'
-            required
-          />
-          <FormFeedback>{firstNameErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Label>
-            <h6>Last Name</h6>
-          </Label>
-          <Input
-            type='text'
-            invalid={lastNameErrTxt !== ''}
-            onChange={handleLastNameChange}
-            defaultValue={last_name}
-            className='w-50'
-            required
-          />
-          <FormFeedback>{lastNameErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Label>
-            <h6>Email</h6>
-          </Label>
-          <Input
-            type='text'
-            invalid={emailErrTxt !== ''}
-            onChange={handleEmailChange}
-            defaultValue={email}
-            className='w-50'
-            required
-          />
-          <FormFeedback>{emailErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Row>
-            <Col>
-              <Button
-                className='btn btn-danger'
-                onClick={handleEditCancelClick}
-              >
-                Cancel
-              </Button>
-              <Button
-                className='btn btn-success ml-3'
-                onClick={handleOnClickEdit}
-              >
-                Edit
-              </Button>
-            </Col>
-          </Row>
-        </FormGroup>
-      </div>
-    );
-  };
-
-  const renderChangePasswordForm = () => {
-    return (
-      <div>
-        <br />
-        <br />
-        <Label>
-          <h3>Change Password</h3>
-        </Label>
-        <FormGroup>
-          <Label>
-            <h6>Current Password</h6>
-          </Label>
-          <Input
-            type='password'
-            invalid={currentPasswordErrTxt !== ''}
-            onChange={handleCurrentPasswordChange}
-            placeholder='Current password'
-            className='w-50'
-            required
-          />
-          <FormFeedback>{currentPasswordErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Label>
-            <h6>New Password</h6>
-          </Label>
-          <Input
-            type='password'
-            invalid={passwordErrTxt !== ''}
-            onChange={handlePasswordChange}
-            placeholder='Password'
-            className='w-50'
-            required
-          />
-          <FormFeedback>{passwordErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Label>
-            <h6>Password Confirmation</h6>
-          </Label>
-          <Input
-            type='password'
-            invalid={passwordConfirmationErrTxt !== ''}
-            onChange={handleConfirmPasswordChange}
-            placeholder='Confirm password'
-            className='w-50'
-            required
-          />
-          <FormFeedback>{passwordConfirmationErrTxt}</FormFeedback>
-        </FormGroup>
-        <FormGroup>
-          <Row>
-            <Col>
-              <Button
-                className='btn btn-danger'
-                onClick={handleChangePasswordCancel}
-              >
-                Cancel
-              </Button>
-              <Button
-                className='btn btn-success ml-3'
-                onClick={handleOnClickChangePassword}
-              >
-                Change Password
-              </Button>
-            </Col>
-          </Row>
-        </FormGroup>
-      </div>
-    );
-  };
 
   return (
     <Container fluid>
@@ -220,24 +59,26 @@ const UserProfileComponent = (props) => {
               <Col>
                 <Button
                   className='btn btn-secondary'
-                  onClick={() => setStatus({ changePassword: false, editProfile: true })}
+                  onClick={() => { setEditProfileVisible(true); setChangePassVisible(false); }}
                 >
                   Edit Profile
                 </Button>
                 <Button
                   className='btn btn-secondary ml-3'
-                  onClick={() => setStatus({ changePassword: true, editProfile: false })}
+                  onClick={() => { setChangePassVisible(true); setEditProfileVisible(false); }}
                 >
                   Change Password
                 </Button>
               </Col>
             </Row>
-            {status.changePassword && (
-              renderChangePasswordForm()
-            )}
-            {status.editProfile && (
-              renderEditProfileForm()
-            )}
+            <ChangePasswordContainer
+              changePassVisible={changePassVisible}
+              setChangePassVisible={setChangePassVisible}
+            />
+            <EditProfileContainer
+              editProfileVisible={editProfileVisible}
+              setEditProfileVisible={setEditProfileVisible}
+            />
           </CardBody>
         </Card>
       </Row>
@@ -246,24 +87,10 @@ const UserProfileComponent = (props) => {
 };
 UserProfileComponent.propTypes = {
   profileDetails: PropTypes.objectOf(PropTypes.object).isRequired,
-  passwordErrTxt: PropTypes.string.isRequired,
-  currentPasswordErrTxt: PropTypes.string.isRequired,
-  passwordConfirmationErrTxt: PropTypes.string.isRequired,
-  handleEmailChange: PropTypes.string.isRequired,
-  handleFirstNameChange: PropTypes.string.isRequired,
-  handleLastNameChange: PropTypes.string.isRequired,
-  handleConfirmPasswordChange: PropTypes.func.isRequired,
-  handlePasswordChange: PropTypes.func.isRequired,
-  handleCurrentPasswordChange: PropTypes.func.isRequired,
-  handleOnClickEdit: PropTypes.func.isRequired,
-  handleOnClickChangePassword: PropTypes.func.isRequired,
-  status: PropTypes.bool.isRequired,
-  setStatus: PropTypes.func.isRequired,
-  firstNameErrTxt: PropTypes.string.isRequired,
-  lastNameErrTxt: PropTypes.string.isRequired,
-  emailErrTxt: PropTypes.string.isRequired,
-  handleEditCancelClick: PropTypes.func.isRequired,
-  handleChangePasswordCancel: PropTypes.func.isRequired,
+  changePassVisible: PropTypes.bool.isRequired,
+  setChangePassVisible: PropTypes.func.isRequired,
+  editProfileVisible: PropTypes.bool.isRequired,
+  setEditProfileVisible: PropTypes.func.isRequired,
 };
 
 export default React.memo(UserProfileComponent);

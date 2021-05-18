@@ -63,12 +63,13 @@ const CreateProblemComponent = (props) => {
           </Row>
 
           <Row>
-            <FormGroup className='w-50'>
+            <FormGroup className='px-3 w-50'>
               <Label for='exampleText'>Problem Description</Label>
               <Input
                 type='textarea'
                 name='text'
                 id='exampleText'
+                placeholder='Enter drive description'
                 onChange={handleDescriptionChange}
                 required
               />

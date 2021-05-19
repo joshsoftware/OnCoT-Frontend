@@ -12,8 +12,13 @@ const problemSaved = (problem_id) => {
   return problem_id === '';
 };
 
-const TestCaseContainer = () => {
-  const { message, isSuccess, problem_id } = useSelector((state) => state.createProblemReducer);
+const TestCaseContainer = (props) => {
+  const { problemId } = props;
+  const { message, isSuccess } = useSelector((state) => state.createProblemReducer);
+  let { problem_id } = useSelector((state) => state.createProblemReducer);
+  if (typeof problemId !== 'undefined') {
+    problem_id = problemId;  // It means for edit problem, or for create problem
+  }
   const initialUserState = {
     input: '',
     output: '',
@@ -38,7 +43,7 @@ const TestCaseContainer = () => {
     (event) => {
       const data = { problem_id };
       useEffect(async () => {
-        const result =  await getTestCasesApi(data);
+        const result = await getTestCasesApi(data);
         const tcs = result.data !== undefined ? [...result.data.data.test_cases] : [];
         setUserState({
           type: 'setAndDeleteTestCase',
@@ -99,7 +104,6 @@ const TestCaseContainer = () => {
 
   const handleOnAdd = useCallback(
     (event) => {
-      // event.preventDefault();
       const { input, output, marks } = userState;
       const data = {
         input,
@@ -197,7 +201,6 @@ const TestCaseContainer = () => {
     }, [userState.input, userState.output, userState.marks, userState.testCases,
       userState.id],
   );
-  // delete testcase api is not yet finalise from backend
   const handleOnTestCaseDelete = useCallback(
     async (id) => {
       const { testCases } = userState;
@@ -257,7 +260,7 @@ const TestCaseContainer = () => {
     />
   );
 };
-// UpdateProblemTestCaseContainer.propTypes = {
-//   problem_id: PropTypes.number.isRequired,
-// };
+TestCaseContainer.propTypes = {
+  problemId: PropTypes.number.isRequired,
+};
 export default React.memo(TestCaseContainer);

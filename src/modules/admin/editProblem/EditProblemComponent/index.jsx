@@ -12,7 +12,7 @@ import {
   Button,
   Spinner,
 } from 'core-components';
-import UpdateProblemTestCaseContainer from 'modules/admin/editTestCase/EditTestCaseContainer';
+import TestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
 
 toast.configure();
 const EditProblemComponent = (props) => {
@@ -106,7 +106,9 @@ const EditProblemComponent = (props) => {
       </Row>
       <Row>
         <Row className='p-3 w-100 d-flex'>
-          <UpdateProblemTestCaseContainer />
+          <TestCaseContainer
+            problemId={problemDetails.id}
+          />
         </Row>
       </Row>
       <Row className='p-3'>

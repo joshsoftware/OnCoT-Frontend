@@ -1,0 +1,19 @@
+.button_margin{
+    margin-left: 5px;
+}
+
+.fixed{
+    table-layout:auto;
+}
+.fixed td {
+    word-wrap: break-word;
+}
+.rule{
+    max-width: 600px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.border-right {
+    border-right: 1px solid black;
+}

@@ -24,7 +24,10 @@ const createDriveReducer = produce((state = initialState, action = {}) => {
   switch (type) {
     case CREATE_DRIVE.CREATE_DRIVE_SUCCESS_ACTION:
       state.data = payload.data;
+      state.drive_id = state.data.drive.id;
       state.message = payload.message;
+      state.isLoading = false;
+      state.isSuccess = true;
       break;
     case CREATE_DRIVE.CREATE_DRIVE_FAILURE_ACTION:
       state.data = payload.data;

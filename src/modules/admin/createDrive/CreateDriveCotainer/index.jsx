@@ -18,7 +18,7 @@ import { createDriveRequestAction } from 'redux/admin/createDrive/action';
 import { Spinner } from 'core-components';
 
 const CreateDriveContainer = () => {
-  const { message } = useSelector((state) => state.createDriveReducer);
+  const { message, isSuccess } = useSelector((state) => state.createDriveReducer);
 
   const [createDrive, setCreateDrive] = useReducer(reducer, initialState);
   const [problemIsLoading, setProblemIsLoading] = useState(true);
@@ -155,6 +155,7 @@ const CreateDriveContainer = () => {
       data={problemsData}
       onCreateDriveSubmit={onCreateDriveSubmit}
       message={message}
+      isSuccess={isSuccess}
     />
   );
 };

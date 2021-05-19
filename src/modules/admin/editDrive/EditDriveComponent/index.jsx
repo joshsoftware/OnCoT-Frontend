@@ -13,6 +13,7 @@ import {
   Alert,
 } from 'core-components';
 import Select from 'react-select';
+import RuleContainer from 'modules/admin/rule/RuleContainer';
 
 const EditDriveComponent = (props) => {
   const {
@@ -41,7 +42,7 @@ const EditDriveComponent = (props) => {
 
   return (
     <Container fluid className='h-100'>
-      <div className='overflow-auto h-100'>
+      <div className='h-100'>
         <Row className='px-3 pt-3'>
           <h3>Edit Drive</h3>
         </Row>
@@ -118,6 +119,9 @@ const EditDriveComponent = (props) => {
             <Row className='p-3'>
               <Button onClick={onEditDriveSubmit}>Edit Drive</Button>
             </Row>
+            <RuleContainer
+              driveId={driveDetails.drive.id}
+            />
           </Form>
         </Row>
       </div>

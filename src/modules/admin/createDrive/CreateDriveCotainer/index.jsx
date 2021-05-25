@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getProblems from 'modules/admin/createDrive/CreateDriveCotainer/getProblems';
-
+import { toast } from 'react-toastify';
 import CreateDriveComponent from 'modules/admin/createDrive/CreateDriveComponent';
 
 import reducer, {
@@ -29,6 +29,13 @@ const CreateDriveContainer = () => {
   useEffect(async () => {
     const data = await getProblems();
     const { problems, problemLoading } = data;
+    if (problems.length === 0) {
+      dispatch({
+        type: 'PROBLEMS',
+        payload: 'PROBLEMS',
+      });
+      return toast.error('You haven\'t added any problems yet. Please add problem to create drive');
+    }
     if (!problemLoading) {
       setProblemsData(problems);
       setProblemIsLoading(problemLoading);

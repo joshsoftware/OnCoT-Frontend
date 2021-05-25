@@ -66,6 +66,10 @@ export const adminHomeComponentReducer = produce(
         state.currentScreen = payload;
         break;
 
+      case 'USER_PROFILE':
+        state.currentScreen = payload;
+        break;
+
       default:
         return state;
     }

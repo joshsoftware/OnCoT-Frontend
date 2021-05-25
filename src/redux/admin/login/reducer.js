@@ -23,6 +23,7 @@ const adminLoginReducer = produce((state = initialState, action = {}) => {
       state.lastName = payload.last_name;
       state.isAuth = true;
       state.isLoading = false;
+      localStorage.setItem('userDetails', JSON.stringify(payload));
       break;
     case ADMIN_LOGIN.ADMIN_FAILURE_ACTION:
       state.isAuth = false;

@@ -32,6 +32,16 @@ const SideNavComponent = () => {
               Problems
             </Button>
           </Row>
+          <Row className='p-3 mt-3'>
+            <Button
+              className='w-100'
+              onClick={() => {
+                dispatch({ type: 'DEFAULT_RULES', payload: 'DEFAULT_RULES' });
+              }}
+            >
+              Rules
+            </Button>
+          </Row>
         </Col>
       </Row>
     </Container>

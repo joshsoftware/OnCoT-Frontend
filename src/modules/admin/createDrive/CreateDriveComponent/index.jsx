@@ -48,7 +48,7 @@ const CreateDriveComponent = (props) => {
       return (
         <>
           <h6 className='text-success pl-5 pt-2'>{message}</h6>
-          <h6 className='text-success pl-5 pt-2'>Add rules for drive. 3 rules have been added by default, delete/edit if necessary</h6>
+          <h6 className='text-success pl-5 pt-2'>Default rules will be added automatically, delete/edit if necessary and add extra rules if You want</h6>
           <RuleContainer />
         </>
       );

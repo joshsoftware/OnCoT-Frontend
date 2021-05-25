@@ -13,6 +13,7 @@ import DriveResultContainer from 'modules/admin/driveResult/DriveResultContainer
 import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInviteContainer';
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import EditProblemContainer from 'modules/admin/editProblem/EditProblemContainer';
+import DefaultRulesContainer from 'modules/admin/defaultRules/DefaultRulesContainer';
 
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
@@ -59,6 +60,9 @@ const HomeComponent = (props) => {
           )}
           {currentHomeComponent === HOME_SCREENS.EDIT_PROBLEM && (
             <EditProblemContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.DEFAULT_RULES && (
+            <DefaultRulesContainer />
           )}
         </Col>
       </Row>

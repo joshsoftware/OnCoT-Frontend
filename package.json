@@ -15,6 +15,7 @@
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-actioncable-provider": "^2.0.0",
     "react-dom": "^17.0.1",
     "react-monaco-editor": "^0.42.0",
     "react-paginate": "^7.1.2",

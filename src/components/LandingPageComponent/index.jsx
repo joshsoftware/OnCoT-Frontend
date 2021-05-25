@@ -41,7 +41,7 @@ function LandingPageComponent(props) {
       <div className='custom-padding text-center text-white'>
         <h3>Welcome to</h3>
         <h1 className='font-weight-bolder title-color'>OnCoT</h1>
-        {isLive && counter > -1 && (
+        {isLive && (
           <div>
             <h4 className='my-5'>
               {`Your test starts on ${moment(startTime).format(DATE_TIME_FORMAT)}`}
@@ -60,7 +60,7 @@ function LandingPageComponent(props) {
             )}
           </div>
         )}
-        {!(isLive && counter > -1) && (
+        {!(isLive) && (
           <p>
             <h1> Test Over </h1>
           </p>

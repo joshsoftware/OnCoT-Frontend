@@ -18,6 +18,10 @@ const LoginContainer = () => {
     (state) => state.adminLoginReducer,
   );
 
+  if (localStorage.getItem('accessToken')) {
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
+  }
+
   const initialUserState = {
     email: '',
     password: '',

@@ -18,6 +18,7 @@ import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
 import './style.css';
 import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetailsContainer';
+import UserProfileContainer from 'modules/admin/userProfile/UserProfileContainer';
 
 const HomeComponent = (props) => {
   const { currentHomeComponent } = props;
@@ -59,6 +60,9 @@ const HomeComponent = (props) => {
           )}
           {currentHomeComponent === HOME_SCREENS.EDIT_PROBLEM && (
             <EditProblemContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.USER_PROFILE && (
+            <UserProfileContainer />
           )}
         </Col>
       </Row>

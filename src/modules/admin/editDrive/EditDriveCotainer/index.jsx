@@ -10,7 +10,7 @@ import getProblems from 'modules/admin/editDrive/EditDriveCotainer/getProblems';
 import getDriveDetails from 'modules/admin/editDrive/EditDriveCotainer/getDriveDetails';
 
 import EditDriveComponent from 'modules/admin/editDrive/EditDriveComponent';
-
+import { toast } from 'react-toastify';
 import reducer, {
   initialState,
 } from 'modules/admin/editDrive/EditDriveCotainer/reducer';
@@ -46,6 +46,13 @@ const EditDriveContainer = () => {
 
     const data = await getProblems();
     const { problems, problemLoading } = data;
+    if (problems.length === 0) {
+      dispatch({
+        type: 'PROBLEMS',
+        payload: 'PROBLEMS',
+      });
+      return toast.error('You haven\'t added any problems yet. Please add problem to edit drive');
+    }
     if (!problemLoading) {
       setProblemsData(problems);
       setProblemIsLoading(problemLoading);

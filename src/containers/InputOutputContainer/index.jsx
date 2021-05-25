@@ -1,5 +1,6 @@
 import React, { useState, useReducer, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { ActionCableConsumer } from 'react-actioncable-provider';
 
 import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
 import { customInputOutputPostApi, customInputOutputSendTokenApi } from 'apis/customIOAPI';
@@ -11,6 +12,10 @@ const initialState = {
 };
 
 const CustomIOContainer = () => {
+  const { authToken } = useSelector((state) => state.candidateFormReducer);
+  const broadcastingRoom = `room_${authToken}`;
+
+  const [latestToken, setLatestToken] = useState('test_token');
   const [inputOutuptValue, setInputOutputValue] = useReducer(
     reducer,
     initialState,
@@ -33,6 +38,7 @@ const CustomIOContainer = () => {
       language_name: languageSelected.name,
       source_code: code,
       stdin: inputOutuptValue.inputValue,
+      room: broadcastingRoom,
     };
 
     const checkStatus = (token) => {
@@ -72,7 +78,8 @@ const CustomIOContainer = () => {
     customInputOutputPostApi(data)
       .then((response) => {
         const { token } = response.data.data;
-        checkStatus(token);
+        setLatestToken(token);
+        // checkStatus(token);
       })
       .catch((error) => {
         setLoading(false);
@@ -103,18 +110,46 @@ const CustomIOContainer = () => {
     toggle();
     handleRunClick();
   };
+
+  const handleReceived = (data) => {
+    if (data.token === latestToken) {
+      let outputValue = '';
+
+      if (data.stderr) {
+        outputValue = data.stderr;
+      } else if (!data.stdout) {
+        outputValue = data.compile_output;
+      } else {
+        outputValue = data.stdout;
+      }
+
+      setLoading(false);
+
+      setInputOutputValue({
+        type: 'output',
+        payload: { output: outputValue },
+      });
+    }
+  };
+
   return (
-    <CustomIOComponent
-      toggle={toggle}
-      handleRunClick={handleRunClick}
-      handleInputChange={handleInputChange}
-      handleEvent={handleEvent}
-      handleOnInputClick={handleOnInputClick}
-      showOutput={showOutput}
-      inputValue={inputOutuptValue.inputValue}
-      outputValue={inputOutuptValue.outputValue}
-      loading={loading}
-    />
+    <>
+      <ActionCableConsumer
+        channel={{ channel: 'TestChannel', room: broadcastingRoom }}
+        onReceived={handleReceived}
+      />
+      <CustomIOComponent
+        toggle={toggle}
+        handleRunClick={handleRunClick}
+        handleInputChange={handleInputChange}
+        handleEvent={handleEvent}
+        handleOnInputClick={handleOnInputClick}
+        showOutput={showOutput}
+        inputValue={inputOutuptValue.inputValue}
+        outputValue={inputOutuptValue.outputValue}
+        loading={loading}
+      />
+    </>
   );
 };
 

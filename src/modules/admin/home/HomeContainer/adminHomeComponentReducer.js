@@ -62,6 +62,10 @@ export const adminHomeComponentReducer = produce(
         local.setItem('problemDetailId', payload.id);
         break;
 
+      case 'DEFAULT_RULES':
+        state.currentScreen = payload;
+        break;
+
       case 'USER_PROFILE':
         state.currentScreen = payload;
         break;

@@ -8,8 +8,8 @@
 .fixed td {
     word-wrap: break-word;
 }
-.input, .output{
-    max-width: 250px;
+.rule{
+    max-width: 600px;
     overflow: auto;
     white-space: nowrap;
 }

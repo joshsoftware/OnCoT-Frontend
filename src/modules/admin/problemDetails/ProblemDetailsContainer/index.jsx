@@ -11,7 +11,7 @@ import {
 } from 'core-components';
 
 import { get } from 'redux/admin/apiHelper';
-import 'modules/admin/editTestCase/EditTestCaseComponent/testCase.css';
+import 'modules/admin/testCase/TestCaseComponent/testCase.css';
 import { SERVER_URL } from 'constants/appConstants';
 import './style.css';
 

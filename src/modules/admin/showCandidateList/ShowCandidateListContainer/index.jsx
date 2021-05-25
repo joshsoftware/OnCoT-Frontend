@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getCandidates from 'modules/admin/showCandidateList/ShowCandidateListContainer/api';
 import local from 'utils/local';
+import { MdCheckCircle, MdCancel, MdMoreHoriz } from 'react-icons/md';
+import UseAnimations from 'react-useanimations';
+import loading2 from 'react-useanimations/lib/loading2';
 
 const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
@@ -32,7 +35,7 @@ const ShowCandidateListContainer = () => {
       );
     }
     return allCandidates.map((val) => {
-      const { id, first_name, last_name, email, mobile_number } = val;
+      const { id, first_name, last_name, email, mobile_number, invite_status } = val;
       return (
         <tr key={id}>
           <td>{id}</td>
@@ -40,6 +43,10 @@ const ShowCandidateListContainer = () => {
           <td>{last_name}</td>
           <td>{email}</td>
           <td>{mobile_number}</td>
+          {(invite_status === 'COMPLETED') && (<td><MdCheckCircle className='text-success' /></td>)}
+          {(invite_status === 'FAILED') && (<td><MdCancel className='text-danger' /></td>)}
+          {(invite_status === 'INPROGRESS') && (<td><UseAnimations animation={loading2} speed={0.5} strokeColor='yellow' size={16} className='text-warning' /></td>)}
+          {(invite_status === null) && (<td><MdMoreHoriz className='text-warning' /></td>)}
         </tr>
       );
     });

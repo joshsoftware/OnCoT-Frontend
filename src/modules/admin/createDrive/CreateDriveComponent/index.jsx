@@ -11,6 +11,7 @@ import {
   Button,
   Spinner,
   Alert,
+  FormFeedback,
 } from 'core-components';
 import Select from 'react-select';
 import RuleContainer from 'modules/admin/rule/RuleContainer';
@@ -27,6 +28,12 @@ const CreateDriveComponent = (props) => {
     onCreateDriveSubmit,
     message,
     isSuccess,
+    nameErrTxt,
+    descriptionErrTxt,
+    startTimeErrTxt,
+    endTimeErrTxt,
+    problemErrTxt,
+    createDrive,
   } = props;
   const nothing = '';
 
@@ -71,7 +78,9 @@ const CreateDriveComponent = (props) => {
                 type='text'
                 placeholder='Enter drive title'
                 onChange={handleDriveNameChange}
+                invalid={nameErrTxt !== ''}
               />
+              <FormFeedback>{nameErrTxt}</FormFeedback>
             </FormGroup>
 
             <Row className='px-3'>
@@ -81,9 +90,11 @@ const CreateDriveComponent = (props) => {
                 </Label>
                 <Input
                   type='textarea'
-                  placeholder='Enter drive title'
+                  placeholder='Enter drive description'
                   onChange={handleDriveDescriptionChange}
+                  invalid={descriptionErrTxt !== ''}
                 />
+                <FormFeedback>{descriptionErrTxt}</FormFeedback>
               </FormGroup>
             </Row>
 
@@ -95,36 +106,24 @@ const CreateDriveComponent = (props) => {
                 <Input
                   type='datetime-local'
                   onChange={handleDriveStartChange}
+                  invalid={startTimeErrTxt !== ''}
                 />
+                <FormFeedback>{startTimeErrTxt}</FormFeedback>
               </FormGroup>
               <FormGroup className='pt-3 w-25'>
                 <Label>
                   <h4>Drive End Date</h4>
                 </Label>
-                <Input type='datetime-local' onChange={handleDriveEndChange} />
+                <Input
+                  type='datetime-local'
+                  onChange={handleDriveEndChange}
+                  invalid={endTimeErrTxt !== ''}
+                />
+                <FormFeedback>{endTimeErrTxt}</FormFeedback>
               </FormGroup>
             </Row>
 
             <Row className='px-3 w-100 d-flex'>
-              {/* We need this code for later */}
-              {/* <FormGroup className='pt-3 pl-3 w-50'>
-                <Label>
-                  <h4>Problems</h4>
-                </Label>
-                <Table dark>
-                  <thead>
-                    <tr>
-                      <th>Problem Id</th>
-                      <th>Problem Title</th>
-                      <th>Category</th>
-                      <th>Difficulty</th>
-                      <th>Marks</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>{renderTableData}</tbody>
-                </Table>
-              </FormGroup> */}
 
               <FormGroup className='pt-3 px-5 w-50'>
                 <Row>
@@ -142,10 +141,11 @@ const CreateDriveComponent = (props) => {
                     options={options}
                   />
                 </Row>
+                <div className='text-danger'>{problemErrTxt}</div>
               </FormGroup>
             </Row>
             <Row className='p-3'>
-              <Button onClick={onCreateDriveSubmit}>Create Drive</Button>
+              <Button disabled={isSuccess} onClick={onCreateDriveSubmit}>Create Drive</Button>
             </Row>
             {driveSuccess()}
           </Form>
@@ -166,6 +166,12 @@ CreateDriveComponent.propTypes = {
   onCreateDriveSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
   isSuccess: PropTypes.bool.isRequired,
+  nameErrTxt: PropTypes.string.isRequired,
+  descriptionErrTxt: PropTypes.string.isRequired,
+  startTimeErrTxt: PropTypes.string.isRequired,
+  endTimeErrTxt: PropTypes.string.isRequired,
+  problemErrTxt: PropTypes.string.isRequired,
+  createDrive: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

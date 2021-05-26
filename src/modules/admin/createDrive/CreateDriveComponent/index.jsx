@@ -13,6 +13,7 @@ import {
   Alert,
 } from 'core-components';
 import Select from 'react-select';
+import RuleContainer from 'modules/admin/rule/RuleContainer';
 
 const CreateDriveComponent = (props) => {
   const {
@@ -25,6 +26,7 @@ const CreateDriveComponent = (props) => {
     problemIsLoading,
     onCreateDriveSubmit,
     message,
+    isSuccess,
   } = props;
   const nothing = '';
 
@@ -35,18 +37,27 @@ const CreateDriveComponent = (props) => {
       </Container>
     );
   }
-  if (message !== nothing) {
-    return <Alert>{message}</Alert>;
-  }
 
   const options = [];
   data.map((e) => {
     return options.push({ value: e.id, label: e.title });
   });
 
+  const driveSuccess = () => {
+    if (isSuccess) {
+      return (
+        <>
+          <h6 className='text-success pl-5 pt-2'>{message}</h6>
+          <h6 className='text-success pl-5 pt-2'>Default rules will be added automatically, delete/edit if necessary and add extra rules if You want</h6>
+          <RuleContainer />
+        </>
+      );
+    }
+  };
+
   return (
     <Container fluid className='h-100'>
-      <div className='overflow-auto h-100'>
+      <div className='h-100'>
         <Row className='px-3 pt-3'>
           <h3>Add New Drive</h3>
         </Row>
@@ -136,6 +147,7 @@ const CreateDriveComponent = (props) => {
             <Row className='p-3'>
               <Button onClick={onCreateDriveSubmit}>Create Drive</Button>
             </Row>
+            {driveSuccess()}
           </Form>
         </Row>
       </div>
@@ -153,6 +165,7 @@ CreateDriveComponent.propTypes = {
   problemIsLoading: PropTypes.bool.isRequired,
   onCreateDriveSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

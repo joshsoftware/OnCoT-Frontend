@@ -27,7 +27,7 @@ const setAndDeleteTestCase = (payload, state, [...testCases]) => {
     state.testCases = [...payload.data];
     state.isTestCaseLoaded = true;
   } else if (payload.subType === 'deleteTestCase') {
-    state.testCases.splice(payload, 1);
+    state.testCases.splice(payload.data, 1);
   }
 };
 

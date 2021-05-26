@@ -8,7 +8,7 @@ import { Col, Navbar, NavbarBrand, Button, Container } from 'core-components';
 const AdminHeader = (props) => {
   const reducer = useSelector((state) => state.adminHomeComponentReducer);
   const dispatch = useDispatch();
-  const { organisationName, adminName } = props;
+  const { organisationName, adminName, handleLogout, handleProfileClick } = props;
   return (
     <Container fluid className='p-0'>
       <Navbar
@@ -31,7 +31,37 @@ const AdminHeader = (props) => {
           </h3>
         </Col>
         <Col className='justify-content-end d-flex module mx-0'>
-          <h3 className='text-white'>{adminName}</h3>
+          <div className='dropdown'>
+            <button
+              className='btn btn-secondary dropdown-toggle'
+              type='button'
+              id='dropdownMenuButton'
+              data-toggle='dropdown'
+              aria-haspopup='true'
+            >
+              {adminName}
+            </button>
+            <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+              <a
+                role='button'
+                className='dropdown-item'
+                onClick={handleProfileClick}
+                tabIndex={0}
+                onKeyDown={handleProfileClick}
+              >
+                Profile
+              </a>
+              <a
+                role='button'
+                className='dropdown-item'
+                onClick={() => window.confirm('Do you want to logout?') && handleLogout()}
+                tabIndex={0}
+                onKeyDown={() => window.confirm('Do you want to logout?') && handleLogout()}
+              >
+                Logout
+              </a>
+            </div>
+          </div>
         </Col>
       </Navbar>
     </Container>
@@ -41,6 +71,8 @@ const AdminHeader = (props) => {
 AdminHeader.propTypes = {
   organisationName: PropTypes.string.isRequired,
   adminName: PropTypes.string.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+  handleProfileClick: PropTypes.func.isRequired,
 };
 
 export default React.memo(AdminHeader);

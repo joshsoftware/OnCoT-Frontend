@@ -35,6 +35,7 @@ const ShowCandidateListComponent = (props) => {
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone Number</th>
+            <th>Invitation Status</th>
           </tr>
         </thead>
         <tbody>{renderTableData()}</tbody>

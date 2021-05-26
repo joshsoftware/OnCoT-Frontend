@@ -12,7 +12,7 @@ import {
   Button,
   Spinner,
 } from 'core-components';
-import UpdateProblemTestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
+import TestCaseContainer from 'modules/admin/testCase/TestCaseContainer';
 
 toast.configure();
 const CreateProblemComponent = (props) => {
@@ -25,6 +25,7 @@ const CreateProblemComponent = (props) => {
         <>
           <h6 className='text-success pl-5 pt-2'>{message}</h6>
           <h6 className='text-success pl-5 pt-2'>Problem created successfully now please add the test cases</h6>
+          <TestCaseContainer />
         </>
       );
     }
@@ -63,12 +64,13 @@ const CreateProblemComponent = (props) => {
           </Row>
 
           <Row>
-            <FormGroup className='w-50'>
+            <FormGroup className='px-3 w-50'>
               <Label for='exampleText'>Problem Description</Label>
               <Input
                 type='textarea'
                 name='text'
                 id='exampleText'
+                placeholder='Enter drive description'
                 onChange={handleDescriptionChange}
                 required
               />
@@ -94,14 +96,12 @@ const CreateProblemComponent = (props) => {
                 <>Create Problem</>
               )}
             </Button>
-            {problemSuccess()}
           </Row>
         </Form>
       </Row>
       <Row>
         <Row className='p-3 w-100 d-flex'>
-          {/* in case of update problem use */}
-          <UpdateProblemTestCaseContainer />
+          {problemSuccess()}
         </Row>
       </Row>
       <Row className='p-3'>

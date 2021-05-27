@@ -29,7 +29,6 @@ const DefaultRulesContainer = () => {
     (event) => {
       useEffect(async () => {
         const result = await getRulesApi();
-        console.log('res', result);
         const rulesList = result.data !== undefined ? [...result.data.data.rules] : [];
         setUserState({
           type: 'setAndDeleteRule',

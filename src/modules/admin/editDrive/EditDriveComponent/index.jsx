@@ -11,6 +11,7 @@ import {
   Button,
   Spinner,
   Alert,
+  FormFeedback,
 } from 'core-components';
 import Select from 'react-select';
 import RuleContainer from 'modules/admin/rule/RuleContainer';
@@ -27,6 +28,8 @@ const EditDriveComponent = (props) => {
     onEditDriveSubmit,
     message,
     driveDetails,
+    nameErrTxt,
+    descriptionErrTxt,
   } = props;
   const nothing = '';
 
@@ -56,7 +59,9 @@ const EditDriveComponent = (props) => {
                 type='text'
                 defaultValue={driveDetails.drive.name}
                 onChange={handleDriveNameChange}
+                invalid={nameErrTxt !== ''}
               />
+              <FormFeedback>{nameErrTxt}</FormFeedback>
             </FormGroup>
 
             <Row className='px-3'>
@@ -68,7 +73,9 @@ const EditDriveComponent = (props) => {
                   type='textarea'
                   defaultValue={driveDetails.drive.description}
                   onChange={handleDriveDescriptionChange}
+                  invalid={descriptionErrTxt !== ''}
                 />
+                <FormFeedback>{descriptionErrTxt}</FormFeedback>
               </FormGroup>
             </Row>
 
@@ -140,6 +147,8 @@ EditDriveComponent.propTypes = {
   problemIsLoading: PropTypes.bool.isRequired,
   onEditDriveSubmit: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
+  nameErrTxt: PropTypes.string.isRequired,
+  descriptionErrTxt: PropTypes.string.isRequired,
 };
 
 export default React.memo(EditDriveComponent);

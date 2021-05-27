@@ -1,23 +1,6 @@
-export const initialState =
-{
-  data: {
-    drive: {
-      id: '',
-      name: '',
-      description: '',
-      start_time: '',
-      end_time: '',
-      created_by_id: '',
-      updated_by_id: '',
-      organization_id: '',
-    },
-  },
-  message: '',
-  currentProblems: [],
-  problemLoading: true,
-};
+import produce from 'immer';
 
-const reducer = (state = initialState, action = {}) => {
+export const reducer = produce((state, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'name':
@@ -35,10 +18,42 @@ const reducer = (state = initialState, action = {}) => {
     case 'problem':
       state.currentProblems.push(payload);
       break;
+    case 'nameErrTxt':
+      state.nameErrTxt = payload;
+      break;
+    case 'descriptionErrTxt':
+      state.descriptionErrTxt = payload;
+      break;
+    case 'start_timeErrTxt':
+      state.startTimeErrTxt = payload;
+      break;
+    case 'end_timeErrTxt':
+      state.endTimeErrTxt = payload;
+      break;
+    case 'problemErrTxt':
+      state.problemErrTxt = payload;
+      break;
+    case 'resetDriveData':
+      state.problemErrTxt = '';
+      state.data.drive.name = '';
+      state.data.drive.description = '';
+      state.data.drive.start_time = '';
+      state.data.drive.end_time = '';
+      state.currentProblems.clear();
+      state.nameErrTxt = '';
+      state.descriptionErrTxt = '';
+      state.startTimeErrTxt = '';
+      state.endTimeErrTxt = '';
+      break;
+    case 'drive':
+      state.data.drive.name = payload.name;
+      state.data.drive.description = payload.description;
+      state.data.drive.start_time = payload.start_time;
+      state.data.drive.end_time = payload.end_time;
+      state.currentProblems = payload.problem;
+      break;
     default:
       return state;
   }
   return state;
-};
-
-export default reducer;
+});

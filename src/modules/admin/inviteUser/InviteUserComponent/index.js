@@ -16,6 +16,7 @@ import {
 } from 'core-components';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
+import { MdCheckCircle, MdMoreHoriz } from 'react-icons/md';
 
 const InviteUserComponent = (props) => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const InviteUserComponent = (props) => {
     handleInvitationEmailsErrorMessage,
     usersData,
     handleSelectedRoleChange,
+    handleOnUserDeactivate,
   } = props;
 
   const { email, emailsError, successMessage, users, failureMessage } = usersData;
@@ -57,6 +59,7 @@ const InviteUserComponent = (props) => {
                     <th>Email</th>
                     <th>Mobile Number</th>
                     <th>Role</th>
+                    <th>Invitation Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -70,8 +73,9 @@ const InviteUserComponent = (props) => {
                           <td> {userIterator.email} </td>
                           <td> {userIterator.mobile_number} </td>
                           <td> {userIterator.role} </td>
+                          <td> {userIterator.email !== localStorage.getItem('uid') && (userIterator.invitation_accepted ? (<MdCheckCircle className='text-success' />) : <MdMoreHoriz className='text-warning' />)} </td>
                           <td>
-                            {userIterator.email !== localStorage.getItem('uid') && <Button onClick={() => window.confirm('Are you sure you wish to delete this item?') && (userIterator.id)} className='btn btn-sm btn-danger button_margin'>Delete</Button>}
+                            {userIterator.email !== localStorage.getItem('uid') && <Button onClick={() => window.confirm('Are you sure you wish to delete this item?') && handleOnUserDeactivate(userIterator.id)} className='btn btn-sm btn-danger button_margin'>Remove</Button>}
                           </td>
                         </tr>
                       );
@@ -148,6 +152,7 @@ InviteUserComponent.propTypes = {
   handleInvitationEmailsErrorMessage: PropTypes.func.isRequired,
   usersData: PropTypes.objectOf(PropTypes.any).isRequired,
   handleSelectedRoleChange: PropTypes.func.isRequired,
+  handleOnUserDeactivate: PropTypes.func.isRequired,
 };
 
 export default InviteUserComponent;

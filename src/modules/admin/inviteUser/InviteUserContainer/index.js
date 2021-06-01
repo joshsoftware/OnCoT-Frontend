@@ -3,7 +3,7 @@ import InviteUserComponent from 'modules/admin/inviteUser/InviteUserComponent';
 import reducer, {
   initialState,
 } from 'modules/admin/inviteUser/InviteUserContainer/reducer';
-import { sendEmailsApi, getUsersApi } from 'modules/admin/inviteUser/InviteUserContainer/apis';
+import { sendEmailsApi, deactivateUsersApi, getUsersApi } from 'modules/admin/inviteUser/InviteUserContainer/apis';
 
 const InviteUserContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -56,6 +56,10 @@ const InviteUserContainer = () => {
           } else if (responseData.status === 200) {
             setUsersData({ type: 'EMAILS_SENT_SUCCESS' });
             setLoading(false);
+            setUsersData({
+              type: 'SET_USER',
+              payload: data,
+            });
           }
         } catch (error) {
           setUsersData({ type: 'EMAILS_SENT_FAILURE' });
@@ -95,6 +99,30 @@ const InviteUserContainer = () => {
     }, [],
   );
 
+  const handleOnUserDeactivate = useCallback(
+    async (id) => {
+      const { users } = usersData;
+      const data = {
+        id,
+        is_active: false,
+      };
+      const result = await deactivateUsersApi(data);
+      let index;
+      for (let i = 0; i < users.length; i += 1) {
+        if (users[i].id === id) {
+          index = i;
+          break;
+        }
+      }
+      if (result.status === 200) {
+        setUsersData({
+          type: 'REMOVE_USERS',
+          payload: index,
+        });
+      }
+    }, [usersData.users],
+  );
+
   return (
     <>
       <InviteUserComponent
@@ -105,6 +133,7 @@ const InviteUserContainer = () => {
         usersData={usersData}
         handleSelectedRoleChange={handleSelectedRoleChange}
         handleSubmit={handleSubmit}
+        handleOnUserDeactivate={handleOnUserDeactivate}
       />
     </>
   );

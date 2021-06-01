@@ -18,6 +18,22 @@ export const sendEmailsApi = (data) => {
   });
 };
 
+export const deactivateUsersApi = (data) => {
+  return axios({
+    method: 'put',
+    url: `${SERVER_URL}/admin/users/${data.id}`,
+    data,
+    headers: {
+      'Content-Type': 'application/json',
+      'access-token': local.getItem('accessToken'),
+      'token-type': local.getItem('token-type'),
+      client: local.getItem('client'),
+      expiry: local.getItem('expiry'),
+      uid: local.getItem('uid'),
+    },
+  });
+};
+
 export const getUsersApi = (organization_id) => {
   return axios({
     method: 'get',

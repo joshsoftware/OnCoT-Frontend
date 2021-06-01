@@ -40,6 +40,12 @@ const reducer = produce((state = initialState, action = {}) => {
     case 'SET_USERS':
       state.users = payload;
       break;
+    case 'SET_USER':
+      state.users.push(payload);
+      break;
+    case 'REMOVE_USERS':
+      state.users.splice(payload.data, 1);
+      break;
     case 'SET_ROLE':
       state.role = payload;
       break;

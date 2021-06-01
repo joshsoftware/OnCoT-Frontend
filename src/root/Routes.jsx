@@ -4,6 +4,7 @@ import HomeComponent from 'components/HomeComponent';
 import CandidateRoutes from 'root/CandidateRoutes';
 import AdminRoutes from 'root/AdminRoutes';
 import ReviewerRoutes from 'root/ReviewerRoutes';
+import AcceptInvitationContainer from 'modules/admin/acceptInvitation/AcceptInvitationContainer';
 
 import { ROUTES } from 'constants/routeConstants';
 
@@ -17,6 +18,8 @@ function Routes() {
       <Route path={ROUTES.REVIEWER} component={ReviewerRoutes} />
 
       <Route path={ROUTES.CANDIDATE} component={CandidateRoutes} />
+
+      <Route path={ROUTES.ACCEPT_INVITATION} component={AcceptInvitationContainer} />
     </Switch>
   );
 }

@@ -1,11 +1,9 @@
-import { useEffect, useReducer, useState } from 'react';
-import { Redirect, useParams } from 'react-router';
+import { useEffect, useReducer, useState, useCallback } from 'react';
 import InviteUserComponent from 'modules/admin/inviteUser/InviteUserComponent';
 import reducer, {
   initialState,
 } from 'modules/admin/inviteUser/InviteUserContainer/reducer';
 import { sendEmailsApi, getUsersApi } from 'modules/admin/inviteUser/InviteUserContainer/apis';
-import local from 'utils/local';
 
 const InviteUserContainer = () => {
   const [loading, setLoading] = useState(false);
@@ -13,6 +11,10 @@ const InviteUserContainer = () => {
   const userDetails = JSON.parse(localStorage.getItem('userDetails'));
 
   const handleInvitationEmails = (event) => {
+    setUsersData({
+      type: 'USER_EXIST_FAILURE',
+      payload: '',
+    });
     setUsersData({ type: 'VALID_EMAIL', payload: event.target.value });
   };
 
@@ -27,42 +29,40 @@ const InviteUserContainer = () => {
     }
   }, []);
 
-  const validateEmails = (checkEmails) => {
-    let flag = false;
+  const validateEmail = (email) => {
     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    for (let email = 0; email < checkEmails.length; email += 1) {
-      if (!pattern.test(checkEmails[email])) {
-        flag = false;
-        break;
-      } else {
-        flag = true;
-      }
+
+    if (!pattern.test(email)) {
+      return false;
     }
-    if (flag) {
-      return true;
-    }
+    return true;
   };
 
   const handleSendInvitation = async () => {
-    const allEmails = `${usersData.emails}`.replace(
-      /^,|,$/g,
-      '',
-    );
-    const checkEmails = allEmails.split(',');
-    if (validateEmails(checkEmails)) {
-      const data = {
-        emails: checkEmails.join(','),
-      };
-      setLoading(true);
-      try {
-        const responseData = await sendEmailsApi(data);
-        if (responseData.status === 200) {
-          setUsersData({ type: 'EMAILS_SENT_SUCCESS' });
+    const { email, role } = usersData;
+
+    if (validateEmail(email)) {
+      if (role !== '') {
+        const data = {
+          email,
+          role,
+        };
+        setLoading(true);
+        try {
+          const responseData = await sendEmailsApi(data);
+          if (responseData.data.status === 400) {
+            setUsersData({ type: 'USER_EXIST_FAILURE', payload: responseData.data.message });
+            setLoading(false);
+          } else if (responseData.status === 200) {
+            setUsersData({ type: 'EMAILS_SENT_SUCCESS' });
+            setLoading(false);
+          }
+        } catch (error) {
+          setUsersData({ type: 'EMAILS_SENT_FAILURE' });
           setLoading(false);
         }
-      } catch (error) {
-        setUsersData({ type: 'EMAILS_SENT_FAILURE' });
-        setLoading(false);
+      } else {
+        setUsersData({ type: 'SET_ROLE_ERROR', payload: 'Please select role' });
       }
     } else {
       setUsersData({ type: 'INVALID_EMAIL' });
@@ -77,6 +77,24 @@ const InviteUserContainer = () => {
     setUsersData({ type: 'VALID_EMAIL', payload: event.target.value });
   };
 
+  const handleSelectedRoleChange = useCallback(
+    (event) => {
+      const role = event.value;
+      setUsersData({
+        type: 'SET_ROLE_ERROR',
+        payload: '',
+      });
+      setUsersData({
+        type: 'USER_EXIST_FAILURE',
+        payload: '',
+      });
+      setUsersData({
+        type: 'SET_ROLE',
+        payload: role,
+      });
+    }, [],
+  );
+
   return (
     <>
       <InviteUserComponent
@@ -85,6 +103,8 @@ const InviteUserContainer = () => {
         handleInvitationEmailsErrorMessage={handleInvitationEmailsErrorMessage}
         loading={loading}
         usersData={usersData}
+        handleSelectedRoleChange={handleSelectedRoleChange}
+        handleSubmit={handleSubmit}
       />
     </>
   );

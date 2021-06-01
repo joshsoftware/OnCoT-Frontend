@@ -15,6 +15,7 @@ import {
   Table,
 } from 'core-components';
 import { useDispatch } from 'react-redux';
+import Select from 'react-select';
 
 const InviteUserComponent = (props) => {
   const dispatch = useDispatch();
@@ -25,14 +26,22 @@ const InviteUserComponent = (props) => {
     loading,
     handleInvitationEmailsErrorMessage,
     usersData,
+    handleSelectedRoleChange,
   } = props;
 
-  const { emails, emailsError, successMessage, users } = usersData;
+  const { email, emailsError, successMessage, users, failureMessage } = usersData;
+
+  const options = [
+    { value: 1, label: 'Admin' },
+    { value: 2, label: 'HR' },
+    { value: 3, label: 'Reviewer' },
+  ];
 
   return (
     <>
       <Container fluid className='h-100'>
         {successMessage !== '' && <Alert>{successMessage}</Alert>}
+        {failureMessage !== '' && <Alert className='failureMessage'>{failureMessage}</Alert>}
         <div className='h-100'>
           <Row className='p-3'>
             <FormGroup className='pt-3 pl-3 w-100'>
@@ -62,7 +71,7 @@ const InviteUserComponent = (props) => {
                           <td> {userIterator.mobile_number} </td>
                           <td> {userIterator.role} </td>
                           <td>
-                            <Button onClick={() => window.confirm('Are you sure you wish to delete this item?') && (userIterator.id)} className='btn btn-sm btn-danger button_margin'>Delete</Button>
+                            {userIterator.email !== localStorage.getItem('uid') && <Button onClick={() => window.confirm('Are you sure you wish to delete this item?') && (userIterator.id)} className='btn btn-sm btn-danger button_margin'>Delete</Button>}
                           </td>
                         </tr>
                       );
@@ -73,26 +82,44 @@ const InviteUserComponent = (props) => {
               </Table>
             </FormGroup>
             <Row className='px-3 pt-3 pb-3'>
-              <h3>Invite Users</h3>
+              <h3>Invite User</h3>
             </Row>
             <Form className='w-100' onSubmit={handleSubmit} method='post'>
-              <FormGroup className='px-3 w-50'>
-                <Label>
-                  <span className='inline'>
-                    <h4 className='inline'>Enter Email(s)</h4>
-                    <p className='inline'> (Comma separated) </p>
-                  </span>
-                </Label>
-                <Input
-                  type='text'
-                  placeholder='Enter candidate email'
-                  value={emails}
-                  onChange={handleInvitationEmails}
-                  onClick={handleInvitationEmailsErrorMessage}
-                  invalid={emailsError !== ''}
-                />
-                <FormFeedback>{emailsError}</FormFeedback>
-              </FormGroup>
+              <Row>
+                <FormGroup className='px-3 w-50'>
+                  <Label>
+                    <span className='inline'>
+                      <h4 className='inline'>Enter Email</h4>
+                    </span>
+                  </Label>
+                  <Input
+                    type='text'
+                    placeholder='Enter candidate email'
+                    value={email}
+                    onChange={handleInvitationEmails}
+                    onClick={handleInvitationEmailsErrorMessage}
+                    invalid={emailsError !== ''}
+                  />
+                  <FormFeedback>{emailsError}</FormFeedback>
+                </FormGroup>
+
+                <FormGroup className='px-3 w-25'>
+                  <Label>
+                    <span className='inline'>
+                      <h4 className='inline'>Select Role</h4>
+                    </span>
+                  </Label>
+                  <Select
+                    className='w-100'
+                    id='role'
+                    value={options.id}
+                    onChange={handleSelectedRoleChange}
+                    options={options}
+                    placeholder='Role'
+                  />
+                  <div className='text-danger'>{usersData.roleErr}</div>
+                </FormGroup>
+              </Row>
 
               <FormGroup className='mt-6 '>
                 <Button
@@ -111,7 +138,7 @@ const InviteUserComponent = (props) => {
 };
 
 InviteUserComponent.propTypes = {
-  emails: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   handleInvitationEmails: PropTypes.func.isRequired,
   handleSendInvitation: PropTypes.func.isRequired,
   emailsError: PropTypes.string.isRequired,
@@ -120,6 +147,7 @@ InviteUserComponent.propTypes = {
   loading: PropTypes.bool.isRequired,
   handleInvitationEmailsErrorMessage: PropTypes.func.isRequired,
   usersData: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleSelectedRoleChange: PropTypes.func.isRequired,
 };
 
 export default InviteUserComponent;

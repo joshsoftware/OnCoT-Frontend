@@ -39,7 +39,7 @@ const CreateDriveContainer = () => {
     endTimeErrTxt: '',
     problemErrTxt: '',
     message: '',
-    currentProblems: [],
+    currentProblems: '',
     problemLoading: true,
   };
   const { message, isSuccess } = useSelector((state) => state.createDriveReducer);
@@ -164,7 +164,7 @@ const CreateDriveContainer = () => {
       },
       currentProblems,
     } = createDrive;
-    const problemId = currentProblems[0];
+    const problemId = currentProblems;
 
     const drives_problems_attributes = [
       {

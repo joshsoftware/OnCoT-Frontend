@@ -37,7 +37,7 @@ const EditDriveContainer = () => {
     endTimeErrTxt: '',
     problemErrTxt: '',
     message: '',
-    currentProblems: [],
+    currentProblems: '',
     problemLoading: true,
   };
   const [driveDetails, setDriveDetails] = useState();

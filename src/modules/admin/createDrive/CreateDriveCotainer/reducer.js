@@ -16,7 +16,7 @@ export const reducer = produce((state, action) => {
       state.data.drive.end_time = payload;
       break;
     case 'problem':
-      state.currentProblems.push(payload);
+      state.currentProblems = payload;
       break;
     case 'nameErrTxt':
       state.nameErrTxt = payload;
@@ -39,7 +39,7 @@ export const reducer = produce((state, action) => {
       state.data.drive.description = '';
       state.data.drive.start_time = '';
       state.data.drive.end_time = '';
-      state.currentProblems.clear();
+      state.currentProblems = '';
       state.nameErrTxt = '';
       state.descriptionErrTxt = '';
       state.startTimeErrTxt = '';

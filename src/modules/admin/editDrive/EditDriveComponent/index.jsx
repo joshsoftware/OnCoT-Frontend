@@ -86,7 +86,7 @@ const EditDriveComponent = (props) => {
                 </Label>
                 <Input
                   type='datetime-local'
-                  defaultValue={driveDetails.drive.start_time}
+                  defaultValue={driveDetails.drive.start_time.substring(0, 16)}
                   onChange={handleDriveStartChange}
                 />
               </FormGroup>
@@ -96,7 +96,7 @@ const EditDriveComponent = (props) => {
                 </Label>
                 <Input
                   type='datetime-local'
-                  defaultValue={driveDetails.drive.end_time}
+                  defaultValue={driveDetails.drive.end_time.substring(0, 16)}
                   onChange={handleDriveEndChange}
                 />
               </FormGroup>

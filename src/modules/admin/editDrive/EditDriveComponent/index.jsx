@@ -116,7 +116,7 @@ const EditDriveComponent = (props) => {
                     className='w-100'
                     id='problems'
                     value={options.id}
-                    placeholder={options[details.problem_id].label}
+                    placeholder={options.find((x) => x.value === details.problem_id).label}
                     onChange={handleSelectedProblemChange}
                     options={options}
                   />

@@ -80,12 +80,12 @@ const ProblemDetailsContainer = () => {
       return <Spinner />;
     }
     return (
-      <Card className='w-75 border-0 shadow'>
-        <CardHeader className='bg-dark text-white'>
+      <Card className='w-75 border-0 shadow bg-dark'>
+        <CardHeader className='bg-dark text-white font-weight-bold'>
           {problemDetails.problem.title}
         </CardHeader>
         <CardBody>
-          <pre>{problemDetails.problem.description}</pre>
+          <pre className='text-white'>{problemDetails.problem.description}</pre>
           <h6>TestCases: </h6>
           <Table dark>
             <thead>

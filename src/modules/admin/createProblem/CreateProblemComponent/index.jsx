@@ -19,11 +19,9 @@ const CreateProblemComponent = (props) => {
   const { handleTitleChange, handleDescriptionChange, handleCountChange, handleTimeChange,
     handleSubmit, message, isSuccess, isLoading, finishProblemCreation } = props;
   const problemSuccess = () => {
-    // please redirect to problem list page
     if (isSuccess) {
       return (
         <>
-          <h6 className='text-success pl-5 pt-2'>{message}</h6>
           <h6 className='text-success pl-5 pt-2'>Problem created successfully now please add the test cases</h6>
           <TestCaseContainer />
         </>
@@ -39,18 +37,18 @@ const CreateProblemComponent = (props) => {
       <Row className='p-3' onSubmit={handleSubmit}>
         <Form className='w-100'>
           <Row>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-75'>
               <Label>
                 <h6>Problem Title</h6>
               </Label>
               <Input
                 type='text'
-                placeholder='Enter drive title'
+                placeholder='Enter problem title'
                 onChange={handleTitleChange}
                 required
               />
             </FormGroup>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-25'>
               <Label>
                 <h6>Submission Count</h6>
               </Label>
@@ -64,18 +62,19 @@ const CreateProblemComponent = (props) => {
           </Row>
 
           <Row>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-75'>
               <Label for='exampleText'>Problem Description</Label>
               <Input
                 type='textarea'
                 name='text'
                 id='exampleText'
-                placeholder='Enter drive description'
+                style={{ height: 400 }}
+                placeholder='Enter problem description'
                 onChange={handleDescriptionChange}
                 required
               />
             </FormGroup>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-25'>
               <Label>
                 <h6>Time in minutes</h6>
               </Label>

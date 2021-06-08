@@ -78,14 +78,14 @@ const CreateProblemComponent = ({
             <Label>
               <h6>Input</h6>
             </Label>
-            <Input type='text' invalid={inputErrTxt !== ''} value={input} onChange={handleInputChange} placeholder='Input' />
+            <Input type='textarea' invalid={inputErrTxt !== ''} value={input} onChange={handleInputChange} placeholder='Input' />
             <FormFeedback>{inputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>
             <Label>
               <h6>Output</h6>
             </Label>
-            <Input type='text' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output' />
+            <Input type='textarea' invalid={outputErrTxt !== ''} value={output} onChange={handleOutputChange} placeholder='Output' />
             <FormFeedback>{outputErrTxt}</FormFeedback>
           </FormGroup>
           <FormGroup>

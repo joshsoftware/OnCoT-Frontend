@@ -47,7 +47,7 @@ const EditDriveComponent = (props) => {
     <Container fluid className='h-100'>
       <div className='h-100'>
         <Row className='px-3 pt-3'>
-          <h3>Edit Drive</h3>
+          <h3>Update Drive</h3>
         </Row>
         <Row className='p-3'>
           <Form className='w-100'>
@@ -124,7 +124,7 @@ const EditDriveComponent = (props) => {
               </FormGroup>
             </Row>
             <Row className='p-3'>
-              <Button onClick={onEditDriveSubmit}>Edit Drive</Button>
+              <Button onClick={onEditDriveSubmit}>Update Drive</Button>
             </Row>
             <RuleContainer
               driveId={driveDetails.drive.id}

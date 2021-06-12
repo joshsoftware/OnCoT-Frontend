@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import Webcam from 'react-webcam';
+import { getPresignedUrlApi, putSaveScreenshotApi } from 'shared-components/Header/Webcam/WebcamCapture/apis';
 
 const WebcamCapture = () => {
   const videoConstraints = {
@@ -10,12 +11,18 @@ const WebcamCapture = () => {
   };
   const webcamRef = React.useRef(null);
 
+  const saveScreenshot = async (imageSrc) => {
+    const presignedUrl = await getPresignedUrlApi();
+    putSaveScreenshotApi(presignedUrl, imageSrc);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (webcamRef.current != null) {
-        const imageSrc = webcamRef.current.getScreenshot();
+        const imageSrc = webcamRef.current.getScreenshot({ width: 240, height: 240 });
+        saveScreenshot(imageSrc);
       }
-    }, 3000);
+    }, 1000 * 60 * 2);
     return () => clearInterval(interval);
   }, []);
 

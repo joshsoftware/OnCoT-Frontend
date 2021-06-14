@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
 import DriveResultComponent from 'modules/admin/driveResult/DriveResultComponent';
 import { downloadResultRequestAction } from 'redux/admin/downloadResult/action';
+import {
+  Button,
+} from 'core-components';
 
 const DriveResultContainer = () => {
   const { data, errorMessage, isError, isLoading } = useSelector(
@@ -29,6 +32,14 @@ const DriveResultContainer = () => {
     dispatch(driveResultRequestAction(event.selected + 1));
   };
 
+  const onClickSnapshots = (e) => {
+    const rowId = e.target.parentNode.parentNode.id;
+    dispatch({
+      type: 'SNAPSHOTS',
+      payload: { currentScreen: 'SNAPSHOTS', id: rowId },
+    });
+  };
+
   const renderTableData = useMemo(() => {
     return data.result.map((val, index) => {
       const {
@@ -40,12 +51,15 @@ const DriveResultContainer = () => {
         end_times,
       } = val;
       return (
-        <tr key={candidate_id}>
+        <tr key={candidate_id} id={candidate_id}>
           <td>{candidate_id}</td>
           <td>{first_name}</td>
           <td>{last_name}</td>
           <td>{email}</td>
           <td>{score}</td>
+          <td>
+            <Button onClick={onClickSnapshots}>Snapshots</Button>
+          </td>
         </tr>
       );
     });

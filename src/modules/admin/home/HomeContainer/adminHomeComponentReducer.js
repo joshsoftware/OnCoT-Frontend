@@ -70,6 +70,12 @@ export const adminHomeComponentReducer = produce(
         state.currentScreen = payload;
         break;
 
+      case 'SNAPSHOTS':
+        state.currentScreen = payload.currentScreen;
+        state.id = payload.id;
+        local.setItem('candidateSnapsId', payload.id);
+        break;
+
       default:
         return state;
     }

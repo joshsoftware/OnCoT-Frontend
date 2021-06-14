@@ -19,8 +19,12 @@ const WebcamCapture = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (webcamRef.current != null) {
-        const imageSrc = webcamRef.current.getScreenshot({ width: 240, height: 240 });
-        saveScreenshot(imageSrc);
+        const imageSrc = webcamRef.current.getScreenshot({ width: 500, height: 500 });
+        if (!imageSrc) {
+          alert('Please turn your camera on, otherwise you will be disqualified from the test');
+        } else {
+          saveScreenshot(imageSrc);
+        }
       }
     }, 1000 * 60 * 2);
     return () => clearInterval(interval);

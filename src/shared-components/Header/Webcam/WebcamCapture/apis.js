@@ -2,7 +2,7 @@ import axios from 'axios';
 import { SERVER_URL } from 'constants/appConstants';
 
 export const getPresignedUrlApi = () => {
-  return axios.post(`${SERVER_URL}presigned_url`, {
+  return axios.post(`${SERVER_URL}snapshots/presigned_url`, {
     drive_id: localStorage.getItem('driveID'),
     candidate_id: localStorage.getItem('candidateId'),
   })

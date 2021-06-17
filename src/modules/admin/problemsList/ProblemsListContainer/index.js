@@ -5,10 +5,12 @@ import 'modules/admin/problemsList/ProblemsListComponent/style.css';
 import getProblems from 'modules/admin/problemsList/ProblemsListContainer/getProblems';
 import { useDispatch } from 'react-redux';
 import { Button } from 'core-components';
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const ProblemsListContainer = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [allProblems, setAllProblems] = useState([]);
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [pageCount, setPageCount] = useState(1);
@@ -26,19 +28,15 @@ const ProblemsListContainer = () => {
 
   const onClickResult = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
-    dispatch({
-      type: 'PROBLEM_DETAILS',
-      payload: { currentScreen: 'PROBLEM_DETAILS', id: rowId },
-    });
+    localStorage.setItem('problemDetailId', rowId);
+    history.push(`/admin/problem/${rowId}/details`);
   };
 
   const onClickEdit = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
     const data = document.getElementById(rowId).querySelectorAll('.problemDetail');
-    dispatch({
-      type: 'EDIT_PROBLEM',
-      payload: { currentScreen: 'EDIT_PROBLEM', id: data[0].innerHTML },
-    });
+    localStorage.setItem('editProblemId', data[0].innerHTML);
+    history.push(`/admin/problem/${data[0].innerHTML}/edit`);
   };
 
   const renderTableData = useCallback(() => {
@@ -64,10 +62,7 @@ const ProblemsListContainer = () => {
     setCurrentPageNumber(data.selected + 1);
   };
   const handleAddProblemClick = () => {
-    dispatch({
-      type: 'CREATE_PROBLEM',
-      payload: 'CREATE_PROBLEM',
-    });
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.CREATE_PROBLEM);
   };
 
   return (

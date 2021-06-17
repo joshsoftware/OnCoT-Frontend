@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import { Col, Row, Button, Container } from 'core-components';
 
 import './sideNavStyle.css';
 
 const SideNavComponent = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <Container fluid className='p-0'>
@@ -15,9 +17,7 @@ const SideNavComponent = () => {
           <Row className='p-3 mt-3'>
             <Button
               className='w-100'
-              onClick={() => {
-                dispatch({ type: 'HOME', payload: 'HOME' });
-              }}
+              onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME); }}
             >
               HOME
             </Button>
@@ -25,9 +25,7 @@ const SideNavComponent = () => {
           <Row className='p-3 mt-3'>
             <Button
               className='w-100'
-              onClick={() => {
-                dispatch({ type: 'PROBLEMS', payload: 'PROBLEMS' });
-              }}
+              onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.PROBLEMS); }}
             >
               Problems
             </Button>
@@ -35,9 +33,7 @@ const SideNavComponent = () => {
           <Row className='p-3 mt-3'>
             <Button
               className='w-100'
-              onClick={() => {
-                dispatch({ type: 'DEFAULT_RULES', payload: 'DEFAULT_RULES' });
-              }}
+              onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.RULES); }}
             >
               Rules
             </Button>

@@ -26,7 +26,7 @@ const RuleComponent = ({
   isRuleEdit,
   isLoading,
   rules,
-  finishProblemCreation,
+  finishDriveCreation,
 }) => {
   const scrollDiv = createRef();
   const scrollSmoothHandler = () => {
@@ -103,7 +103,7 @@ const RuleComponent = ({
         </FormGroup>
       </Row>
       <Row className='p-3'>
-        <Button className='bg-success' onClick={finishProblemCreation}>Finish and Go back</Button>
+        <Button className='bg-success' onClick={finishDriveCreation}>Finish and Go back</Button>
       </Row>
     </Container>
   );
@@ -120,6 +120,6 @@ RuleComponent.propTypes = {
   rules: PropTypes.string.isRequired,
   isRuleEdit: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  finishProblemCreation: PropTypes.func.isRequired,
+  finishDriveCreation: PropTypes.func.isRequired,
 };
 export default React.memo(RuleComponent);

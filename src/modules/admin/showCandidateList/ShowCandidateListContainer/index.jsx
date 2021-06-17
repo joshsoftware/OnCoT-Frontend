@@ -6,9 +6,11 @@ import local from 'utils/local';
 import { MdCheckCircle, MdCancel, MdMoreHoriz } from 'react-icons/md';
 import UseAnimations from 'react-useanimations';
 import loading2 from 'react-useanimations/lib/loading2';
+import { useHistory } from 'react-router-dom';
 
 const ShowCandidateListContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const Id = local.getItem('showCandidatesId');
   const [allCandidates, setAllCandidates] = useState([]);
   const [candidateIsLoading, setCandidateIsLoading] = useState(true);
@@ -53,10 +55,7 @@ const ShowCandidateListContainer = () => {
   };
   const handleAddCandidateClick = () => {
     const driveId = local.getItem('showCandidatesId');
-    dispatch({
-      type: 'INVITE_CANDIDATES',
-      payload: { currentScreen: 'INVITE_CANDIDATES', id: driveId },
-    });
+    history.push(`/admin/drive/${driveId}/candidates/invite`);
   };
   const handlePageClick = (data) => {
     setCurrentPageNumber(data.selected + 1);

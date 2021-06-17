@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import { useDispatch } from 'react-redux';
 import AdminHeader from 'shared-components/AdminHeader/AdminHeader';
 
 const HeaderIDEConatiner = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const organisationName = 'Josh Software';
   const adminName = 'HR Admin';
 
@@ -14,10 +16,7 @@ const HeaderIDEConatiner = () => {
   };
 
   const handleProfileClick = (e) => {
-    dispatch({
-      type: 'USER_PROFILE',
-      payload: 'USER_PROFILE',
-    });
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.USER_PROFILE);
   };
 
   return (

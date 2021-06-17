@@ -3,14 +3,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import AdminHomeComponent from 'modules/admin/adminHome/AdminHomeComponent';
 import { Button } from 'core-components';
 import moment from 'moment';
-
+import { useHistory } from 'react-router-dom';
 import getDriveDetails from 'modules/admin/adminHome/AdminHomeContainer/getDriveDetails';
 import { useDispatch } from 'react-redux';
 
 const CreateDriveContainer = () => {
   const [driveDetailsIsLoading, setDriveDetailsIsLoading] = useState(true);
   const [driveDetailsData, setDriveDetailsData] = useState([]);
-
+  const history = useHistory();
   const [queryIsLoading, setQueryIsLoading] = useState(true);
   const [query, setQuery] = useState('');
   const handleQueryChange = (event) => {
@@ -26,27 +26,21 @@ const CreateDriveContainer = () => {
   const onClickEdit = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
     const data = document.getElementById(rowId).querySelectorAll('.data');
-    dispatch({
-      type: 'EDIT_DRIVE',
-      payload: { currentScreen: 'EDIT_DRIVE', id: data[0].innerHTML },
-    });
+    localStorage.setItem('editDriveId', data[0].innerHTML);
+    history.push(`/admin/drive/${data[0].innerHTML}/edit`);
   };
   const onClickCandidates = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
     const data = document.getElementById(rowId).querySelectorAll('.data');
-    dispatch({
-      type: 'SHOW_CANDIDATES',
-      payload: { currentScreen: 'SHOW_CANDIDATES', id: data[0].innerHTML },
-    });
+    localStorage.setItem('showCandidatesId', data[0].innerHTML);
+    history.push(`/admin/drive/${data[0].innerHTML}/candidates`);
   };
 
   const onClickResult = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
     const data = document.getElementById(rowId).querySelectorAll('.data');
-    dispatch({
-      type: 'DRIVE_RESULT',
-      payload: { currentScreen: 'DRIVE_RESULT', id: data[0].innerHTML },
-    });
+    localStorage.setItem('driveResultId', data[0].innerHTML);
+    history.push(`/admin/drive/${data[0].innerHTML}/result`);
   };
 
   const renderTableData = (driveStatus) => {

@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import RuleComponent from 'modules/admin/rule/RuleComponent';
 import { reducer } from 'modules/admin/rule/reducer';
 import { validateData } from 'modules/admin/rule/dataValidation';
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import { deleteRuleApi, getRulesApi, postRuleApi, updateRuleApi } from './api';
 
 const driveSaved = (drive_id) => {
@@ -15,6 +17,7 @@ const driveSaved = (drive_id) => {
 const RuleContainer = (props) => {
   const { driveId } = props;
   const dispatch = useDispatch();
+  const history = useHistory();
   const { message, isSuccess } = useSelector((state) => state.createDriveReducer);
   let { drive_id } = useSelector((state) => state.createDriveReducer);
   if (typeof driveId !== 'undefined') {
@@ -203,10 +206,7 @@ const RuleContainer = (props) => {
   );
 
   const finishDriveCreation = useCallback(() => {
-    dispatch({
-      type: 'DRIVES',
-      payload: 'DRIVES',
-    });
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME);
   });
 
   return (

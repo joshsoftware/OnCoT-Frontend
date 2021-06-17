@@ -6,8 +6,11 @@ import { reducer } from 'modules/admin/editProblem/EditProblemContainer/reducer'
 import { editProblemRequestAction } from 'redux/admin/editProblem/action';
 import { getProblem, getTestCases } from 'modules/admin/editProblem/EditProblemContainer/getProblemDetails';
 import { Spinner } from 'core-components';
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const EditProblemContainer = () => {
+  const history = useHistory();
   const initialUserState = {
     title: '',
     description: '',
@@ -98,10 +101,7 @@ const EditProblemContainer = () => {
   });
 
   const finishProblemEdit = useCallback(() => {
-    dispatch({
-      type: 'PROBLEMS',
-      payload: 'PROBLEMS',
-    });
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.PROBLEMS);
   });
   if (problemIsLoading) {
     return <Spinner />;

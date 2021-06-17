@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import {
   Container,
   Row,
@@ -24,7 +25,7 @@ const AdminHomeComponent = (props) => {
   const completedDrives = 'completedDrives';
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState('1');
-
+  const history = useHistory();
   const toggle = (tab) => {
     if (activeTab !== tab) {
       setActiveTab(tab);
@@ -72,9 +73,7 @@ const AdminHomeComponent = (props) => {
         <Col xs={2} lg={2} xl={2}>
           <Button
             className='w-100'
-            onClick={() => {
-              dispatch({ type: 'CREATE_DRIVE', payload: 'CREATE_DRIVE' });
-            }}
+            onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.CREATE_DRIVE); }}
           >
             Create Drive
           </Button>

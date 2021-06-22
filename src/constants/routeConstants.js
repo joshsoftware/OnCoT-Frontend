@@ -3,6 +3,7 @@ export const ROUTES = {
   CANDIDATE: '/candidate',
   ADMIN: '/admin',
   REVIEWER: '/reviewer',
+  ACCEPT_INVITATION: '/accept/invite/:token',
 };
 
 export const CANDIDATE_ROUTES = {

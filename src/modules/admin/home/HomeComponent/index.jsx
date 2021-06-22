@@ -14,7 +14,7 @@ import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInv
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import EditProblemContainer from 'modules/admin/editProblem/EditProblemContainer';
 import DefaultRulesContainer from 'modules/admin/defaultRules/DefaultRulesContainer';
-
+import InviteUserContainer from 'modules/admin/inviteUser/InviteUserContainer';
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
 import './style.css';
@@ -68,6 +68,9 @@ const HomeComponent = (props) => {
           )}
           {currentHomeComponent === HOME_SCREENS.USER_PROFILE && (
             <UserProfileContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.INVITE_USER && (
+            <InviteUserContainer />
           )}
           {currentHomeComponent === HOME_SCREENS.SNAPSHOTS && (
             <SnapshotsContainer />

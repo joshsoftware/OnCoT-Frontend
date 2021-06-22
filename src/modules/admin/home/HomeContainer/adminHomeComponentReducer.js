@@ -70,6 +70,10 @@ export const adminHomeComponentReducer = produce(
         state.currentScreen = payload;
         break;
 
+      case 'INVITE_USER':
+        state.currentScreen = payload;
+        break;
+
       case 'SNAPSHOTS':
         state.currentScreen = payload.currentScreen;
         state.id = payload.id;

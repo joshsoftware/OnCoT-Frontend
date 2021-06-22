@@ -41,7 +41,7 @@ const AdminHeader = (props) => {
             >
               {adminName}
             </button>
-            <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+            <div className='dropdown-menu' aria-labelledby='dropdownMenuButton' style={{ zIndex: 2 }}>
               <a
                 role='button'
                 className='dropdown-item'

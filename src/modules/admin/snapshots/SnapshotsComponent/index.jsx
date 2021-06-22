@@ -23,7 +23,7 @@ const SnapshotsComponent = ({
   return (
     <Container fluid className='px-5'>
       <FormGroup>
-        <div className='sticky-top bg-light'>
+        <div className='sticky-top bg-light' style={{ zIndex: 1 }}>
           <Row fluid className='py-1 px-3'>
             <h4><b>Snapshots </b> &gt; {candidateName}  </h4>
           </Row>

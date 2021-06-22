@@ -41,9 +41,7 @@ const SideNavComponent = () => {
           <Row className='p-3'>
             <Button
               className='w-100'
-              onClick={() => {
-                dispatch({ type: 'INVITE_USER', payload: 'INVITE_USER' });
-              }}
+              onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.INVITE_USER); }}
             >
               Users
             </Button>

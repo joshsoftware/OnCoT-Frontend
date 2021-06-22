@@ -3,12 +3,14 @@ import SnapshotsComponent from 'modules/admin/snapshots/SnapshotsComponent';
 import getSnapshots from 'modules/admin/snapshots/SnapshotsContainer/api';
 import moment from 'moment';
 import { DATE_TIME_FORMAT } from 'constants/appConstants';
+import { useHistory } from 'react-router-dom';
 
 const SnapshotsContainer = () => {
   const [snapshotsAreLoading, setSnapshotsAreLoading] = useState(true);
   const [allSnapshots, setAllSnapshots] = useState([]);
   const [candidateName, setCandidateName] = useState('');
   const snapshotsData = [];
+  const history = useHistory();
 
   useEffect(async () => {
     const data = await getSnapshots();
@@ -37,11 +39,16 @@ const SnapshotsContainer = () => {
     );
   });
 
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
   return (
     <SnapshotsComponent
       snapshotsAreLoading={snapshotsAreLoading}
       snapshotsData={snapshotsData}
       candidateName={candidateName}
+      handleGoBack={handleGoBack}
     />
   );
 };

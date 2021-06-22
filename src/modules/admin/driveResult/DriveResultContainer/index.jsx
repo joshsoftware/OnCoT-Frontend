@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { driveResultRequestAction } from 'redux/admin/driveResult/action';
 import DriveResultComponent from 'modules/admin/driveResult/DriveResultComponent';
 import { downloadResultRequestAction } from 'redux/admin/downloadResult/action';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
 } from 'core-components';
@@ -17,6 +18,7 @@ const DriveResultContainer = () => {
   );
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(driveResultRequestAction(data.page));
@@ -34,10 +36,9 @@ const DriveResultContainer = () => {
 
   const onClickSnapshots = (e) => {
     const rowId = e.target.parentNode.parentNode.id;
-    dispatch({
-      type: 'SNAPSHOTS',
-      payload: { currentScreen: 'SNAPSHOTS', id: rowId },
-    });
+    localStorage.setItem('candidateSnapsId', rowId);
+    const driveId = localStorage.getItem('driveResultId');
+    history.push(`/admin/drive/${driveId}/candidate/${rowId}/snapshots`);
   };
 
   const renderTableData = useMemo(() => {

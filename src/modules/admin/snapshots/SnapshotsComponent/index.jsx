@@ -3,6 +3,7 @@ import {
   Row,
   FormGroup,
   Spinner,
+  Button,
 } from 'core-components';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -13,6 +14,7 @@ const SnapshotsComponent = ({
   snapshotsData,
   candidateName,
   snapshotsAreLoading,
+  handleGoBack,
 }) => {
   if (snapshotsAreLoading) {
     return <Spinner className='loader' />;
@@ -21,9 +23,14 @@ const SnapshotsComponent = ({
   return (
     <Container fluid className='px-5'>
       <FormGroup>
-        <Row fluid className='py-4 px-3'>
-          <h4><b>Snapshots </b> &gt; {candidateName}  </h4>
-        </Row>
+        <div className='sticky-top bg-light'>
+          <Row fluid className='py-1 px-3'>
+            <h4><b>Snapshots </b> &gt; {candidateName}  </h4>
+          </Row>
+          <Row className='px-3 pb-2'>
+            <Button onClick={handleGoBack}> ◄ Go back</Button>
+          </Row>
+        </div>
         <Row className='px-3 position-relative'>
           <div style={{
             display: 'block',
@@ -52,6 +59,7 @@ SnapshotsComponent.propTypes = {
   snapshotsData: PropTypes.checkPropTypes.isRequired,
   snapshotsAreLoading: PropTypes.bool.isRequired,
   candidateName: PropTypes.string.isRequired,
+  handleGoBack: PropTypes.func.isRequired,
 };
 
 export default React.memo(SnapshotsComponent);

@@ -16,6 +16,8 @@ import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetails
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import EditProblemContainer from 'modules/admin/editProblem/EditProblemContainer';
 import UserProfileContainer from 'modules/admin/userProfile/UserProfileContainer';
+import InviteUserContainer from 'modules/admin/inviteUser/InviteUserContainer';
+import SnapshotsContainer from 'modules/admin/snapshots/SnapshotsContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -88,6 +90,16 @@ function AdminRoutes() {
               exact
               path={path + ADMIN_ROUTES.USER_PROFILE}
               component={UserProfileContainer}
+            />
+            <ProtectedAdminRoute
+              exact
+              path={path + ADMIN_ROUTES.INVITE_USER}
+              component={InviteUserContainer}
+            />
+            <ProtectedAdminRoute
+              exact
+              path={path + ADMIN_ROUTES.SNAPSHOTS}
+              component={SnapshotsContainer}
             />
             <Redirect to={path} />
           </Switch>

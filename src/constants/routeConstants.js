@@ -4,6 +4,7 @@ export const ROUTES = {
   ADMIN: '/admin',
   REVIEWER: '/reviewer',
   ACCEPT_INVITATION: '/accept/invite/:token',
+  LOGIN: '/login',
 };
 
 export const CANDIDATE_ROUTES = {
@@ -27,8 +28,6 @@ export const ADMIN_ROUTES = {
   CREATE_PROBLEM: '/problem/create',
   EDIT_PROBLEM: '/problem/:problemId/edit',
   USER_PROFILE: '/profile',
-};
-
-export const ADMIN_AUTH_ROUTES = {
-  LOGIN: '/login',
+  SNAPSHOTS: '/drive/:driveId/candidate/:candidateId/snapshots',
+  INVITE_USER: '/users',
 };

@@ -5,7 +5,7 @@ import CandidateRoutes from 'root/CandidateRoutes';
 import AdminRoutes from 'root/AdminRoutes';
 import ReviewerRoutes from 'root/ReviewerRoutes';
 import LoginContainer from 'modules/admin/login/LoginContainer';
-import { ROUTES, ADMIN_AUTH_ROUTES } from 'constants/routeConstants';
+import { ROUTES } from 'constants/routeConstants';
 import AcceptInvitationContainer from 'modules/admin/acceptInvitation/AcceptInvitationContainer';
 
 function Routes() {
@@ -13,7 +13,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path={path} component={LoginContainer} />
-      <Route path={ROUTES.ADMIN + ADMIN_AUTH_ROUTES.LOGIN} component={LoginContainer} />
+      <Route path={ROUTES.LOGIN} component={LoginContainer} />
 
       <Route exact path={ROUTES.HOME} component={AdminRoutes} />
 

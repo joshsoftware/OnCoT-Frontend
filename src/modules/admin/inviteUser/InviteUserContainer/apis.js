@@ -5,7 +5,7 @@ import { SERVER_URL } from 'constants/appConstants';
 export const sendEmailsApi = (data) => {
   return axios({
     method: 'post',
-    url: `${SERVER_URL}/admin/invite_user`,
+    url: `${SERVER_URL}admin/invite_user`,
     data,
     headers: {
       'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ export const sendEmailsApi = (data) => {
 export const deactivateUsersApi = (data) => {
   return axios({
     method: 'put',
-    url: `${SERVER_URL}/admin/users/${data.id}`,
+    url: `${SERVER_URL}admin/users/${data.id}`,
     data,
     headers: {
       'Content-Type': 'application/json',

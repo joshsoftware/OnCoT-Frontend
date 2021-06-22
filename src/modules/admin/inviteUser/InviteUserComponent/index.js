@@ -42,8 +42,6 @@ const InviteUserComponent = (props) => {
   return (
     <>
       <Container fluid className='h-100'>
-        {successMessage !== '' && <Alert>{successMessage}</Alert>}
-        {failureMessage !== '' && <Alert className='failureMessage'>{failureMessage}</Alert>}
         <div className='h-100'>
           <Row className='p-3'>
             <FormGroup className='pt-3 pl-3 w-100'>
@@ -105,6 +103,8 @@ const InviteUserComponent = (props) => {
                     invalid={emailsError !== ''}
                   />
                   <FormFeedback>{emailsError}</FormFeedback>
+                  <div className='text-danger'>{failureMessage}</div>
+                  <div className='text-success'>{successMessage}</div>
                 </FormGroup>
 
                 <FormGroup className='px-3 w-25'>

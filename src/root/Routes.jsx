@@ -6,6 +6,7 @@ import AdminRoutes from 'root/AdminRoutes';
 import ReviewerRoutes from 'root/ReviewerRoutes';
 import LoginContainer from 'modules/admin/login/LoginContainer';
 import { ROUTES, ADMIN_AUTH_ROUTES } from 'constants/routeConstants';
+import AcceptInvitationContainer from 'modules/admin/acceptInvitation/AcceptInvitationContainer';
 
 function Routes() {
   const { path } = useRouteMatch();
@@ -21,6 +22,8 @@ function Routes() {
       <Route path={ROUTES.REVIEWER} component={ReviewerRoutes} />
 
       <Route path={ROUTES.CANDIDATE} component={CandidateRoutes} />
+
+      <Route path={ROUTES.ACCEPT_INVITATION} component={AcceptInvitationContainer} />
     </Switch>
   );
 }

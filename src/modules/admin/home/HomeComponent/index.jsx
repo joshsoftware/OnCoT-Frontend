@@ -14,12 +14,13 @@ import SendEmailInviteContainer from 'modules/admin/sendEmailInvite/SendEmailInv
 import CreateProblemContainer from 'modules/admin/createProblem/CreateProblemContainer';
 import EditProblemContainer from 'modules/admin/editProblem/EditProblemContainer';
 import DefaultRulesContainer from 'modules/admin/defaultRules/DefaultRulesContainer';
-
+import InviteUserContainer from 'modules/admin/inviteUser/InviteUserContainer';
 import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 
 import './style.css';
 import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetailsContainer';
 import UserProfileContainer from 'modules/admin/userProfile/UserProfileContainer';
+import SnapshotsContainer from 'modules/admin/snapshots/SnapshotsContainer';
 
 const HomeComponent = (props) => {
   const { currentHomeComponent } = props;

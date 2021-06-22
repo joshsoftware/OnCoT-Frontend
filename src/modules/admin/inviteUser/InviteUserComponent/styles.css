@@ -1,0 +1,14 @@
+.successMessage {
+  color: #155724;
+  margin-bottom: 0%;
+}
+
+.failureMessage {
+  color: hsl(0, 0%, 100%);
+  margin-bottom: 0%;
+  background-color: #d35b5b;
+}
+
+.inline {
+  display: inline;
+}

@@ -35,7 +35,7 @@ const AdminHomeComponent = (props) => {
   const returnTable = (driveStatus) => {
     return (
       <Row className='py-2'>
-        <Col xs={10} lg={10} xl={10}>
+        <Col>
           <Table dark className='table-bordered'>
             <thead>
               <tr>
@@ -43,6 +43,9 @@ const AdminHomeComponent = (props) => {
                 <th>Organisation Name</th>
                 <th>From</th>
                 <th>To</th>
+                <th>invitation sent</th>
+                <th>Appeared</th>
+                <th>submissions</th>
                 <th>Edit</th>
                 <th>Candidates</th>
                 <th>Result</th>
@@ -126,6 +129,9 @@ const AdminHomeComponent = (props) => {
                       <th>Organisation Name</th>
                       <th>From</th>
                       <th>To</th>
+                      <th>invitation sent</th>
+                      <th>Appeared</th>
+                      <th>Submissions</th>
                       <th>Candidates</th>
                     </tr>
                   </thead>

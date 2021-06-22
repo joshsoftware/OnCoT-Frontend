@@ -14,7 +14,7 @@ const SideNavComponent = () => {
     <Container fluid className='p-0'>
       <Row className='bg-dark justify-content-around admin-sidenav-height'>
         <Col className='text-white font-weight-bold border-top'>
-          <Row className='p-3 mt-3'>
+          <Row className='p-3'>
             <Button
               className='w-100'
               onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.HOME); }}
@@ -22,7 +22,7 @@ const SideNavComponent = () => {
               HOME
             </Button>
           </Row>
-          <Row className='p-3 mt-3'>
+          <Row className='p-3'>
             <Button
               className='w-100'
               onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.PROBLEMS); }}
@@ -30,12 +30,22 @@ const SideNavComponent = () => {
               Problems
             </Button>
           </Row>
-          <Row className='p-3 mt-3'>
+          <Row className='p-3'>
             <Button
               className='w-100'
               onClick={() => { history.push(ROUTES.ADMIN + ADMIN_ROUTES.RULES); }}
             >
               Rules
+            </Button>
+          </Row>
+          <Row className='p-3'>
+            <Button
+              className='w-100'
+              onClick={() => {
+                dispatch({ type: 'INVITE_USER', payload: 'INVITE_USER' });
+              }}
+            >
+              Users
             </Button>
           </Row>
         </Col>

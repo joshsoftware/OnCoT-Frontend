@@ -80,7 +80,7 @@ const CreateDriveContainer = () => {
       }
     };
     return getCurrentRenderDrive().map((val, index) => {
-      const { id, name, start_time, end_time } = val;
+      const { id, name, start_time, end_time, invitation_sent, appeared, total_submissions } = val;
       if (name.toLowerCase().indexOf(query) > -1) {
         return (
           <tr key={id} id={id}>
@@ -88,6 +88,9 @@ const CreateDriveContainer = () => {
             <td>{name}</td>
             <td>{moment(start_time).format('DD-MMM-YYYY h:m A')}</td>
             <td>{moment(end_time).format('DD-MMM-YYYY h:m A')}</td>
+            <td>{invitation_sent}</td>
+            <td>{appeared}</td>
+            <td>{total_submissions}</td>
             {driveStatus !== completed && (
               <td>
                 <Button onClick={onClickEdit}>Edit</Button>

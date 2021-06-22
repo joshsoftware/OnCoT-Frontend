@@ -24,26 +24,15 @@ const EditProblemComponent = (props) => {
     return <Spinner />;
   }
 
-  const problemSuccess = () => {
-    if (isSuccess) {
-      return (
-        <>
-          <h6 className='text-success pl-5 pt-2'>{message}</h6>
-          <h6 className='text-success pl-5 pt-2'>Problem updated, now make changes in test cases if any</h6>
-        </>
-      );
-    }
-  };
-
   return (
     <Container fluid>
       <Row className='px-3 pt-3'>
-        <h4>Edit Problem</h4>
+        <h4>Update Problem</h4>
       </Row>
       <Row className='p-3' onSubmit={handleSubmit}>
         <Form className='w-100'>
           <Row>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-75'>
               <Label>
                 <h6>Problem Title</h6>
               </Label>
@@ -54,7 +43,7 @@ const EditProblemComponent = (props) => {
                 required
               />
             </FormGroup>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-25'>
               <Label>
                 <h6>Submission Count</h6>
               </Label>
@@ -68,18 +57,19 @@ const EditProblemComponent = (props) => {
           </Row>
 
           <Row>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-75'>
               <Label for='exampleText'>Problem Description</Label>
               <Input
                 type='textarea'
                 name='text'
                 id='exampleText'
+                style={{ height: 400 }}
                 defaultValue={problemDetails.description}
                 onChange={handleDescriptionChange}
                 required
               />
             </FormGroup>
-            <FormGroup className='px-3 w-50'>
+            <FormGroup className='px-3 w-25'>
               <Label>
                 <h6>Time in minutes</h6>
               </Label>
@@ -93,14 +83,13 @@ const EditProblemComponent = (props) => {
           </Row>
 
           <Row className='p-3'>
-            <Button disabled={isSuccess} className=''>
+            <Button className=''>
               {isLoading ? (
                 <Spinner size='sm' color='light' />
               ) : (
                 <>Update Problem</>
               )}
             </Button>
-            {problemSuccess()}
           </Row>
         </Form>
       </Row>

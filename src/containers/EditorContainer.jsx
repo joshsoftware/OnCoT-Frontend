@@ -121,8 +121,8 @@ function EditorContainer() {
           candidateId,
           driveID,
         };
+        setModal(true);
         dispatch(submitRequest(obj));
-        toggle();
       } else {
         // TODO handle error
       }

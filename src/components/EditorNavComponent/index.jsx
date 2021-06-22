@@ -61,7 +61,7 @@ function EditorNavComponent({
   // needed count of clicks on submit button in order to show finish button
   const onSubmitClick = () => {
     clicks += 1;
-    if (limit) {
+    if (!limit) {
       toggleConfirmation();
     }
   };
@@ -116,12 +116,6 @@ function EditorNavComponent({
       </Modal>
 
       <Modal className='modal-color' isOpen={finishModal} toggle={toggleFinish}>
-        <ModalHeader
-          className='bg-dark text-white border-0'
-          toggle={toggleFinish}
-        >
-          Finish the test
-        </ModalHeader>
         <ModalBody className='bg-secondary border-0 text-white'>
           <p>Do you want to Submit the test?</p>
         </ModalBody>

@@ -100,11 +100,12 @@ function EditorContainer() {
 
   const editorDidMount = useCallback((editor) => {
     editor.onKeyDown((event) => {
-      const { which, ctrlKey, metaKey } = event;
+      const { keyCode, ctrlKey, metaKey } = event;
+
       // Enable copy paste for first live drive
-      // if ((which === keyValueC || keyValueV) && (metaKey || ctrlKey)) {
-      //   event.preventDefault();
-      // }
+      if ((metaKey || ctrlKey) && (keyCode === 52)) {
+        event.preventDefault();
+      }
     });
     editor.focus();
   }, []);
@@ -120,8 +121,8 @@ function EditorContainer() {
           candidateId,
           driveID,
         };
+        setModal(true);
         dispatch(submitRequest(obj));
-        toggle();
       } else {
         // TODO handle error
       }

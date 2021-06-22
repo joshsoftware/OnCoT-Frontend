@@ -18,12 +18,7 @@ const HeaderIDE = (props) => {
 
   return (
     <Container fluid className='p-0'>
-      <Navbar
-        className='bg-dark justify-content-around custom-height'
-        md={12}
-        xl={12}
-        lg={12}
-      >
+      <Navbar className='bg-dark justify-content-around min-vh-10'>
         <NavbarBrand className='mx-5 text-white font-weight-bold'>
           <h3 className='font-weight-bold'>{organisationName}</h3>
         </NavbarBrand>

@@ -50,7 +50,7 @@ const CustomIOComponent = ({
                   </Button>
                 </CardHeader>
 
-                <CardBody>
+                <CardBody className='inputOutputCard'>
                   <Input
                     className='outputScreen h-100 bg-dark border-secondary font-weight-bold text-white'
                     type='textarea'

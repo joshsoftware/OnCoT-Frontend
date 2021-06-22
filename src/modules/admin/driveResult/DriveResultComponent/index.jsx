@@ -56,10 +56,11 @@ const DriveResultComponent = ({
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Score</th>
+                <th>Snapshots</th>
               </tr>
             </thead>
             {error()}
-            <tbody className='bg-secondary'>{renderTableData}</tbody>
+            <tbody>{renderTableData}</tbody>
           </Table>
         </Row>
         {pageCount > 1 && (

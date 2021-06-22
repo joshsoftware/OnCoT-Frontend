@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import './rule.css';
 
@@ -28,6 +28,11 @@ const RuleComponent = ({
   rules,
   finishProblemCreation,
 }) => {
+  const scrollDiv = createRef();
+  const scrollSmoothHandler = () => {
+    scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <Container fluid>
       <Row className='p-3 w-100 d-flex'>
@@ -51,7 +56,7 @@ const RuleComponent = ({
                       <td> {key + 1} </td>
                       <td className='rule border-right'> {ruleIterator.description} </td>
                       <td>
-                        <Button onClick={() => handleOnRuleEdit(ruleIterator.id)} className='btn btn-sm btn-primary'>Edit</Button>
+                        <Button onClick={() => { scrollSmoothHandler(); handleOnRuleEdit(ruleIterator.id); }} className='btn btn-sm btn-primary'>Edit</Button>
                         <Button onClick={() => window.confirm('Are you sure you wish to delete this item?') && handleOnRuleDelete(ruleIterator.id)} className='btn btn-sm btn-danger button_margin'>Delete</Button>
                       </td>
                     </tr>
@@ -66,9 +71,9 @@ const RuleComponent = ({
             <h3>Add New Rule</h3>
           </Label>
           <FormGroup>
-            <Label>
+            <div ref={scrollDiv}>
               <h6>Rule</h6>
-            </Label>
+            </div>
             <Input type='text' invalid={ruleErrTxt !== ''} value={rule} onChange={handleRuleChange} placeholder='Rule description' />
             <FormFeedback>{ruleErrTxt}</FormFeedback>
           </FormGroup>

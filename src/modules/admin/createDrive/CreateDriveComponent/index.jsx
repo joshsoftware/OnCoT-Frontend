@@ -106,6 +106,7 @@ const CreateDriveComponent = (props) => {
                 <Input
                   type='datetime-local'
                   onChange={handleDriveStartChange}
+                  placeholder='dd/mm/yyyy, hh:mm'
                   invalid={startTimeErrTxt !== ''}
                 />
                 <FormFeedback>{startTimeErrTxt}</FormFeedback>
@@ -117,6 +118,7 @@ const CreateDriveComponent = (props) => {
                 <Input
                   type='datetime-local'
                   onChange={handleDriveEndChange}
+                  placeholder='dd/mm/yyyy, hh:mm'
                   invalid={endTimeErrTxt !== ''}
                 />
                 <FormFeedback>{endTimeErrTxt}</FormFeedback>

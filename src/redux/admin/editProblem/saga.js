@@ -6,6 +6,7 @@ import {
 } from 'redux/admin/editProblem/action';
 import { editProblemPutApi } from 'redux/admin/editProblem/api';
 import { EDIT_PROBLEM } from 'redux/admin/editProblem/actionConstants';
+import { toast } from 'react-toastify';
 
 // worker saga
 export function* editProblemSaga(action) {
@@ -18,6 +19,7 @@ export function* editProblemSaga(action) {
   };
   try {
     const response = yield call(editProblemPutApi, data);
+    toast.success('Problem updated successfully');
     yield put(editProblemSuccessAction({
       message: response.data.message,
       pid: response.data.data.problem.id,

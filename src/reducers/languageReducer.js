@@ -3,7 +3,7 @@ import { LANGUAGE } from 'constants/actionConstants';
 const initialState = {
   languages: [],
   languageSelected: {},
-  code: '# Write your code here',
+  code: '# Write your code here (Accept input from stdin using gets and print output using puts)',
 };
 
 const languageReducer = (state = initialState, action = {}) => {

@@ -20,6 +20,7 @@ import { HOME_SCREENS } from 'modules/admin/home/HomeContainer/constants';
 import './style.css';
 import ProblemDetailsContainer from 'modules/admin/problemDetails/ProblemDetailsContainer';
 import UserProfileContainer from 'modules/admin/userProfile/UserProfileContainer';
+import SnapshotsContainer from 'modules/admin/snapshots/SnapshotsContainer';
 
 const HomeComponent = (props) => {
   const { currentHomeComponent } = props;
@@ -70,6 +71,9 @@ const HomeComponent = (props) => {
           )}
           {currentHomeComponent === HOME_SCREENS.INVITE_USER && (
             <InviteUserContainer />
+          )}
+          {currentHomeComponent === HOME_SCREENS.SNAPSHOTS && (
+            <SnapshotsContainer />
           )}
         </Col>
       </Row>

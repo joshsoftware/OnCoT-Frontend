@@ -15,6 +15,9 @@ export const reducer = produce((state, action) => {
     case 'end_time':
       state.data.drive.end_time = payload;
       break;
+    case 'is_assessment':
+      state.data.drive.is_assessment = payload;
+      break;
     case 'problem':
       state.currentProblems = payload;
       break;

@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import CreateProblemComponent from 'modules/admin/createProblem/CreateProblemComponent';
 import { reducer } from 'modules/admin/createProblem/CreateProblemContainer/reducer';
 import { createProblemRequestAction } from 'redux/admin/createProblem/action';
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 
 const CreateProblemContainer = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { message, isSuccess, isLoading } = useSelector((state) => state.createProblemReducer);
   const initialUserState = {
     title: '',
@@ -73,10 +76,7 @@ const CreateProblemContainer = () => {
   });
 
   const finishProblemCreation = useCallback(() => {
-    dispatch({
-      type: 'PROBLEMS',
-      payload: 'PROBLEMS',
-    });
+    history.push(ROUTES.ADMIN + ADMIN_ROUTES.PROBLEMS);
   });
   return (
     <CreateProblemComponent

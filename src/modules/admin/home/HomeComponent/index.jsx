@@ -27,56 +27,50 @@ const HomeComponent = (props) => {
 
   return (
     <Container className='h-100 ' fluid>
-      <Row>
+      {/* <Row>
         <AdminHeader />
       </Row>
       <Row>
-        <Col>
+      <Col>
           <SideNavContainer />
         </Col>
-        <Col className='max-height overflow-auto' md={10} lg={10} xl={10}>
-          {currentHomeComponent === HOME_SCREENS.HOME && <AdminHomeConatiner />}
-          {currentHomeComponent === HOME_SCREENS.EDIT_DRIVE && (
-            <EditDriveContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
-            <SendEmailInviteContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.SHOW_CANDIDATES && (
-            <ShowCandidateListContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
-            <DriveResultContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
-            <CreateDriveContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
-            <ProblemsListContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.PROBLEM_DETAILS && (
-            <ProblemDetailsContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.CREATE_PROBLEM && (
-            <CreateProblemContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.EDIT_PROBLEM && (
-            <EditProblemContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.DEFAULT_RULES && (
-            <DefaultRulesContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.USER_PROFILE && (
-            <UserProfileContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.INVITE_USER && (
-            <InviteUserContainer />
-          )}
-          {currentHomeComponent === HOME_SCREENS.SNAPSHOTS && (
-            <SnapshotsContainer />
-          )}
-        </Col>
-      </Row>
+      <Col className='max-height overflow-auto' md={10} lg={10} xl={10}> */}
+      {/* {currentHomeComponent === HOME_SCREENS.HOME && <AdminHomeConatiner />}
+      {/* {currentHomeComponent === HOME_SCREENS.EDIT_DRIVE && (
+        <EditDriveContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.INVITE_CANDIDATES && (
+        <SendEmailInviteContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.SHOW_CANDIDATES && (
+        <ShowCandidateListContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.DRIVE_RESULT && (
+        <DriveResultContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.CREATE_DRIVE && (
+        <CreateDriveContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.PROBLEMS && (
+        <ProblemsListContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.PROBLEM_DETAILS && (
+        <ProblemDetailsContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.CREATE_PROBLEM && (
+        <CreateProblemContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.EDIT_PROBLEM && (
+        <EditProblemContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.DEFAULT_RULES && (
+        <DefaultRulesContainer />
+      )}
+      {currentHomeComponent === HOME_SCREENS.USER_PROFILE && (
+        <UserProfileContainer />
+      )} */}
+      {/* </Col>
+      </Row> */}
     </Container>
   );
 };

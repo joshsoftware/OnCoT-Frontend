@@ -12,14 +12,14 @@ import local from 'utils/local';
 export function* driveDetails(action) {
   try {
     const response = yield call(driveDetail, action.payload.token);
-    const { candidate_id } = response.data.data;
+    const { candidate_id, drive_start_time, drive_end_time } = response.data.data;
     const { id, name, start_time, end_time } = response.data.data.drive;
     const userDriveDetails = {
       data: {
         id,
         name,
-        startTime: start_time,
-        endTime: end_time,
+        startTime: drive_start_time,
+        endTime: drive_end_time,
       },
       candidateId: candidate_id,
     };

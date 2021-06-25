@@ -31,6 +31,7 @@ const CreateDriveContainer = () => {
         created_by_id: '',
         updated_by_id: '',
         organization_id: '',
+        is_assessment: false,
       },
     },
     nameErrTxt: '',
@@ -53,8 +54,6 @@ const CreateDriveContainer = () => {
   const schema = yup.object().shape({
     name: yup.string().required(),
     description: yup.string().required(),
-    start_time: yup.string().required(),
-    end_time: yup.string().required(),
     drives_problems_attributes: yup.array()
       .of(
         yup.object().shape({
@@ -157,10 +156,21 @@ const CreateDriveContainer = () => {
     [createDrive.data.drive.end_time],
   );
 
+  const handleIsAssessmentChange = useCallback(
+    (assessmentStatus) => {
+      const isAssessment = assessmentStatus;
+      setCreateDrive({
+        type: 'is_assessment',
+        payload: isAssessment,
+      });
+    },
+    [createDrive.data.drive.is_assessment],
+  );
+
   const onCreateDriveSubmit = () => {
     const {
       data: {
-        drive: { id, name, description, start_time, end_time },
+        drive: { id, name, description, start_time, end_time, is_assessment },
       },
       currentProblems,
     } = createDrive;
@@ -178,6 +188,7 @@ const CreateDriveContainer = () => {
       description,
       start_time,
       end_time,
+      is_assessment,
       drives_problems_attributes,
     };
 
@@ -211,6 +222,7 @@ const CreateDriveContainer = () => {
       endTimeErrTxt={createDrive.endTimeErrTxt}
       problemErrTxt={createDrive.problemErrTxt}
       createDrive={createDrive}
+      handleIsAssessmentChange={handleIsAssessmentChange}
     />
   );
 };

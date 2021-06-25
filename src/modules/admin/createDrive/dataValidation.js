@@ -25,7 +25,7 @@ export const validateData = (schema, postData, setCreateDrive) => {
       } if (ele.path === 'drives_problems_attributes[0].problem_id') {
         setCreateDrive({
           type: 'problemErrTxt',
-          payload: ele.message,
+          payload: 'Please select problem',
         });
       }
     });

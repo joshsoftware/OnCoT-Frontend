@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Row,
@@ -30,10 +30,9 @@ const CreateDriveComponent = (props) => {
     isSuccess,
     nameErrTxt,
     descriptionErrTxt,
-    startTimeErrTxt,
-    endTimeErrTxt,
     problemErrTxt,
     createDrive,
+    handleIsAssessmentChange,
   } = props;
   const nothing = '';
 
@@ -60,6 +59,13 @@ const CreateDriveComponent = (props) => {
         </>
       );
     }
+  };
+
+  const [isAssessment, setIsAssessment] = useState(true);
+
+  const handleFlg = () => {
+    setIsAssessment(isAssessment !== true);
+    handleIsAssessmentChange(isAssessment);
   };
 
   return (
@@ -98,32 +104,44 @@ const CreateDriveComponent = (props) => {
               </FormGroup>
             </Row>
 
-            <Row className='px-3 w-100 d-flex'>
-              <FormGroup className='pt-3 px-3 w-25'>
-                <Label>
-                  <h4>Drive Start Date</h4>
-                </Label>
+            <Row className='px-3'>
+              <FormGroup className='px-3 w-50 h4'>
+                External assessment
                 <Input
-                  type='datetime-local'
-                  onChange={handleDriveStartChange}
-                  placeholder='dd/mm/yyyy, hh:mm'
-                  invalid={startTimeErrTxt !== ''}
+                  className='ml-2'
+                  style={{ width: '20px', height: '20px' }}
+                  type='checkbox'
+                  onChange={handleFlg}
                 />
-                <FormFeedback>{startTimeErrTxt}</FormFeedback>
-              </FormGroup>
-              <FormGroup className='pt-3 w-25'>
-                <Label>
-                  <h4>Drive End Date</h4>
-                </Label>
-                <Input
-                  type='datetime-local'
-                  onChange={handleDriveEndChange}
-                  placeholder='dd/mm/yyyy, hh:mm'
-                  invalid={endTimeErrTxt !== ''}
-                />
-                <FormFeedback>{endTimeErrTxt}</FormFeedback>
               </FormGroup>
             </Row>
+
+            {isAssessment && (
+              <>
+                <Row className='px-3 w-100 d-flex'>
+                  <FormGroup className='pt-3 px-3 w-25'>
+                    <Label>
+                      <h4>Drive Start Date</h4>
+                    </Label>
+                    <Input
+                      type='datetime-local'
+                      onChange={handleDriveStartChange}
+                      placeholder='dd/mm/yyyy, hh:mm'
+                    />
+                  </FormGroup>
+                  <FormGroup className='pt-3 w-25'>
+                    <Label>
+                      <h4>Drive End Date</h4>
+                    </Label>
+                    <Input
+                      type='datetime-local'
+                      onChange={handleDriveEndChange}
+                      placeholder='dd/mm/yyyy, hh:mm'
+                    />
+                  </FormGroup>
+                </Row>
+              </>
+            )}
 
             <Row className='px-3 w-100 d-flex'>
 
@@ -170,10 +188,9 @@ CreateDriveComponent.propTypes = {
   isSuccess: PropTypes.bool.isRequired,
   nameErrTxt: PropTypes.string.isRequired,
   descriptionErrTxt: PropTypes.string.isRequired,
-  startTimeErrTxt: PropTypes.string.isRequired,
-  endTimeErrTxt: PropTypes.string.isRequired,
   problemErrTxt: PropTypes.string.isRequired,
   createDrive: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleIsAssessmentChange: PropTypes.func.isRequired,
 };
 
 export default React.memo(CreateDriveComponent);

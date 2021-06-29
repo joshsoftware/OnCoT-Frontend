@@ -86,8 +86,8 @@ const CreateDriveContainer = () => {
           <tr key={id} id={id}>
             <td className='data'>{id}</td>
             <td>{name}</td>
-            <td>{moment(start_time).format('DD-MMM-YYYY h:m A')}</td>
-            <td>{moment(end_time).format('DD-MMM-YYYY h:m A')}</td>
+            <td>{start_time ? moment(start_time).format('DD-MMM-YYYY h:m A') : 'NA'}</td>
+            <td>{end_time ? moment(end_time).format('DD-MMM-YYYY h:m A') : 'NA'}</td>
             <td>{invitation_sent}</td>
             <td>{appeared}</td>
             <td>{total_submissions}</td>

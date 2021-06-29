@@ -18,17 +18,12 @@ const getSeparatedDrives = (data) => {
   data.drives.map((val, index) => {
     const { start_time, end_time } = val;
 
-    if (
-      Date.now() > Date.parse(start_time) &&
-      Date.now() < Date.parse(end_time)
-    ) {
-      customData.drives.ongoingDrives.push(val);
-    }
     if (Date.now() > Date.parse(end_time)) {
       customData.drives.completedDrives.push(val);
-    }
-    if (Date.now() < Date.parse(start_time)) {
+    } else if (Date.now() < Date.parse(start_time)) {
       customData.drives.upcomingDrives.push(val);
+    } else {
+      customData.drives.ongoingDrives.push(val);
     }
     return true;
   });

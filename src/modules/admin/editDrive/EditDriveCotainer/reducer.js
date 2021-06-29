@@ -10,6 +10,7 @@ export const initialState =
       created_by_id: '',
       updated_by_id: '',
       organization_id: '',
+      is_assessment: false,
     },
   },
   message: '',
@@ -35,12 +36,16 @@ const reducer = (state = initialState, action = {}) => {
     case 'problem':
       state.currentProblems = payload;
       break;
+    case 'is_assessment':
+      state.data.drive.is_assessment = payload;
+      break;
     case 'drive':
       state.data.drive.name = payload.name;
       state.data.drive.description = payload.description;
       state.data.drive.start_time = payload.start_time;
       state.data.drive.end_time = payload.end_time;
       state.currentProblems = payload.problem;
+      state.data.drive.is_assessment = payload.is_assessment;
       break;
     default:
       return state;

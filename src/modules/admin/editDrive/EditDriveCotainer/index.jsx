@@ -29,6 +29,7 @@ const EditDriveContainer = () => {
         created_by_id: '',
         updated_by_id: '',
         organization_id: '',
+        is_assessment: false,
       },
     },
     nameErrTxt: '',
@@ -50,8 +51,6 @@ const EditDriveContainer = () => {
   const schema = yup.object().shape({
     name: yup.string().required(),
     description: yup.string().required(),
-    start_time: yup.string().required(),
-    end_time: yup.string().required(),
     drives_problems_attributes: yup.array()
       .of(
         yup.object().shape({
@@ -67,7 +66,9 @@ const EditDriveContainer = () => {
       setDriveDetails(driveData);
     }
 
-    const { name, description, start_time, end_time, drives_problems } = driveData.drive;
+    const { name, description, start_time, end_time,
+      drives_problems, is_assessment } = driveData.drive;
+
     setEditDrive({
       type: 'drive',
       payload: {
@@ -77,6 +78,10 @@ const EditDriveContainer = () => {
         end_time,
         problem: drives_problems[drives_problems.length - 1].problem_id,
       },
+    });
+    setEditDrive({
+      type: 'is_assessment',
+      payload: is_assessment === true,
     });
 
     const data = await getProblems();
@@ -159,10 +164,21 @@ const EditDriveContainer = () => {
     [editDrive.data.drive.end_time],
   );
 
+  const handleIsAssessmentChange = useCallback(
+    (assessmentStatus) => {
+      const isAssessment = assessmentStatus;
+      setEditDrive({
+        type: 'is_assessment',
+        payload: isAssessment,
+      });
+    },
+    [editDrive.data.drive.is_assessment],
+  );
+
   const onEditDriveSubmit = () => {
     const {
       data: {
-        drive: { id, name, description, start_time, end_time },
+        drive: { id, name, description, start_time, end_time, is_assessment },
       },
       currentProblems,
     } = editDrive;
@@ -184,6 +200,7 @@ const EditDriveContainer = () => {
       start_time,
       end_time,
       drives_problems_attributes,
+      is_assessment,
     };
 
     schema.isValid(putData).then(async (valid) => {
@@ -212,6 +229,7 @@ const EditDriveContainer = () => {
       message={message}
       nameErrTxt={editDrive.nameErrTxt}
       descriptionErrTxt={editDrive.descriptionErrTxt}
+      handleIsAssessmentChange={handleIsAssessmentChange}
     />
   );
 };

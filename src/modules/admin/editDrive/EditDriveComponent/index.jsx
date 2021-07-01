@@ -31,17 +31,23 @@ const EditDriveComponent = (props) => {
     nameErrTxt,
     descriptionErrTxt,
     handleIsAssessmentChange,
+    problemErrTxt,
   } = props;
   const nothing = '';
 
   if (problemIsLoading) {
     return <Spinner />;
   }
-  const len = driveDetails.drive.drives_problems.length;
-  const details = driveDetails.drive.drives_problems[len - 1];
+
   const options = [];
   data.map((e) => {
     return options.push({ value: e.id, label: e.title });
+  });
+
+  const defaultProblems = [];
+  driveDetails.drive.drives_problems.map((e) => {
+    const problem = options.find((x) => x.value === e.problem_id);
+    return defaultProblems.push(problem);
   });
 
   const [isAssessment, setIsAssessment] = useState(driveDetails.drive.is_assessment !== true);
@@ -140,11 +146,13 @@ const EditDriveComponent = (props) => {
                     className='w-100'
                     id='problems'
                     value={options.id}
-                    placeholder={options.find((x) => x.value === details.problem_id).label}
+                    defaultValue={defaultProblems}
                     onChange={handleSelectedProblemChange}
                     options={options}
+                    isMulti
                   />
                 </Row>
+                <div className='text-danger'>{problemErrTxt}</div>
               </FormGroup>
             </Row>
             <Row className='p-3'>
@@ -174,6 +182,7 @@ EditDriveComponent.propTypes = {
   nameErrTxt: PropTypes.string.isRequired,
   descriptionErrTxt: PropTypes.string.isRequired,
   handleIsAssessmentChange: PropTypes.func.isRequired,
+  problemErrTxt: PropTypes.string.isRequired,
 };
 
 export default React.memo(EditDriveComponent);

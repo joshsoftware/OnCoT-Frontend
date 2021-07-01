@@ -1,5 +1,5 @@
-export const validateData = (schema, putData, setEditDrive) => {
-  schema.validate(putData, { abortEarly: false }).catch((err) => {
+export const validateData = (schema, validData, setEditDrive) => {
+  schema.validate(validData, { abortEarly: false }).catch((err) => {
     err.inner.forEach((ele) => {
       if (ele.path === 'name') {
         setEditDrive({
@@ -22,7 +22,7 @@ export const validateData = (schema, putData, setEditDrive) => {
           type: 'end_timeErrTxt',
           payload: ele.message,
         });
-      } if (ele.path === 'drives_problems_attributes[0].problem_id') {
+      } if (ele.path === 'currentProblems') {
         setEditDrive({
           type: 'problemErrTxt',
           payload: ele.message,

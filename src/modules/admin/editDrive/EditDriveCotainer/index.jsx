@@ -13,6 +13,8 @@ import EditDriveComponent from 'modules/admin/editDrive/EditDriveComponent';
 import { toast } from 'react-toastify';
 import { reducer } from 'modules/admin/createDrive/CreateDriveCotainer/reducer';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
+import { ADMIN_ROUTES, ROUTES } from 'constants/routeConstants';
 import { editDriveRequestAction } from 'redux/admin/editDrive/action';
 import { Spinner } from 'core-components';
 
@@ -38,7 +40,7 @@ const EditDriveContainer = () => {
     endTimeErrTxt: '',
     problemErrTxt: '',
     message: '',
-    currentProblems: '',
+    currentProblems: [],
     problemLoading: true,
   };
   const [driveDetails, setDriveDetails] = useState();
@@ -47,17 +49,12 @@ const EditDriveContainer = () => {
   const [problemsData, setProblemsData] = useState([]);
   const { message } = editDrive;
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const schema = yup.object().shape({
     name: yup.string().required(),
     description: yup.string().required(),
-    drives_problems_attributes: yup.array()
-      .of(
-        yup.object().shape({
-          problem_id: yup.number().required('Please select a problem'),
-        }),
-      )
-      .required('Required'),
+    currentProblems: yup.array().min(1, 'Please select problem(s)'),
   });
 
   useEffect(async () => {
@@ -76,21 +73,27 @@ const EditDriveContainer = () => {
         description,
         start_time,
         end_time,
-        problem: drives_problems[drives_problems.length - 1].problem_id,
       },
     });
     setEditDrive({
       type: 'is_assessment',
       payload: is_assessment === true,
     });
+    setEditDrive({
+      type: 'resetCurrentProblems',
+    });
+    console.log('drives_problems', drives_problems);
+    for (let i = 0; i < drives_problems.length; i += 1) {
+      setEditDrive({
+        type: 'problem',
+        payload: drives_problems[i].problem_id,
+      });
+    }
 
     const data = await getProblems();
     const { problems, problemLoading } = data;
     if (problems.length === 0) {
-      dispatch({
-        type: 'PROBLEMS',
-        payload: 'PROBLEMS',
-      });
+      history.push(ROUTES.ADMIN + ADMIN_ROUTES.PROBLEMS);
       return toast.error('You haven\'t added any problems yet. Please add problem to edit drive');
     }
     if (!problemLoading) {
@@ -101,11 +104,19 @@ const EditDriveContainer = () => {
 
   const handleSelectedProblemChange = useCallback(
     (event) => {
-      const problem = event.value;
       setEditDrive({
-        type: 'problem',
-        payload: problem,
+        type: 'problemErrTxt',
+        payload: '',
       });
+      setEditDrive({
+        type: 'resetCurrentProblems',
+      });
+      for (let i = 0; i < event.length; i += 1) {
+        setEditDrive({
+          type: 'problem',
+          payload: event[i].value,
+        });
+      }
     },
     [editDrive.currentProblems],
   );
@@ -174,7 +185,8 @@ const EditDriveContainer = () => {
     },
     [editDrive.data.drive.is_assessment],
   );
-
+  console.log('editDrive', editDrive.currentProblems);
+  console.log('dd 1', driveDetails);
   const onEditDriveSubmit = () => {
     const {
       data: {
@@ -182,17 +194,42 @@ const EditDriveContainer = () => {
       },
       currentProblems,
     } = editDrive;
-    const problemId = currentProblems;
-    const drivesProblemsid =
-      driveDetails.drive.drives_problems[driveDetails.drive.drives_problems.length - 1].id;
 
-    const drives_problems_attributes = [
-      {
-        id: drivesProblemsid,
-        problem_id: problemId,
-        _destroy: false,
-      },
-    ];
+    let drives_problems_attributes = [];
+    const newProblems = [];
+    console.log();
+    for (let i = 0; i < currentProblems.length; i += 1) {
+      let flg = 1;
+      for (let j = 0; j < driveDetails.drive.drives_problems.length; j += 1) {
+        if (driveDetails.drive.drives_problems[j].problem_id === currentProblems[i]) {
+          flg = 0;
+          break;
+        }
+      }
+      if (flg) newProblems.push(currentProblems[i]);
+    }
+    console.log('newProblems', newProblems);
+    const oldProblems =
+      driveDetails.drive.drives_problems.filter((x) => !currentProblems.includes(x.problem_id));
+    console.log('oldProblems', oldProblems);
+    for (let i = 0; i < oldProblems.length; i += 1) {
+      drives_problems_attributes.push(
+        {
+          id: oldProblems[i].id,
+          problem_id: oldProblems[i].problem_id,
+          _destroy: true,
+        },
+      );
+    }
+
+    for (let i = 0; i < newProblems.length; i += 1) {
+      drives_problems_attributes.push(
+        {
+          problem_id: newProblems[i],
+          _destroy: false,
+        },
+      );
+    }
 
     const putData = {
       name,
@@ -202,12 +239,22 @@ const EditDriveContainer = () => {
       drives_problems_attributes,
       is_assessment,
     };
+    const validData = {
+      name,
+      description,
+      currentProblems,
+    };
 
-    schema.isValid(putData).then(async (valid) => {
+    schema.isValid(validData).then(async (valid) => {
       if (!valid) {
-        validateData(schema, putData, setEditDrive);
+        validateData(schema, validData, setEditDrive);
       } else {
-        dispatch(editDriveRequestAction({ putData, problemId }));
+        dispatch(editDriveRequestAction({ putData }));
+        drives_problems_attributes = [];
+        // driveDetails.drive.drives_problems = [];
+        // driveDetails.drive.drives_problems.push(...currentProblems);
+        console.log('cp', currentProblems);
+        console.log('dd', driveDetails.drive.drives_problems);
       }
     });
   };
@@ -230,6 +277,7 @@ const EditDriveContainer = () => {
       nameErrTxt={editDrive.nameErrTxt}
       descriptionErrTxt={editDrive.descriptionErrTxt}
       handleIsAssessmentChange={handleIsAssessmentChange}
+      problemErrTxt={editDrive.problemErrTxt}
     />
   );
 };

@@ -11,9 +11,9 @@ import { EDIT_DRIVE } from 'redux/admin/editDrive/actionConstants';
 import { toast } from 'react-toastify';
 
 export function* editDriveSaga(action) {
-  const { putData, problemId } = action.payload;
+  const { putData } = action.payload;
   try {
-    const response = yield call(editDrivePutApi, putData, problemId);
+    const response = yield call(editDrivePutApi, putData);
     toast.success('Drive updated successfully');
     yield put(editDriveSuccessAction(response.data));
   } catch (error) {

@@ -14,7 +14,7 @@ export const initialState =
     },
   },
   message: '',
-  currentProblems: '',
+  currentProblems: [],
   problemLoading: true,
 };
 
@@ -34,17 +34,19 @@ const reducer = (state = initialState, action = {}) => {
       state.data.drive.end_time = payload;
       break;
     case 'problem':
-      state.currentProblems = payload;
+      state.currentProblems.push(payload);
       break;
     case 'is_assessment':
       state.data.drive.is_assessment = payload;
+      break;
+    case 'resetCurrentProblems':
+      state.currentProblems = [];
       break;
     case 'drive':
       state.data.drive.name = payload.name;
       state.data.drive.description = payload.description;
       state.data.drive.start_time = payload.start_time;
       state.data.drive.end_time = payload.end_time;
-      state.currentProblems = payload.problem;
       state.data.drive.is_assessment = payload.is_assessment;
       break;
     default:

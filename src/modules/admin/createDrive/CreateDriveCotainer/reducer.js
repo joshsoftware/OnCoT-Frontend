@@ -19,7 +19,7 @@ export const reducer = produce((state, action) => {
       state.data.drive.is_assessment = payload;
       break;
     case 'problem':
-      state.currentProblems = payload;
+      state.currentProblems.push(payload);
       break;
     case 'nameErrTxt':
       state.nameErrTxt = payload;
@@ -35,6 +35,9 @@ export const reducer = produce((state, action) => {
       break;
     case 'problemErrTxt':
       state.problemErrTxt = payload;
+      break;
+    case 'resetCurrentProblems':
+      state.currentProblems = [];
       break;
     case 'resetDriveData':
       state.problemErrTxt = '';
@@ -53,7 +56,7 @@ export const reducer = produce((state, action) => {
       state.data.drive.description = payload.description;
       state.data.drive.start_time = payload.start_time;
       state.data.drive.end_time = payload.end_time;
-      state.currentProblems = payload.problem;
+      state.currentProblems.push(payload.problem);
       break;
     default:
       return state;

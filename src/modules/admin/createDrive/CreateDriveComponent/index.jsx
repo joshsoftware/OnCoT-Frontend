@@ -159,6 +159,7 @@ const CreateDriveComponent = (props) => {
                     value={options.id}
                     onChange={handleSelectedProblemChange}
                     options={options}
+                    isMulti
                   />
                 </Row>
                 <div className='text-danger'>{problemErrTxt}</div>

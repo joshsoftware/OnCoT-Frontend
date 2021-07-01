@@ -9,9 +9,9 @@ import { createDrivePostApi } from 'redux/admin/createDrive/api';
 import { CREATE_DRIVE } from 'redux/admin/createDrive/actionConstants';
 
 export function* createDriveSaga(action) {
-  const { postData, problemId } = action.payload;
+  const { postData } = action.payload;
   try {
-    const response = yield call(createDrivePostApi, postData, problemId);
+    const response = yield call(createDrivePostApi, postData);
     yield put(createDriveSuccessAction(response.data));
   } catch (error) {
     yield put(createDriveFailureAction(error.message));

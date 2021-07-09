@@ -70,6 +70,7 @@ const UserProfileContainer = () => {
       const mobile = userState.mobile.value.trim();
       const currentTime = new Date().toLocaleString();
       const driveID = localStorage.getItem('driveID');
+      const token = localStorage.getItem('authToken');
 
       schema
         .validate(
@@ -89,6 +90,7 @@ const UserProfileContainer = () => {
             createdAt: currentTime,
             candidateId,
             driveID,
+            token,
           };
           dispatch(candidateFormRequestAction(data));
         })

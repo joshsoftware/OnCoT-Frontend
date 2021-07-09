@@ -7,7 +7,8 @@ import {
 } from 'actions/candidateFormActions';
 
 export function* candidateFormSaga(action) {
-  const { fName, lName, mobile, createdAt, updatedAt, candidateId, driveID } = action.payload;
+  const { fName, lName, mobile, createdAt, updatedAt, candidateId,
+    driveID, token } = action.payload;
   const data = {
     first_name: fName,
     last_name: lName,
@@ -15,6 +16,7 @@ export function* candidateFormSaga(action) {
     created_at: createdAt,
     updated_at: updatedAt,
     drife_id: driveID,
+    token,
   };
 
   try {

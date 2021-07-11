@@ -9,6 +9,8 @@ export const initialState = {
     title: '',
     description: '',
     submissionCount: '',
+    timeInMinutes: '',
+    testCase: '',
   },
   errorMessage: '',
   isError: false,
@@ -25,6 +27,7 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
         description: payload.description,
         submissionCount: payload.submission_count,
         timeInMinutes: payload.time_in_minutes,
+        testCase: payload.test_case,
       };
       state.isLoading = false;
       break;

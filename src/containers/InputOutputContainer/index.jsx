@@ -13,6 +13,7 @@ const initialState = {
 
 const CustomIOContainer = () => {
   const { authToken } = useSelector((state) => state.candidateFormReducer);
+  const { testCase } = useSelector((state) => state.problemStatementReducer.statement);
   const broadcastingRoom = `room_${authToken}`;
 
   const [latestToken, setLatestToken] = useState('test_token');
@@ -37,7 +38,7 @@ const CustomIOContainer = () => {
       language_id: languageSelected.id,
       language_name: languageSelected.name,
       source_code: code,
-      stdin: inputOutuptValue.inputValue,
+      stdin: inputOutuptValue.inputValue || testCase,
       room: broadcastingRoom,
     };
 

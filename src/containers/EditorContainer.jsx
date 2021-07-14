@@ -134,7 +134,7 @@ function EditorContainer() {
 
   useEffect(() => {
     codeBackupInterval();
-    const intervalId = setTimeout(intervalActionSetter, 9000);
+    const intervalId = setTimeout(intervalActionSetter, 120000);
     return () => clearTimeout(intervalId);
   }, [intervalActivation]);
 

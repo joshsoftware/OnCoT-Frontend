@@ -37,6 +37,8 @@ const codeSubmissionReducer = produce((state = initialState, action = {}) => {
     case CODE_SUBMISSION.CODE_SUBMISSION_REQUEST:
       state.isLoading = true;
       break;
+    case CODE_SUBMISSION.SET_SUBMISSION_ALLOWED:
+      return { ...initialState, submissionAllowed: payload };
     default:
       return state;
   }

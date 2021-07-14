@@ -5,6 +5,7 @@ import {
   candidateFormSuccessAction,
   candidateFormFailureAction,
 } from 'actions/candidateFormActions';
+import local from 'utils/local';
 
 export function* candidateFormSaga(action) {
   const { fName, lName, mobile, createdAt, updatedAt, candidateId, driveID } = action.payload;
@@ -15,10 +16,11 @@ export function* candidateFormSaga(action) {
     created_at: createdAt,
     updated_at: updatedAt,
     drife_id: driveID,
+    token: local.getItem('authToken'),
   };
-
   try {
     const response = yield call(candidateInfoPostApi, data, candidateId);
+
     const {
       id,
       email,

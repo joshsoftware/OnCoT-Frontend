@@ -6,12 +6,19 @@ import {
   getCurrentTime,
   ifSufficientTime,
 } from 'utils/helpers/HeaderIdeHelper';
+import {
+  setCode,
+  setLanguageSelected,
+} from 'actions/languageAction';
 import HeaderIDE from 'shared-components/Header/HeaderIDE';
 import { Button } from 'core-components';
+import { statementRequest, statementActiveIndex } from 'actions/problemStatementActions';
 
 const HeaderIDEConatiner = () => {
-  const totalProblems = 1;
-  const currentProblem = 1;
+  const { activeIndex, statement } = useSelector((state) => state.problemStatementReducer);
+  const { languages } = useSelector((state) => state.languageReducer);
+  const totalProblems = statement.length;
+  const currentProblem = activeIndex;
 
   const drive = useSelector((state) => state.userDriveReducer);
   const { name } = drive.data;
@@ -20,6 +27,17 @@ const HeaderIDEConatiner = () => {
   const dispatch = useDispatch();
 
   const result = useSelector((state) => state.TimerReducer);
+  const nextProblemSwitch = () => {
+    dispatch(statementActiveIndex(currentProblem + 1));
+    dispatch(setCode('', currentProblem + 1));
+    dispatch(setLanguageSelected(languages[0]));
+  };
+
+  const prevProblemSwitch = () => {
+    dispatch(statementActiveIndex(currentProblem - 1));
+    dispatch(setCode('', currentProblem - 1));
+    dispatch(setLanguageSelected(languages[0]));
+  };
 
   useEffect(() => {
     dispatch(timerRequest());
@@ -44,6 +62,8 @@ const HeaderIDEConatiner = () => {
         organisationName={organisationName}
         time={time}
         ifSufficient={sufficient}
+        nextProblemSwitch={nextProblemSwitch}
+        prevProblemSwitch={prevProblemSwitch}
       />
     </>
   );

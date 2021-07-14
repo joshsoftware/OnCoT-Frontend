@@ -42,7 +42,7 @@ const CustomIOContainer = () => {
     backupCode: {
       answer,
       problem_id: backupCodeProblemId,
-      lang_code: backupLanguageId }
+      lang_code: backupLanguageId },
   } = useSelector((state) => state.codeBackupReducer);
 
   const { id: problemId } = statement[activeIndex - 1] || { problem_id : null };

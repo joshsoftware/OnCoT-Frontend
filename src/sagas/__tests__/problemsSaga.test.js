@@ -13,7 +13,7 @@ describe('Rules Saga', () => {
   const response =
   {
     data: {
-      data: {
+      data: [{
         created_at: '2021-03-08T07:47:39.018Z',
         created_by_id: 1,
         description: 'Description of pr 1',
@@ -23,7 +23,7 @@ describe('Rules Saga', () => {
         title: 'problem p1',
         updated_at: '2021-03-08T07:47:39.018Z',
         updated_by_id: 1,
-      },
+      },]
     },
   };
   const driveId = 1;

@@ -35,8 +35,7 @@ const LoginComponent = (props) => {
     if (isError) {
       return (
         <Toast className='bg-transparent p-2 border-0 shadow-0 text-center'>
-          <p>{errorMessage}</p>
-          <p>Unauthorized User</p>
+          <p>Invalid Credentials</p>
         </Toast>
       );
     }

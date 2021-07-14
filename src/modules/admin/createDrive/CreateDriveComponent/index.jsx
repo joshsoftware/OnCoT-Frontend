@@ -158,6 +158,7 @@ const CreateDriveComponent = (props) => {
                     id='problems'
                     value={options.id}
                     onChange={handleSelectedProblemChange}
+                    isMulti
                     options={options}
                   />
                 </Row>

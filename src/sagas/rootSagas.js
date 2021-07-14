@@ -15,6 +15,7 @@ import editProblemWatcherSaga from 'redux/admin/editProblem/saga';
 import testCaseWatcherSaga from 'redux/admin/testCase/saga';
 import driveResultSaga from 'redux/admin/driveResult/saga';
 import downloadResultSaga from 'redux/admin/downloadResult/saga';
+import saveCodeSaga from 'sagas/codeBackupSaga';
 import finishTestSaga from './finishtestSaga';
 
 export default function* rootSagas() {
@@ -36,5 +37,6 @@ export default function* rootSagas() {
     testCaseWatcherSaga(),
     driveResultSaga(),
     downloadResultSaga(),
+    saveCodeSaga(),
   ]);
 }

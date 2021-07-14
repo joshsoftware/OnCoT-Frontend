@@ -15,11 +15,18 @@ describe('user drive saga', () => {
   const response = {
     data: {
       data: {
-        id: 1,
+        candidate_id: 1,
         name: 'Drive 2021',
-        start_time: '2021-07-07T10:00:00.000Z',
-        end_time: '2021-07-09T12:00:00.000Z',
+        drive_start_time: '2021-07-07T10:00:00.000Z',
+        drive_end_time: '2021-07-09T12:00:00.000Z',
+        drive: {
+          endTime: '2021-07-09T12:00:00.000Z',
+          id: 1, 
+          name: "aa",
+          startTime: '2021-07-07T10:00:00.000Z',
+        }
       },
+      candidateId: 1,
     },
   };
 
@@ -35,9 +42,18 @@ describe('user drive saga', () => {
   });
 
   it('must set drive details', () => {
+    const userDriveDetails = {
+      data: {
+        id: response.data.data.drive.id,
+        name: response.data.data.drive.name,
+        startTime: response.data.data.drive_start_time,
+        endTime: response.data.data.drive_end_time,
+      },
+      candidateId: response.data.data.candidate_id,
+    };
     gen.next();
     expect(gen.next(response).value).toEqual(
-      put(setUserDriveDetails(response.data.data)),
+      put(setUserDriveDetails(userDriveDetails)),
     );
     expect(gen.next().done).toEqual(true);
   });

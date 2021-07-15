@@ -7,7 +7,7 @@ export const statementRequest = (driveId) => ({
 
 export const statementAction = (statement) => ({
   type: PROBLEM_STATEMENT.SET_DETAILS,
-  payload: { ...statement },
+  payload: [...statement],
 });
 
 export const updateSubmissionCount = (updatedVal) => ({
@@ -18,4 +18,9 @@ export const updateSubmissionCount = (updatedVal) => ({
 export const statementActionFailed = (requestError) => ({
   type: PROBLEM_STATEMENT.SET_ERROR_MESSAGE,
   payload: requestError,
+});
+
+export const statementActiveIndex = (index) => ({
+  type: PROBLEM_STATEMENT.SET_ACTIVE_INDEX,
+  payload: index,
 });

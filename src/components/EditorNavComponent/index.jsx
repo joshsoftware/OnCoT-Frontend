@@ -38,6 +38,7 @@ function EditorNavComponent({
   handleConfirmation,
   toggleConfirmation,
   confirmationModal,
+  handleSaveDraft,
 }) {
   const loading = () => {
     if (isLoading) {
@@ -46,7 +47,7 @@ function EditorNavComponent({
   };
 
   const getModalBody = () => {
-    if (!isError) {
+    if (!isError && !isLoading) {
       return (
         <>
           <p>Submission Left: {submissionAllowed}</p>
@@ -91,6 +92,9 @@ function EditorNavComponent({
         </DropdownMenu>
       </ButtonDropdown>
       <div>
+        <Button className='custom-btn bg-color border-0 mr-2' onClick={handleSaveDraft}>
+          Save in Draft
+        </Button>
         <Button
           className='custom-btn bg-color border-0'
           onClick={onSubmitClick}
@@ -186,6 +190,7 @@ EditorNavComponent.propTypes = {
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   limit: PropTypes.bool.isRequired,
+  handleSaveDraft: PropTypes.func.isRequired,
 };
 
 export default React.memo(EditorNavComponent);

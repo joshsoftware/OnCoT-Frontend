@@ -8,6 +8,7 @@ import languageReducer from 'reducers/languageReducer';
 import problemStatementReducer from 'reducers/problemStatementReducer';
 import DriveTimerReducer from 'reducers/driverTimerReducer';
 import codeSubmissionReducer from 'reducers/codeSubmissionReducer';
+import codeBackupReducer from 'reducers/codeBackupReducer';
 import adminLoginReducer from 'redux/admin/login/reducer';
 import adminHomeComponentReducer from 'modules/admin/home/HomeContainer/adminHomeComponentReducer';
 import createDriveReducer from 'redux/admin/createDrive/reducer';
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   testReducer,
   driveResultReducer,
   downloadResultReducer,
+  codeBackupReducer,
 });
 
 export default rootReducer;

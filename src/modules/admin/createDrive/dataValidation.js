@@ -22,10 +22,10 @@ export const validateData = (schema, postData, setCreateDrive) => {
           type: 'end_timeErrTxt',
           payload: ele.message,
         });
-      } if (ele.path === 'drives_problems_attributes[0].problem_id') {
+      } if (ele.path === 'drives_problems_attributes') {
         setCreateDrive({
           type: 'problemErrTxt',
-          payload: 'Please select problem',
+          payload: ele.message,
         });
       }
     });

@@ -11,7 +11,11 @@ import { getTimer } from 'apis/timerApi';
 describe('Timer Saga', () => {
   let gen;
   const response = {
-    data: 7200,
+    data: {
+      data: {
+        time_left: 7200,
+      }
+    }
   };
 
   beforeEach(() => {
@@ -22,9 +26,10 @@ describe('Timer Saga', () => {
     expect(gen.next().value).toEqual(call(getTimer));
   });
 
+
   it('Dispatch successful', () => {
     gen.next();
-    expect(gen.next(response).value).toEqual(put(timerAction(response.data)));
+    expect(gen.next(response).value).toEqual(put(timerAction(response.data.data.time_left)));
     expect(gen.next().done).toEqual(true);
   });
 

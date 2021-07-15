@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import EditorNavComponent from 'components/EditorNavComponent';
 import EditorPadComponent from 'components/EditorPadComponent';
@@ -12,6 +13,7 @@ import {
   setCode,
 } from 'actions/languageAction';
 import { submitRequest } from 'actions/codeSubmissionActions';
+import { saveCode, backupCodeRequest } from 'actions/codeBackupAction';
 import {
   options,
   keyValueC,
@@ -21,16 +23,22 @@ import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 import isEmpty from 'utils/isEmpty';
 import local from 'utils/local';
+import { currentLangState } from 'utils/helpers/currentLanguageHelper';
+import { getLCP } from 'web-vitals';
 
 function EditorContainer() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const codes = {};
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
+  const [intervalActivation, setIntervalActivation] = useState(true);
 
-  const { languages, languageSelected, code } = useSelector(
+  const { languages } = useSelector(
     (state) => state.languageReducer,
   );
+
+  let { code, languageSelected } = useSelector((state) => state.languageReducer);
 
   const {
     isError,
@@ -42,8 +50,46 @@ function EditorContainer() {
   } = useSelector((state) => state.codeSubmissionReducer);
 
   const {
-    statement: { id, submissionCount },
+    statement,
+    activeIndex,
   } = useSelector((state) => state.problemStatementReducer);
+
+  const {
+    backupCode: {
+      answer,
+      problem_id: backupCodeProblemId,
+      lang_code: backupLanguageId,
+      submission_count_left: leftSubmissionCount,
+    },
+    errorMessage: backupCodeErrMsg,
+    isError: backupCodeErr,
+  } = useSelector((state) => state.codeBackupReducer);
+
+  const { id: problemId } = statement[activeIndex - 1] || { problem_id : null };
+  if (problemId) {
+    const { currCode, currLanguageSelected, currSubmissionAllowed }
+      = currentLangState(
+        code,
+        answer,
+        problemId,
+        languages,
+        backupLanguageId,
+        languageSelected,
+        backupCodeProblemId,
+        submissionAllowed,
+        leftSubmissionCount,
+      );
+
+    code = currCode;
+    if (languageSelected.id !== currLanguageSelected.id) {
+      dispatch(setLanguageSelected(currLanguageSelected));
+    }
+    languageSelected = currLanguageSelected;
+    codes[problemId] = {
+      code: currCode,
+      languageSelected: currLanguageSelected,
+    };
+  }
 
   const { candidateId } = useSelector((state) => state.userDriveReducer);
 
@@ -65,6 +111,40 @@ function EditorContainer() {
     },
     [dispatch],
   );
+
+  const codeBackupInterval = () => {
+    if (
+      code != null &&
+      languageId != null &&
+      problemId != null &&
+      candidateId != null &&
+      driveID != null
+    ) {
+      const obj = {
+        code,
+        languageId,
+        problemId,
+        candidateId,
+        driveID,
+      };
+      dispatch(saveCode(obj));
+    }
+  };
+
+  const intervalActionSetter = () => {
+    setIntervalActivation(!intervalActivation);
+  };
+
+  useEffect(() => {
+    codeBackupInterval();
+    const intervalId = setTimeout(intervalActionSetter, 120000);
+    return () => clearTimeout(intervalId);
+  }, [intervalActivation]);
+
+  useEffect(() => {
+    dispatch(backupCodeRequest(problemId));
+  }, [problemId]);
+
   const [limit, setlimit] = useState(false);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -80,7 +160,6 @@ function EditorContainer() {
         name: e.currentTarget.textContent,
         code: e.currentTarget.getAttribute('code'),
       };
-
       dispatch(setLanguageSelected(langObj));
       dispatch(setCode(langObj.code));
     },
@@ -101,7 +180,6 @@ function EditorContainer() {
   const editorDidMount = useCallback((editor) => {
     editor.onKeyDown((event) => {
       const { keyCode, ctrlKey, metaKey } = event;
-
       // Enable copy paste for first live drive
       if ((metaKey || ctrlKey) && (keyCode === 52)) {
         event.preventDefault();
@@ -116,7 +194,7 @@ function EditorContainer() {
         const obj = {
           code,
           languageId,
-          id,
+          problemId,
           submissionAllowed,
           candidateId,
           driveID,
@@ -129,7 +207,26 @@ function EditorContainer() {
     } else {
       setlimit(!limit);
     }
-  }, [code, languageId, id, submissionAllowed, candidateId]);
+  }, [code, languageId, problemId, submissionAllowed, candidateId]);
+
+  const handleSaveDraft = useCallback(() => {
+    if (
+      code != null &&
+      languageId != null &&
+      problemId != null &&
+      candidateId != null &&
+      driveID != null
+    ) {
+      const obj = {
+        code,
+        languageId,
+        problemId,
+        candidateId,
+        driveID,
+      };
+      dispatch(saveCode(obj));
+    }
+  }, [code, languageId, problemId, candidateId, driveID]);
 
   const handleFinish = useCallback(() => {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
@@ -139,6 +236,16 @@ function EditorContainer() {
     toggleConfirmation();
     handleSubmit();
   });
+
+  if (submissionAllowed <= 0 && limit === false) {
+    setlimit(true);
+  } else if (submissionAllowed > 0 && limit === true) {
+    setlimit(false);
+  }
+
+  if (backupCodeErr && backupCodeErrMsg) {
+    toast.error(backupCodeErrMsg);
+  }
 
   return (
     <Container fluid>
@@ -150,6 +257,7 @@ function EditorContainer() {
         handleClick={handleClick}
         handleSubmit={handleSubmit}
         toggle={toggle}
+        handleSaveDraft={handleSaveDraft}
         modal={modal}
         errorMessage={errorMessage}
         isError={isError}

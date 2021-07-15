@@ -16,8 +16,13 @@ describe('Create Problem Saga-Admin', () => {
   const response = {
     data:{
       message:'Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet',
+      data: {problem: {id: 1}}
     },
   };
+  const responseOutput = {
+    message:'Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet',
+    pid: 1
+  }
   const errorMessage = 'Error Message 404';
   beforeEach(() => {
     const action = { payload:data };
@@ -31,7 +36,7 @@ describe('Create Problem Saga-Admin', () => {
   it('Dispactch success action', () => {
     gen.next();
     expect(gen.next(response).value).toEqual(put(
-      createProblemSuccessAction(response.data.message),
+      createProblemSuccessAction(responseOutput),
     ));
     expect(gen.next().done).toEqual(true);
   });

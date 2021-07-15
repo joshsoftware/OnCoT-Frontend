@@ -18,10 +18,11 @@ describe('user drive reducer', () => {
         startTime: '2021-02-22T06:40:45Z',
         endTime: '2021-02-22T08:40:45Z',
       },
+      candidateId: 1,
     };
     expect(
-      userDriveReducer(initialState, setUserDriveDetails(userObj.data)),
-    ).toEqual({ ...initialState, ...userObj, isLoading: false });
+      userDriveReducer(initialState, setUserDriveDetails(userObj)),
+    ).toEqual({ ...initialState, ...userObj, isLoading: false, });
   });
 
   it('set error message', () => {

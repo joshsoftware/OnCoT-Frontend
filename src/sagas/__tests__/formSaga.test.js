@@ -5,8 +5,9 @@ import {
   candidateFormSuccessAction,
   candidateFormFailureAction,
 } from 'actions/candidateFormActions';
-import candidateInfoPostApi from 'apis/candidateFormApi';
+import { candidateInfoPostApi } from 'apis/candidateFormApi';
 import { candidateFormSaga } from 'sagas/formSaga';
+import local from 'utils/local';
 
 describe('candidateFormSaga', () => {
   let gen;
@@ -14,6 +15,7 @@ describe('candidateFormSaga', () => {
   let data;
   let token;
   let userData;
+  let candidateId = 1;
 
   const response = {
     data: {
@@ -40,18 +42,20 @@ describe('candidateFormSaga', () => {
       mobile: '1234567890',
       createdAt: '10/3/2021, 3:13:30 pm',
       updatedAt: '10/3/2021, 3:13:30 pm',
-      token: 'testtoken12345',
+      candidateId: candidateId,
     });
+    local.setItem('authToken','testtoken12345');
     gen = candidateFormSaga(action);
     const { fName, lName, mobile, createdAt, updatedAt } = action.payload;
     const { email, first_name, last_name, mobile_number,
       created_at, updated_at, is_profile_complete } = response.data.data;
     data =  {
-      first_Name: fName,
-      last_Name: lName,
+      first_name: fName,
+      last_name: lName,
       mobile_number: mobile,
       created_at: createdAt,
       updated_at: updatedAt,
+      token: "testtoken12345",
     };
     userData = {
       fName: first_name,
@@ -66,9 +70,8 @@ describe('candidateFormSaga', () => {
   });
 
   it('API call for REQUEST', () => {
-    const expectedRequest = gen.next(data, token).value;
-    const recievedRequest = call(candidateInfoPostApi, data, token);
-
+    const expectedRequest = gen.next().value;
+    const recievedRequest = call(candidateInfoPostApi, data, candidateId);
     expect(JSON.stringify(expectedRequest)).toEqual(
       JSON.stringify(recievedRequest),
     );

@@ -2,11 +2,11 @@ import { statementAction, statementActionFailed } from 'actions/problemStatement
 import problemStatementReducer, { initialState } from 'reducers/problemStatementReducer';
 
 describe('Problem Statement Reducer', () => {
-  const statement = {
+  const statement = [{
     id: '1',
     title: 'Title',
     description: 'Problem Statement',
-  };
+  }];
   const errorMessage = 'Request Error 404';
   const isError = true;
 

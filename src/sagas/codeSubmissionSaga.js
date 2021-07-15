@@ -5,6 +5,7 @@ import {
   submitAction,
   submitRequestFailed,
 } from 'actions/codeSubmissionActions';
+import local from 'utils/local';
 
 export function* codeSubmissionStatusSaga(param) {
   let { status } = param;
@@ -21,17 +22,16 @@ export function* codeSubmissionStatusSaga(param) {
 }
 
 export function* codeSubmissionSaga(action) {
-  const { code, languageId, id, submissionAllowed, candidateId, driveID } = action.payload;
-
+  const { code, languageId, problemId, submissionAllowed, candidateId, driveID } = action.payload;
   const data = {
     source_code:code,
     language_id:languageId,
-    id,
+    id: problemId,
     submission_count:submissionAllowed,
-    candidate_id:candidateId,
-    drive_id:driveID,
+    candidate_id:parseInt(candidateId, 10),
+    drive_id:parseInt(driveID, 10),
+    token: local.getItem('authToken'),
   };
-
   try {
     const response = yield call(codeSubmissionPostApi, data);
     yield call(codeSubmissionStatusSaga,

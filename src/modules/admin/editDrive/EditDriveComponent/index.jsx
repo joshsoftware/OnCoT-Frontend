@@ -31,6 +31,7 @@ const EditDriveComponent = (props) => {
     nameErrTxt,
     descriptionErrTxt,
     handleIsAssessmentChange,
+    defaultProblems,
   } = props;
   const nothing = '';
 
@@ -140,8 +141,10 @@ const EditDriveComponent = (props) => {
                     className='w-100'
                     id='problems'
                     value={options.id}
+                    defaultValue={defaultProblems}
                     placeholder={options.find((x) => x.value === details.problem_id).label}
                     onChange={handleSelectedProblemChange}
+                    isMulti
                     options={options}
                   />
                 </Row>
@@ -174,6 +177,7 @@ EditDriveComponent.propTypes = {
   nameErrTxt: PropTypes.string.isRequired,
   descriptionErrTxt: PropTypes.string.isRequired,
   handleIsAssessmentChange: PropTypes.func.isRequired,
+  defaultProblems: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default React.memo(EditDriveComponent);

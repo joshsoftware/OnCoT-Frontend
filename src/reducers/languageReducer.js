@@ -1,9 +1,12 @@
 import { LANGUAGE } from 'constants/actionConstants';
+import local from 'utils/local';
 
 const initialState = {
   languages: [],
   languageSelected: {},
   code: '# Write your code here (Accept input from stdin using gets and print output using puts)',
+  problemId: parseInt(local.getItem('problemId'), 10) || '',
+  languageCode: null,
 };
 
 const languageReducer = (state = initialState, action = {}) => {

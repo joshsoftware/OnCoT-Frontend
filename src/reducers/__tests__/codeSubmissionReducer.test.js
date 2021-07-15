@@ -3,9 +3,14 @@ import codeSubmissionReducer, { initialState } from 'reducers/codeSubmissionRedu
 
 describe('Code Submission Reducer', () => {
   const responsedata = {
-    submissionAllowed: 2,
-    testcasesPassed: 3,
-    totalTestcases: 5,
+    submissionAllowed: 3,
+    testcasesPassed: 1,
+    totalTestcases: 2,
+  }
+  const requestdata = {
+      submission_count: 3,
+      total_testcases: 2,
+      passed_testcases: 1,
   };
   const errorMessage = 'Error 404';
   const isError = true;
@@ -13,8 +18,8 @@ describe('Code Submission Reducer', () => {
     expect(codeSubmissionReducer(initialState, {})).toEqual(initialState);
   });
   it('Set Details', () => {
-    expect(codeSubmissionReducer(initialState, submitAction(responsedata)))
-      .toEqual({ ...initialState, responsedata });
+    expect(codeSubmissionReducer(initialState, submitAction(requestdata)))
+      .toEqual({ ...initialState, ...responsedata });
   });
   it('Request Failed', () => {
     expect(codeSubmissionReducer(initialState, submitRequestFailed(errorMessage, isError)))

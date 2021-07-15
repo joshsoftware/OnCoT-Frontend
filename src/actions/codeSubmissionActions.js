@@ -10,6 +10,11 @@ export const submitAction = (payload) => ({
   payload: { ...payload },
 });
 
+export const setSubmissionAllowed = (submissionCount) => ({
+  type: CODE_SUBMISSION.SET_SUBMISSION_ALLOWED,
+  payload: submissionCount,
+});
+
 export const submitRequestFailed = (requestError) => ({
   type: CODE_SUBMISSION.SET_ERROR_MESSAGE,
   payload: requestError,

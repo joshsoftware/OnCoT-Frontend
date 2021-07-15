@@ -1,15 +1,10 @@
 import produce from 'immer';
 
 import { PROBLEM_STATEMENT } from 'constants/actionConstants';
-import local from 'utils/local';
 
 export const initialState = {
-  statement: {
-    id: local.getItem('problemId') || '',
-    title: '',
-    description: '',
-    submissionCount: '',
-  },
+  statement: [],
+  activeIndex: 1,
   errorMessage: '',
   isError: false,
   isLoading: false,
@@ -19,13 +14,7 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case PROBLEM_STATEMENT.SET_DETAILS:
-      state.statement = {
-        id: payload.id,
-        title: payload.title,
-        description: payload.description,
-        submissionCount: payload.submission_count,
-        timeInMinutes: payload.time_in_minutes,
-      };
+      state.statement = payload;
       state.isLoading = false;
       break;
     case PROBLEM_STATEMENT.UPDATE_SUBMISSION_COUNT:
@@ -41,6 +30,9 @@ const problemStatementReducer = produce((state = initialState, action = {}) => {
       break;
     case PROBLEM_STATEMENT.DETAILS_REQUEST:
       state.isLoading = true;
+      break;
+    case PROBLEM_STATEMENT.SET_ACTIVE_INDEX:
+      state.activeIndex = payload;
       break;
     default:
       return state;

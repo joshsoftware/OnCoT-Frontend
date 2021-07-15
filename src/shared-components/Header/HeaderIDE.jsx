@@ -14,6 +14,8 @@ const HeaderIDE = (props) => {
     totalProblems,
     time,
     ifSufficient,
+    nextProblemSwitch,
+    prevProblemSwitch,
   } = props;
 
   return (
@@ -30,13 +32,13 @@ const HeaderIDE = (props) => {
 
         <WebcamCapture />
         <Col className='justify-content-end d-flex module mx-0'>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>
+          <Button disabled={currentProblem <= 1} onClick={prevProblemSwitch} className='pt-2 custom-circle btn-circle font-weight-bold'>
             {'<'}
           </Button>
           <h6 className='text-white text-center mt-2 mx-2 custom-font-size'>
             Problem {currentProblem}/{totalProblems}
           </h6>
-          <Button className='pt-2 custom-circle btn-circle font-weight-bold'>
+          <Button disabled={currentProblem >= totalProblems} onClick={nextProblemSwitch} className='pt-2 custom-circle btn-circle font-weight-bold'>
             {'>'}
           </Button>
         </Col>
@@ -63,6 +65,8 @@ HeaderIDE.propTypes = {
   totalProblems: PropTypes.number.isRequired,
   time: PropTypes.string.isRequired,
   ifSufficient: PropTypes.bool.isRequired,
+  nextProblemSwitch: PropTypes.func.isRequired,
+  prevProblemSwitch: PropTypes.func.isRequired,
 };
 
 export default React.memo(HeaderIDE);

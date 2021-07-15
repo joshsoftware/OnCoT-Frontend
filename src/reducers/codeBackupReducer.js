@@ -6,15 +6,15 @@ export const initialState = {
   backupCode: {},
   errorMessage: '',
   isError: false,
-  isLoading: false,
 };
 
 const codeBackupReducer = produce((state = initialState, action = {}) => {
   const { type, payload } = action;
   switch (type) {
     case CODE_BACKUP.FETCH_CODE_ACTION:
-      state.backupCode = { ...payload };
-      break;
+      return { ...initialState, backupCode: { ...payload } };
+    case CODE_BACKUP.SET_ERROR_MESSAGE:
+      return { ...state, isError: true, errorMessage: payload };
     default:
       return state;
   }

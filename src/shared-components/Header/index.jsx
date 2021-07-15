@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 import { updateTimer, timerRequest } from 'actions/timerActions';
 import {
   getCurrentTime,
@@ -11,6 +11,7 @@ import {
   setLanguageSelected,
 } from 'actions/languageAction';
 import HeaderIDE from 'shared-components/Header/HeaderIDE';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 import { Button } from 'core-components';
 import { statementRequest, statementActiveIndex } from 'actions/problemStatementActions';
 
@@ -25,6 +26,7 @@ const HeaderIDEConatiner = () => {
   const organisationName = name;
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const result = useSelector((state) => state.TimerReducer);
   const nextProblemSwitch = () => {
@@ -53,6 +55,10 @@ const HeaderIDEConatiner = () => {
 
   const time = getCurrentTime(result.counter);
   const sufficient = ifSufficientTime(result.counter);
+
+  if (time === 'Expired' && result.isRendered) {
+    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
+  }
 
   return (
     <>

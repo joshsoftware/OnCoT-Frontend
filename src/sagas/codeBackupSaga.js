@@ -14,7 +14,7 @@ export function* fetchCodeBackup(action) {
       const token = local.getItem('authToken');
       const response = yield call(codeBackupGetApi, token, action.payload);
       yield put(backupCodeAction(response.data.data.code));
-      if (response.data.data.code.submission_count_left !== undefined) {
+      if (response.data.data.code && response.data.data.code.submission_count_left !== undefined) {
         yield put(setSubmissionAllowed(response.data.data.code.submission_count_left));
       }
     }

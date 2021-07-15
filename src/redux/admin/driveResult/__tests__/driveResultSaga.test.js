@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 
 import { driveResultSaga } from 'redux/admin/driveResult/saga';
-import { driveResultSuccessAction, driveResultFailureAction } from 'redux/admin/createProblem/action';
+import { driveResultSuccessAction, driveResultFailureAction } from 'redux/admin/driveResult/action';
 
 import { driveResultGetApi } from 'redux/admin/driveResult/api';
 
@@ -12,9 +12,11 @@ describe('Drive Result Saga-Admin', () => {
     description:'Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet',
   };
   const response = {
-    data:{
-      message:'Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet',
-    },
+    data: {
+      data: {
+        message: 'Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet.Lorem Ipsum dolor sit amet',
+      },
+    }
   };
   const errorMessage = 'Error Message 404';
 
@@ -24,13 +26,13 @@ describe('Drive Result Saga-Admin', () => {
   });
 
   it('API call should be successful', () => {
-    expect(gen.next().value).toEqual(call(driveResultGetApi));
+    expect(gen.next().value).toEqual(call(driveResultGetApi, data ));
   });
 
   it('Dispactch success action', () => {
     gen.next();
     expect(gen.next(response).value).toEqual(put(
-      driveResultSuccessAction(response.data.message),
+      driveResultSuccessAction(response.data.data),
     ));
     expect(gen.next().done).toEqual(true);
   });

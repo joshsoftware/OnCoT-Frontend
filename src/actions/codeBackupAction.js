@@ -15,7 +15,7 @@ export const backupCodeAction = (payload) => ({
   payload: { ...payload },
 });
 
-export const submitRequestFailed = (requestError) => ({
+export const backupCodeFailed = (requestError) => ({
   type: CODE_BACKUP.SET_ERROR_MESSAGE,
   payload: requestError,
 });

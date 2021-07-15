@@ -1,4 +1,4 @@
-import { driveResultSuccessAction, driveResultFailureAction } from 'redux/admin/createProblem/action';
+import { driveResultSuccessAction, driveResultFailureAction } from 'redux/admin/driveResult/action';
 import driveResultReducer, { initialState } from 'redux/admin/driveResult/reducer';
 
 describe('Dive Result Reducer-Admin', () => {
@@ -15,7 +15,7 @@ describe('Dive Result Reducer-Admin', () => {
   //     .toEqual({ ...initialState, message, isSuccess });
   // });
   it('Request Failed', () => {
-    expect(driveResultReducer(initialState, driveResultFailureAction(errorMessage, isError)))
+    expect(driveResultReducer(initialState, driveResultFailureAction(errorMessage , isError)))
       .toEqual({ ...initialState, errorMessage, isError });
   });
 });

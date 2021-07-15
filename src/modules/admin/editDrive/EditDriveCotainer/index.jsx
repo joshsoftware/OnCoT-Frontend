@@ -249,8 +249,6 @@ const EditDriveContainer = () => {
       } else {
         dispatch(editDriveRequestAction({ putData }));
         drives_problems_attributes = [];
-        // driveDetails.drive.drives_problems = [];
-        // driveDetails.drive.drives_problems.push(...currentProblems);
       }
     });
   };

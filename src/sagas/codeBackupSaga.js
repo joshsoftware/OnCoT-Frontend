@@ -4,20 +4,22 @@ import { CODE_BACKUP } from 'constants/actionConstants';
 import local from 'utils/local';
 import {
   backupCodeAction,
+  backupCodeFailed,
 } from 'actions/codeBackupAction';
 import { setSubmissionAllowed } from 'actions/codeSubmissionActions';
 
 export function* fetchCodeBackup(action) {
   try {
     if (action.payload) {
-      const response = yield call(codeBackupGetApi, local.getItem('authToken'), action.payload);
+      const token = local.getItem('authToken');
+      const response = yield call(codeBackupGetApi, token, action.payload);
       yield put(backupCodeAction(response.data.data.code));
       if (response.data.data.code.submission_count_left !== undefined) {
         yield put(setSubmissionAllowed(response.data.data.code.submission_count_left));
       }
     }
   } catch (error) {
-    // TODO: Handle Error condition
+    yield put(backupCodeFailed('Backup Code fetching failed, Please try again!'));
   }
 }
 
@@ -34,7 +36,7 @@ export function* saveCodeBackup(action) {
   try {
     yield call(codeBackupPostApi, data);
   } catch (error) {
-    // TODO: Handle Error Condition
+    yield put(backupCodeFailed('Backup Code saving failed, Please try again!'));
   }
 }
 

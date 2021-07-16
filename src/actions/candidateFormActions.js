@@ -17,3 +17,8 @@ export const candidateFormFailureAction = (error) => ({
   type: CANDIDATE_FORM_ACTIONS.FAILURE_ACTION,
   payload: error,
 });
+
+// reseting token
+export const resetToken = () => ({
+  type: CANDIDATE_FORM_ACTIONS.RESET_TOKEN,
+});

@@ -1,0 +1,18 @@
+@import "/src/assets/stylesheets/core";
+
+.login-section {
+  background: url('../../../../assets/images/login-bg.png') no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 100vh;
+}
+
+.login-wrapper {
+  padding: 0 5rem;
+
+  .site-logo {
+    width: 10.75rem;
+    padding-top: 4.5rem;
+  }
+}
+

@@ -12,3 +12,16 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+
+
+// Form
+input:-internal-autofill-selected,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+  appearance: none !important;
+    color: $input-color !important;
+  background-image: unset !important;
+}

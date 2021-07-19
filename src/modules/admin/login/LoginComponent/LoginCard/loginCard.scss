@@ -1,0 +1,11 @@
+@import "/src/assets/stylesheets/core";
+
+.login-card-box {
+  padding: 2rem;
+  backdrop-filter: blur(30px);
+-webkit-backdrop-filter: blur(30px);
+top: 0;
+right: 200px;
+width: 24rem;
+height: 100vh;
+}

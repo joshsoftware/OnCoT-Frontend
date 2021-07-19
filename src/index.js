@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import axios from 'axios';
-import { Toast } from 'core-components/index';
-import { Redirect, useHistory } from 'react-router';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -24,7 +21,12 @@ axios.interceptors.response.use(
   },
   (error) => {
     if (error.message === 'Request failed with status code 401') {
-      if (!(window.location.pathname === '/' || window.location.pathname === '/login')) {
+      if (
+        !(
+          window.location.pathname === '/' ||
+          window.location.pathname === '/login'
+        )
+      ) {
         window.location = '/login';
       }
     }

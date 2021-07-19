@@ -1,0 +1,14 @@
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  @include scrollbars();
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}

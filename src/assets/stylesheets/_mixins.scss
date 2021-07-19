@@ -1,0 +1,23 @@
+@mixin scrollbars() {
+  scrollbar-width: thin;
+  scrollbar-color: rgba($color: $primary, $alpha: 0.1) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($color: $primary, $alpha: 0.1);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($color: $primary, $alpha: 0.1);
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: rgba($color: $primary, $alpha: 0.1);
+    scrollbar-track-color: transparent;
+  }
+}

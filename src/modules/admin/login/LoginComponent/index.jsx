@@ -127,7 +127,13 @@ const LoginComponent = (props) => {
     // </Container>
     <section className='login-section'>
       <div className='login-wrapper position-relative h-100'>
-        <img className='site-logo' src={siteLogo} alt='Spark Code Logo' />
+        <div className='spark-code-header py-4'>
+          <div className='container'>
+            <a href='#' className='d-block'>
+              <img className='site-logo' src={siteLogo} alt='Spark Code Logo' />
+            </a>
+          </div>
+        </div>
         <LoginCard />
       </div>
     </section>

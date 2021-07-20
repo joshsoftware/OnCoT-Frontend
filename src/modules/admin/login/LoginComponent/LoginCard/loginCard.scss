@@ -1,11 +1,43 @@
 @import "/src/assets/stylesheets/core";
 
 .login-card-box {
-  padding: 2rem;
+  padding: 4rem 2rem;
   backdrop-filter: blur(30px);
--webkit-backdrop-filter: blur(30px);
-top: 0;
-right: 200px;
-width: 24rem;
-height: 100vh;
+  -webkit-backdrop-filter: blur(30px);
+  top: 0;
+  right: 200px;
+  width: 24rem;
+  height: 100vh;
+
+  h2 {
+    color: $secondary;
+    font-size: 1.75rem;
+    line-height: 1.875rem;
+    margin-bottom: 2rem;
+  }
+}
+
+
+.login-form {
+  padding: 2rem 0;
+
+  .form-group {
+    margin-bottom: 2rem;
+  
+    >label {
+      color: $secondary;
+      font-size: 1rem;
+      line-height: 1.5625rem;
+    }
+  }
+
+  .login-details-box {
+
+    .forgot-password-link, .form-check-label {
+      font-family: $font-family-saira;
+      font-size: 0.75rem;
+      line-height: 1.1875rem;
+      color: $white;
+    }
+  }
 }

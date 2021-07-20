@@ -7,9 +7,11 @@ import {
   Form,
   FormFeedback,
   FormGroup,
+  Label,
   Spinner,
   Toast,
 } from 'core-components/index';
+import { Link } from 'react-router-dom';
 import './loginCard.scss';
 
 const LoginCard = (props) => {
@@ -38,8 +40,10 @@ const LoginCard = (props) => {
 
   return (
     <div className='login-card-box position-absolute'>
-      <Form className='d-flex align-items-center justify-content-center flex-column h-100'>
+      <h2 className='font-weight-normal'>Welcome to SparKode</h2>
+      <Form className='login-form d-flex flex-column h-100 scroll-y'>
         <FormGroup>
+          <Label className='mx-3 font-weight-normal'>Email</Label>
           <Input
             id='exampleEmail'
             type='email'
@@ -53,6 +57,7 @@ const LoginCard = (props) => {
           </FormFeedback>
         </FormGroup>
         <FormGroup>
+          <Label className='mx-3 font-weight-normal'>Password</Label>
           <Input
             type='password'
             id='examplePassword'
@@ -65,8 +70,32 @@ const LoginCard = (props) => {
             {passwordError}
           </FormFeedback>
         </FormGroup>
-        <FormGroup className='mt-5 d-flex justify-content-center'>
-          <Button className='border-0' onClick={handleSubmit}>
+        <div className='login-details-box d-flex justify-content-between align-items-center pt-2 pb-1'>
+          <Link to='/' className='forgot-password-link text-decoration-none'>
+            Forgot Password
+          </Link>
+          <FormGroup check>
+            <Label
+              for='exampleCheck'
+              check
+              className='font-weight-normal d-flex align-items-center'
+            >
+              <Input
+                type='checkbox'
+                name='check'
+                id='exampleCheck'
+                className='form-check-input-sm mt-0'
+              />
+              <span className='ml-2'>Remember Me</span>
+            </Label>
+          </FormGroup>
+        </div>
+        <FormGroup className='d-flex mb-0 py-5'>
+          <Button
+            className='border-0 w-100'
+            onClick={handleSubmit}
+            color='primary'
+          >
             {isLoading ? <Spinner size='sm' color='light' /> : <>Login</>}
           </Button>
         </FormGroup>

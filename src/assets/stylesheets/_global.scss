@@ -13,15 +13,126 @@ body {
   height: 100vh;
 }
 
+// Scroll
+.scroll-y {
+  min-height: 0;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  @include scrollbars();
+}
+
+.scroll-x {
+  min-width: 0;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  @include scrollbars();
+}
 
 // Form
-input:-internal-autofill-selected,
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  background-color: transparent !important;
-  appearance: none !important;
-    color: $input-color !important;
-  background-image: unset !important;
+
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//   background-color: $black-rock !important;
+//   -webkit-box-shadow: 0 0 0 1000px $black-rock inset !important;
+//   appearance: none !important;
+//   background-image: unset !important;
+//   border-color:$black-rock !important;
+// }
+
+// input:-internal-autofill-selected
+// {
+//   color: $input-color ;
+// }
+
+//Form Control
+
+.form-control{
+  font-size: 0.875rem;
+  line-height:  1.375rem;
+  font-weight: 600;
+
+  &:focus, &:hover {
+    background-color: rgba(147, 139, 200, 0.2);
+    border-color:  rgba(147, 139, 200, 0.2);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+//Button
+
+[class*="btn-"]:focus,
+[class*="btn-"].focus,
+[class*="btn-outline-"]:focus,
+[class*="btn-outline-"].focus {
+  box-shadow: none;
+}
+
+.btn:not(:disabled):not(.disabled):active:focus,
+.btn:not(:disabled):not(.disabled).active:focus,
+.show>.btn.dropdown-toggle:focus .btn {
+  box-shadow: none;
+}
+
+
+// checkbox/radiobox
+
+.form-check-input {
+  width: 1.625rem;
+  height: 1.625rem;
+  vertical-align: top;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: 1px solid $blue-haze;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  color-adjust: exact;
+  transition: background-color 0.15s ease-in-out,
+    background-position 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+
+  &.form-check-input-sm {
+    width: 16px;
+    height: 16px;
+    border-color: $white;
+  }
+}
+
+.form-check-input:checked {
+  border-color: $blue-haze;
+}
+
+// Checkbox
+.form-check-input[type='checkbox'] {
+  border-radius: 3px;
+}
+
+.form-check-input:checked[type='checkbox'] {
+  background-color: $ebony-clay;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAABHNCSVQICAgIfAhkiAAAA69JREFUaEPtl09IFFEcx9/MblJ7KBXXQxZhBY0dOnlpc1fdLLpEBkEkRRqYl4LoEMwWMri0EAjdgvBgRIQHwcCUpIPloRCkg10KIj1YGSv+w1DnzXuv38zsrpshzpsZh1VGWAT3vXnz+X2+7/eeAtphP8IO40E+UKEb9Q35hjyugB85jwvOvZxviLtkHk/wDXlccO7lfEPcJfN4QsEa6jzbLbFl2rVLpZfujLb+tlqXggTqPP9SolgbQRoNI0y/B9VA7O7H6z+sQBUc0KPLPVUIoxGB0DKECRI0iphKhu+9uxHfdkCp5l5JJMIIQIAZgsAQAkNTlOCo/KZlclsBpW71S4LGMjDUMANQU1SlUfnVFUswOnBBRC4lD0loheox0/dMFmaaIeGk/OyiZRhbQMrEXLFSWTJvRb+VMSllWIJovYdPubFnCIOokV+Ikpj85MI3K8/IH8Nl6P7kYkQk2iDEoaXjWFkf72Lrx6c6P0hU1XJ7xoDBZBqiF5Ufn+OG4TL0IL1chwjRYfbAogQRdjV5tLTHLlTq6ZhEVzDAsDDLdDMwkxaREJGVelswXECJxdU+UaONZis1KokQpdeSh0tf8EKlusckoiGIGTNjZjaAGbAfTSTqv/A+z1bkFMZ24z94ABaP50ExsNaUrLRuSukdl8RV45wxWrNeHDCUDjASS9yOOILhMqQPNqCWAQozE4rAoYcJg9/NyUMlzzerrNL/VRIodDOcPWcM0+kgprFEW7VjGG6gHNSKBqYyUHpcNMqg3QLUvg2hlOEJCV7e2DPZYsCc2SChpxJNJ1yBsQWUg1olA2AmztbODdPUgf+hlLGfcM6ocDdDYdj4mT1DZ2F8XXtj1efNzPJ8z9W28x9sxA8zMEXixhXF3NhMJLStY//eruxYZXxGgqvLWms2G8qsSFld+5kjrsLYNpR7WQOKvEUU1eR3P1EjN3UoZWJGIio0APPWbJrRyEKAomh75KDrMI6BMvELaZgMwjWldh3UQ6bRVtgz5blzBtN5UdVOK9UVn3hixDPWduTWxS8EpobgalijR880kYthds8sBFQSV46HtwzGFUN58VuDgqaXhTL+n8FkKUhJrVJRvKUwrgJl45czpf/BbBRLIqYNybLQKE907I51JXIbxg+hJWgQDclQkScwrhv6N37sNVw05WSR4BnMlgHZjYsb81yPnBsv5eQZPpCT6nkx1zfkRZWdrOEbclI9L+b6hryospM1fENOqufFXN+QF1V2ssaOM/QX0kQfU9/19oEAAAAASUVORK5CYII=');
+  background-size: 24px;
+  background-position-y: 0px;
+  box-shadow: inset 0px 3px 6px #8089B7, 0px 3px 6px rgba(0, 0, 0, 0.612);
+}
+
+.form-check-input-sm:checked[type='checkbox'] {
+  background-size: 14px auto;
+  background-position-y: -1px;
+  box-shadow: unset;
+}
+
+input[type='file']:focus,
+input[type='radio']:focus,
+input[type='checkbox']:focus {
+  outline: none;
 }

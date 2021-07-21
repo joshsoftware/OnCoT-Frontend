@@ -8,6 +8,8 @@ export const initialState = {
   errorMessage: '',
   isError: false,
   isLoading: false,
+  timeInMinutes: '',
+  testCase: '',
 };
 
 const problemStatementReducer = produce((state = initialState, action = {}) => {

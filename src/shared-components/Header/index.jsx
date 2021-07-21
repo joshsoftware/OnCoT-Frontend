@@ -18,8 +18,8 @@ import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 import local from 'utils/local';
 import { Button } from 'core-components';
 import { statementRequest, statementActiveIndex } from 'actions/problemStatementActions';
-import { reducer } from 'containers/InputOutputContainer/reducer';
 import { saveCode } from 'actions/codeBackupAction';
+import { clearIO } from 'actions/ioAction';
 
 const HeaderIDEConatiner = () => {
   const { activeIndex, statement } = useSelector((state) => state.problemStatementReducer);
@@ -29,14 +29,6 @@ const HeaderIDEConatiner = () => {
   const currentProblem = activeIndex;
   const languageId = languageSelected.id;
   const { id: problemId } = statement[activeIndex - 1] || { problem_id : null };
-  const initialState = {
-    outputValue: '',
-    inputValue: '',
-  };
-  const [inputOutuptValue, setInputOutputValue] = useReducer(
-    reducer,
-    initialState,
-  );
 
   const { candidateId } = useSelector((state) => state.userDriveReducer);
   const driveID = local.getItem('driveID');
@@ -77,7 +69,7 @@ const HeaderIDEConatiner = () => {
     dispatch(setCode(''));
     dispatch(setLanguageSelected(languages[0]));
     dispatch(setSubmissionAllowed(submissionCount));
-    setInputOutputValue({ type: 'output', payload: { output: '' } });
+    dispatch(clearIO());
   };
 
   const prevProblemSwitch = () => {
@@ -88,7 +80,7 @@ const HeaderIDEConatiner = () => {
     dispatch(setCode(''));
     dispatch(setLanguageSelected(languages[0]));
     dispatch(setSubmissionAllowed(submissionCount));
-    setInputOutputValue({ type: 'output', payload: { output: '' } });
+    dispatch(clearIO());
   };
 
   useEffect(() => {

@@ -29,7 +29,6 @@ import { getLCP } from 'web-vitals';
 function EditorContainer() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const codes = {};
 
   const [isDropDownOpen, setDropDownOpen] = useState(false);
   const [intervalActivation, setIntervalActivation] = useState(true);
@@ -43,11 +42,12 @@ function EditorContainer() {
   const {
     isError,
     errorMessage,
-    submissionAllowed,
     totalTestcases,
     testcasesPassed,
     isLoading,
   } = useSelector((state) => state.codeSubmissionReducer);
+
+  let { submissionAllowed } = useSelector((state) => state.codeSubmissionReducer);
 
   const {
     statement,
@@ -66,6 +66,7 @@ function EditorContainer() {
   } = useSelector((state) => state.codeBackupReducer);
 
   const { id: problemId } = statement[activeIndex - 1] || { problem_id : null };
+
   if (problemId) {
     const { currCode, currLanguageSelected, currSubmissionAllowed }
       = currentLangState(
@@ -79,16 +80,12 @@ function EditorContainer() {
         submissionAllowed,
         leftSubmissionCount,
       );
-
+    submissionAllowed = currSubmissionAllowed;
     code = currCode;
     if (languageSelected.id !== currLanguageSelected.id) {
       dispatch(setLanguageSelected(currLanguageSelected));
     }
     languageSelected = currLanguageSelected;
-    codes[problemId] = {
-      code: currCode,
-      languageSelected: currLanguageSelected,
-    };
   }
 
   const { candidateId } = useSelector((state) => state.userDriveReducer);
@@ -188,6 +185,10 @@ function EditorContainer() {
     editor.focus();
   }, []);
 
+  const handleSaveDraft = useCallback(() => {
+    codeBackupInterval();
+  }, [code, languageId, problemId, candidateId, driveID]);
+
   const handleSubmit = useCallback(() => {
     if (submissionAllowed > 0) {
       if (code != null) {
@@ -200,6 +201,7 @@ function EditorContainer() {
           driveID,
         };
         setModal(true);
+        handleSaveDraft();
         dispatch(submitRequest(obj));
       } else {
         // TODO handle error
@@ -208,25 +210,6 @@ function EditorContainer() {
       setlimit(!limit);
     }
   }, [code, languageId, problemId, submissionAllowed, candidateId]);
-
-  const handleSaveDraft = useCallback(() => {
-    if (
-      code != null &&
-      languageId != null &&
-      problemId != null &&
-      candidateId != null &&
-      driveID != null
-    ) {
-      const obj = {
-        code,
-        languageId,
-        problemId,
-        candidateId,
-        driveID,
-      };
-      dispatch(saveCode(obj));
-    }
-  }, [code, languageId, problemId, candidateId, driveID]);
 
   const handleFinish = useCallback(() => {
     history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);

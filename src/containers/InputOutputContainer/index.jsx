@@ -45,7 +45,10 @@ const CustomIOContainer = () => {
       lang_code: backupLanguageId },
   } = useSelector((state) => state.codeBackupReducer);
 
-  const { id: problemId } = statement[activeIndex - 1] || { problem_id : null };
+  const {
+    id: problemId,
+    test_case: testCase,
+  } = statement[activeIndex - 1] || { problem_id : null };
 
   if (problemId) {
     const { currCode, currLanguageSelected } = currentLangState(
@@ -73,7 +76,7 @@ const CustomIOContainer = () => {
       language_id: codes[problemId]?.languageSelected.id,
       language_name: languageSelected.name,
       source_code: codes[problemId]?.code,
-      stdin: inputOutuptValue.inputValue,
+      stdin: inputOutuptValue.inputValue || testCase,
       room: broadcastingRoom,
     };
 

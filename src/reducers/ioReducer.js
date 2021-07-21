@@ -9,13 +9,10 @@ export const initialState = {
 
 const ioReducer = produce((state = initialState, action) => {
   const { type, payload } = action;
-  console.log(type);
   switch (type) {
     case INPUT_OUTPUT.SET_OUTPUT: return { ...initialState, outputValue: payload };
     case INPUT_OUTPUT.SET_INPUT: return { ...initialState, inputValue: payload };
-    case INPUT_OUTPUT.CLEAR:
-      console.log(initialState, 'initialState++++++++++++++++++++++++++++');
-      return { ...initialState };
+    case INPUT_OUTPUT.CLEAR: return { ...initialState };
     default: return state;
   }
 });

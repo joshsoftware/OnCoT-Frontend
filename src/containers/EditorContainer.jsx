@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import EditorNavComponent from 'components/EditorNavComponent';
 import EditorPadComponent from 'components/EditorPadComponent';
@@ -224,10 +223,6 @@ function EditorContainer() {
     setlimit(true);
   } else if (submissionAllowed > 0 && limit === true) {
     setlimit(false);
-  }
-
-  if (backupCodeErr && backupCodeErrMsg) {
-    toast.error(backupCodeErrMsg);
   }
 
   return (

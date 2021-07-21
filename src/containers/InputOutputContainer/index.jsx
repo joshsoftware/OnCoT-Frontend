@@ -1,11 +1,11 @@
 import React, { useState, useReducer, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 
 import CustomIOComponent from 'components/IdeComponent/CustomIOComponent';
 import { customInputOutputPostApi, customInputOutputSendTokenApi } from 'apis/customIOAPI';
-import { reducer } from 'containers/InputOutputContainer/reducer';
 import { currentLangState } from 'utils/helpers/currentLanguageHelper';
+import { setInput, setOutput } from 'actions/ioAction';
 
 const initialState = {
   outputValue: '',
@@ -13,15 +13,23 @@ const initialState = {
 };
 
 const CustomIOContainer = () => {
+  const dispatch = useDispatch();
+
   const { authToken } = useSelector((state) => state.candidateFormReducer);
   const broadcastingRoom = `room_${authToken}`;
+  const {
+    inputValue: storedInput,
+    outputValue: storedOutput,
+  } = useSelector((state) => state.ioReducer);
+
+  const inputOutuptValue = {
+    inputValue: storedInput,
+    outputValue: storedOutput,
+  };
 
   const codes = {}; // codes will set code according to question name
   const [latestToken, setLatestToken] = useState('test_token');
-  const [inputOutuptValue, setInputOutputValue] = useReducer(
-    reducer,
-    initialState,
-  );
+
   const [loading, setLoading] = useState(false);
   const [showOutput, setshowOutput] = useState(true);
 
@@ -70,7 +78,7 @@ const CustomIOContainer = () => {
 
   const handleRunClick = async () => {
     setLoading(true);
-    setInputOutputValue({ type: 'output', payload: { output: '' } });
+    dispatch(setOutput(''));
 
     const data = {
       language_id: codes[problemId]?.languageSelected.id,
@@ -97,18 +105,12 @@ const CustomIOContainer = () => {
                 outputValue = output.data.data.stdout;
               }
               setLoading(false);
-              setInputOutputValue({
-                type: 'output',
-                payload: { output: outputValue },
-              });
+              dispatch(setOutput(outputValue));
             }
           })
           .catch((error) => {
-            setInputOutputValue({
-              type: 'output',
-              payload: { output: 'Compiler error' },
-            });
             // something went wrong! error
+            dispatch(setOutput('Compiler error'));
             setLoading(false);
           });
       }, 2000);
@@ -122,19 +124,13 @@ const CustomIOContainer = () => {
       })
       .catch((error) => {
         setLoading(false);
-        setInputOutputValue({
-          type: 'output',
-          payload: { output: error.message },
-        });
+        dispatch(setOutput(error.message));
       });
   };
 
   const handleInputChange = useCallback(
     (event) => {
-      setInputOutputValue({
-        type: 'input',
-        payload: { input: event.target.value },
-      });
+      dispatch(setInput(event.target.value));
     },
     [inputOutuptValue.inputValue],
   );
@@ -163,11 +159,7 @@ const CustomIOContainer = () => {
       }
 
       setLoading(false);
-
-      setInputOutputValue({
-        type: 'output',
-        payload: { output: outputValue },
-      });
+      dispatch(setOutput(outputValue));
     }
   };
 

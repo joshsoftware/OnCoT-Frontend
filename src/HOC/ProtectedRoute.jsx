@@ -2,6 +2,7 @@ import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { useSelector } from 'react-redux';
+import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
 
 function ProtectedRoute({ component: Component, restricted, ...rest }) {
   const {
@@ -14,7 +15,7 @@ function ProtectedRoute({ component: Component, restricted, ...rest }) {
         if (authToken) {
           return <Component {...props} />;
         }
-        return <Redirect to='/' />;
+        return <Redirect to={`${ROUTES.CANDIDATE}${CANDIDATE_ROUTES.ENDPAGE}`} />;
       }}
     />
   );

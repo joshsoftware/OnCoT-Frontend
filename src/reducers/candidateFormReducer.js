@@ -18,7 +18,7 @@ export const initialState = {
     updatedAt: '',
     isProfileComplete: false,
   },
-  authToken: local.getItem('authToken') || 'sample_token',
+  authToken: local.getItem('authToken'),
   candidateId: local.getItem('candidateId') || '',
 };
 
@@ -47,6 +47,10 @@ const candidateFormReducer = produce((draft = initialState, action = {}) => {
       draft.state.error = true;
       draft.state.errorMsg = payload;
       draft.state.nextPageAllowed = false;
+      break;
+
+    case CANDIDATE_FORM_ACTIONS.RESET_TOKEN:
+      draft.authToken = null;
       break;
 
     default:

@@ -20,6 +20,7 @@ import {
   keyValueV,
 } from 'components/EditorPadComponent/editorConstants';
 import { ROUTES, CANDIDATE_ROUTES } from 'constants/routeConstants';
+import { resetToken } from 'actions/candidateFormActions';
 
 import isEmpty from 'utils/isEmpty';
 import local from 'utils/local';
@@ -229,7 +230,9 @@ function EditorContainer() {
   }, [code, languageId, problemId, candidateId, driveID]);
 
   const handleFinish = useCallback(() => {
-    history.push(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
+    localStorage.removeItem('authToken');
+    dispatch(resetToken());
+    history.replace(ROUTES.CANDIDATE + CANDIDATE_ROUTES.ENDPAGE);
   });
 
   const handleConfirmation = useCallback(() => {

@@ -21,7 +21,7 @@ function CandidateRoutes() {
         component={LandingPageContainer}
       />
 
-      <ProtectedRoute
+      <Route
         path={path + CANDIDATE_ROUTES.RULES_AND_PROFILE}
         component={ProfileComponent}
       />
@@ -29,7 +29,7 @@ function CandidateRoutes() {
         path={path + CANDIDATE_ROUTES.IDE}
         component={IdeContainer}
       />
-      <ProtectedRoute
+      <Route
         path={path + CANDIDATE_ROUTES.ENDPAGE}
         component={TestEndPageContainer}
       />

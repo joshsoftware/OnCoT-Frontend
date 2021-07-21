@@ -17,7 +17,7 @@ import {
 import josh from 'assets/images/josh.png';
 import siteLogo from 'assets/images/spark-code-logo.png';
 // import './adminLoginStyle.css';
-import LoginCard from './LoginCard/login';
+import LoginCard from './LoginCard/loginCard';
 import './loginLayout.scss';
 
 const LoginComponent = (props) => {

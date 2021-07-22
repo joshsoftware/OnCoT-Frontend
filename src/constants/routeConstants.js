@@ -27,6 +27,7 @@ export const ADMIN_ROUTES = {
   PROBLEM_DETAILS: '/problem/:problemId/details',
   CREATE_PROBLEM: '/problem/create',
   EDIT_PROBLEM: '/problem/:problemId/edit',
+  TEMPLATE: '/problem/:problemId/templates',
   USER_PROFILE: '/profile',
   SNAPSHOTS: '/drive/:driveId/candidate/:candidateId/snapshots',
   INVITE_USER: '/users',

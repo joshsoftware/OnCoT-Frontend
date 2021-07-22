@@ -39,6 +39,13 @@ const ProblemsListContainer = () => {
     history.push(`/admin/problem/${data[0].innerHTML}/edit`);
   };
 
+  const onClickTemplate = (e) => {
+    const rowId = e.target.parentNode.parentNode.id;
+    const data = document.getElementById(rowId).querySelectorAll('.problemDetail');
+    localStorage.setItem('templateProblemId', data[0].innerHTML);
+    history.push(`/admin/problem/${data[0].innerHTML}/templates`);
+  };
+
   const renderTableData = useCallback(() => {
     return allProblems.map((val, index) => {
       const { id, title, description } = val;
@@ -52,6 +59,9 @@ const ProblemsListContainer = () => {
           </td>
           <td>
             <Button onClick={onClickResult}>Details</Button>
+          </td>
+          <td>
+            <Button onClick={onClickTemplate}>Templates</Button>
           </td>
         </tr>
       );

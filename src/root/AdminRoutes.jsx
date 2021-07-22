@@ -18,6 +18,7 @@ import EditProblemContainer from 'modules/admin/editProblem/EditProblemContainer
 import UserProfileContainer from 'modules/admin/userProfile/UserProfileContainer';
 import InviteUserContainer from 'modules/admin/inviteUser/InviteUserContainer';
 import SnapshotsContainer from 'modules/admin/snapshots/SnapshotsContainer';
+import TemplateContainer from 'modules/admin/template/TemplateContainer';
 
 function AdminRoutes() {
   const { path } = useRouteMatch();
@@ -100,6 +101,11 @@ function AdminRoutes() {
               exact
               path={path + ADMIN_ROUTES.SNAPSHOTS}
               component={SnapshotsContainer}
+            />
+            <ProtectedAdminRoute
+              exact
+              path={path + ADMIN_ROUTES.TEMPLATE}
+              component={TemplateContainer}
             />
             <Redirect to={path} />
           </Switch>

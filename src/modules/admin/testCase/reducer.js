@@ -2,23 +2,23 @@ import produce from 'immer';
 
 const setterForCrud = (payload, state) => {
   if (payload.subType === 'input') {
-    state.input  = payload.data;
+    state.input = payload.data;
   } else if (payload.subType === 'output') {
-    state.output  = payload.data;
+    state.output = payload.data;
   } else if (payload.subType === 'marks') {
-    state.marks  = payload.data;
+    state.marks = payload.data;
   } else if (payload.subType === 'id') {
-    state.id  = payload.data;
+    state.id = payload.data;
   }
 };
 
 const setErrTxt = (payload, state) => {
   if (payload.subType === 'inputErr') {
-    state.inputErrTxt  = payload.data;
+    state.inputErrTxt = payload.data;
   } else if (payload.subType === 'outputErr') {
-    state.outputErrTxt  = payload.data;
+    state.outputErrTxt = payload.data;
   } else if (payload.subType === 'marksErr') {
-    state.marksErrTxt  = payload.data;
+    state.marksErrTxt = payload.data;
   }
 };
 
